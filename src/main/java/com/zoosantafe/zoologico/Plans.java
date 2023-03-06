@@ -8,7 +8,7 @@ package com.zoosantafe.zoologico;
  *
  * @author juan.castro17
  */
-public class Planes {
+public class Plans {
     private int code;
     private String name;
     private String Time;
@@ -22,10 +22,10 @@ public class Planes {
     private double kidTicketValue;
     private String souvenir;
 
-    public Planes() {
+    public Plans() {
     }
 
-    public Planes(int code, String name, String Time, String description, String day, String hours, String worth, int personsAmount, double wortheventsubscription, double adultTicketValue, double kidTicketValue, String souvenir) {
+    public Plans(int code, String name, String Time, String description, String day, String hours, String worth, int personsAmount, double wortheventsubscription, double adultTicketValue, double kidTicketValue, String souvenir) {
         this.code = code;
         this.name = name;
         this.Time = Time;
