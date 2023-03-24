@@ -2,12 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.zoosantafe.zoologico;
+package Control;
 
 /**
  *
- * @author juan.castro17
+ * @author garci
  */
-public class DomesticAnimals extends Animals{
-    
+public class Zoo {
+    public static void main(String[] args) {
+        
+    }
 }

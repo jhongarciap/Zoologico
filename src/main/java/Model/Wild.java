@@ -4,15 +4,16 @@
  */
 package Model;
 
+import Model.Animal;
+
 /**
  *
- * @author juan.castro17
+ * @author garci
  */
-public class ComercialDep {
-    public void createPlan(){
-        stopPlan();
-        modifyPlan();
-        sellVoucher();
+public class Wild extends Animal{
+    
+    public Wild(String name, String race, String sex, String habitad, String diet) {
+        super(name, race, sex, habitad, diet);
     }
     
 }

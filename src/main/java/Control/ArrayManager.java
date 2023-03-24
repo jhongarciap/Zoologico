@@ -6,9 +6,8 @@ package Control;
 
 /**
  *
- * @author juan.castro17
+ * @author garci
  */
-public class ManagementDep {
-    llevarCuentas();
+public class ArrayManager {
     
 }
