@@ -11,6 +11,7 @@ import java.util.Date;
  * @author garci
  */
 public class Transation {
+    private String code;
     private String name;
     private Date date;
     private Float income;
@@ -18,13 +19,28 @@ public class Transation {
     private Float profits;
     private String especifications;
 
-    public Transation(String name, Date date, Float income, Float expenses, Float profits, String especifications) {
+    public Transation(String code, String name, Date date, Float income, Float expenses, Float profits, String especifications) {
+        this.code = code;
         this.name = name;
         this.date = date;
         this.income = income;
         this.expenses = expenses;
         this.profits = profits;
         this.especifications = especifications;
+    }
+
+    /**
+     * @return the code
+     */
+    public String getCode() {
+        return code;
+    }
+
+    /**
+     * @param code the code to set
+     */
+    public void setCode(String code) {
+        this.code = code;
     }
 
     /**
@@ -112,3 +128,4 @@ public class Transation {
     }
     
 }
+    
