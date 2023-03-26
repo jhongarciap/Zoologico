@@ -25,17 +25,17 @@ public class ArrayManager {
         bill.add(newBill);
     }
     //buscar
-    public void searchBill(String id){
+    public void searchBill(Date date){
         for (int i = 0; i <= bill.size(); i++){
-            if(id == bill.get(i).getId()){
+            if(date == bill.get(i).getDate()){
                 System.out.println(bill.get(i));
             }
     }   
     }
     //eliminar
-    public void deteleteBill(String id){
+    public void deteleteBill(Date date){
         for (int i = 0; i <= bill.size(); i++){
-            if(id == bill.get(i).getId()){
+            if(date == bill.get(i).getDate()){
                 bill.remove(i);
             }
         }
@@ -92,8 +92,8 @@ public class ArrayManager {
    //Array de Transation
    private ArrayList<Transation> transation = new ArrayList<>();
     //inicializar
-    public void addTransation(String Code, String name, Date date, Float income, Float expenses, Float profits, String especifications){
-        Transation newtransation = new Transation(Code, name, date, income, expenses, profits, especifications);
+    public void addTransation(String code, String name, Float discount, Date date, Float income, Float expenses, Float profits, String especifications){
+        Transation newtransation = new Transation(code, name, discount, date, income, expenses, profits, especifications);
         transation.add(newtransation);
     }
     //buscar

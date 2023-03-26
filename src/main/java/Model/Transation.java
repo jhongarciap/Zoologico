@@ -13,15 +13,17 @@ import java.util.Date;
 public class Transation {
     private String code;
     private String name;
+    private Float discount;
     private Date date;
     private Float income;
     private Float expenses;
     private Float profits;
     private String especifications;
 
-    public Transation(String code, String name, Date date, Float income, Float expenses, Float profits, String especifications) {
+    public Transation(String code, String name, Float discount, Date date, Float income, Float expenses, Float profits, String especifications) {
         this.code = code;
         this.name = name;
+        this.discount = discount;
         this.date = date;
         this.income = income;
         this.expenses = expenses;
@@ -55,6 +57,20 @@ public class Transation {
      */
     public void setName(String name) {
         this.name = name;
+    }
+
+    /**
+     * @return the discount
+     */
+    public Float getDiscount() {
+        return discount;
+    }
+
+    /**
+     * @param discount the discount to set
+     */
+    public void setDiscount(Float discount) {
+        this.discount = discount;
     }
 
     /**
@@ -128,4 +144,5 @@ public class Transation {
     }
     
 }
-    
+
+   
