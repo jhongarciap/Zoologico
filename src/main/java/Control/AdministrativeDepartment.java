@@ -15,16 +15,4 @@ public class AdministrativeDepartment {
       public static void showReport(){
         
     }
-    public static void showAnimal(){
-        
-    }
-     public static void manageEmployees(){
-        
-    }
-      public static void hireEmployees(){
-        
-    }
-      public static void fireEmployees(){
-        
-    }
 }

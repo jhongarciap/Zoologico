@@ -4,23 +4,45 @@
  */
 package Model;
 
+import java.util.Date;
+
 /**
  *
  * @author garci
  */
 public class Plan {
+    private Date date;
     private int  amount;
-    private Float worth;
+    private Float  value;
+    private Float discount;
+    private Float totalvalue;
     private String sfications;
     private String product;
     private String productId;
 
-    public Plan(int amount, Float worth, String sfications, String product, String productId) {
+    public Plan(Date date, int amount, Float value, Float Discount, Float totalvalue, String sfications, String product, String productId) {
+        this.date=date;
         this.amount = amount;
-        this.worth = worth;
+        this.value = value;
+        this.discount = Discount;
+        this.totalvalue = value*amount*(1-discount);
         this.sfications = sfications;
         this.product = product;
         this.productId = productId;
+    }
+
+    /**
+     * @return the date
+     */
+    public Date getDate() {
+        return date;
+    }
+
+    /**
+     * @param date the date to set
+     */
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     /**
@@ -38,17 +60,45 @@ public class Plan {
     }
 
     /**
-     * @return the worth
+     * @return the value
      */
-    public Float getWorth() {
-        return worth;
+    public Float getValue() {
+        return value;
     }
 
     /**
-     * @param worth the worth to set
+     * @param value the value to set
      */
-    public void setWorth(Float worth) {
-        this.worth = worth;
+    public void setValue(Float value) {
+        this.value = value;
+    }
+
+    /**
+     * @return the discount
+     */
+    public Float getDiscount() {
+        return discount;
+    }
+
+    /**
+     * @param discount the discount to set
+     */
+    public void setDiscount(Float discount) {
+        this.discount = discount;
+    }
+
+    /**
+     * @return the totalvalue
+     */
+    public Float getTotalvalue() {
+        return totalvalue;
+    }
+
+    /**
+     * @param totalvalue the totalvalue to set
+     */
+    public void setTotalvalue(Float totalvalue) {
+        this.totalvalue = totalvalue;
     }
 
     /**
@@ -92,5 +142,7 @@ public class Plan {
     public void setProductId(String productId) {
         this.productId = productId;
     }
-    
+
+   
+
 }

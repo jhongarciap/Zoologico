@@ -10,4 +10,5 @@ package Utilidades;
  */
 public class ReportTemplate {
     
+    
 }
