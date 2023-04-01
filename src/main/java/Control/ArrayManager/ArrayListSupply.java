@@ -12,27 +12,50 @@ import java.util.ArrayList;
  * @author garci
  */
 public class ArrayListSupply {
+
     //Array de Supply
-   private ArrayList<Supply> suplly = new ArrayList<>();
-     //inicializar
-    public void addSupply(String name, String type, String animal, String amount, String specifications){
-        Supply newSupply = new Supply(name, type, animal, amount, specifications);
-        suplly.add(newSupply);
+    private ArrayList<Supply> supllys = new ArrayList<>();
+    //constructor vacio 
+
+    public ArrayListSupply() {
     }
+
+    //añadir
+    public void addSupply(Supply supply) {
+        supllys.add(supply);
+    }
+    //Mostrar todos los suplementos 
+    public String nameSupply;
+    public String typeSupply;
+    public String animalSupply;
+    public String amountSupply;
+    public String specificationsSupply;
+
+    public void searchSupply() {
+        for (int i = 0; i <= supllys.size(); i++) {
+            nameSupply = supllys.get(i).getName();
+            typeSupply = supllys.get(i).getType();
+            animalSupply = supllys.get(i).getAnimal();
+            amountSupply = supllys.get(i).getAmount();
+            specificationsSupply = supllys.get(i).getSpecifications();
+        }
+    }
+
     //buscar
-    public void searchSupply(String name){
-        for (int i = 0; i <= suplly.size(); i++){
-            if(name == suplly.get(i).getName()){
-                System.out.println(suplly.get(i));
+    public void searchSupply(String name) {
+        for (int i = 0; i <= supllys.size(); i++) {
+            if (name == supllys.get(i).getName()) {
+                System.out.println(supllys.get(i));
             }
-    }   
+        }
     }
+
     //eliminar
-     public void deleteSupply(String name){
-        for (int i = 0; i <= suplly.size(); i++){
-            if(name == suplly.get(i).getName()){
-                 suplly.remove(i);
+    public void deleteSupply(String name) {
+        for (int i = 0; i <= supllys.size(); i++) {
+            if (name == supllys.get(i).getName()) {
+                supllys.remove(i);
             }
-    }   
-     }
+        }
+    }
 }

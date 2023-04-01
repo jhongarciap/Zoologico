@@ -12,28 +12,49 @@ import java.util.ArrayList;
  * @author garci
  */
 public class ArrayListEmployee {
-    //Array de Employee 
-   private ArrayList<Employee> employee = new ArrayList<>();
-    //inicializar
-    public void addemployee(String post, String name, String funcions, String id){
-        Employee newEmployew = new Employee(post, name, funcions, id);
-        employee.add(newEmployew);
+    //Array de Employee
+
+    private ArrayList<Employee> employees = new ArrayList<>();
+
+    public ArrayListEmployee() {
+
     }
+
+    //Añadir
+    public void addemployee(Employee employee) {
+        employees.add(employee);
+    }
+    //Mustrar todos los empleados 
+    public String postEmployees;
+    public String namEmployeese;
+    public String funcionsEmployees;
+    public String idEmployees;
+
+    public void showEmployees() {
+        for (int i = 0; i <= employees.size(); i++) {
+            idEmployees = employees.get(i).getId();
+            namEmployeese = employees.get(i).getId();
+            postEmployees = employees.get(i).getPost();
+            funcionsEmployees = employees.get(i).getFuncions();
+        }
+    }
+   
     //buscar
-    public void searchTransation(String id){
-        for (int i = 0; i <= employee.size(); i++){
-            if(id == employee.get(i).getId()){
-                System.out.println(employee.get(i));
+    public void searchTransation(String id) {
+        for (int i = 0; i <= employees.size(); i++) {
+            if (id == employees.get(i).getId()) {
+                System.out.println(employees.get(i));
             }
-    }   
+        }
     }
+
     //eliminar
-     public void deleteTransation(String id){
-        for (int i = 0; i <= employee.size(); i++){
-            if(id == employee.get(i).getId()){
-                employee.remove(i);
+    public void deleteTransation(String id) {
+        for (int i = 0; i <= employees.size(); i++) {
+            if (id == employees.get(i).getId()) {
+                employees.remove(i);
             }
-    }   
+        }
     }
-    
+
 }

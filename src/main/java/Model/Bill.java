@@ -4,43 +4,87 @@
  */
 package Model;
 
-import java.util.Date;
+import static Utilidades.CurrentDate.currentDate;
 
 /**
  *
  * @author garci
  */
 public class Bill {
-     private Date date;
-     private String costormerName;
-     private String id; 
-     private String product; 
-     private String productld; 
-     private String worth; 
-     private String amount; 
 
-    public Bill(Date date, String costormerName, String id, String product, String productld, String worth, String amount) {
-        this.date = date;
+    private String date;
+    private Float value;
+    private Float discount;
+    private Float totalvalue;
+    private String costormerName;
+    private String product;
+    private String productld;
+    private int amount;
+
+    public Bill(String date, Float value, Float discount, Float totalvalue, String costormerName, String product, String productld, int amount) {
+        this.date = currentDate();
+        this.value = value;
+        this.discount = discount;
+        this.totalvalue = totalvalue;
         this.costormerName = costormerName;
-        this.id = id;
         this.product = product;
         this.productld = productld;
-        this.worth = worth;
         this.amount = amount;
     }
-
     /**
      * @return the date
      */
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
     /**
      * @param date the date to set
      */
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
+    }
+
+    /**
+     * @return the value
+     */
+    public Float getValue() {
+        return value;
+    }
+
+    /**
+     * @param value the value to set
+     */
+    public void setValue(Float value) {
+        this.value = value;
+    }
+
+    /**
+     * @return the discount
+     */
+    public Float getDiscount() {
+        return discount;
+    }
+
+    /**
+     * @param discount the discount to set
+     */
+    public void setDiscount(Float discount) {
+        this.discount = discount;
+    }
+
+    /**
+     * @return the totalvalue
+     */
+    public Float getTotalvalue() {
+        return totalvalue;
+    }
+
+    /**
+     * @param totalvalue the totalvalue to set
+     */
+    public void setTotalvalue(Float totalvalue) {
+        this.totalvalue = totalvalue;
     }
 
     /**
@@ -55,20 +99,6 @@ public class Bill {
      */
     public void setCostormerName(String costormerName) {
         this.costormerName = costormerName;
-    }
-
-    /**
-     * @return the id
-     */
-    public String getId() {
-        return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(String id) {
-        this.id = id;
     }
 
     /**
@@ -100,36 +130,18 @@ public class Bill {
     }
 
     /**
-     * @return the worth
-     */
-    public String getWorth() {
-        return worth;
-    }
-
-    /**
-     * @param worth the worth to set
-     */
-    public void setWorth(String worth) {
-        this.worth = worth;
-    }
-
-    /**
      * @return the amount
      */
-    public String getAmount() {
+    public int getAmount() {
         return amount;
     }
 
     /**
      * @param amount the amount to set
      */
-    public void setAmount(String amount) {
+    public void setAmount(int amount) {
         this.amount = amount;
     }
-     
-     
 
-
-
-    
+   
 }

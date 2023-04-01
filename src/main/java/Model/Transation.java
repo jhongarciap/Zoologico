@@ -4,27 +4,27 @@
  */
 package Model;
 
-import java.util.Date;
-
+import static Utilidades.CurrentDate.currentDate;
 /**
  *
  * @author garci
  */
 public class Transation {
+
     private String code;
     private String name;
     private Float discount;
-    private Date date;
+    private String date;
     private Float income;
     private Float expenses;
     private Float profits;
     private String especifications;
 
-    public Transation(String code, String name, Float discount, Date date, Float income, Float expenses, Float profits, String especifications) {
+    public Transation(String code, String name, Float discount, String date, Float income, Float expenses, Float profits, String especifications) {
         this.code = code;
         this.name = name;
         this.discount = discount;
-        this.date = date;
+        this.date = currentDate();
         this.income = income;
         this.expenses = expenses;
         this.profits = profits;
@@ -76,14 +76,14 @@ public class Transation {
     /**
      * @return the date
      */
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
     /**
      * @param date the date to set
      */
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -142,7 +142,5 @@ public class Transation {
     public void setEspecifications(String especifications) {
         this.especifications = especifications;
     }
-    
-}
 
-   
+}

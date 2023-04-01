@@ -13,28 +13,50 @@ import java.util.Date;
  * @author garci
  */
 public class ArrayListPlan {
+
     //Array de Plan
-   private ArrayList<Plan> plan = new ArrayList<>();
-   //inicializar
-    public void addPlan(Date date, int amount, Float value, Float Discount, Float totalvalue, String sfications, String product, String productId){
-        Plan newPlan = new Plan(date,amount, value, Discount, totalvalue, sfications, product, productId);
-        plan.add(newPlan);
+    private ArrayList<Plan> plans = new ArrayList<>();
+    //Contrictor vacio
+
+    public ArrayListPlan() {
+    }
+
+    //Añadir
+    public void addPlan(Plan plan) {
+        plans.add(plan);
+    }
+    //Mostrar el id de todos los planes 
+    public int amountPlan;
+    public Float valuePlan;
+    public String sficationsPlan;
+    public String productPlan;
+    public String productIdPlan;
+
+    public void  showPlans() {
+        for (int i = 0; i <= plans.size(); i++) {
+            amountPlan = plans.get(i).getAmount();
+            valuePlan = plans.get(i).getValue();
+            sficationsPlan = plans.get(i).getSfications();
+            productIdPlan = plans.get(i).getProductId();
+            productPlan = plans.get(i).getProduct();
+        }
     }
     //buscar
-    public void searchPlan(String productId){
-        for (int i = 0; i <= plan.size(); i++){
-            if(productId == plan.get(i).getProductId()){
-                System.out.println(plan.get(i));
+    public void searchPlan(String productId) {
+        for (int i = 0; i <= plans.size(); i++) {
+            if (productId == plans.get(i).getProductId()) {
+                System.out.println(plans.get(i));
             }
-    }   
+        }
     }
+
     //eliminar
-    public void deteletePlan(String productId){
-        for (int i = 0; i <= plan.size(); i++){
-            if(productId == plan.get(i).getProductId()){
-                plan.remove(i);
+    public void deteletePlan(String productId) {
+        for (int i = 0; i <= plans.size(); i++) {
+            if (productId == plans.get(i).getProductId()) {
+                plans.remove(i);
             }
-    }   
-    
-}
+        }
+
+    }
 }

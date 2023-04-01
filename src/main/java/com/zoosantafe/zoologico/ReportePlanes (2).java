@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ave;
+package com.zoosantafe.zoologico;
 
 import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.BaseColor;
@@ -38,7 +38,7 @@ public class ReportePlanes {
         BaseColor colorTextoCabecera = new BaseColor(255, 255, 255);
         BaseColor colorFondoCelda = new BaseColor(18, 175, 120);
         BaseColor colorTextoCelda = new BaseColor(0, 0, 0);
-        BaseColor colorTextoTotal = new BaseColor(239,221,62);
+        BaseColor colorTextoTotal = new BaseColor(239, 221, 62);
         Font fontTitulo = new Font(Font.FontFamily.HELVETICA, 18, Font.BOLD, colorFondoCabecera);
         Font fontSubtitulo = new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD, colorFondoCabecera);
         Font fontCabecera = new Font(Font.FontFamily.HELVETICA, 14, Font.BOLD, colorTextoCabecera);
@@ -49,21 +49,21 @@ public class ReportePlanes {
         Paragraph fecha = new Paragraph("Fecha: " + hora2, fontSubtitulo);
         fecha.setAlignment(Element.ALIGN_RIGHT);
         documento.add(fecha);
-        
+
         // Espacio
         Paragraph saltoDeLinea = new Paragraph("\n");
         documento.add(saltoDeLinea);
-        
+
         // Agregar logo
         Image logo = Image.getInstance("C:\\Users\\aguir\\OneDrive\\Documentos\\NetBeansProjects\\ave\\src\\ave\\Logo.png");
         logo.scaleToFit(150, 150);
         logo.setAlignment(Element.ALIGN_CENTER);
         documento.add(logo);
-        
+
         //Espacio
         documento.add(saltoDeLinea);
         documento.add(saltoDeLinea);
-        
+
         //Agregar titulo
         Paragraph titulo = new Paragraph("Reporte de Planes", fontTitulo);
         titulo.setAlignment(Element.ALIGN_CENTER);
@@ -155,7 +155,7 @@ public class ReportePlanes {
         tablaPlanes.addCell(celdaTotalValor);
 
         documento.add(tablaPlanes);
-        
+
         //Espacio
         documento.add(saltoDeLinea);
         documento.add(saltoDeLinea);
@@ -171,7 +171,7 @@ public class ReportePlanes {
         documento.add(ubicacion);
         documento.add(correo);
         documento.add(telefono);
-       
+
         documento.close();
     }
 

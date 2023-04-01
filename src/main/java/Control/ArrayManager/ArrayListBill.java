@@ -6,7 +6,6 @@ package Control.ArrayManager;
 
 import Model.Bill;
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  *
@@ -14,25 +13,45 @@ import java.util.Date;
  */
 public class ArrayListBill {
     //Array de bill 
-   private ArrayList<Bill> bill = new ArrayList<>();
-   //inicializar
-    public void addBill(Date date, String costormerName, String id, String product, String productld, String worth, String amount){
-        Bill newBill = new Bill(date, costormerName, id, product, productld, worth, amount);
-        bill.add(newBill);
+   private ArrayList<Bill> bills = new ArrayList<>();
+   //añadir 
+    public void addBill(Bill bill){
+        bills.add(bill);
     }
+    public String dateBill;
+    public Float valueBill;
+    public Float discountBill;
+    public Float totalvalueBill;
+    public String costormerNameBill;
+    public String productBill;
+    public String productldBill;
+    public int amountBill;
+    //Mostrar toda la array  
+    public void showBills(){
+        for (int i = 0; i <= bills.size(); i++){
+            dateBill=bills.get(i).getDate();
+            valueBill=bills.get(i).getValue();
+            discountBill=bills.get(i).getDiscount();
+            totalvalueBill=bills.get(i).getTotalvalue();
+            costormerNameBill=bills.get(i).getCostormerName();
+            productBill=bills.get(i).getProduct();
+            productldBill=bills.get(i).getProductld();
+            amountBill=bills.get(i).getAmount();
+        }
+    }     
     //buscar
-    public void searchBill(Date date){
-        for (int i = 0; i <= bill.size(); i++){
-            if(date == bill.get(i).getDate()){
-                System.out.println(bill.get(i));
+    public void searchBill(String date){
+        for (int i = 0; i <= bills.size(); i++){
+            if(date == bills.get(i).getDate()){
+                System.out.println(bills.get(i));
             }
     }   
     }
     //eliminar
-    public void deteleteBill(Date date){
-        for (int i = 0; i <= bill.size(); i++){
-            if(date == bill.get(i).getDate()){
-                bill.remove(i);
+    public void deteleteBill(String date){
+        for (int i = 0; i <= bills.size(); i++){
+            if(date == bills.get(i).getDate()){
+                bills.remove(i);
             }
         }
     }
