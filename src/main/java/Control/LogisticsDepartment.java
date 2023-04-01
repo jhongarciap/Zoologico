@@ -9,9 +9,6 @@ package Control;
  * @author garci
  */
 public class LogisticsDepartment {
-     public static void ordenSupplies(){
-        
-    }
       public static void displaySupplies(){
         
     }
