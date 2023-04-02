@@ -16,6 +16,7 @@ public class X1 extends javax.swing.JFrame {
 
  
     int xMouse, yMouse; // Obtain mouse position for moving bar at the top of the JFrame.
+
     
     public X1() {
         initComponents();
