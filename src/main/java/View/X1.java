@@ -14,6 +14,7 @@ import java.awt.Toolkit;
 
 public class X1 extends javax.swing.JFrame {
 
+ 
     int xMouse, yMouse; // Variables para la obtención de la posición del cursor en el formulario
     
     public X1() {
@@ -22,10 +23,11 @@ public class X1 extends javax.swing.JFrame {
         this.setTitle("zoo! by NeoSolutions"); // Título de la ventana.
         this.setLocationRelativeTo(null); // Centrar la ventana en pantalla.
         
+
         Image isologoCPBC = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/View_IconZOO.png"));
         this.setIconImage(isologoCPBC);
-    }
 
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
