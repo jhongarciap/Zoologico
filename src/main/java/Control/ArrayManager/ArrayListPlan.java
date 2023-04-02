@@ -5,8 +5,13 @@
 package Control.ArrayManager;
 
 import Model.Plan;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
-import java.util.Date;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  *
@@ -16,8 +21,8 @@ public class ArrayListPlan {
 
     //Array de Plan
     private ArrayList<Plan> plans = new ArrayList<>();
-    //Contrictor vacio
 
+    //Contructor vacio
     public ArrayListPlan() {
     }
 
@@ -25,38 +30,55 @@ public class ArrayListPlan {
     public void addPlan(Plan plan) {
         plans.add(plan);
     }
-    //Mostrar el id de todos los planes 
-    public int amountPlan;
-    public Float valuePlan;
-    public String sficationsPlan;
-    public String productPlan;
-    public String productIdPlan;
 
-    public void  showPlans() {
-        for (int i = 0; i <= plans.size(); i++) {
-            amountPlan = plans.get(i).getAmount();
-            valuePlan = plans.get(i).getValue();
-            sficationsPlan = plans.get(i).getSfications();
-            productIdPlan = plans.get(i).getProductId();
-            productPlan = plans.get(i).getProduct();
-        }
-    }
-    //buscar
-    public void searchPlan(String productId) {
-        for (int i = 0; i <= plans.size(); i++) {
-            if (productId == plans.get(i).getProductId()) {
-                System.out.println(plans.get(i));
+// Guardar/Crear/Llenar Excel
+    public void SavePlanExcel() {
+        try {
+            File file = new File("rom/Plans.xlsx");
+            if (file.exists()) {
+                FileInputStream fis = new FileInputStream(file);
+                XSSFWorkbook workbook = new XSSFWorkbook(fis);
+                XSSFSheet sheet = workbook.getSheetAt(0);
+                int lastRow = sheet.getLastRowNum();
+
+                for (int i = 0; i < plans.size(); i++) {
+                    lastRow++;
+                    XSSFRow row = sheet.createRow(lastRow);
+                    row.createCell(0).setCellValue(plans.get(i).getProductId());
+                    row.createCell(1).setCellValue(plans.get(i).getProduct());
+                    row.createCell(2).setCellValue(plans.get(i).getValue());
+                    row.createCell(3).setCellValue(plans.get(i).getSfications());
+                }
+                fis.close();
+
+                FileOutputStream fos = new FileOutputStream(file);
+                workbook.write(fos);
+                fos.close();
+            } else {
+                XSSFWorkbook workbook = new XSSFWorkbook();
+                XSSFSheet sheet = workbook.createSheet("Plans");
+
+                XSSFRow row = sheet.createRow(0);
+                row.createCell(0).setCellValue("Product ID");
+                row.createCell(1).setCellValue("Product");
+                row.createCell(2).setCellValue("Value");
+                row.createCell(3).setCellValue("sfications");
+
+                for (int i = 0; i < plans.size(); i++) {
+                    row = sheet.createRow(i + 1);
+                    row.createCell(0).setCellValue(plans.get(i).getProductId());
+                    row.createCell(1).setCellValue(plans.get(i).getProduct());
+                    row.createCell(2).setCellValue(plans.get(i).getValue());
+                    row.createCell(3).setCellValue(plans.get(i).getSfications());
+                }
+
+                FileOutputStream fos = new FileOutputStream(file);
+                workbook.write(fos);
+                fos.close();
             }
+        } catch (Exception e) {
+            System.out.println("Hay un error, revisa.");
         }
     }
 
-    //eliminar
-    public void deteletePlan(String productId) {
-        for (int i = 0; i <= plans.size(); i++) {
-            if (productId == plans.get(i).getProductId()) {
-                plans.remove(i);
-            }
-        }
-
-    }
 }

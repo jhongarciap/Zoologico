@@ -5,7 +5,13 @@
 package Control.ArrayManager;
 
 import Model.Employee;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  *
@@ -24,36 +30,53 @@ public class ArrayListEmployee {
     public void addemployee(Employee employee) {
         employees.add(employee);
     }
-    //Mustrar todos los empleados 
-    public String postEmployees;
-    public String namEmployeese;
-    public String funcionsEmployees;
-    public String idEmployees;
+   // Guardar/Crear/Llenar Excel
+    public void SaveEmployeeExcel() {
+        try {
+            File file = new File("rom/Employees.xlsx");
+            if (file.exists()) {
+                FileInputStream fis = new FileInputStream(file);
+                XSSFWorkbook workbook = new XSSFWorkbook(fis);
+                XSSFSheet sheet = workbook.getSheetAt(0);
+                int lastRow = sheet.getLastRowNum();
 
-    public void showEmployees() {
-        for (int i = 0; i <= employees.size(); i++) {
-            idEmployees = employees.get(i).getId();
-            namEmployeese = employees.get(i).getId();
-            postEmployees = employees.get(i).getPost();
-            funcionsEmployees = employees.get(i).getFuncions();
-        }
-    }
-   
-    //buscar
-    public void searchTransation(String id) {
-        for (int i = 0; i <= employees.size(); i++) {
-            if (id == employees.get(i).getId()) {
-                System.out.println(employees.get(i));
-            }
-        }
-    }
+                for (int i = 0; i < employees.size(); i++) {
+                    lastRow++;
+                    XSSFRow row = sheet.createRow(lastRow);
+                    row.createCell(0).setCellValue(employees.get(i).getId());
+                    row.createCell(1).setCellValue(employees.get(i).getName());
+                    row.createCell(2).setCellValue(employees.get(i).getPost());
+                    row.createCell(3).setCellValue(employees.get(i).getFuncions());
+                }
+                fis.close();
 
-    //eliminar
-    public void deleteTransation(String id) {
-        for (int i = 0; i <= employees.size(); i++) {
-            if (id == employees.get(i).getId()) {
-                employees.remove(i);
+                FileOutputStream fos = new FileOutputStream(file);
+                workbook.write(fos);
+                fos.close();
+            } else {
+                XSSFWorkbook workbook = new XSSFWorkbook();
+                XSSFSheet sheet = workbook.createSheet("Employees");
+
+                XSSFRow row = sheet.createRow(0);
+                row.createCell(0).setCellValue("ID");
+                row.createCell(1).setCellValue("Name");
+                row.createCell(2).setCellValue("Post");
+                row.createCell(3).setCellValue("Funcions");
+
+                for (int i = 0; i < employees.size(); i++) {
+                    row = sheet.createRow(i + 1);
+                   row.createCell(0).setCellValue(employees.get(i).getId());
+                    row.createCell(1).setCellValue(employees.get(i).getName());
+                    row.createCell(2).setCellValue(employees.get(i).getPost());
+                    row.createCell(3).setCellValue(employees.get(i).getFuncions());
+                }
+
+                FileOutputStream fos = new FileOutputStream(file);
+                workbook.write(fos);
+                fos.close();
             }
+        } catch (Exception e) {
+            System.out.println("Hay un error, revisa.");
         }
     }
 

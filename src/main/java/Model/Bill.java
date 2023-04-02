@@ -25,7 +25,7 @@ public class Bill {
         this.date = currentDate();
         this.value = value;
         this.discount = discount;
-        this.totalvalue = totalvalue;
+        this.totalvalue = amount*value+(1-discount);
         this.costormerName = costormerName;
         this.product = product;
         this.productld = productld;
@@ -41,9 +41,6 @@ public class Bill {
     /**
      * @param date the date to set
      */
-    public void setDate(String date) {
-        this.date = date;
-    }
 
     /**
      * @return the value

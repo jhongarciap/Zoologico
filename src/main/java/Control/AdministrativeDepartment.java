@@ -9,9 +9,10 @@ package Control;
  * @author garci
  */
 public class AdministrativeDepartment {
-     public static void generateReport(){
+    //llamar a las ventas
+         
         
-    }
+    
       public static void showReport(){
         
     }

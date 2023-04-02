@@ -5,7 +5,13 @@
 package Control.ArrayManager;
 
 import Model.Wild;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  *
@@ -21,45 +27,66 @@ public class ArrayListWild {
     }
 
     //Añadir
-    public void addDomestic(Wild wild) {
+    public void addWild(Wild wild) {
         wilds.add(wild);
     }
-    //Mustrar todos los empleados 
-     public String nameWild; 
-    public String raceWild; 
-    public String sexWild; 
-    public String habitadWild; 
-    public String dietWild; 
-    public String birthhabitat;
-    public String dangerousness;
+    // Guardar/Crear/Llenar Excel
+    public void saveWildExcel() {
+        try {
+            File file = new File("rom/Animals/Wilds.xlsx");
+            if (file.exists()) {
+                FileInputStream fis = new FileInputStream(file);
+                XSSFWorkbook workbook = new XSSFWorkbook(fis);
+                XSSFSheet sheet = workbook.getSheetAt(0);
+                int lastRow = sheet.getLastRowNum();
 
-    public void showDomestic() {
-        for (int i = 0; i <= wilds.size(); i++) {
-            nameWild= wilds.get(i).getName();
-            raceWild= wilds.get(i).getRace();
-            sexWild= wilds.get(i).getSex();
-            habitadWild= wilds.get(i).getHabitad();
-            dietWild= wilds.get(i).getDiet();
-            birthhabitat= wilds.get(i).getBirthhabitat();
-            dangerousness= wilds.get(i).getDangerousness();
-        }
-    }
+                for (int i = 0; i < wilds.size(); i++) {
+                    lastRow++;
+                    XSSFRow row = sheet.createRow(lastRow);
+                    row.createCell(0).setCellValue(wilds.get(i).getName());
+                    row.createCell(1).setCellValue(wilds.get(i).getRace());
+                    row.createCell(2).setCellValue(wilds.get(i).getSex());
+                    row.createCell(3).setCellValue(wilds.get(i).getHabitad());
+                    row.createCell(4).setCellValue(wilds.get(i).getBirthhabitat());
+                    row.createCell(5).setCellValue(wilds.get(i).getDangerousness());
+                    row.createCell(6).setCellValue(wilds.get(i).getDiet());
+                }
+                fis.close();
 
-    //buscar
-    public void searchDomestic(String name) {
-        for (int i = 0; i <= wilds.size(); i++) {
-            if (name == wilds.get(i).getName()) {
-                System.out.println(wilds.get(i));
+                FileOutputStream fos = new FileOutputStream(file);
+                workbook.write(fos);
+                fos.close();
+            } else {
+                XSSFWorkbook workbook = new XSSFWorkbook();
+                XSSFSheet sheet = workbook.createSheet("Wilds");
+
+                XSSFRow row = sheet.createRow(0);
+                row.createCell(0).setCellValue("Name");
+                row.createCell(1).setCellValue("Race");
+                row.createCell(2).setCellValue("Sex");
+                row.createCell(3).setCellValue("Habitad");
+                row.createCell(4).setCellValue("Birth habitat");
+                row.createCell(5).setCellValue("Dangerousness");
+                row.createCell(6).setCellValue("Diet");
+                
+
+                for (int i = 0; i < wilds.size(); i++) {
+                    row = sheet.createRow(i + 1);
+                    row.createCell(0).setCellValue(wilds.get(i).getName());
+                    row.createCell(1).setCellValue(wilds.get(i).getRace());
+                    row.createCell(2).setCellValue(wilds.get(i).getSex());
+                    row.createCell(3).setCellValue(wilds.get(i).getHabitad());
+                    row.createCell(4).setCellValue(wilds.get(i).getBirthhabitat());
+                    row.createCell(5).setCellValue(wilds.get(i).getDangerousness());
+                    row.createCell(6).setCellValue(wilds.get(i).getDiet());
+                }
+
+                FileOutputStream fos = new FileOutputStream(file);
+                workbook.write(fos);
+                fos.close();
             }
-        }
-    }
-
-    //eliminar
-    public void deleteDomestic(String name) {
-         for (int i = 0; i <= wilds.size(); i++) {
-            if (name == wilds.get(i).getName()) {
-                wilds.remove(i);
-            }
+        } catch (Exception e) {
+            System.out.println("Hay un error, revisa.");
         }
     }
 

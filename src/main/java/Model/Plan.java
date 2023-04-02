@@ -4,40 +4,22 @@
  */
 package Model;
 
-import java.util.Date;
-
 /**
  *
  * @author garci
  */
 public class Plan {
-    private int  amount;
     private Float  value;
     private String sfications;
     private String product;
     private String productId;
 
    public Plan(int amount, Float value, String sfications, String product, String productId) {
-        this.amount = amount;
         this.value = value;
         this.sfications = sfications;
         this.product = product;
         this.productId = productId;
     }
-    /**
-     * @return the amount
-     */
-    public int getAmount() {
-        return amount;
-    }
-
-    /**
-     * @param amount the amount to set
-     */
-    public void setAmount(int amount) {
-        this.amount = amount;
-    }
-
     /**
      * @return the value
      */

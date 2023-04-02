@@ -5,7 +5,13 @@
 package Control.ArrayManager;
 
 import Model.Domestic;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  *
@@ -15,52 +21,72 @@ public class ArrayListDomestic {
     //Array de Employee
 
     private ArrayList<Domestic> domestics = new ArrayList<>();
+
     //Constructor vacio
-    public ArrayListDomestic(){
+    public ArrayListDomestic() {
 
     }
 
     //Añadir
     public void addDomestic(Domestic domestic) {
         domestics.add(domestic);
-    }
-    //Mustrar todos los empleados 
-     public String nameDomestic; 
-    public String raceDomestic; 
-    public String sexDomestic; 
-    public String habitadDomestic; 
-    public String dietDomestic; 
-    public String psycheDomestic;
-    public String originDomestic;
+        // Guardar/Crear/Llenar Excel
+        
+    public void saveDomesticExcel() {
+        try {
+            File file = new File("rom/Animals/Domestics.xlsx");
+            if (file.exists()) {
+                FileInputStream fis = new FileInputStream(file);
+                XSSFWorkbook workbook = new XSSFWorkbook(fis);
+                XSSFSheet sheet = workbook.getSheetAt(0);
+                int lastRow = sheet.getLastRowNum();
 
-    public void showDomestic() {
-        for (int i = 0; i <= domestics.size(); i++) {
-            nameDomestic= domestics.get(i).getName();
-            raceDomestic= domestics.get(i).getRace();
-            sexDomestic= domestics.get(i).getSex();
-            habitadDomestic= domestics.get(i).getHabitad();
-            dietDomestic= domestics.get(i).getDiet();
-            psycheDomestic= domestics.get(i).getPsyche();
-            originDomestic= domestics.get(i).getOrigin();
-        }
-    }
+                for (int i = 0; i < domestics.size(); i++) {
+                    lastRow++;
+                    XSSFRow row = sheet.createRow(lastRow);
+                    row.createCell(0).setCellValue(domestics.get(i).getName());
+                    row.createCell(1).setCellValue(domestics.get(i).getRace());
+                    row.createCell(2).setCellValue(domestics.get(i).getSex());
+                    row.createCell(3).setCellValue(domestics.get(i).getHabitad());
+                    row.createCell(4).setCellValue(domestics.get(i).getOrigin());
+                    row.createCell(5).setCellValue(domestics.get(i).getPsyche());
+                    row.createCell(6).setCellValue(domestics.get(i).getDiet());
+                }
+                fis.close();
 
-    //buscar
-    public void searchDomestic(String name) {
-        for (int i = 0; i <= domestics.size(); i++) {
-            if (name == domestics.get(i).getName()) {
-                System.out.println(domestics.get(i));
+                FileOutputStream fos = new FileOutputStream(file);
+                workbook.write(fos);
+                fos.close();
+            } else {
+                XSSFWorkbook workbook = new XSSFWorkbook();
+                XSSFSheet sheet = workbook.createSheet("Domestics");
+
+                XSSFRow row = sheet.createRow(0);
+                row.createCell(0).setCellValue("Name");
+                row.createCell(1).setCellValue("Race");
+                row.createCell(2).setCellValue("Sex");
+                row.createCell(3).setCellValue("Habitad");
+                row.createCell(4).setCellValue("Origin");
+                row.createCell(5).setCellValue("Psyche");
+                row.createCell(6).setCellValue("Diet");
+
+                for (int i = 0; i < domestics.size(); i++) {
+                    row = sheet.createRow(i + 1);
+                    row.createCell(0).setCellValue(domestics.get(i).getName());
+                    row.createCell(1).setCellValue(domestics.get(i).getRace());
+                    row.createCell(2).setCellValue(domestics.get(i).getSex());
+                    row.createCell(3).setCellValue(domestics.get(i).getHabitad());
+                    row.createCell(4).setCellValue(domestics.get(i).getOrigin());
+                    row.createCell(5).setCellValue(domestics.get(i).getPsyche());
+                    row.createCell(6).setCellValue(domestics.get(i).getDiet());
+                }
+
+                FileOutputStream fos = new FileOutputStream(file);
+                workbook.write(fos);
+                fos.close();
             }
+        } catch (Exception e) {
+            System.out.println("Hay un error, revisa.");
         }
     }
-
-    //eliminar
-    public void deleteDomestic(String name) {
-         for (int i = 0; i <= domestics.size(); i++) {
-            if (name == domestics.get(i).getName()) {
-                domestics.remove(i);
-            }
-        }
-    }
-
 }

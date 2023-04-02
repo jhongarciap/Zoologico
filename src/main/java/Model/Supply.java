@@ -12,14 +12,12 @@ public class Supply {
     private String name;
     private String type;
     private String animal;
-    private String amount;
     private String specifications;
 
-    public Supply(String name, String type, String animal, String amount, String specifications) {
+    public Supply(String name, String type, String animal, String specifications) {
         this.name = name;
         this.type = type;
         this.animal = animal;
-        this.amount = amount;
         this.specifications = specifications;
     }
 
@@ -64,21 +62,6 @@ public class Supply {
     public void setAnimal(String animal) {
         this.animal = animal;
     }
-
-    /**
-     * @return the amount
-     */
-    public String getAmount() {
-        return amount;
-    }
-
-    /**
-     * @param amount the amount to set
-     */
-    public void setAmount(String amount) {
-        this.amount = amount;
-    }
-
     /**
      * @return the specifications
      */
