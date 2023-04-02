@@ -1,7 +1,7 @@
 /*
                             zoo! by NeoSolutions
 
-Window size: Big
+Window size: Big (720px,480px)
 
 Window description: Main screen
 */
@@ -11,11 +11,9 @@ package View;
 
 import java.awt.Image;
 import java.awt.Toolkit;
-import javax.swing.ImageIcon;
 
 public class X1 extends javax.swing.JFrame {
 
-    Image logoZooIcon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("Resources/View_IconZOO.png"));
     int xMouse, yMouse; // Variables para la obtención de la posición del cursor en el formulario
     
     public X1() {
@@ -24,8 +22,8 @@ public class X1 extends javax.swing.JFrame {
         this.setTitle("zoo! by NeoSolutions"); // Título de la ventana.
         this.setLocationRelativeTo(null); // Centrar la ventana en pantalla.
         
-        // Asignación de ícono
-        this.setIconImage(logoZooIcon);
+        Image isologoCPBC = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/View_IconZOO.png"));
+        this.setIconImage(isologoCPBC);
     }
 
     /**
@@ -37,8 +35,17 @@ public class X1 extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        bg = new javax.swing.JPanel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(720, 480));
+        setName("X1"); // NOI18N
+        setResizable(false);
+        setSize(new java.awt.Dimension(720, 480));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        bg.setBackground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 480));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -79,5 +86,6 @@ public class X1 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel bg;
     // End of variables declaration//GEN-END:variables
 }
