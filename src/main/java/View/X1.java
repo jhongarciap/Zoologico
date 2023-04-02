@@ -15,7 +15,7 @@ import javax.swing.ImageIcon;
 
 public class X1 extends javax.swing.JFrame {
 
-    Image logoZooIcon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("Resources/View_IconZOO.png"));
+    Image logoZooIcon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/View_IconZOO.png"));
     int xMouse, yMouse; // Variables para la obtención de la posición del cursor en el formulario
     
     public X1() {
@@ -24,6 +24,12 @@ public class X1 extends javax.swing.JFrame {
         this.setTitle("zoo! by NeoSolutions"); // Título de la ventana.
         this.setLocationRelativeTo(null); // Centrar la ventana en pantalla.
         
+        if(logoZooIcon == null){
+            System.out.println("URL nula");
+        }
+        else{
+            System.out.println("URL" + logoZooIcon.toString());
+        }
         // Asignación de ícono
         this.setIconImage(logoZooIcon);
     }
