@@ -26,9 +26,9 @@ public class X1 extends javax.swing.JFrame {
         
         
         //Set icon image for this JFrame
-        //Image logoZoo;
-        //logoZoo = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/View_IconZOO.png"));
-        //this.setIconImage(logoZoo);
+        Image logoZoo;
+        logoZoo = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/View_IconZOO.png"));
+        this.setIconImage(logoZoo);
 
     }
     /**
