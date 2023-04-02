@@ -4,14 +4,39 @@
  */
 package Model;
 
+import static Utilidades.GenerateCodeBillSale.generateCodeSale;
+
+
+
+
 /**
  *
  * @author garci
  */
 public class BillSale  extends Bill{
     
-    public BillSale(String date, Float value, Float discount, Float totalvalue, String costormerName, String product, String productld, int amount) {
+    private String code;    
+
+    public BillSale(String code, String date, Float value, Float discount, Float totalvalue, String costormerName, String product, String productld, int amount) {
         super(date, value, discount, totalvalue, costormerName, product, productld, amount);
-    }  
+        this.code = generateCodeSale("BS");
+    }
+
+    /**
+     * @return the code
+     */
+    public String getCode() {
+        return code;
+    }
+
+    /**
+     * @param code the code to set
+     */
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    
+    
     
 }

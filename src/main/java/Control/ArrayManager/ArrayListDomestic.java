@@ -31,6 +31,7 @@ public class ArrayListDomestic {
     public void addDomestic(Domestic domestic) {
         domestics.add(domestic);
         // Guardar/Crear/Llenar Excel
+    }
         
     public void saveDomesticExcel() {
         try {
