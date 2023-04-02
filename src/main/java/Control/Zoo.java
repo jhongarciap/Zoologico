@@ -33,8 +33,8 @@ public class Zoo {
         billSales.SaveBillSaleExcel();
         billSales.ShowRowsExcel();
 
-       Float total = billSales.sumSalesExcel();
-       System.out.println("La suma de todas las celdas es: " + total);
+       //Float total = billSales.sumSalesExcel();
+       //System.out.println("La suma de todas las celdas es: " + total);
 
     }
 }

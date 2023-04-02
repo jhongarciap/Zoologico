@@ -26,7 +26,8 @@ public class X1 extends javax.swing.JFrame {
         
         
         //Set icon image for this JFrame
-        Image logoZoo = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resource/View_IconZOO.png"));
+        Image logoZoo;
+        logoZoo = Toolkit.getDefaultToolkit().getImage(getClass().getResource("Resources\\View_IconZOO.png"));
         this.setIconImage(logoZoo);
 
     }
@@ -54,8 +55,7 @@ public class X1 extends javax.swing.JFrame {
         bg.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/View_IconZOO.png"))); // NOI18N
-        jLabel1.setText("jLabel1");
-        bg.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 50, 50));
+        bg.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 460, 350));
 
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 480));
 
@@ -90,10 +90,8 @@ public class X1 extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new X1().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new X1().setVisible(true);
         });
     }
 
