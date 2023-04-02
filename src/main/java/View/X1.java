@@ -14,18 +14,21 @@ import java.awt.Toolkit;
 
 public class X1 extends javax.swing.JFrame {
 
-    int xMouse, yMouse; // Variables para la obtención de la posición del cursor en el formulario
+ 
+    int xMouse, yMouse; // Obtain mouse position for moving bar at the top of the JFrame.
     
     public X1() {
         initComponents();
         
-        this.setTitle("zoo! by NeoSolutions"); // Título de la ventana.
-        this.setLocationRelativeTo(null); // Centrar la ventana en pantalla.
+        this.setTitle("zoo! by NeoSolutions"); // Title.
+        this.setLocationRelativeTo(null); // Set JFrame position to screen center.
         
-        Image isologoCPBC = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/View_IconZOO.png"));
-        this.setIconImage(isologoCPBC);
-    }
+        
+        //Set icon image for this JFrame
+        Image logoZoo = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resource/View_IconZOO.png"));
+        this.setIconImage(logoZoo);
 
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -36,8 +39,10 @@ public class X1 extends javax.swing.JFrame {
     private void initComponents() {
 
         bg = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setIconImage(getIconImage());
         setMaximumSize(new java.awt.Dimension(720, 480));
         setName("X1"); // NOI18N
         setResizable(false);
@@ -45,6 +50,12 @@ public class X1 extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         bg.setBackground(new java.awt.Color(255, 255, 255));
+        bg.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/View_IconZOO.png"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        bg.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 50, 50));
+
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 480));
 
         pack();
@@ -87,5 +98,6 @@ public class X1 extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
