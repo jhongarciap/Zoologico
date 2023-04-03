@@ -18,7 +18,7 @@ public class X1 extends javax.swing.JFrame {
      */
     public X1() {
         System.setProperty("sun.java2d.uiScale", "1.0");
-        FlatDarkLaf.setup();
+        FlatDarkLaf.setup(); // Sets the FlatLaf LookAndFeel as the main theme for the JFrame.
         initComponents();
         
         this.setLocationRelativeTo(null); //Centers the window on-screen.
@@ -144,7 +144,9 @@ public class X1 extends javax.swing.JFrame {
     }//GEN-LAST:event_btLogisticDeptActionPerformed
 
     private void btAdministrativeDeptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAdministrativeDeptActionPerformed
-        // TODO add your handling code here:
+        IS1 AdminMainWindow = new IS1();
+        this.dispose();
+        AdminMainWindow.setVisible(true);
     }//GEN-LAST:event_btAdministrativeDeptActionPerformed
 
     private void btCommercialDeptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCommercialDeptActionPerformed
