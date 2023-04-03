@@ -133,7 +133,7 @@ public class LOAWildAdd extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(242, 242, 242));
-        jLabel5.setText("Hábitad de Nacimiento:");
+        jLabel5.setText("Hábitat de Nacimiento:");
         bgPanelRound.add(jLabel5);
         jLabel5.setBounds(10, 140, 190, 16);
 
@@ -155,7 +155,7 @@ public class LOAWildAdd extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(242, 242, 242));
-        jLabel7.setText("Hábitad:");
+        jLabel7.setText("Hábitat:");
         bgPanelRound.add(jLabel7);
         jLabel7.setBounds(10, 110, 70, 16);
 

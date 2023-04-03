@@ -122,8 +122,9 @@ public class X1 extends javax.swing.JFrame {
         lbZRVLogo.setBounds(35, 20, 190, 80);
 
         lbDept.setBackground(new java.awt.Color(0, 0, 0));
-        lbDept.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        lbDept.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         lbDept.setForeground(new java.awt.Color(255, 255, 255));
+        lbDept.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbDept.setText("Seleccione su departamento:");
         bgPanelRound.add(lbDept);
         lbDept.setBounds(20, 110, 220, 30);

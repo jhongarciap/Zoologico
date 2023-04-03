@@ -102,7 +102,7 @@ public class IS3 extends javax.swing.JFrame {
             }
         });
         bgPanelRound.add(btLogisticAnimals);
-        btLogisticAnimals.setBounds(30, 170, 220, 40);
+        btLogisticAnimals.setBounds(20, 170, 240, 40);
 
         lbLogistic.setMaximumSize(new java.awt.Dimension(549, 267));
         bgPanelRound.add(lbLogistic);
@@ -113,9 +113,14 @@ public class IS3 extends javax.swing.JFrame {
         lbLogisticTitle.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         lbLogisticTitle.setForeground(new java.awt.Color(69, 106, 48));
         lbLogisticTitle.setText("Logístico");
-        bg.add(lbLogisticTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, -1, -1));
+        bg.add(lbLogisticTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 0, -1, -1));
 
         lbZooLogo.setMaximumSize(new java.awt.Dimension(549, 267));
+        lbZooLogo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbZooLogoMouseClicked(evt);
+            }
+        });
         bg.add(lbZooLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 2, 90, 45));
 
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 370));
@@ -130,6 +135,12 @@ public class IS3 extends javax.swing.JFrame {
     private void btLogisticAnimalsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLogisticAnimalsActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btLogisticAnimalsActionPerformed
+
+    private void lbZooLogoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbZooLogoMouseClicked
+       X1 MainScreen = new X1();
+       this.dispose();
+       MainScreen.setVisible(true);
+    }//GEN-LAST:event_lbZooLogoMouseClicked
 
     /**
      * @param args the command line arguments
