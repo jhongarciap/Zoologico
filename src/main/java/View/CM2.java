@@ -47,17 +47,17 @@ public class CM2 extends javax.swing.JFrame {
         bg = new javax.swing.JPanel();
         bgPanelRound = new Clases.PanelRound();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbGeneratedReports = new javax.swing.JTable();
+        tbProducts = new javax.swing.JTable();
         lbTotalPurchase = new java.awt.Label();
         lbTotalPurchaseValue = new java.awt.Label();
-        btDeleteReport = new javax.swing.JButton();
-        btCreateReport = new javax.swing.JButton();
+        btNewPurchase = new javax.swing.JButton();
+        btBill = new javax.swing.JButton();
         lbProduct = new java.awt.Label();
-        lbReportTitle = new java.awt.Label();
+        lbPurchasesTitle = new java.awt.Label();
         lbZooLogo = new javax.swing.JLabel();
         lbZRVLogo = new javax.swing.JLabel();
         cbProduct = new javax.swing.JComboBox<>();
-        btGeneratePDF1 = new javax.swing.JButton();
+        btAddProduct = new javax.swing.JButton();
         lbAmount = new java.awt.Label();
         spAmount = new javax.swing.JSpinner();
 
@@ -78,7 +78,7 @@ public class CM2 extends javax.swing.JFrame {
         bgPanelRound.setRoundTopRight(15);
         bgPanelRound.setLayout(null);
 
-        tbGeneratedReports.setModel(new javax.swing.table.DefaultTableModel(
+        tbProducts.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -89,7 +89,7 @@ public class CM2 extends javax.swing.JFrame {
                 "Cod", "Producto", "Cantidad", "Valor"
             }
         ));
-        jScrollPane1.setViewportView(tbGeneratedReports);
+        jScrollPane1.setViewportView(tbProducts);
 
         bgPanelRound.add(jScrollPane1);
         jScrollPane1.setBounds(10, 15, 680, 300);
@@ -108,17 +108,17 @@ public class CM2 extends javax.swing.JFrame {
         bgPanelRound.add(lbTotalPurchaseValue);
         lbTotalPurchaseValue.setBounds(240, 330, 160, 40);
 
-        btDeleteReport.setBackground(new java.awt.Color(51, 51, 51));
-        btDeleteReport.setForeground(new java.awt.Color(255, 255, 255));
-        btDeleteReport.setText("Nueva compra");
-        bgPanelRound.add(btDeleteReport);
-        btDeleteReport.setBounds(560, 357, 130, 23);
+        btNewPurchase.setBackground(new java.awt.Color(51, 51, 51));
+        btNewPurchase.setForeground(new java.awt.Color(255, 255, 255));
+        btNewPurchase.setText("Nueva compra");
+        bgPanelRound.add(btNewPurchase);
+        btNewPurchase.setBounds(560, 357, 130, 23);
 
-        btCreateReport.setBackground(new java.awt.Color(51, 51, 51));
-        btCreateReport.setForeground(new java.awt.Color(255, 255, 255));
-        btCreateReport.setText("Facturar");
-        bgPanelRound.add(btCreateReport);
-        btCreateReport.setBounds(560, 325, 130, 23);
+        btBill.setBackground(new java.awt.Color(51, 51, 51));
+        btBill.setForeground(new java.awt.Color(255, 255, 255));
+        btBill.setText("Facturar");
+        bgPanelRound.add(btBill);
+        btBill.setBounds(560, 325, 130, 23);
 
         bg.add(bgPanelRound, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 700, 390));
 
@@ -128,11 +128,11 @@ public class CM2 extends javax.swing.JFrame {
         lbProduct.setText("Producto");
         bg.add(lbProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, 20));
 
-        lbReportTitle.setBackground(new java.awt.Color(35, 35, 35));
-        lbReportTitle.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        lbReportTitle.setForeground(new java.awt.Color(188, 38, 73));
-        lbReportTitle.setText("Compras");
-        bg.add(lbReportTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 5, -1, -1));
+        lbPurchasesTitle.setBackground(new java.awt.Color(35, 35, 35));
+        lbPurchasesTitle.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        lbPurchasesTitle.setForeground(new java.awt.Color(188, 38, 73));
+        lbPurchasesTitle.setText("Compras");
+        bg.add(lbPurchasesTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 5, -1, -1));
 
         lbZooLogo.setMaximumSize(new java.awt.Dimension(549, 267));
         lbZooLogo.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -148,13 +148,13 @@ public class CM2 extends javax.swing.JFrame {
         cbProduct.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         bg.add(cbProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, 170, -1));
 
-        btGeneratePDF1.setText("Agregar producto");
-        btGeneratePDF1.addActionListener(new java.awt.event.ActionListener() {
+        btAddProduct.setText("Agregar producto");
+        btAddProduct.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btGeneratePDF1ActionPerformed(evt);
+                btAddProductActionPerformed(evt);
             }
         });
-        bg.add(btGeneratePDF1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 50, 130, -1));
+        bg.add(btAddProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 50, 130, -1));
 
         lbAmount.setBackground(new java.awt.Color(35, 35, 35));
         lbAmount.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -174,9 +174,9 @@ public class CM2 extends javax.swing.JFrame {
         CommMainScreen.setVisible(true);
     }//GEN-LAST:event_lbZooLogoMouseClicked
 
-    private void btGeneratePDF1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGeneratePDF1ActionPerformed
+    private void btAddProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddProductActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btGeneratePDF1ActionPerformed
+    }//GEN-LAST:event_btAddProductActionPerformed
 
     /**
      * @param args the command line arguments
@@ -199,19 +199,19 @@ public class CM2 extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;
     private Clases.PanelRound bgPanelRound;
-    private javax.swing.JButton btCreateReport;
-    private javax.swing.JButton btDeleteReport;
-    private javax.swing.JButton btGeneratePDF1;
+    private javax.swing.JButton btAddProduct;
+    private javax.swing.JButton btBill;
+    private javax.swing.JButton btNewPurchase;
     private javax.swing.JComboBox<String> cbProduct;
     private javax.swing.JScrollPane jScrollPane1;
     private java.awt.Label lbAmount;
     private java.awt.Label lbProduct;
-    private java.awt.Label lbReportTitle;
+    private java.awt.Label lbPurchasesTitle;
     private java.awt.Label lbTotalPurchase;
     private java.awt.Label lbTotalPurchaseValue;
     private javax.swing.JLabel lbZRVLogo;
     private javax.swing.JLabel lbZooLogo;
     private javax.swing.JSpinner spAmount;
-    private javax.swing.JTable tbGeneratedReports;
+    private javax.swing.JTable tbProducts;
     // End of variables declaration//GEN-END:variables
 }
