@@ -54,7 +54,6 @@ public class IS1 extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
-        setMaximumSize(new java.awt.Dimension(320, 370));
         setMinimumSize(new java.awt.Dimension(320, 370));
         setResizable(false);
         setSize(new java.awt.Dimension(320, 370));
