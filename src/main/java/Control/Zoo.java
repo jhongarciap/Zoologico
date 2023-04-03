@@ -19,22 +19,24 @@ import Control.ArrayManager.ArrayListBillSale;
 public class Zoo {
 
     public static void main(String[] args) {
-     ArrayListBillSale billSales = new ArrayListBillSale();
-     //ArrayListWild wilds = new ArrayListWild();
-     //Wild wild= new Wild("jhon", "jhon", "jhon", "jhon", "jhon","jhon","jhon");
-     //wilds.addWild(wild);
-     //wilds.saveWildExcel();
+        ArrayListBillSale billSales = new ArrayListBillSale();
+        ArrayListWild wilds = new ArrayListWild();
+        Wild wild = new Wild("jhon", "jhon", "jhon", "jhon", "jhon", "jhon", "jhon");
+        wilds.addWild(wild);
+        wilds.saveWildExcel();
 
 // Agregar nuevas ventas a la lista de ventas
-        BillSale billSale = new BillSale("2023-04-04","", 100.0f, 10.0f, 90.0f, "John Doe", "Product", "5678", 1);
+        BillSale billSale = new BillSale("2023-04-04", "", 100.0f, 10.0f, 90.0f, "John Doe", "Product", "5678", 1);
         billSales.addBillSale(billSale);
 
 // Guardar todas las ventas, incluyendo las nuevas, en el archivo Excel
         billSales.SaveBillSaleExcel();
-        billSales.ShowRowsExcel();
+        //billSales.ShowRowsSalesExcel();
 
-       //Float total = billSales.sumSalesExcel();
-       //System.out.println("La suma de todas las celdas es: " + total);
+        //Float total = billSales.sumSalesExcel();
+        //System.out.println("La suma de todas las celdas es: " + total);
+        //Elimina
+        billSales.deleteRowSale("BS2");
 
     }
 }
