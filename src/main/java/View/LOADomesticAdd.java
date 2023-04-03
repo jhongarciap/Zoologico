@@ -45,27 +45,27 @@ public class LOADomesticAdd extends javax.swing.JFrame {
         jSplitPane1 = new javax.swing.JSplitPane();
         bg = new javax.swing.JPanel();
         bgPanelRound = new Clases.PanelRound();
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        lbNameDomestic = new javax.swing.JLabel();
+        txNameDomestic = new javax.swing.JTextField();
+        lbRaceDomestic = new javax.swing.JLabel();
+        txPsycheDomestic = new javax.swing.JTextField();
+        lbsexDomestic = new javax.swing.JLabel();
+        lbDietDomestic = new javax.swing.JLabel();
+        lbOriginDomestic = new javax.swing.JLabel();
+        lbPsycheDomestic = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        txlDietDomestic = new javax.swing.JTextArea();
+        cbOriginDomestic = new javax.swing.JComboBox<>();
+        cbSexDomestic = new javax.swing.JComboBox<>();
         jComboBox3 = new javax.swing.JComboBox<>();
         jComboBox4 = new javax.swing.JComboBox<>();
-        jTextField3 = new javax.swing.JTextField();
-        btLogisticAnimals = new javax.swing.JButton();
+        txRaceDomestic = new javax.swing.JTextField();
+        btAddDomestic = new javax.swing.JButton();
         lbZooLogo = new javax.swing.JLabel();
-        lbLogisticTitle3 = new java.awt.Label();
-        lbLogisticTitle2 = new java.awt.Label();
-        lbLogisticTitle1 = new java.awt.Label();
+        lbDomesticTitle1 = new java.awt.Label();
+        lbDomesticTitle2 = new java.awt.Label();
+        lbDomesticTitle3 = new java.awt.Label();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -87,62 +87,62 @@ public class LOADomesticAdd extends javax.swing.JFrame {
         bgPanelRound.setRoundTopRight(15);
         bgPanelRound.setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(242, 242, 242));
-        jLabel1.setText("Nombre:");
-        bgPanelRound.add(jLabel1);
-        jLabel1.setBounds(10, 25, 70, 16);
+        lbNameDomestic.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lbNameDomestic.setForeground(new java.awt.Color(242, 242, 242));
+        lbNameDomestic.setText("Nombre:");
+        bgPanelRound.add(lbNameDomestic);
+        lbNameDomestic.setBounds(10, 25, 70, 16);
 
-        jTextField1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jTextField1.setText("Ingresa el nombre del animal");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txNameDomestic.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        txNameDomestic.setText("Ingresa el nombre del animal");
+        txNameDomestic.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txNameDomesticActionPerformed(evt);
             }
         });
-        bgPanelRound.add(jTextField1);
-        jTextField1.setBounds(90, 20, 180, 22);
+        bgPanelRound.add(txNameDomestic);
+        txNameDomestic.setBounds(90, 20, 180, 22);
 
-        jLabel2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(242, 242, 242));
-        jLabel2.setText("Raza:");
-        bgPanelRound.add(jLabel2);
-        jLabel2.setBounds(10, 50, 70, 16);
+        lbRaceDomestic.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lbRaceDomestic.setForeground(new java.awt.Color(242, 242, 242));
+        lbRaceDomestic.setText("Raza:");
+        bgPanelRound.add(lbRaceDomestic);
+        lbRaceDomestic.setBounds(10, 50, 70, 16);
 
-        jTextField2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jTextField2.setText("Ingresa la psique del animal");
-        jTextField2.setToolTipText("");
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        txPsycheDomestic.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        txPsycheDomestic.setText("Ingresa la psique del animal");
+        txPsycheDomestic.setToolTipText("");
+        txPsycheDomestic.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                txPsycheDomesticActionPerformed(evt);
             }
         });
-        bgPanelRound.add(jTextField2);
-        jTextField2.setBounds(90, 170, 180, 22);
+        bgPanelRound.add(txPsycheDomestic);
+        txPsycheDomestic.setBounds(90, 170, 180, 22);
 
-        jLabel3.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(242, 242, 242));
-        jLabel3.setText("Sexo:");
-        bgPanelRound.add(jLabel3);
-        jLabel3.setBounds(10, 80, 70, 16);
+        lbsexDomestic.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lbsexDomestic.setForeground(new java.awt.Color(242, 242, 242));
+        lbsexDomestic.setText("Sexo:");
+        bgPanelRound.add(lbsexDomestic);
+        lbsexDomestic.setBounds(10, 80, 70, 16);
 
-        jLabel4.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(242, 242, 242));
-        jLabel4.setText("Dieta:");
-        bgPanelRound.add(jLabel4);
-        jLabel4.setBounds(10, 200, 70, 16);
+        lbDietDomestic.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lbDietDomestic.setForeground(new java.awt.Color(242, 242, 242));
+        lbDietDomestic.setText("Dieta:");
+        bgPanelRound.add(lbDietDomestic);
+        lbDietDomestic.setBounds(10, 200, 70, 16);
 
-        jLabel5.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(242, 242, 242));
-        jLabel5.setText("Origen:");
-        bgPanelRound.add(jLabel5);
-        jLabel5.setBounds(10, 140, 190, 20);
+        lbOriginDomestic.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lbOriginDomestic.setForeground(new java.awt.Color(242, 242, 242));
+        lbOriginDomestic.setText("Origen:");
+        bgPanelRound.add(lbOriginDomestic);
+        lbOriginDomestic.setBounds(10, 140, 190, 20);
 
-        jLabel6.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(242, 242, 242));
-        jLabel6.setText("Psique:");
-        bgPanelRound.add(jLabel6);
-        jLabel6.setBounds(10, 170, 90, 20);
+        lbPsycheDomestic.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lbPsycheDomestic.setForeground(new java.awt.Color(242, 242, 242));
+        lbPsycheDomestic.setText("Psique:");
+        bgPanelRound.add(lbPsycheDomestic);
+        lbPsycheDomestic.setBounds(10, 170, 90, 20);
 
         jLabel7.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(242, 242, 242));
@@ -150,21 +150,21 @@ public class LOADomesticAdd extends javax.swing.JFrame {
         bgPanelRound.add(jLabel7);
         jLabel7.setBounds(10, 110, 70, 16);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jTextArea1.setText("Ingresa la dieta del animal");
-        jScrollPane1.setViewportView(jTextArea1);
+        txlDietDomestic.setColumns(20);
+        txlDietDomestic.setRows(5);
+        txlDietDomestic.setText("Ingresa la dieta del animal");
+        jScrollPane1.setViewportView(txlDietDomestic);
 
         bgPanelRound.add(jScrollPane1);
         jScrollPane1.setBounds(10, 220, 260, 150);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Rescate", "Entregado", "Zoológico" }));
-        bgPanelRound.add(jComboBox1);
-        jComboBox1.setBounds(90, 140, 180, 22);
+        cbOriginDomestic.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Rescate", "Entregado", "Zoológico" }));
+        bgPanelRound.add(cbOriginDomestic);
+        cbOriginDomestic.setBounds(90, 140, 180, 22);
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", "Femenino", "Masculino" }));
-        bgPanelRound.add(jComboBox2);
-        jComboBox2.setBounds(90, 80, 180, 22);
+        cbSexDomestic.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", "Femenino", "Masculino" }));
+        bgPanelRound.add(cbSexDomestic);
+        cbSexDomestic.setBounds(90, 80, 180, 22);
 
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         bgPanelRound.add(jComboBox3);
@@ -174,70 +174,70 @@ public class LOADomesticAdd extends javax.swing.JFrame {
         bgPanelRound.add(jComboBox4);
         jComboBox4.setBounds(90, 110, 180, 22);
 
-        jTextField3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jTextField3.setText("Ingresa la raza del animal");
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        txRaceDomestic.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        txRaceDomestic.setText("Ingresa la raza del animal");
+        txRaceDomestic.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                txRaceDomesticActionPerformed(evt);
             }
         });
-        bgPanelRound.add(jTextField3);
-        jTextField3.setBounds(90, 50, 180, 22);
+        bgPanelRound.add(txRaceDomestic);
+        txRaceDomestic.setBounds(90, 50, 180, 22);
 
         bg.add(bgPanelRound, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 280, 380));
 
-        btLogisticAnimals.setBackground(new java.awt.Color(69, 106, 48));
-        btLogisticAnimals.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
-        btLogisticAnimals.setForeground(new java.awt.Color(242, 242, 242));
-        btLogisticAnimals.setText("+");
-        btLogisticAnimals.setActionCommand("Añadir");
-        btLogisticAnimals.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btLogisticAnimals.setFocusPainted(false);
-        btLogisticAnimals.addActionListener(new java.awt.event.ActionListener() {
+        btAddDomestic.setBackground(new java.awt.Color(69, 106, 48));
+        btAddDomestic.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
+        btAddDomestic.setForeground(new java.awt.Color(242, 242, 242));
+        btAddDomestic.setText("+");
+        btAddDomestic.setActionCommand("Añadir");
+        btAddDomestic.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btAddDomestic.setFocusPainted(false);
+        btAddDomestic.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btLogisticAnimalsActionPerformed(evt);
+                btAddDomesticActionPerformed(evt);
             }
         });
-        bg.add(btLogisticAnimals, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 440, 50, 30));
+        bg.add(btAddDomestic, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 440, 50, 30));
 
         lbZooLogo.setMaximumSize(new java.awt.Dimension(549, 267));
         bg.add(lbZooLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(229, 2, 90, 45));
 
-        lbLogisticTitle3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lbLogisticTitle3.setForeground(new java.awt.Color(255, 153, 0));
-        lbLogisticTitle3.setText("Nuevo ");
-        bg.add(lbLogisticTitle3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 60, -1));
+        lbDomesticTitle1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lbDomesticTitle1.setForeground(new java.awt.Color(255, 153, 0));
+        lbDomesticTitle1.setText("Nuevo ");
+        bg.add(lbDomesticTitle1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 60, -1));
 
-        lbLogisticTitle2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lbLogisticTitle2.setForeground(new java.awt.Color(69, 106, 48));
-        lbLogisticTitle2.setText("Animal");
-        bg.add(lbLogisticTitle2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, 62, -1));
+        lbDomesticTitle2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lbDomesticTitle2.setForeground(new java.awt.Color(69, 106, 48));
+        lbDomesticTitle2.setText("Animal");
+        bg.add(lbDomesticTitle2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, 62, -1));
 
-        lbLogisticTitle1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lbLogisticTitle1.setForeground(new java.awt.Color(188, 38, 73));
-        lbLogisticTitle1.setText("Doméstico");
-        bg.add(lbLogisticTitle1, new org.netbeans.lib.awtextra.AbsoluteConstraints(131, 20, 100, -1));
+        lbDomesticTitle3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lbDomesticTitle3.setForeground(new java.awt.Color(188, 38, 73));
+        lbDomesticTitle3.setText("Doméstico");
+        bg.add(lbDomesticTitle3, new org.netbeans.lib.awtextra.AbsoluteConstraints(131, 20, 100, -1));
 
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 480));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btLogisticAnimalsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLogisticAnimalsActionPerformed
+    private void btAddDomesticActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddDomesticActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btLogisticAnimalsActionPerformed
+    }//GEN-LAST:event_btAddDomesticActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txNameDomesticActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txNameDomesticActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txNameDomesticActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void txPsycheDomesticActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txPsycheDomesticActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_txPsycheDomesticActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void txRaceDomesticActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txRaceDomesticActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_txRaceDomesticActionPerformed
 
     /**
      * @param args the command line arguments
@@ -260,27 +260,27 @@ public class LOADomesticAdd extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;
     private Clases.PanelRound bgPanelRound;
-    private javax.swing.JButton btLogisticAnimals;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JButton btAddDomestic;
+    private javax.swing.JComboBox<String> cbOriginDomestic;
+    private javax.swing.JComboBox<String> cbSexDomestic;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JComboBox<String> jComboBox4;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSplitPane jSplitPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private java.awt.Label lbLogisticTitle1;
-    private java.awt.Label lbLogisticTitle2;
-    private java.awt.Label lbLogisticTitle3;
+    private javax.swing.JLabel lbDietDomestic;
+    private java.awt.Label lbDomesticTitle1;
+    private java.awt.Label lbDomesticTitle2;
+    private java.awt.Label lbDomesticTitle3;
+    private javax.swing.JLabel lbNameDomestic;
+    private javax.swing.JLabel lbOriginDomestic;
+    private javax.swing.JLabel lbPsycheDomestic;
+    private javax.swing.JLabel lbRaceDomestic;
     private javax.swing.JLabel lbZooLogo;
+    private javax.swing.JLabel lbsexDomestic;
+    private javax.swing.JTextField txNameDomestic;
+    private javax.swing.JTextField txPsycheDomestic;
+    private javax.swing.JTextField txRaceDomestic;
+    private javax.swing.JTextArea txlDietDomestic;
     // End of variables declaration//GEN-END:variables
 }
