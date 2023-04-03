@@ -92,13 +92,13 @@ public class CMProAdd extends javax.swing.JFrame {
             }
         });
         bgPanelRound.add(jTextField1);
-        jTextField1.setBounds(10, 30, 260, 22);
+        jTextField1.setBounds(90, 10, 180, 22);
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(242, 242, 242));
         jLabel2.setText("Tipo:");
         bgPanelRound.add(jLabel2);
-        jLabel2.setBounds(10, 60, 70, 16);
+        jLabel2.setBounds(10, 40, 70, 16);
 
         jTextField2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jTextField2.setText("Ingrese el animal de la venta");
@@ -108,19 +108,19 @@ public class CMProAdd extends javax.swing.JFrame {
             }
         });
         bgPanelRound.add(jTextField2);
-        jTextField2.setBounds(10, 130, 260, 22);
+        jTextField2.setBounds(90, 70, 180, 22);
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(242, 242, 242));
         jLabel3.setText("Animal:");
         bgPanelRound.add(jLabel3);
-        jLabel3.setBounds(10, 110, 70, 16);
+        jLabel3.setBounds(10, 70, 70, 16);
 
         jLabel4.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(242, 242, 242));
         jLabel4.setText("Especificaciones:");
         bgPanelRound.add(jLabel4);
-        jLabel4.setBounds(10, 160, 160, 16);
+        jLabel4.setBounds(10, 100, 160, 16);
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -128,7 +128,7 @@ public class CMProAdd extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTextArea1);
 
         bgPanelRound.add(jScrollPane1);
-        jScrollPane1.setBounds(10, 180, 260, 130);
+        jScrollPane1.setBounds(10, 120, 260, 130);
 
         jTextField4.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jTextField4.setText("Ingrese el tipo de venta");
@@ -138,9 +138,9 @@ public class CMProAdd extends javax.swing.JFrame {
             }
         });
         bgPanelRound.add(jTextField4);
-        jTextField4.setBounds(10, 80, 260, 22);
+        jTextField4.setBounds(90, 40, 180, 22);
 
-        bg.add(bgPanelRound, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 280, 320));
+        bg.add(bgPanelRound, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 280, 260));
 
         btLogisticAnimals.setBackground(new java.awt.Color(188, 38, 73));
         btLogisticAnimals.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
@@ -154,7 +154,7 @@ public class CMProAdd extends javax.swing.JFrame {
                 btLogisticAnimalsActionPerformed(evt);
             }
         });
-        bg.add(btLogisticAnimals, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 390, 50, 30));
+        bg.add(btLogisticAnimals, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, 50, 30));
 
         lbZooLogo.setMaximumSize(new java.awt.Dimension(549, 267));
         bg.add(lbZooLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 2, 90, 45));
@@ -164,7 +164,7 @@ public class CMProAdd extends javax.swing.JFrame {
         lbWildTitle1.setText("Nueva Venta");
         bg.add(lbWildTitle1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 120, -1));
 
-        getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 430));
+        getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 370));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
