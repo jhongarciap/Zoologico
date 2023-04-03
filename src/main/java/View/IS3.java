@@ -113,7 +113,7 @@ public class IS3 extends javax.swing.JFrame {
         lbLogisticTitle.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         lbLogisticTitle.setForeground(new java.awt.Color(69, 106, 48));
         lbLogisticTitle.setText("Logístico");
-        bg.add(lbLogisticTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 0, -1, -1));
+        bg.add(lbLogisticTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 0, -1, -1));
 
         lbZooLogo.setMaximumSize(new java.awt.Dimension(549, 267));
         lbZooLogo.addMouseListener(new java.awt.event.MouseAdapter() {
