@@ -64,7 +64,7 @@ public class AD1 extends javax.swing.JFrame {
         cbReportType = new javax.swing.JComboBox<>();
         btGeneratePDF1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setAlwaysOnTop(true);
         setMinimumSize(new java.awt.Dimension(720, 480));
         setResizable(false);
