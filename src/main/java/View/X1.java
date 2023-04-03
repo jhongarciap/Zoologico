@@ -140,7 +140,9 @@ public class X1 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btLogisticDeptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLogisticDeptActionPerformed
-        // TODO add your handling code here:
+        IS3 AdminMainWindow = new IS3();
+        this.dispose();
+        AdminMainWindow.setVisible(true);
     }//GEN-LAST:event_btLogisticDeptActionPerformed
 
     private void btAdministrativeDeptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAdministrativeDeptActionPerformed
@@ -150,7 +152,9 @@ public class X1 extends javax.swing.JFrame {
     }//GEN-LAST:event_btAdministrativeDeptActionPerformed
 
     private void btCommercialDeptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCommercialDeptActionPerformed
-        // TODO add your handling code here:
+        IS2 AdminMainWindow = new IS2();
+        this.dispose();
+        AdminMainWindow.setVisible(true);
     }//GEN-LAST:event_btCommercialDeptActionPerformed
 
     /**
