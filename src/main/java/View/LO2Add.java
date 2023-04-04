@@ -150,6 +150,7 @@ public class LO2Add extends javax.swing.JFrame {
         });
         bg.add(btAddNewSupply, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 330, 50, 30));
 
+        lbZooLogo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         lbZooLogo.setMaximumSize(new java.awt.Dimension(549, 267));
         lbZooLogo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

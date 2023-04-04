@@ -129,6 +129,7 @@ public class IS1 extends javax.swing.JFrame {
         LbComercialTitle.setText("Administrativo");
         bg.add(LbComercialTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, -1, -1));
 
+        lbZooLogo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lbZooLogo.setMaximumSize(new java.awt.Dimension(549, 267));
         lbZooLogo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

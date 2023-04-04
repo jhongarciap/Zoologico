@@ -47,10 +47,10 @@ public class ILS1 extends javax.swing.JFrame {
 
         bg = new javax.swing.JPanel();
         bgPanelRound = new Clases.PanelRound();
-        btComercialShopping = new javax.swing.JButton();
-        btComercialSale = new javax.swing.JButton();
+        btMinor = new javax.swing.JButton();
+        btWild = new javax.swing.JButton();
         lbAnimals = new javax.swing.JLabel();
-        btComercialSale1 = new javax.swing.JButton();
+        btDomestic = new javax.swing.JButton();
         LbAnimalsTitle = new java.awt.Label();
         lbZooLogo = new javax.swing.JLabel();
 
@@ -74,54 +74,54 @@ public class ILS1 extends javax.swing.JFrame {
         bgPanelRound.setRoundTopRight(15);
         bgPanelRound.setLayout(null);
 
-        btComercialShopping.setBackground(new java.awt.Color(69, 106, 48));
-        btComercialShopping.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
-        btComercialShopping.setForeground(new java.awt.Color(242, 242, 242));
-        btComercialShopping.setText("Menores");
-        btComercialShopping.setFocusPainted(false);
-        btComercialShopping.setMaximumSize(new java.awt.Dimension(123, 49));
-        btComercialShopping.setMinimumSize(new java.awt.Dimension(123, 49));
-        btComercialShopping.setOpaque(true);
-        btComercialShopping.setPreferredSize(new java.awt.Dimension(123, 49));
-        btComercialShopping.addActionListener(new java.awt.event.ActionListener() {
+        btMinor.setBackground(new java.awt.Color(69, 106, 48));
+        btMinor.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
+        btMinor.setForeground(new java.awt.Color(242, 242, 242));
+        btMinor.setText("Menores");
+        btMinor.setFocusPainted(false);
+        btMinor.setMaximumSize(new java.awt.Dimension(123, 49));
+        btMinor.setMinimumSize(new java.awt.Dimension(123, 49));
+        btMinor.setOpaque(true);
+        btMinor.setPreferredSize(new java.awt.Dimension(123, 49));
+        btMinor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btComercialShoppingActionPerformed(evt);
+                btMinorActionPerformed(evt);
             }
         });
-        bgPanelRound.add(btComercialShopping);
-        btComercialShopping.setBounds(30, 230, 220, 40);
+        bgPanelRound.add(btMinor);
+        btMinor.setBounds(30, 230, 220, 40);
 
-        btComercialSale.setBackground(new java.awt.Color(69, 106, 48));
-        btComercialSale.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
-        btComercialSale.setForeground(new java.awt.Color(242, 242, 242));
-        btComercialSale.setText("Salvajes");
-        btComercialSale.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btComercialSale.setFocusPainted(false);
-        btComercialSale.addActionListener(new java.awt.event.ActionListener() {
+        btWild.setBackground(new java.awt.Color(69, 106, 48));
+        btWild.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
+        btWild.setForeground(new java.awt.Color(242, 242, 242));
+        btWild.setText("Salvajes");
+        btWild.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btWild.setFocusPainted(false);
+        btWild.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btComercialSaleActionPerformed(evt);
+                btWildActionPerformed(evt);
             }
         });
-        bgPanelRound.add(btComercialSale);
-        btComercialSale.setBounds(30, 110, 220, 40);
+        bgPanelRound.add(btWild);
+        btWild.setBounds(30, 110, 220, 40);
 
         lbAnimals.setMaximumSize(new java.awt.Dimension(549, 267));
         bgPanelRound.add(lbAnimals);
         lbAnimals.setBounds(30, 20, 220, 70);
 
-        btComercialSale1.setBackground(new java.awt.Color(69, 106, 48));
-        btComercialSale1.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
-        btComercialSale1.setForeground(new java.awt.Color(242, 242, 242));
-        btComercialSale1.setText("Domesticos");
-        btComercialSale1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btComercialSale1.setFocusPainted(false);
-        btComercialSale1.addActionListener(new java.awt.event.ActionListener() {
+        btDomestic.setBackground(new java.awt.Color(69, 106, 48));
+        btDomestic.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
+        btDomestic.setForeground(new java.awt.Color(242, 242, 242));
+        btDomestic.setText("Domesticos");
+        btDomestic.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btDomestic.setFocusPainted(false);
+        btDomestic.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btComercialSale1ActionPerformed(evt);
+                btDomesticActionPerformed(evt);
             }
         });
-        bgPanelRound.add(btComercialSale1);
-        btComercialSale1.setBounds(30, 170, 220, 40);
+        bgPanelRound.add(btDomestic);
+        btDomestic.setBounds(30, 170, 220, 40);
 
         bg.add(bgPanelRound, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 280, 300));
 
@@ -130,6 +130,7 @@ public class ILS1 extends javax.swing.JFrame {
         LbAnimalsTitle.setText("Animales");
         bg.add(LbAnimalsTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 0, -1, -1));
 
+        lbZooLogo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lbZooLogo.setMaximumSize(new java.awt.Dimension(549, 267));
         lbZooLogo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -143,17 +144,23 @@ public class ILS1 extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btComercialShoppingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btComercialShoppingActionPerformed
+    private void btMinorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btMinorActionPerformed
+        LO1Minor minorTab = new LO1Minor();
+        this.dispose();
+        minorTab.setVisible(true);
+    }//GEN-LAST:event_btMinorActionPerformed
 
-    }//GEN-LAST:event_btComercialShoppingActionPerformed
+    private void btWildActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btWildActionPerformed
+        LO1Wild WildTab = new LO1Wild();
+        this.dispose();
+        WildTab.setVisible(true);
+    }//GEN-LAST:event_btWildActionPerformed
 
-    private void btComercialSaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btComercialSaleActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btComercialSaleActionPerformed
-
-    private void btComercialSale1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btComercialSale1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btComercialSale1ActionPerformed
+    private void btDomesticActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDomesticActionPerformed
+        LO1Domestic domesticTab = new LO1Domestic();
+        this.dispose();
+        domesticTab.setVisible(true);
+    }//GEN-LAST:event_btDomesticActionPerformed
 
     private void lbZooLogoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbZooLogoMouseClicked
         IS3 MainScreen = new IS3();
@@ -183,9 +190,9 @@ public class ILS1 extends javax.swing.JFrame {
     private java.awt.Label LbAnimalsTitle;
     private javax.swing.JPanel bg;
     private Clases.PanelRound bgPanelRound;
-    private javax.swing.JButton btComercialSale;
-    private javax.swing.JButton btComercialSale1;
-    private javax.swing.JButton btComercialShopping;
+    private javax.swing.JButton btDomestic;
+    private javax.swing.JButton btMinor;
+    private javax.swing.JButton btWild;
     private javax.swing.JLabel lbAnimals;
     private javax.swing.JLabel lbZooLogo;
     // End of variables declaration//GEN-END:variables

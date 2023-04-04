@@ -155,6 +155,7 @@ public class CM2 extends javax.swing.JFrame {
         bg.add(lbAmount, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 70, 20));
         bg.add(spAmount, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 50, 50, -1));
 
+        lbZooLogo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lbZooLogo.setMaximumSize(new java.awt.Dimension(549, 267));
         lbZooLogo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

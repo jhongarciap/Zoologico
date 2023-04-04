@@ -200,6 +200,7 @@ public class LOADomesticAdd extends javax.swing.JFrame {
         });
         bg.add(btAddDomestic, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 440, 50, 30));
 
+        lbZooLogo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lbZooLogo.setMaximumSize(new java.awt.Dimension(549, 267));
         lbZooLogo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

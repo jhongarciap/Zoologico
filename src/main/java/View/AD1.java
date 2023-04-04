@@ -181,6 +181,7 @@ public class AD1 extends javax.swing.JFrame {
         btGeneratePDF1.setText("Generar PDF");
         bg.add(btGeneratePDF1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 50, 130, -1));
 
+        lbZooLogo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lbZooLogo.setMaximumSize(new java.awt.Dimension(549, 267));
         lbZooLogo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

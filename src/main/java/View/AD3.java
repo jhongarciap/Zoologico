@@ -118,7 +118,6 @@ public class AD3 extends javax.swing.JFrame {
         btDeletePlan.setBackground(new java.awt.Color(51, 51, 51));
         btDeletePlan.setForeground(new java.awt.Color(255, 255, 255));
         btDeletePlan.setText("Eliminar Plan");
-        btDeletePlan.setActionCommand("Eliminar Plan");
         bgPanelRound.add(btDeletePlan);
         btDeletePlan.setBounds(560, 350, 130, 23);
 
@@ -152,6 +151,7 @@ public class AD3 extends javax.swing.JFrame {
         txSearchPlans.setText("Ingresa el Id el plan a buscar");
         bg.add(txSearchPlans, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, 280, -1));
 
+        lbZooLogo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lbZooLogo.setMaximumSize(new java.awt.Dimension(549, 267));
         lbZooLogo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

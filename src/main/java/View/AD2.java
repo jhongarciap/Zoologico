@@ -156,6 +156,7 @@ public class AD2 extends javax.swing.JFrame {
         txIDWorker.setText("Ingrese el ID del trabajador");
         bg.add(txIDWorker, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, 280, -1));
 
+        lbZooLogo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lbZooLogo.setMaximumSize(new java.awt.Dimension(549, 267));
         lbZooLogo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

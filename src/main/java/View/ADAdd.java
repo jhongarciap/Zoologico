@@ -157,7 +157,13 @@ public class ADAdd extends javax.swing.JFrame {
         });
         bg.add(btLogisticWorkers, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 320, 50, 30));
 
+        lbZooLogo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lbZooLogo.setMaximumSize(new java.awt.Dimension(549, 267));
+        lbZooLogo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbZooLogoMouseClicked(evt);
+            }
+        });
         bg.add(lbZooLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 2, 90, 45));
 
         lWorkerTitle2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -190,6 +196,10 @@ public class ADAdd extends javax.swing.JFrame {
     private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField4ActionPerformed
+
+    private void lbZooLogoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbZooLogoMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lbZooLogoMouseClicked
 
     /**
      * @param args the command line arguments
