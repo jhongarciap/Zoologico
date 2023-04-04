@@ -30,7 +30,7 @@ public class LOAMinorAdd extends javax.swing.JFrame {
         //logo del recadro debajo del logo
         Image logoZRV = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/zoo!Logo.png"));
         lbZooLogo.setIcon(new ImageIcon(logoZRV.getScaledInstance(lbZooLogo.getWidth(), lbZooLogo.getHeight(), Image.SCALE_AREA_AVERAGING)));
-       
+
     }
 
     /**
@@ -247,7 +247,7 @@ public class LOAMinorAdd extends javax.swing.JFrame {
     }//GEN-LAST:event_txDiseasesMinorActionPerformed
 
     private void lbZooLogoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbZooLogoMouseClicked
-       LO1Minor MainScreen = new LO1Minor();
+        LO1Minor MainScreen = new LO1Minor();
         this.dispose();
         MainScreen.setVisible(true);
     }//GEN-LAST:event_lbZooLogoMouseClicked
@@ -256,10 +256,10 @@ public class LOAMinorAdd extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        try{
+        try {
             UIManager.setLookAndFeel(new FlatDarculaLaf());
-        }catch (Exception e){
-            
+        } catch (Exception e) {
+
         }
 
         /* Create and display the form */
