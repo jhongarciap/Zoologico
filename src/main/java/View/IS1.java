@@ -27,7 +27,7 @@ public class IS1 extends javax.swing.JFrame {
         Image faviconX1 = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/View_IconAdminZOO.png"));
         this.setIconImage(faviconX1);
         
-        Image logoZRV = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/zoo!WhiteLogo.png"));
+        Image logoZRV = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/zoo!Logo.png"));
         lbZooLogo.setIcon(new ImageIcon(logoZRV.getScaledInstance(lbZooLogo.getWidth(), lbZooLogo.getHeight(), Image.SCALE_AREA_AVERAGING)));
        
         Image logoZV = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/Administrative@3x.png"));
@@ -44,13 +44,13 @@ public class IS1 extends javax.swing.JFrame {
     private void initComponents() {
 
         bg = new javax.swing.JPanel();
-        lbZooLogo = new javax.swing.JLabel();
         bgPanelRound = new Clases.PanelRound();
         btComercialSale = new javax.swing.JButton();
         btComercialShopping = new javax.swing.JButton();
         btComercialSale1 = new javax.swing.JButton();
         lbAdmin = new javax.swing.JLabel();
         LbComercialTitle = new java.awt.Label();
+        lbZooLogo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -64,14 +64,6 @@ public class IS1 extends javax.swing.JFrame {
         bg.setMinimumSize(new java.awt.Dimension(320, 370));
         bg.setPreferredSize(new java.awt.Dimension(320, 370));
         bg.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        lbZooLogo.setMaximumSize(new java.awt.Dimension(549, 267));
-        lbZooLogo.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lbZooLogoMouseClicked(evt);
-            }
-        });
-        bg.add(lbZooLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, -20, 90, 90));
 
         bgPanelRound.setBackground(new java.awt.Color(51, 51, 51));
         bgPanelRound.setRoundBottomLeft(15);
@@ -135,7 +127,15 @@ public class IS1 extends javax.swing.JFrame {
         LbComercialTitle.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         LbComercialTitle.setForeground(new java.awt.Color(255, 153, 0));
         LbComercialTitle.setText("Administrativo");
-        bg.add(LbComercialTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 8, -1, -1));
+        bg.add(LbComercialTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, -1, -1));
+
+        lbZooLogo.setMaximumSize(new java.awt.Dimension(549, 267));
+        lbZooLogo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbZooLogoMouseClicked(evt);
+            }
+        });
+        bg.add(lbZooLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 2, 90, 45));
 
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 370));
 

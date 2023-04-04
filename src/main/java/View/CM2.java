@@ -27,10 +27,10 @@ public class CM2 extends javax.swing.JFrame {
         Image faviconX1 = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/View_IconCommZOO.png"));
         this.setIconImage(faviconX1);
         
-        Image logoZRV = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/ZRVBW@3x.png"));
+        Image logoZRV = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/ZRVC@3x.png"));
         lbZRVLogo.setIcon(new ImageIcon(logoZRV.getScaledInstance(lbZRVLogo.getWidth(), lbZRVLogo.getHeight(), Image.SCALE_AREA_AVERAGING)));
 
-        Image logoZoo = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/zoo!WhiteLogo.png"));
+        Image logoZoo = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/zoo!Logo.png"));
         lbZooLogo.setIcon(new ImageIcon(logoZoo.getScaledInstance(lbZooLogo.getWidth(), lbZooLogo.getHeight(), Image.SCALE_AREA_AVERAGING)));
 
     }
@@ -54,12 +54,12 @@ public class CM2 extends javax.swing.JFrame {
         btBill = new javax.swing.JButton();
         lbProduct = new java.awt.Label();
         lbPurchasesTitle = new java.awt.Label();
-        lbZooLogo = new javax.swing.JLabel();
         lbZRVLogo = new javax.swing.JLabel();
         cbProduct = new javax.swing.JComboBox<>();
         btAddProduct = new javax.swing.JButton();
         lbAmount = new java.awt.Label();
         spAmount = new javax.swing.JSpinner();
+        lbZooLogo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -134,14 +134,6 @@ public class CM2 extends javax.swing.JFrame {
         lbPurchasesTitle.setText("Compras");
         bg.add(lbPurchasesTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 5, -1, -1));
 
-        lbZooLogo.setMaximumSize(new java.awt.Dimension(549, 267));
-        lbZooLogo.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lbZooLogoMouseClicked(evt);
-            }
-        });
-        bg.add(lbZooLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, -20, 90, 90));
-
         lbZRVLogo.setMaximumSize(new java.awt.Dimension(549, 267));
         bg.add(lbZRVLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 10, 140, 60));
 
@@ -163,20 +155,28 @@ public class CM2 extends javax.swing.JFrame {
         bg.add(lbAmount, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 70, 20));
         bg.add(spAmount, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 50, 50, -1));
 
+        lbZooLogo.setMaximumSize(new java.awt.Dimension(549, 267));
+        lbZooLogo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbZooLogoMouseClicked(evt);
+            }
+        });
+        bg.add(lbZooLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 2, 90, 45));
+
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 480));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void lbZooLogoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbZooLogoMouseClicked
-        IS2 CommMainScreen = new IS2();
-        this.dispose();
-        CommMainScreen.setVisible(true);
-    }//GEN-LAST:event_lbZooLogoMouseClicked
-
     private void btAddProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddProductActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btAddProductActionPerformed
+
+    private void lbZooLogoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbZooLogoMouseClicked
+        X1 MainScreen = new X1();
+        this.dispose();
+        MainScreen.setVisible(true);
+    }//GEN-LAST:event_lbZooLogoMouseClicked
 
     /**
      * @param args the command line arguments
