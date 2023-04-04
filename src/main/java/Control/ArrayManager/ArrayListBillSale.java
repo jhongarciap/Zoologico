@@ -10,7 +10,6 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
@@ -104,33 +103,30 @@ public class ArrayListBillSale {
     }
 // Método para mostrar todas las filas del archivo Excel
 
-    public void ShowRowsSalesExcel() {
-        try {
-            File file = new File("rom/Bills/BillSale.xlsx");
-            if (file.exists()) {
-                FileInputStream fis = new FileInputStream(file);
-                XSSFWorkbook workbook = new XSSFWorkbook(fis);
-                XSSFSheet sheet = workbook.getSheetAt(0);
-                int lastRow = sheet.getLastRowNum();
+    public static ArrayList<Row> getRowsSalesExcel() {
+        ArrayList<Row> rows = new ArrayList<>();
+    try {
+        File file = new File("rom/Bills/BillSale.xlsx");
+        if (file.exists()) {
+            FileInputStream fis = new FileInputStream(file);
+            XSSFWorkbook workbook = new XSSFWorkbook(fis);
+            XSSFSheet sheet = workbook.getSheetAt(0);
+            int lastRow = sheet.getLastRowNum();
 
-                for (int i = 0; i <= lastRow; i++) {
-                    XSSFRow row = sheet.getRow(i);
-                    System.out.println("Fila " + (i + 1) + ":");
-                    XSSFCell cell0 = row.getCell(0);
-                    XSSFCell cell1 = row.getCell(1);
-                    XSSFCell cell2 = row.getCell(4);
-                    System.out.println(cell0);
-                    System.out.println(cell1);
-                    System.out.println(cell2);
-                }
-                fis.close();
-            } else {
-                System.out.println("El archivo no existe.");
+            for (int i = 0; i <= lastRow; i++) {
+                XSSFRow row = sheet.getRow(i);
+                rows.add(row);
             }
-        } catch (Exception e) {
-            System.out.println("Hay un error, revisa.");
+            fis.close();
+        } else {
+            System.out.println("El archivo no existe.");
         }
+    } catch (Exception e) {
+        System.out.println("Hay un error, revisa.");
     }
+    return rows;
+}
+
 
     // Método para sumar todas las ventas
     public Float sumSalesExcel() {
@@ -174,76 +170,81 @@ public class ArrayListBillSale {
         }
         return totalValue; // retorna el valor total de las ventas
     }
-
+//Busca y elimina la fila asociada al codigo
     public static void deleteRowSale(String codigo) {
-    try {
-        // Ruta del archivo Excel
-        String filePath = "rom/Bills/BillSale.xlsx";
+        try {
+            // Ruta del archivo Excel
+            String filePath = "rom/Bills/BillSale.xlsx";
 
-        // Carga el archivo Excel
-        FileInputStream archive = new FileInputStream(new File(filePath));
-        XSSFWorkbook book = new XSSFWorkbook(archive);
+            // Carga el archivo Excel
+            FileInputStream archive = new FileInputStream(new File(filePath));
+            XSSFWorkbook book = new XSSFWorkbook(archive);
 
-        // Selecciona la hoja
-        XSSFSheet sheet = book.getSheet("BillSale");
+            // Selecciona la hoja
+            XSSFSheet sheet = book.getSheet("BillSale");
 
-        // Recorre cada fila de la hoja
-        for (int i = sheet.getLastRowNum(); i >= sheet.getFirstRowNum(); i--) {
-            Row fila = sheet.getRow(i);
+            // Recorre cada fila de la hoja
+            for (int i = sheet.getLastRowNum(); i >= sheet.getFirstRowNum(); i--) {
+                Row fila = sheet.getRow(i);
 
-            // Compara el código con la celda 1 de la fila
-            if (fila.getCell(1).getStringCellValue().equals(codigo)) {
-                // Elimina la fila y desplaza las filas hacia arriba
-                sheet.removeRow(fila);
-                sheet.shiftRows(i + 1, sheet.getLastRowNum(), -1);
-                i--; // Decrementa el contador para evitar omitir la fila siguiente
+                // Compara el código con la celda 1 de la fila
+                if (fila.getCell(1).getStringCellValue().equals(codigo)) {
+                    // Elimina la fila y desplaza las filas hacia arriba
+                    sheet.removeRow(fila);
+                    sheet.shiftRows(i + 1, sheet.getLastRowNum(), -1);
+                    i--; // Decrementa el contador para evitar omitir la fila siguiente
+                }
             }
+
+            // Guarda los cambios en el archivo
+            FileOutputStream exit = new FileOutputStream(new File(filePath));
+            book.write(exit);
+
+            // Cierra los flujos de entrada y salida
+            archive.close();
+            exit.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+//Buscar la fila que se necesita 
+
+    public static Row getRowSale(String codigo) {
+        try {
+            // Ruta del archivo Excel
+            String filePath = "rom/Bills/BillSale.xlsx";
+
+            // Carga el archivo Excel
+            FileInputStream archive = new FileInputStream(new File(filePath));
+            XSSFWorkbook book = new XSSFWorkbook(archive);
+
+            // Selecciona la hoja
+            XSSFSheet sheet = book.getSheet("BillSale");
+
+            // Recorre cada fila de la hoja
+            for (int i = sheet.getLastRowNum(); i >= sheet.getFirstRowNum(); i--) {
+                Row fila = sheet.getRow(i);
+
+                // Compara el código con la celda 1 de la fila
+                if (fila.getCell(1).getStringCellValue().equals(codigo)) {
+                    // Retorna la fila correspondiente
+                    return fila;
+                }
+            }
+
+            // Si no se encuentra ninguna fila correspondiente, retorna null
+            System.out.println("No se encontró ninguna fila con el código " + codigo);
+
+            // Cierra el flujo de entrada
+            archive.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-        // Guarda los cambios en el archivo
-        FileOutputStream exit = new FileOutputStream(new File(filePath));
-        book.write(exit);
-
-        // Cierra los flujos de entrada y salida
-        archive.close();
-        exit.close();
-
-    } catch (Exception e) {
-        e.printStackTrace();
+        return null;
     }
 }
 
 
-}
-
-//Para jtable 
-/*public DefaultTableModel getTableModelFromExcel() {
-    DefaultTableModel model = new DefaultTableModel();
-    model.addColumn("Columna 1");
-    model.addColumn("Columna 2");
-
-    try {
-        File file = new File("rom/Bills/BillSale.xlsx");
-        if (file.exists()) {
-            FileInputStream fis = new FileInputStream(file);
-            XSSFWorkbook workbook = new XSSFWorkbook(fis);
-            XSSFSheet sheet = workbook.getSheetAt(0);
-            int lastRow = sheet.getLastRowNum();
-
-            for (int i = 0; i <= lastRow; i++) {
-                XSSFRow row = sheet.getRow(i);
-                String celda0 = row.getCell(0).getStringCellValue();
-                String celda1 = row.getCell(3).getStringCellValue();
-                model.addRow(new Object[] { celda0, celda1 });
-            }
-            fis.close();
-        } else {
-            System.out.println("El archivo no existe.");
-        }
-    } catch (Exception e) {
-        System.out.println("Hay un error, revisa.");
-    }
-
-    return model;
-}
- */
