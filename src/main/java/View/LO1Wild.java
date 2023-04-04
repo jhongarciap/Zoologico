@@ -216,6 +216,11 @@ public class LO1Wild extends javax.swing.JFrame {
         bg.add(txSearchWildAnimal, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 490, -1));
 
         btAddWildAnimal.setText("Añadir animal");
+        btAddWildAnimal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAddWildAnimalActionPerformed(evt);
+            }
+        });
         bg.add(btAddWildAnimal, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 80, 110, -1));
 
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 480));
@@ -228,6 +233,12 @@ public class LO1Wild extends javax.swing.JFrame {
         this.dispose();
         MainScreen.setVisible(true);
     }//GEN-LAST:event_lbZooLogoMouseClicked
+
+    private void btAddWildAnimalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddWildAnimalActionPerformed
+       LOAWildAdd MainScreen = new LOAWildAdd();
+        this.dispose();
+        MainScreen.setVisible(true);                                
+    }//GEN-LAST:event_btAddWildAnimalActionPerformed
 
     /**
      * @param args the command line arguments

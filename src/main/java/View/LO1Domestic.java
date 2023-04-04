@@ -216,6 +216,11 @@ public class LO1Domestic extends javax.swing.JFrame {
         bg.add(txSearchDomesticAnimal, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 490, -1));
 
         btAddDomesticAnimal.setText("Añadir animal");
+        btAddDomesticAnimal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAddDomesticAnimalActionPerformed(evt);
+            }
+        });
         bg.add(btAddDomesticAnimal, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 80, 110, -1));
 
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 480));
@@ -228,6 +233,12 @@ public class LO1Domestic extends javax.swing.JFrame {
         this.dispose();
         MainScreen.setVisible(true);
     }//GEN-LAST:event_lbZooLogoMouseClicked
+
+    private void btAddDomesticAnimalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddDomesticAnimalActionPerformed
+        LOADomesticAdd MainScreen = new LOADomesticAdd();
+        this.dispose();
+        MainScreen.setVisible(true);
+    }//GEN-LAST:event_btAddDomesticAnimalActionPerformed
 
     /**
      * @param args the command line arguments

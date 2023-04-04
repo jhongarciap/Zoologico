@@ -182,7 +182,9 @@ public class PAAdd extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btLogisticPlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLogisticPlanActionPerformed
-        // TODO add your handling code here:
+       AD3 MainScreen = new AD3();
+        this.dispose();
+        MainScreen.setVisible(true);
     }//GEN-LAST:event_btLogisticPlanActionPerformed
 
     private void txIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txIDActionPerformed

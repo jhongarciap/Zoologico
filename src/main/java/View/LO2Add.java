@@ -175,7 +175,9 @@ public class LO2Add extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btAddNewSupplyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddNewSupplyActionPerformed
-        // TODO add your handling code here:
+       LO2 MainScreen = new LO2();
+        this.dispose();
+        MainScreen.setVisible(true);
     }//GEN-LAST:event_btAddNewSupplyActionPerformed
 
     private void txNameNewSupplyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txNameNewSupplyActionPerformed

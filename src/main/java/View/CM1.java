@@ -199,7 +199,10 @@ public class CM1 extends javax.swing.JFrame {
     }//GEN-LAST:event_lbZooLogoMouseClicked
 
     private void btNewSaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNewSaleActionPerformed
-        // TODO add your handling code here:
+       CMProAdd MainScreen = new CMProAdd();
+        this.dispose();
+        MainScreen.setVisible(true);
+                                    
     }//GEN-LAST:event_btNewSaleActionPerformed
 
     /**

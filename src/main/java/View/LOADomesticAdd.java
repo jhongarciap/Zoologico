@@ -30,7 +30,7 @@ public class LOADomesticAdd extends javax.swing.JFrame {
         //logo del recadro debajo del logo
         Image logoZRV = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/zoo!Logo.png"));
         lbZooLogo.setIcon(new ImageIcon(logoZRV.getScaledInstance(lbZooLogo.getWidth(), lbZooLogo.getHeight(), Image.SCALE_AREA_AVERAGING)));
-       
+
     }
 
     /**
@@ -230,7 +230,9 @@ public class LOADomesticAdd extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btAddDomesticActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddDomesticActionPerformed
-        // TODO add your handling code here:
+        LO1Domestic MainScreen = new LO1Domestic();
+        this.dispose();
+        MainScreen.setVisible(true);
     }//GEN-LAST:event_btAddDomesticActionPerformed
 
     private void txNameDomesticActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txNameDomesticActionPerformed
@@ -246,7 +248,7 @@ public class LOADomesticAdd extends javax.swing.JFrame {
     }//GEN-LAST:event_txRaceDomesticActionPerformed
 
     private void lbZooLogoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbZooLogoMouseClicked
-        ILS1 MainScreen = new ILS1();
+        LO1Domestic MainScreen = new LO1Domestic();
         this.dispose();
         MainScreen.setVisible(true);
     }//GEN-LAST:event_lbZooLogoMouseClicked
@@ -255,10 +257,10 @@ public class LOADomesticAdd extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        try{
+        try {
             UIManager.setLookAndFeel(new FlatDarculaLaf());
-        }catch (Exception e){
-            
+        } catch (Exception e) {
+
         }
 
         /* Create and display the form */

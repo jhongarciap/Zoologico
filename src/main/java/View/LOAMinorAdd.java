@@ -229,7 +229,9 @@ public class LOAMinorAdd extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btAddMinorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddMinorActionPerformed
-        // TODO add your handling code here:
+        LO1Minor MainScreen = new LO1Minor();
+        this.dispose();
+        MainScreen.setVisible(true);
     }//GEN-LAST:event_btAddMinorActionPerformed
 
     private void txNameMinorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txNameMinorActionPerformed
@@ -245,7 +247,7 @@ public class LOAMinorAdd extends javax.swing.JFrame {
     }//GEN-LAST:event_txDiseasesMinorActionPerformed
 
     private void lbZooLogoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbZooLogoMouseClicked
-       ILS1 MainScreen = new ILS1();
+       LO1Minor MainScreen = new LO1Minor();
         this.dispose();
         MainScreen.setVisible(true);
     }//GEN-LAST:event_lbZooLogoMouseClicked

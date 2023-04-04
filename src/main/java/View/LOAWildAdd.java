@@ -229,7 +229,9 @@ public class LOAWildAdd extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btLogisticAnimalsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLogisticAnimalsActionPerformed
-        // TODO add your handling code here:
+        LO1Wild MainScreen = new LO1Wild();
+        this.dispose();
+        MainScreen.setVisible(true);
     }//GEN-LAST:event_btLogisticAnimalsActionPerformed
 
     private void txNameWildActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txNameWildActionPerformed
@@ -245,7 +247,7 @@ public class LOAWildAdd extends javax.swing.JFrame {
     }//GEN-LAST:event_txBirthhabitatWildActionPerformed
 
     private void lbZooLogoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbZooLogoMouseClicked
-        ILS1 MainScreen = new ILS1();
+       LO1Wild MainScreen = new LO1Wild();
         this.dispose();
         MainScreen.setVisible(true);
     }//GEN-LAST:event_lbZooLogoMouseClicked

@@ -183,7 +183,7 @@ public class AD3 extends javax.swing.JFrame {
 
     private void btAddPlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddPlanActionPerformed
        PAAdd ReportWindow = new PAAdd();
-       //this.dispose();
+       this.dispose();
        ReportWindow.setVisible(true);
     }//GEN-LAST:event_btAddPlanActionPerformed
 

@@ -176,7 +176,9 @@ public class CMProAdd extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btLogisticSellActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLogisticSellActionPerformed
-        // TODO add your handling code here:
+        CM1 MainScreen = new CM1();
+        this.dispose();
+        MainScreen.setVisible(true);                                
     }//GEN-LAST:event_btLogisticSellActionPerformed
 
     private void txNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txNameActionPerformed

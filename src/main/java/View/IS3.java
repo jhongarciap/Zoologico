@@ -130,7 +130,9 @@ public class IS3 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btLogisticSupplyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLogisticSupplyActionPerformed
-        // TODO add your handling code here:
+       IS1 MainScreen = new IS1();
+        this.dispose();
+        MainScreen.setVisible(true);
     }//GEN-LAST:event_btLogisticSupplyActionPerformed
 
     private void btLogisticAnimalsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLogisticAnimalsActionPerformed

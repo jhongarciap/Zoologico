@@ -216,6 +216,11 @@ public class LO1Minor extends javax.swing.JFrame {
         bg.add(txSearchMinorAnimal, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 490, -1));
 
         btAddMinorAnimal.setText("Añadir animal");
+        btAddMinorAnimal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAddMinorAnimalActionPerformed(evt);
+            }
+        });
         bg.add(btAddMinorAnimal, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 80, 110, -1));
 
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 480));
@@ -228,6 +233,12 @@ public class LO1Minor extends javax.swing.JFrame {
         this.dispose();
         MainScreen.setVisible(true);
     }//GEN-LAST:event_lbZooLogoMouseClicked
+
+    private void btAddMinorAnimalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddMinorAnimalActionPerformed
+       LOAMinorAdd MainScreen = new LOAMinorAdd();
+        this.dispose();
+        MainScreen.setVisible(true);
+    }//GEN-LAST:event_btAddMinorAnimalActionPerformed
 
     /**
      * @param args the command line arguments

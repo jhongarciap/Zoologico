@@ -117,7 +117,7 @@ public class LO2 extends javax.swing.JFrame {
 
         lbAnimalSupplement.setBackground(new java.awt.Color(51, 51, 51));
         lbAnimalSupplement.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lbAnimalSupplement.setForeground(new java.awt.Color(255, 153, 0));
+        lbAnimalSupplement.setForeground(new java.awt.Color(69, 106, 48));
         lbAnimalSupplement.setText("Delfín");
         bgPanelRound.add(lbAnimalSupplement);
         lbAnimalSupplement.setBounds(90, 310, 140, 32);
@@ -131,7 +131,7 @@ public class LO2 extends javax.swing.JFrame {
 
         lbSupplementAmount.setBackground(new java.awt.Color(51, 51, 51));
         lbSupplementAmount.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lbSupplementAmount.setForeground(new java.awt.Color(255, 153, 0));
+        lbSupplementAmount.setForeground(new java.awt.Color(69, 106, 48));
         lbSupplementAmount.setText("15");
         bgPanelRound.add(lbSupplementAmount);
         lbSupplementAmount.setBounds(340, 250, 90, 32);
@@ -145,12 +145,17 @@ public class LO2 extends javax.swing.JFrame {
         btCreateSupplement.setBackground(new java.awt.Color(51, 51, 51));
         btCreateSupplement.setForeground(new java.awt.Color(255, 255, 255));
         btCreateSupplement.setText("Crear Suplemento");
+        btCreateSupplement.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCreateSupplementActionPerformed(evt);
+            }
+        });
         bgPanelRound.add(btCreateSupplement);
         btCreateSupplement.setBounds(550, 280, 140, 23);
 
         lbSupplementType.setBackground(new java.awt.Color(51, 51, 51));
         lbSupplementType.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lbSupplementType.setForeground(new java.awt.Color(255, 153, 0));
+        lbSupplementType.setForeground(new java.awt.Color(69, 106, 48));
         lbSupplementType.setText("Medicamento");
         bgPanelRound.add(lbSupplementType);
         lbSupplementType.setBounds(90, 280, 110, 32);
@@ -164,7 +169,7 @@ public class LO2 extends javax.swing.JFrame {
 
         lbSupplementName.setBackground(new java.awt.Color(51, 51, 51));
         lbSupplementName.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lbSupplementName.setForeground(new java.awt.Color(255, 153, 0));
+        lbSupplementName.setForeground(new java.awt.Color(69, 106, 48));
         lbSupplementName.setText("Acetaminofen");
         bgPanelRound.add(lbSupplementName);
         lbSupplementName.setBounds(90, 250, 110, 32);
@@ -200,7 +205,7 @@ public class LO2 extends javax.swing.JFrame {
 
         lbSupplementTitle.setBackground(new java.awt.Color(35, 35, 35));
         lbSupplementTitle.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        lbSupplementTitle.setForeground(new java.awt.Color(255, 153, 0));
+        lbSupplementTitle.setForeground(new java.awt.Color(69, 106, 48));
         lbSupplementTitle.setText("Suplementos");
         bg.add(lbSupplementTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 5, -1, -1));
 
@@ -229,6 +234,12 @@ public class LO2 extends javax.swing.JFrame {
         this.dispose();
         MainScreen.setVisible(true);
     }//GEN-LAST:event_lbZooLogoMouseClicked
+
+    private void btCreateSupplementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCreateSupplementActionPerformed
+       LO2Add MainScreen = new LO2Add();
+        this.dispose();
+        MainScreen.setVisible(true);
+    }//GEN-LAST:event_btCreateSupplementActionPerformed
 
     /**
      * @param args the command line arguments

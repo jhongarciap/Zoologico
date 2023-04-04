@@ -111,6 +111,11 @@ public class CM2 extends javax.swing.JFrame {
         btNewPurchase.setBackground(new java.awt.Color(51, 51, 51));
         btNewPurchase.setForeground(new java.awt.Color(255, 255, 255));
         btNewPurchase.setText("Nueva compra");
+        btNewPurchase.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btNewPurchaseActionPerformed(evt);
+            }
+        });
         bgPanelRound.add(btNewPurchase);
         btNewPurchase.setBounds(560, 357, 130, 23);
 
@@ -178,6 +183,12 @@ public class CM2 extends javax.swing.JFrame {
         this.dispose();
         MainScreen.setVisible(true);
     }//GEN-LAST:event_lbZooLogoMouseClicked
+
+    private void btNewPurchaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNewPurchaseActionPerformed
+       CMProAdd MainScreen = new CMProAdd();
+        this.dispose();
+        MainScreen.setVisible(true);
+    }//GEN-LAST:event_btNewPurchaseActionPerformed
 
     /**
      * @param args the command line arguments
