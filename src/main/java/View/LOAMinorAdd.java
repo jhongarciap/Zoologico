@@ -45,27 +45,27 @@ public class LOAMinorAdd extends javax.swing.JFrame {
         jSplitPane1 = new javax.swing.JSplitPane();
         bg = new javax.swing.JPanel();
         bgPanelRound = new Clases.PanelRound();
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        jbNameMinor = new javax.swing.JLabel();
+        txNameMinor = new javax.swing.JTextField();
+        jbRaceMinor = new javax.swing.JLabel();
+        txRaceMinor = new javax.swing.JTextField();
+        jbSexMinor = new javax.swing.JLabel();
+        jbDietMinor = new javax.swing.JLabel();
+        jbDiseasesMinor = new javax.swing.JLabel();
+        txDiseasesMinor = new javax.swing.JTextField();
+        jbNativeClimateMinor = new javax.swing.JLabel();
+        jbHabitaMinor = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        txDietMinor = new javax.swing.JTextArea();
+        cbNativeClimateMinor = new javax.swing.JComboBox<>();
+        cbSexMinor = new javax.swing.JComboBox<>();
         jComboBox3 = new javax.swing.JComboBox<>();
-        jComboBox4 = new javax.swing.JComboBox<>();
-        btLogisticAnimals = new javax.swing.JButton();
+        cbHabitaMinor = new javax.swing.JComboBox<>();
+        btAddMinor = new javax.swing.JButton();
         lbZooLogo = new javax.swing.JLabel();
-        lbLogisticTitle3 = new java.awt.Label();
-        lbLogisticTitle2 = new java.awt.Label();
-        lbLogisticTitle1 = new java.awt.Label();
+        lbMinorTitle1 = new java.awt.Label();
+        lbMinorTitle2 = new java.awt.Label();
+        lbMinorTitle3 = new java.awt.Label();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -87,156 +87,156 @@ public class LOAMinorAdd extends javax.swing.JFrame {
         bgPanelRound.setRoundTopRight(15);
         bgPanelRound.setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(242, 242, 242));
-        jLabel1.setText("Nombre:");
-        bgPanelRound.add(jLabel1);
-        jLabel1.setBounds(10, 25, 70, 16);
+        jbNameMinor.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jbNameMinor.setForeground(new java.awt.Color(242, 242, 242));
+        jbNameMinor.setText("Nombre:");
+        bgPanelRound.add(jbNameMinor);
+        jbNameMinor.setBounds(10, 25, 70, 16);
 
-        jTextField1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jTextField1.setText("Ingresa el nombre del animal");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txNameMinor.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        txNameMinor.setText("Ingresa el nombre del animal");
+        txNameMinor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txNameMinorActionPerformed(evt);
             }
         });
-        bgPanelRound.add(jTextField1);
-        jTextField1.setBounds(90, 20, 180, 22);
+        bgPanelRound.add(txNameMinor);
+        txNameMinor.setBounds(90, 20, 180, 22);
 
-        jLabel2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(242, 242, 242));
-        jLabel2.setText("Raza:");
-        bgPanelRound.add(jLabel2);
-        jLabel2.setBounds(10, 50, 70, 16);
+        jbRaceMinor.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jbRaceMinor.setForeground(new java.awt.Color(242, 242, 242));
+        jbRaceMinor.setText("Raza:");
+        bgPanelRound.add(jbRaceMinor);
+        jbRaceMinor.setBounds(10, 50, 70, 16);
 
-        jTextField2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jTextField2.setText("Ingresa la raza del animal");
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        txRaceMinor.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        txRaceMinor.setText("Ingresa la raza del animal");
+        txRaceMinor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                txRaceMinorActionPerformed(evt);
             }
         });
-        bgPanelRound.add(jTextField2);
-        jTextField2.setBounds(90, 50, 180, 22);
+        bgPanelRound.add(txRaceMinor);
+        txRaceMinor.setBounds(90, 50, 180, 22);
 
-        jLabel3.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(242, 242, 242));
-        jLabel3.setText("Sexo:");
-        bgPanelRound.add(jLabel3);
-        jLabel3.setBounds(10, 80, 70, 16);
+        jbSexMinor.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jbSexMinor.setForeground(new java.awt.Color(242, 242, 242));
+        jbSexMinor.setText("Sexo:");
+        bgPanelRound.add(jbSexMinor);
+        jbSexMinor.setBounds(10, 80, 70, 16);
 
-        jLabel4.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(242, 242, 242));
-        jLabel4.setText("Dieta:");
-        bgPanelRound.add(jLabel4);
-        jLabel4.setBounds(10, 220, 70, 16);
+        jbDietMinor.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jbDietMinor.setForeground(new java.awt.Color(242, 242, 242));
+        jbDietMinor.setText("Dieta:");
+        bgPanelRound.add(jbDietMinor);
+        jbDietMinor.setBounds(10, 220, 70, 16);
 
-        jLabel5.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(242, 242, 242));
-        jLabel5.setText("Enfermedades a transmitir:");
-        bgPanelRound.add(jLabel5);
-        jLabel5.setBounds(10, 140, 220, 16);
+        jbDiseasesMinor.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jbDiseasesMinor.setForeground(new java.awt.Color(242, 242, 242));
+        jbDiseasesMinor.setText("Enfermedades a transmitir:");
+        bgPanelRound.add(jbDiseasesMinor);
+        jbDiseasesMinor.setBounds(10, 140, 220, 16);
 
-        jTextField5.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jTextField5.setText("Ingresa el hábitad de nacimiento del animal");
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+        txDiseasesMinor.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        txDiseasesMinor.setText("Ingresa el hábitad de nacimiento del animal");
+        txDiseasesMinor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
+                txDiseasesMinorActionPerformed(evt);
             }
         });
-        bgPanelRound.add(jTextField5);
-        jTextField5.setBounds(10, 160, 260, 22);
+        bgPanelRound.add(txDiseasesMinor);
+        txDiseasesMinor.setBounds(10, 160, 260, 22);
 
-        jLabel6.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(242, 242, 242));
-        jLabel6.setText("Clima Nativo:");
-        bgPanelRound.add(jLabel6);
-        jLabel6.setBounds(10, 190, 110, 20);
+        jbNativeClimateMinor.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jbNativeClimateMinor.setForeground(new java.awt.Color(242, 242, 242));
+        jbNativeClimateMinor.setText("Clima Nativo:");
+        bgPanelRound.add(jbNativeClimateMinor);
+        jbNativeClimateMinor.setBounds(10, 190, 110, 20);
 
-        jLabel7.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(242, 242, 242));
-        jLabel7.setText("Hábitad:");
-        bgPanelRound.add(jLabel7);
-        jLabel7.setBounds(10, 110, 70, 16);
+        jbHabitaMinor.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jbHabitaMinor.setForeground(new java.awt.Color(242, 242, 242));
+        jbHabitaMinor.setText("Hábitad:");
+        bgPanelRound.add(jbHabitaMinor);
+        jbHabitaMinor.setBounds(10, 110, 70, 16);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jTextArea1.setText("Ingresa la dieta del animal");
-        jScrollPane1.setViewportView(jTextArea1);
+        txDietMinor.setColumns(20);
+        txDietMinor.setRows(5);
+        txDietMinor.setText("Ingresa la dieta del animal");
+        jScrollPane1.setViewportView(txDietMinor);
 
         bgPanelRound.add(jScrollPane1);
         jScrollPane1.setBounds(10, 240, 260, 130);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Clima 1", "Clima 2", "Clima 3" }));
-        bgPanelRound.add(jComboBox1);
-        jComboBox1.setBounds(120, 190, 150, 22);
+        cbNativeClimateMinor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Clima 1", "Clima 2", "Clima 3" }));
+        bgPanelRound.add(cbNativeClimateMinor);
+        cbNativeClimateMinor.setBounds(120, 190, 150, 22);
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", "Femenino", "Masculino" }));
-        bgPanelRound.add(jComboBox2);
-        jComboBox2.setBounds(90, 80, 180, 22);
+        cbSexMinor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", "Femenino", "Masculino" }));
+        bgPanelRound.add(cbSexMinor);
+        cbSexMinor.setBounds(90, 80, 180, 22);
 
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         bgPanelRound.add(jComboBox3);
         jComboBox3.setBounds(90, 80, 180, 22);
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hábitad 1", "Hábitad 2", "Hábitad 3" }));
-        bgPanelRound.add(jComboBox4);
-        jComboBox4.setBounds(90, 110, 180, 22);
+        cbHabitaMinor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hábitad 1", "Hábitad 2", "Hábitad 3" }));
+        bgPanelRound.add(cbHabitaMinor);
+        cbHabitaMinor.setBounds(90, 110, 180, 22);
 
         bg.add(bgPanelRound, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 280, 380));
 
-        btLogisticAnimals.setBackground(new java.awt.Color(69, 106, 48));
-        btLogisticAnimals.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
-        btLogisticAnimals.setForeground(new java.awt.Color(242, 242, 242));
-        btLogisticAnimals.setText("+");
-        btLogisticAnimals.setActionCommand("Añadir");
-        btLogisticAnimals.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btLogisticAnimals.setFocusPainted(false);
-        btLogisticAnimals.addActionListener(new java.awt.event.ActionListener() {
+        btAddMinor.setBackground(new java.awt.Color(69, 106, 48));
+        btAddMinor.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
+        btAddMinor.setForeground(new java.awt.Color(242, 242, 242));
+        btAddMinor.setText("+");
+        btAddMinor.setActionCommand("Añadir");
+        btAddMinor.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btAddMinor.setFocusPainted(false);
+        btAddMinor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btLogisticAnimalsActionPerformed(evt);
+                btAddMinorActionPerformed(evt);
             }
         });
-        bg.add(btLogisticAnimals, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 440, 50, 30));
+        bg.add(btAddMinor, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 440, 50, 30));
 
         lbZooLogo.setMaximumSize(new java.awt.Dimension(549, 267));
         bg.add(lbZooLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 2, 90, 45));
 
-        lbLogisticTitle3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lbLogisticTitle3.setForeground(new java.awt.Color(255, 153, 0));
-        lbLogisticTitle3.setText("Nuevo ");
-        bg.add(lbLogisticTitle3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 60, -1));
+        lbMinorTitle1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lbMinorTitle1.setForeground(new java.awt.Color(255, 153, 0));
+        lbMinorTitle1.setText("Nuevo ");
+        bg.add(lbMinorTitle1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 60, -1));
 
-        lbLogisticTitle2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lbLogisticTitle2.setForeground(new java.awt.Color(69, 106, 48));
-        lbLogisticTitle2.setText("Animal");
-        bg.add(lbLogisticTitle2, new org.netbeans.lib.awtextra.AbsoluteConstraints(82, 20, 62, -1));
+        lbMinorTitle2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lbMinorTitle2.setForeground(new java.awt.Color(69, 106, 48));
+        lbMinorTitle2.setText("Animal");
+        bg.add(lbMinorTitle2, new org.netbeans.lib.awtextra.AbsoluteConstraints(82, 20, 62, -1));
 
-        lbLogisticTitle1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lbLogisticTitle1.setForeground(new java.awt.Color(188, 38, 73));
-        lbLogisticTitle1.setText("Menor");
-        bg.add(lbLogisticTitle1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, 70, -1));
+        lbMinorTitle3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lbMinorTitle3.setForeground(new java.awt.Color(188, 38, 73));
+        lbMinorTitle3.setText("Menor");
+        bg.add(lbMinorTitle3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, 70, -1));
 
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 480));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btLogisticAnimalsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLogisticAnimalsActionPerformed
+    private void btAddMinorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddMinorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btLogisticAnimalsActionPerformed
+    }//GEN-LAST:event_btAddMinorActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txNameMinorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txNameMinorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txNameMinorActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void txRaceMinorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txRaceMinorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_txRaceMinorActionPerformed
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+    private void txDiseasesMinorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txDiseasesMinorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
+    }//GEN-LAST:event_txDiseasesMinorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -259,27 +259,27 @@ public class LOAMinorAdd extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;
     private Clases.PanelRound bgPanelRound;
-    private javax.swing.JButton btLogisticAnimals;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JButton btAddMinor;
+    private javax.swing.JComboBox<String> cbHabitaMinor;
+    private javax.swing.JComboBox<String> cbNativeClimateMinor;
+    private javax.swing.JComboBox<String> cbSexMinor;
     private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox4;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSplitPane jSplitPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField5;
-    private java.awt.Label lbLogisticTitle1;
-    private java.awt.Label lbLogisticTitle2;
-    private java.awt.Label lbLogisticTitle3;
+    private javax.swing.JLabel jbDietMinor;
+    private javax.swing.JLabel jbDiseasesMinor;
+    private javax.swing.JLabel jbHabitaMinor;
+    private javax.swing.JLabel jbNameMinor;
+    private javax.swing.JLabel jbNativeClimateMinor;
+    private javax.swing.JLabel jbRaceMinor;
+    private javax.swing.JLabel jbSexMinor;
+    private java.awt.Label lbMinorTitle1;
+    private java.awt.Label lbMinorTitle2;
+    private java.awt.Label lbMinorTitle3;
     private javax.swing.JLabel lbZooLogo;
+    private javax.swing.JTextArea txDietMinor;
+    private javax.swing.JTextField txDiseasesMinor;
+    private javax.swing.JTextField txNameMinor;
+    private javax.swing.JTextField txRaceMinor;
     // End of variables declaration//GEN-END:variables
 }
