@@ -29,7 +29,7 @@ public class IS3 extends javax.swing.JFrame {
         this.setIconImage(faviconX1);
         //logo del recadro debajo del logo
         Image logoZRV = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/zoo!Logo.png"));
-        lbZooLogo.setIcon(new ImageIcon(logoZRV.getScaledInstance(lbZooLogo.getWidth(), lbZooLogo.getHeight(), Image.SCALE_AREA_AVERAGING)));
+        lbZooLogo2.setIcon(new ImageIcon(logoZRV.getScaledInstance(lbZooLogo2.getWidth(), lbZooLogo2.getHeight(), Image.SCALE_AREA_AVERAGING)));
        
         Image logoZV = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/logistic.png"));
         lbLogistic.setIcon(new ImageIcon(logoZV.getScaledInstance(lbLogistic.getWidth(), lbLogistic.getHeight(), Image.SCALE_AREA_AVERAGING)));
@@ -51,7 +51,7 @@ public class IS3 extends javax.swing.JFrame {
         btLogisticAnimals = new javax.swing.JButton();
         lbLogistic = new javax.swing.JLabel();
         lbLogisticTitle = new java.awt.Label();
-        lbZooLogo = new javax.swing.JLabel();
+        lbZooLogo2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -115,13 +115,13 @@ public class IS3 extends javax.swing.JFrame {
         lbLogisticTitle.setText("Logístico");
         bg.add(lbLogisticTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 0, -1, -1));
 
-        lbZooLogo.setMaximumSize(new java.awt.Dimension(549, 267));
-        lbZooLogo.addMouseListener(new java.awt.event.MouseAdapter() {
+        lbZooLogo2.setMaximumSize(new java.awt.Dimension(549, 267));
+        lbZooLogo2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lbZooLogoMouseClicked(evt);
+                lbZooLogo2MouseClicked(evt);
             }
         });
-        bg.add(lbZooLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 2, 90, 45));
+        bg.add(lbZooLogo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, -10, 90, 70));
 
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 370));
 
@@ -136,11 +136,17 @@ public class IS3 extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btLogisticAnimalsActionPerformed
 
-    private void lbZooLogoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbZooLogoMouseClicked
+    private void lbZooLogo2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbZooLogo2MouseClicked
+        X1 MainScreen = new X1();
+        this.dispose();
+        MainScreen.setVisible(true);
+    }//GEN-LAST:event_lbZooLogo2MouseClicked
+
+    private void lbZooLogoMouseClicked(java.awt.event.MouseEvent evt) {                                       
        X1 MainScreen = new X1();
        this.dispose();
        MainScreen.setVisible(true);
-    }//GEN-LAST:event_lbZooLogoMouseClicked
+    }                                      
 
     /**
      * @param args the command line arguments
@@ -168,5 +174,6 @@ public class IS3 extends javax.swing.JFrame {
     private javax.swing.JLabel lbLogistic;
     private java.awt.Label lbLogisticTitle;
     private javax.swing.JLabel lbZooLogo;
+    private javax.swing.JLabel lbZooLogo2;
     // End of variables declaration//GEN-END:variables
 }
