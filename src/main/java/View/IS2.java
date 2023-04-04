@@ -135,7 +135,9 @@ public class IS2 extends javax.swing.JFrame {
     }//GEN-LAST:event_btComercialShoppingActionPerformed
 
     private void btComercialSaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btComercialSaleActionPerformed
-        // TODO add your handling code here:
+        CM1 SaleWindow = new CM1();
+        this.dispose();
+        SaleWindow.setVisible(true);
     }//GEN-LAST:event_btComercialSaleActionPerformed
 
     private void lbZooLogoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbZooLogoMouseClicked
