@@ -46,14 +46,15 @@ public class AD2 extends javax.swing.JFrame {
 
         bg = new javax.swing.JPanel();
         bgPanelRound = new Clases.PanelRound();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        spTableWorkers = new javax.swing.JScrollPane();
         tbGeneratedReports = new javax.swing.JTable();
-        lbTotalExpenses = new java.awt.Label();
-        lbGeneratedReports = new java.awt.Label();
-        lbTotalExpensesValue = new java.awt.Label();
-        lbTotalIncomes = new java.awt.Label();
-        lbTotalIncomesValue = new java.awt.Label();
-        btDeleteReport = new javax.swing.JButton();
+        lbPro = new java.awt.Label();
+        lbWorkers = new java.awt.Label();
+        lbProWorker = new java.awt.Label();
+        lbName = new java.awt.Label();
+        lbNameWorker = new java.awt.Label();
+        btNewWorker = new javax.swing.JButton();
+        btDeleteWorker = new javax.swing.JButton();
         lbIDworker = new java.awt.Label();
         lbWorkersTitle = new java.awt.Label();
         lbZRVLogo = new javax.swing.JLabel();
@@ -89,49 +90,55 @@ public class AD2 extends javax.swing.JFrame {
                 "ID", "Nombre", "Apellido", "Fecha", "Sueldo", "Puesto", "Surcusal"
             }
         ));
-        jScrollPane1.setViewportView(tbGeneratedReports);
+        spTableWorkers.setViewportView(tbGeneratedReports);
 
-        bgPanelRound.add(jScrollPane1);
-        jScrollPane1.setBounds(10, 35, 680, 280);
+        bgPanelRound.add(spTableWorkers);
+        spTableWorkers.setBounds(10, 35, 680, 280);
 
-        lbTotalExpenses.setBackground(new java.awt.Color(51, 51, 51));
-        lbTotalExpenses.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lbTotalExpenses.setForeground(new java.awt.Color(255, 255, 255));
-        lbTotalExpenses.setText("Profesional:");
-        bgPanelRound.add(lbTotalExpenses);
-        lbTotalExpenses.setBounds(10, 350, 140, 32);
+        lbPro.setBackground(new java.awt.Color(51, 51, 51));
+        lbPro.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lbPro.setForeground(new java.awt.Color(255, 255, 255));
+        lbPro.setText("Profesional:");
+        bgPanelRound.add(lbPro);
+        lbPro.setBounds(20, 350, 140, 32);
 
-        lbGeneratedReports.setBackground(new java.awt.Color(51, 51, 51));
-        lbGeneratedReports.setFont(new java.awt.Font("Arial", 3, 24)); // NOI18N
-        lbGeneratedReports.setForeground(new java.awt.Color(255, 255, 255));
-        lbGeneratedReports.setText("Trabajadores");
-        bgPanelRound.add(lbGeneratedReports);
-        lbGeneratedReports.setBounds(10, 0, 296, 32);
+        lbWorkers.setBackground(new java.awt.Color(51, 51, 51));
+        lbWorkers.setFont(new java.awt.Font("Arial", 3, 24)); // NOI18N
+        lbWorkers.setForeground(new java.awt.Color(255, 255, 255));
+        lbWorkers.setText("Trabajadores");
+        bgPanelRound.add(lbWorkers);
+        lbWorkers.setBounds(10, 0, 296, 32);
 
-        lbTotalExpensesValue.setBackground(new java.awt.Color(51, 51, 51));
-        lbTotalExpensesValue.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lbTotalExpensesValue.setForeground(new java.awt.Color(255, 153, 0));
-        bgPanelRound.add(lbTotalExpensesValue);
-        lbTotalExpensesValue.setBounds(160, 350, 140, 32);
+        lbProWorker.setBackground(new java.awt.Color(51, 51, 51));
+        lbProWorker.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lbProWorker.setForeground(new java.awt.Color(255, 153, 0));
+        bgPanelRound.add(lbProWorker);
+        lbProWorker.setBounds(160, 350, 140, 32);
 
-        lbTotalIncomes.setBackground(new java.awt.Color(51, 51, 51));
-        lbTotalIncomes.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lbTotalIncomes.setForeground(new java.awt.Color(255, 255, 255));
-        lbTotalIncomes.setText("Nombre:");
-        bgPanelRound.add(lbTotalIncomes);
-        lbTotalIncomes.setBounds(10, 320, 150, 32);
+        lbName.setBackground(new java.awt.Color(51, 51, 51));
+        lbName.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lbName.setForeground(new java.awt.Color(255, 255, 255));
+        lbName.setText("Nombre:");
+        bgPanelRound.add(lbName);
+        lbName.setBounds(20, 320, 150, 32);
 
-        lbTotalIncomesValue.setBackground(new java.awt.Color(51, 51, 51));
-        lbTotalIncomesValue.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lbTotalIncomesValue.setForeground(new java.awt.Color(255, 153, 0));
-        bgPanelRound.add(lbTotalIncomesValue);
-        lbTotalIncomesValue.setBounds(160, 320, 140, 32);
+        lbNameWorker.setBackground(new java.awt.Color(51, 51, 51));
+        lbNameWorker.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lbNameWorker.setForeground(new java.awt.Color(255, 153, 0));
+        bgPanelRound.add(lbNameWorker);
+        lbNameWorker.setBounds(160, 320, 140, 32);
 
-        btDeleteReport.setBackground(new java.awt.Color(51, 51, 51));
-        btDeleteReport.setForeground(new java.awt.Color(255, 255, 255));
-        btDeleteReport.setText("Eliminar Empleado");
-        bgPanelRound.add(btDeleteReport);
-        btDeleteReport.setBounds(560, 340, 130, 23);
+        btNewWorker.setBackground(new java.awt.Color(51, 51, 51));
+        btNewWorker.setForeground(new java.awt.Color(255, 255, 255));
+        btNewWorker.setText("Agregar Empleado");
+        bgPanelRound.add(btNewWorker);
+        btNewWorker.setBounds(550, 330, 130, 23);
+
+        btDeleteWorker.setBackground(new java.awt.Color(51, 51, 51));
+        btDeleteWorker.setForeground(new java.awt.Color(255, 255, 255));
+        btDeleteWorker.setText("Eliminar Empleado");
+        bgPanelRound.add(btDeleteWorker);
+        btDeleteWorker.setBounds(550, 360, 130, 23);
 
         bg.add(bgPanelRound, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 700, 390));
 
@@ -197,18 +204,19 @@ public class AD2 extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;
     private Clases.PanelRound bgPanelRound;
-    private javax.swing.JButton btDeleteReport;
+    private javax.swing.JButton btDeleteWorker;
+    private javax.swing.JButton btNewWorker;
     private javax.swing.JButton btSearch;
-    private javax.swing.JScrollPane jScrollPane1;
-    private java.awt.Label lbGeneratedReports;
     private java.awt.Label lbIDworker;
-    private java.awt.Label lbTotalExpenses;
-    private java.awt.Label lbTotalExpensesValue;
-    private java.awt.Label lbTotalIncomes;
-    private java.awt.Label lbTotalIncomesValue;
+    private java.awt.Label lbName;
+    private java.awt.Label lbNameWorker;
+    private java.awt.Label lbPro;
+    private java.awt.Label lbProWorker;
+    private java.awt.Label lbWorkers;
     private java.awt.Label lbWorkersTitle;
     private javax.swing.JLabel lbZRVLogo;
     private javax.swing.JLabel lbZooLogo;
+    private javax.swing.JScrollPane spTableWorkers;
     private javax.swing.JTable tbGeneratedReports;
     private javax.swing.JTextField txIDWorker;
     // End of variables declaration//GEN-END:variables

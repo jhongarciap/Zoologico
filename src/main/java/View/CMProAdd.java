@@ -48,16 +48,15 @@ public class CMProAdd extends javax.swing.JFrame {
         lbName = new javax.swing.JLabel();
         txName = new javax.swing.JTextField();
         lbType = new javax.swing.JLabel();
-        txType = new javax.swing.JTextField();
+        txAnimal = new javax.swing.JTextField();
         lbAnimal = new javax.swing.JLabel();
         lbDetails = new javax.swing.JLabel();
         spDetails = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
-        txDetails = new javax.swing.JTextField();
+        txType = new javax.swing.JTextField();
         btLogisticSell = new javax.swing.JButton();
         lbZooLogo = new javax.swing.JLabel();
-        lbSellTitle1 = new java.awt.Label();
-        lbSellTitle2 = new java.awt.Label();
+        lbSellTitle = new java.awt.Label();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -101,15 +100,15 @@ public class CMProAdd extends javax.swing.JFrame {
         bgPanelRound.add(lbType);
         lbType.setBounds(10, 40, 70, 16);
 
-        txType.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        txType.setText("Ingrese el animal de la venta");
-        txType.addActionListener(new java.awt.event.ActionListener() {
+        txAnimal.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        txAnimal.setText("Ingrese el animal de la venta");
+        txAnimal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txTypeActionPerformed(evt);
+                txAnimalActionPerformed(evt);
             }
         });
-        bgPanelRound.add(txType);
-        txType.setBounds(90, 70, 180, 22);
+        bgPanelRound.add(txAnimal);
+        txAnimal.setBounds(90, 70, 180, 22);
 
         lbAnimal.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         lbAnimal.setForeground(new java.awt.Color(242, 242, 242));
@@ -131,15 +130,15 @@ public class CMProAdd extends javax.swing.JFrame {
         bgPanelRound.add(spDetails);
         spDetails.setBounds(10, 120, 260, 130);
 
-        txDetails.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        txDetails.setText("Ingrese el tipo de venta");
-        txDetails.addActionListener(new java.awt.event.ActionListener() {
+        txType.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        txType.setText("Ingrese el tipo de venta");
+        txType.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txDetailsActionPerformed(evt);
+                txTypeActionPerformed(evt);
             }
         });
-        bgPanelRound.add(txDetails);
-        txDetails.setBounds(90, 40, 180, 22);
+        bgPanelRound.add(txType);
+        txType.setBounds(90, 40, 180, 22);
 
         bg.add(bgPanelRound, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 280, 260));
 
@@ -160,15 +159,10 @@ public class CMProAdd extends javax.swing.JFrame {
         lbZooLogo.setMaximumSize(new java.awt.Dimension(549, 267));
         bg.add(lbZooLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 2, 90, 45));
 
-        lbSellTitle1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lbSellTitle1.setForeground(new java.awt.Color(255, 153, 0));
-        lbSellTitle1.setText("Venta");
-        bg.add(lbSellTitle1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, -1, -1));
-
-        lbSellTitle2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lbSellTitle2.setForeground(new java.awt.Color(188, 38, 73));
-        lbSellTitle2.setText("Nueva ");
-        bg.add(lbSellTitle2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 60, -1));
+        lbSellTitle.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lbSellTitle.setForeground(new java.awt.Color(188, 38, 73));
+        lbSellTitle.setText("Nueva Venta");
+        bg.add(lbSellTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 120, -1));
 
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 370));
 
@@ -185,13 +179,13 @@ public class CMProAdd extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txNameActionPerformed
 
+    private void txAnimalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txAnimalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txAnimalActionPerformed
+
     private void txTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txTypeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txTypeActionPerformed
-
-    private void txDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txDetailsActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txDetailsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -220,12 +214,11 @@ public class CMProAdd extends javax.swing.JFrame {
     private javax.swing.JLabel lbAnimal;
     private javax.swing.JLabel lbDetails;
     private javax.swing.JLabel lbName;
-    private java.awt.Label lbSellTitle1;
-    private java.awt.Label lbSellTitle2;
+    private java.awt.Label lbSellTitle;
     private javax.swing.JLabel lbType;
     private javax.swing.JLabel lbZooLogo;
     private javax.swing.JScrollPane spDetails;
-    private javax.swing.JTextField txDetails;
+    private javax.swing.JTextField txAnimal;
     private javax.swing.JTextField txName;
     private javax.swing.JTextField txType;
     // End of variables declaration//GEN-END:variables

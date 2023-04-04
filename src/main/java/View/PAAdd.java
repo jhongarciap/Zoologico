@@ -56,8 +56,7 @@ public class PAAdd extends javax.swing.JFrame {
         txPlan = new javax.swing.JTextField();
         btLogisticPlan = new javax.swing.JButton();
         lbZooLogo = new javax.swing.JLabel();
-        lbPlanTitle1 = new java.awt.Label();
-        lbPlanTitle2 = new java.awt.Label();
+        lbPlanTitle = new java.awt.Label();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -166,15 +165,10 @@ public class PAAdd extends javax.swing.JFrame {
         });
         bg.add(lbZooLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 2, 90, 45));
 
-        lbPlanTitle1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lbPlanTitle1.setForeground(new java.awt.Color(188, 38, 73));
-        lbPlanTitle1.setText("Plan");
-        bg.add(lbPlanTitle1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, -1, -1));
-
-        lbPlanTitle2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lbPlanTitle2.setForeground(new java.awt.Color(255, 153, 0));
-        lbPlanTitle2.setText("Nuevo ");
-        bg.add(lbPlanTitle2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 60, -1));
+        lbPlanTitle.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lbPlanTitle.setForeground(new java.awt.Color(255, 153, 0));
+        lbPlanTitle.setText("Nuevo Plan");
+        bg.add(lbPlanTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 110, -1));
 
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 370));
 
@@ -232,8 +226,7 @@ public class PAAdd extends javax.swing.JFrame {
     private javax.swing.JLabel lbDetails;
     private javax.swing.JLabel lbID;
     private javax.swing.JLabel lbPlan;
-    private java.awt.Label lbPlanTitle1;
-    private java.awt.Label lbPlanTitle2;
+    private java.awt.Label lbPlanTitle;
     private javax.swing.JLabel lbValue;
     private javax.swing.JLabel lbZooLogo;
     private javax.swing.JScrollPane txDetails;
