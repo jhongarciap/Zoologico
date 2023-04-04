@@ -173,7 +173,7 @@ public class CM2 extends javax.swing.JFrame {
     }//GEN-LAST:event_btAddProductActionPerformed
 
     private void lbZooLogoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbZooLogoMouseClicked
-        X1 MainScreen = new X1();
+        IS2 MainScreen = new IS2();
         this.dispose();
         MainScreen.setVisible(true);
     }//GEN-LAST:event_lbZooLogoMouseClicked

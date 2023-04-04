@@ -27,10 +27,10 @@ public class AD2 extends javax.swing.JFrame {
         Image faviconX1 = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/View_IconAdminZOO.png"));
         this.setIconImage(faviconX1);
         
-        Image logoZRV = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/ZRVBW@3x.png"));
+        Image logoZRV = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/ZRVC@3x.png"));
         lbZRVLogo.setIcon(new ImageIcon(logoZRV.getScaledInstance(lbZRVLogo.getWidth(), lbZRVLogo.getHeight(), Image.SCALE_AREA_AVERAGING)));
 
-        Image logoZoo = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/zoo!WhiteLogo.png"));
+        Image logoZoo = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/zoo!Logo.png"));
         lbZooLogo.setIcon(new ImageIcon(logoZoo.getScaledInstance(lbZooLogo.getWidth(), lbZooLogo.getHeight(), Image.SCALE_AREA_AVERAGING)));
 
     }
@@ -56,10 +56,10 @@ public class AD2 extends javax.swing.JFrame {
         btDeleteReport = new javax.swing.JButton();
         lbIDworker = new java.awt.Label();
         lbWorkersTitle = new java.awt.Label();
-        lbZooLogo = new javax.swing.JLabel();
         lbZRVLogo = new javax.swing.JLabel();
         btSearch = new javax.swing.JButton();
         txIDWorker = new javax.swing.JTextField();
+        lbZooLogo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -147,14 +147,6 @@ public class AD2 extends javax.swing.JFrame {
         lbWorkersTitle.setText("Recursos Humanos");
         bg.add(lbWorkersTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 5, -1, -1));
 
-        lbZooLogo.setMaximumSize(new java.awt.Dimension(549, 267));
-        lbZooLogo.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lbZooLogoMouseClicked(evt);
-            }
-        });
-        bg.add(lbZooLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, -20, 90, 90));
-
         lbZRVLogo.setMaximumSize(new java.awt.Dimension(549, 267));
         bg.add(lbZRVLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 10, 140, 60));
 
@@ -164,15 +156,23 @@ public class AD2 extends javax.swing.JFrame {
         txIDWorker.setText("Ingrese el ID del trabajador");
         bg.add(txIDWorker, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, 280, -1));
 
+        lbZooLogo.setMaximumSize(new java.awt.Dimension(549, 267));
+        lbZooLogo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbZooLogoMouseClicked(evt);
+            }
+        });
+        bg.add(lbZooLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 2, 90, 45));
+
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 480));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void lbZooLogoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbZooLogoMouseClicked
-        IS1 AdminMainScreen = new IS1();
+        IS1 MainScreen = new IS1();
         this.dispose();
-        AdminMainScreen.setVisible(true);
+        MainScreen.setVisible(true);
     }//GEN-LAST:event_lbZooLogoMouseClicked
 
     /**

@@ -28,7 +28,7 @@ public class PAAdd extends javax.swing.JFrame {
         Image faviconX1 = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/View_IconAdminZOO.png"));
         this.setIconImage(faviconX1);
         //logo del recadro debajo del logo
-        Image logoZRV = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/zoo!WhiteLogo.png"));
+        Image logoZRV = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/zoo!Logo.png"));
         lbZooLogo.setIcon(new ImageIcon(logoZRV.getScaledInstance(lbZooLogo.getWidth(), lbZooLogo.getHeight(), Image.SCALE_AREA_AVERAGING)));
        
     }
@@ -57,6 +57,7 @@ public class PAAdd extends javax.swing.JFrame {
         btLogisticPlan = new javax.swing.JButton();
         lbZooLogo = new javax.swing.JLabel();
         lbPlanTitle1 = new java.awt.Label();
+        lbPlanTitle2 = new java.awt.Label();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -160,9 +161,14 @@ public class PAAdd extends javax.swing.JFrame {
         bg.add(lbZooLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 2, 90, 45));
 
         lbPlanTitle1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lbPlanTitle1.setForeground(new java.awt.Color(255, 153, 0));
-        lbPlanTitle1.setText("Nuevo plan");
-        bg.add(lbPlanTitle1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 160, -1));
+        lbPlanTitle1.setForeground(new java.awt.Color(188, 38, 73));
+        lbPlanTitle1.setText("Plan");
+        bg.add(lbPlanTitle1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, -1, -1));
+
+        lbPlanTitle2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lbPlanTitle2.setForeground(new java.awt.Color(255, 153, 0));
+        lbPlanTitle2.setText("Nuevo ");
+        bg.add(lbPlanTitle2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 60, -1));
 
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 370));
 
@@ -213,6 +219,7 @@ public class PAAdd extends javax.swing.JFrame {
     private javax.swing.JLabel lbID;
     private javax.swing.JLabel lbPlan;
     private java.awt.Label lbPlanTitle1;
+    private java.awt.Label lbPlanTitle2;
     private javax.swing.JLabel lbValue;
     private javax.swing.JLabel lbZooLogo;
     private javax.swing.JScrollPane txDetails;

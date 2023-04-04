@@ -200,6 +200,11 @@ public class LOAWildAdd extends javax.swing.JFrame {
         bg.add(btLogisticAnimals, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 440, 50, 30));
 
         lbZooLogo.setMaximumSize(new java.awt.Dimension(549, 267));
+        lbZooLogo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbZooLogoMouseClicked(evt);
+            }
+        });
         bg.add(lbZooLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 2, 90, 45));
 
         lbWildTitle1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -237,6 +242,12 @@ public class LOAWildAdd extends javax.swing.JFrame {
     private void txBirthhabitatWildActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txBirthhabitatWildActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txBirthhabitatWildActionPerformed
+
+    private void lbZooLogoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbZooLogoMouseClicked
+        ILS1 MainScreen = new ILS1();
+        this.dispose();
+        MainScreen.setVisible(true);
+    }//GEN-LAST:event_lbZooLogoMouseClicked
 
     /**
      * @param args the command line arguments

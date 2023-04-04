@@ -23,12 +23,12 @@ public class CMProAdd extends javax.swing.JFrame {
         initComponents();
         //ubica el nombre de la ventana 
         this.setLocationRelativeTo(null); //Centers the window on-screen.
-        this.setTitle("Departamento Logístico"); // Set the title for the JFrame.
+        this.setTitle("Departamento Comercial"); // Set the title for the JFrame.
         //icono de la ventana 
         Image faviconX1 = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/View_IconCommZOO.png"));
         this.setIconImage(faviconX1);
         //logo del recadro debajo del logo
-        Image logoZRV = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/zoo!WhiteLogo.png"));
+        Image logoZRV = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/zoo!Logo.png"));
         lbZooLogo.setIcon(new ImageIcon(logoZRV.getScaledInstance(lbZooLogo.getWidth(), lbZooLogo.getHeight(), Image.SCALE_AREA_AVERAGING)));
        
     }
@@ -57,6 +57,7 @@ public class CMProAdd extends javax.swing.JFrame {
         btLogisticSell = new javax.swing.JButton();
         lbZooLogo = new javax.swing.JLabel();
         lbSellTitle1 = new java.awt.Label();
+        lbSellTitle2 = new java.awt.Label();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -160,9 +161,14 @@ public class CMProAdd extends javax.swing.JFrame {
         bg.add(lbZooLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 2, 90, 45));
 
         lbSellTitle1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lbSellTitle1.setForeground(new java.awt.Color(188, 38, 73));
-        lbSellTitle1.setText("Nueva Venta");
-        bg.add(lbSellTitle1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 120, -1));
+        lbSellTitle1.setForeground(new java.awt.Color(255, 153, 0));
+        lbSellTitle1.setText("Venta");
+        bg.add(lbSellTitle1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, -1, -1));
+
+        lbSellTitle2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lbSellTitle2.setForeground(new java.awt.Color(188, 38, 73));
+        lbSellTitle2.setText("Nueva ");
+        bg.add(lbSellTitle2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 60, -1));
 
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 370));
 
@@ -213,6 +219,7 @@ public class CMProAdd extends javax.swing.JFrame {
     private javax.swing.JLabel lbDetails;
     private javax.swing.JLabel lbName;
     private java.awt.Label lbSellTitle1;
+    private java.awt.Label lbSellTitle2;
     private javax.swing.JLabel lbType;
     private javax.swing.JLabel lbZooLogo;
     private javax.swing.JScrollPane spDetails;

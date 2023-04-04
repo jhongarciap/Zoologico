@@ -23,12 +23,12 @@ public class ILS1 extends javax.swing.JFrame {
         initComponents();
         //ubica el nombre de la ventana 
         this.setLocationRelativeTo(null); //Centers the window on-screen.
-        this.setTitle("Departamento Comercial"); // Set the title for the JFrame.
+        this.setTitle("Departamento Logístico"); // Set the title for the JFrame.
         //icono de la ventana 
         Image faviconX1 = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/View_IconLogiZOO.png"));
         this.setIconImage(faviconX1);
         //logo del recadro debajo del logo
-        Image logoZRV = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/zoo!WhiteLogo.png"));
+        Image logoZRV = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/zoo!Logo.png"));
         lbZooLogo.setIcon(new ImageIcon(logoZRV.getScaledInstance(lbZooLogo.getWidth(), lbZooLogo.getHeight(), Image.SCALE_AREA_AVERAGING)));
        
         Image logoZV = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/animals@3x.png"));
@@ -136,7 +136,7 @@ public class ILS1 extends javax.swing.JFrame {
                 lbZooLogoMouseClicked(evt);
             }
         });
-        bg.add(lbZooLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, -10, 90, 70));
+        bg.add(lbZooLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 2, 90, 45));
 
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 370));
 
@@ -144,24 +144,22 @@ public class ILS1 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btComercialShoppingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btComercialShoppingActionPerformed
-        CM2 PurchaseWindow = new CM2();
-        this.dispose();
-        PurchaseWindow.setVisible(true);
+
     }//GEN-LAST:event_btComercialShoppingActionPerformed
 
     private void btComercialSaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btComercialSaleActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btComercialSaleActionPerformed
 
+    private void btComercialSale1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btComercialSale1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btComercialSale1ActionPerformed
+
     private void lbZooLogoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbZooLogoMouseClicked
         X1 MainScreen = new X1();
         this.dispose();
         MainScreen.setVisible(true);
     }//GEN-LAST:event_lbZooLogoMouseClicked
-
-    private void btComercialSale1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btComercialSale1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btComercialSale1ActionPerformed
 
     /**
      * @param args the command line arguments

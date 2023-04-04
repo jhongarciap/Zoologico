@@ -129,7 +129,7 @@ public class IS2 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btComercialShoppingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btComercialShoppingActionPerformed
-        CM2 PurchaseWindow = new CM2();
+       CM2 PurchaseWindow = new CM2();
         this.dispose();
         PurchaseWindow.setVisible(true);
     }//GEN-LAST:event_btComercialShoppingActionPerformed
