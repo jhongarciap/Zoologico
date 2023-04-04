@@ -158,6 +158,11 @@ public class PAAdd extends javax.swing.JFrame {
         bg.add(btLogisticPlan, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, 50, 30));
 
         lbZooLogo.setMaximumSize(new java.awt.Dimension(549, 267));
+        lbZooLogo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbZooLogoMouseClicked(evt);
+            }
+        });
         bg.add(lbZooLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 2, 90, 45));
 
         lbPlanTitle1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -190,6 +195,12 @@ public class PAAdd extends javax.swing.JFrame {
     private void txPlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txPlanActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txPlanActionPerformed
+
+    private void lbZooLogoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbZooLogoMouseClicked
+         AD3 ReportWindow = new AD3();
+       this.dispose();
+       ReportWindow.setVisible(true);
+    }//GEN-LAST:event_lbZooLogoMouseClicked
 
     /**
      * @param args the command line arguments

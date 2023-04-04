@@ -89,7 +89,7 @@ public class IS1 extends javax.swing.JFrame {
         btComercialShopping.setBackground(new java.awt.Color(255, 153, 0));
         btComercialShopping.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         btComercialShopping.setForeground(new java.awt.Color(242, 242, 242));
-        btComercialShopping.setText("Compra");
+        btComercialShopping.setText("Planes");
         btComercialShopping.setFocusPainted(false);
         btComercialShopping.setMaximumSize(new java.awt.Dimension(123, 49));
         btComercialShopping.setMinimumSize(new java.awt.Dimension(123, 49));
@@ -149,11 +149,15 @@ public class IS1 extends javax.swing.JFrame {
     }//GEN-LAST:event_btComercialSaleActionPerformed
 
     private void btComercialShoppingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btComercialShoppingActionPerformed
-        // TODO add your handling code here:
+        AD3 ReportWindow = new AD3();
+       this.dispose();
+       ReportWindow.setVisible(true);
     }//GEN-LAST:event_btComercialShoppingActionPerformed
 
     private void btComercialSale1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btComercialSale1ActionPerformed
-        // TODO add your handling code here:
+        AD2 MainScreen = new AD2();
+        this.dispose();
+        MainScreen.setVisible(true);
     }//GEN-LAST:event_btComercialSale1ActionPerformed
 
     private void lbZooLogoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbZooLogoMouseClicked

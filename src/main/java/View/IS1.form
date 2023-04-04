@@ -115,7 +115,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="f2" green="f2" red="f2" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Compra"/>
+                <Property name="text" type="java.lang.String" value="Planes"/>
                 <Property name="focusPainted" type="boolean" value="false"/>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[123, 49]"/>

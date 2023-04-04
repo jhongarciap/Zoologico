@@ -156,7 +156,7 @@ public class ILS1 extends javax.swing.JFrame {
     }//GEN-LAST:event_btComercialSale1ActionPerformed
 
     private void lbZooLogoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbZooLogoMouseClicked
-        X1 MainScreen = new X1();
+        IS3 MainScreen = new IS3();
         this.dispose();
         MainScreen.setVisible(true);
     }//GEN-LAST:event_lbZooLogoMouseClicked
