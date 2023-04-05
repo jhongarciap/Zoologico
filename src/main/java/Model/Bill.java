@@ -15,7 +15,7 @@ public class Bill {
     private String date;
     private Float value;
     private Float discount;
-    private Float totalvalue;
+    Float totalvalue;
     private String costormerName;
     private String product;
     private String productld;

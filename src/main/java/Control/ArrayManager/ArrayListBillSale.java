@@ -4,7 +4,7 @@
  */
 package Control.ArrayManager;
 
-import Model.BillSale;
+import Model.SaleBill;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -26,10 +26,10 @@ public class ArrayListBillSale {
     }
 
     //Array de bill 
-    private final ArrayList<BillSale> billsSales = new ArrayList<>();
+    private final ArrayList<SaleBill> billsSales = new ArrayList<>();
 
     //añadir 
-    public void addBillSale(BillSale billsale) {
+    public void addBillSale(SaleBill billsale) {
         billsSales.add(billsale);
     }
 

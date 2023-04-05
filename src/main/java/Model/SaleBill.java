@@ -13,11 +13,11 @@ import static Utilities.GenerateCodeBillSale.generateCodeSale;
  *
  * @author garci
  */
-public class BillSale  extends Bill{
+public class SaleBill  extends Bill{
     
     private String code;    
 
-    public BillSale(String code, String date, Float value, Float discount, Float totalvalue, String costormerName, String product, String productld, int amount) {
+    public SaleBill(String code, String date, Float value, Float discount, Float totalvalue, String costormerName, String product, String productld, int amount) {
         super(date, value, discount, totalvalue, costormerName, product, productld, amount);
         this.code = generateCodeSale("BS");
     }
