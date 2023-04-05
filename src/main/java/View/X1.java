@@ -1,5 +1,8 @@
 package View;
 
+import View.Logistc.IS3;
+import View.Administrative.IS1;
+import View.Cormercial.IS2;
 import com.formdev.flatlaf.FlatDarculaLaf;
 import com.formdev.flatlaf.FlatDarkLaf;
 import java.awt.Image;

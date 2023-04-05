@@ -127,7 +127,7 @@ public class ArrayListBillSale {
     return rows;
 }
 
-
+//Hay que modificarlo y agregarlo a  utilidades
     // Método para sumar todas las ventas
     public Float sumSalesExcel() {
         float totalValue = 0f; // inicializa la variable totalValue como float y en 0

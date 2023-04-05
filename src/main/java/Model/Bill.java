@@ -4,7 +4,7 @@
  */
 package Model;
 
-import static Utilidades.CurrentDate.currentDate;
+import static Utilities.CurrentDate.currentDate;
 
 /**
  *

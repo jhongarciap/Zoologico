@@ -4,7 +4,7 @@
  */
 package Model;
 
-import static Utilidades.GenerateCodeBillShopping.generateCodeShopping;
+import static Utilities.GenerateCodeBillShopping.generateCodeShopping;
 
 /**
  *

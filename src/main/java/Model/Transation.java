@@ -4,8 +4,8 @@
  */
 package Model;
 
-import static Utilidades.CurrentDate.currentDate;
-import static Utilidades.GenerateCodeTransation.generateCodeTransation;
+import static Utilities.CurrentDate.currentDate;
+import static Utilities.GenerateCodeTransation.generateCodeTransation;
 /**
  *
  * @author garci

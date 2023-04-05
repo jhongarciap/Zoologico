@@ -4,7 +4,7 @@
  */
 package Model;
 
-import static Utilidades.GenerateCodeBillSale.generateCodeSale;
+import static Utilities.GenerateCodeBillSale.generateCodeSale;
 
 
 
