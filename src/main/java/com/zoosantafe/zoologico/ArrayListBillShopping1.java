@@ -4,7 +4,7 @@
  */
 package com.zoosantafe.zoologico;
 
-import Model.BillShopping;
+import Model.ShoppingBill;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -25,7 +25,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public class ArrayListBillShopping1 {
 
     //Array de bill 
-    private ArrayList<BillShopping> billsShoppings = new ArrayList<>();
+    private ArrayList<ShoppingBill> billsShoppings = new ArrayList<>();
     //Elementos del excel en Rom 
     Workbook book = new XSSFWorkbook();
     final String fileName = "BillShoppingRom.xlsx";
@@ -36,11 +36,11 @@ public class ArrayListBillShopping1 {
     Row row = sheet.createRow(rowIndex);
     //añadir 
 
-    public void addBillShopping(BillShopping billShopping) {
+    public void addBillShopping(ShoppingBill billShopping) {
         billsShoppings.add(billShopping);
     }
 
-    //Crear Hoja Excel BillShopping
+    //Crear Hoja Excel ShoppingBill
     /**
      *
      */

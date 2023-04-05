@@ -10,11 +10,11 @@ import static Utilities.GenerateCodeBillShopping.generateCodeShopping;
  *
  * @author garci
  */
-public class BillShopping extends Bill{
+public class ShoppingBill extends Bill{
     
    private String code;
 
-    public BillShopping(String code, String date, Float value, Float discount, Float totalvalue, String costormerName, String product, String productld, int amount) {
+    public ShoppingBill(String code, String date, Float value, Float discount, Float totalvalue, String costormerName, String product, String productld, int amount) {
         super(date, value, discount, totalvalue, costormerName, product, productld, amount);
         this.code = generateCodeShopping("BSP");
     }
