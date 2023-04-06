@@ -13,9 +13,9 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-public class BillExcel {
+public class AdExcel {
 
-    public BillExcel() {
+    public AdExcel() {
     }
 
     public void createExcel(ArrayList list) {
@@ -24,10 +24,6 @@ public class BillExcel {
             if (type != null && type.equals(SaleBill.class)) {
                 ArrayListBillSale excel = new ArrayListBillSale();
                 excel.SaveBillSaleExcel();
-            }
-            if (type != null && type.equals(ShoppingBill.class)) {
-                ArrayListBillShopping excel = new ArrayListBillShopping();
-                excel.SaveBillShoppingExcel();
             }
             if (type != null && type.equals(ShoppingBill.class)) {
                 ArrayListBillShopping excel = new ArrayListBillShopping();
@@ -64,7 +60,7 @@ public class BillExcel {
 
         }
     }
-
+//Muestra todos los elementos de excel
     public static ArrayList<Row> getRowsExcel(File file) {
         ArrayList<Row> rows = new ArrayList<>();
         try {
@@ -86,6 +82,7 @@ public class BillExcel {
         }
         return rows;
     }
+//Suma ventas y compras en total
 
     public Float sumBillExcel(File file) {
         float totalValue = 0f;
@@ -126,22 +123,23 @@ public class BillExcel {
         }
         return totalValue; // retorna el valor total de las ventas
     }
+//Elimina y organiza el excel 
 
-    public static void deleteRowBill(String codigo, String filePath) {
+    public static void deleteRow(String codigo, File file, String sheetName, int columnToDelete) {
         try {
             // Carga el archivo Excel
-            FileInputStream archive = new FileInputStream(new File(filePath));
+            FileInputStream archive = new FileInputStream(file);
             XSSFWorkbook book = new XSSFWorkbook(archive);
 
             // Selecciona la hoja
-            XSSFSheet sheet = book.getSheet("BillSale");
+            XSSFSheet sheet = book.getSheet(sheetName);
 
             // Recorre cada fila de la hoja
             for (int i = sheet.getLastRowNum(); i >= sheet.getFirstRowNum(); i--) {
                 Row fila = sheet.getRow(i);
 
-                // Compara el código con la celda 1 de la fila
-                if (fila.getCell(1).getStringCellValue().equals(codigo)) {
+                // Compara el código con la celda de la columna especificada
+                if (fila.getCell(columnToDelete).getStringCellValue().equals(codigo)) {
                     // Elimina la fila y desplaza las filas hacia arriba
                     sheet.removeRow(fila);
                     sheet.shiftRows(i + 1, sheet.getLastRowNum(), -1);
@@ -150,7 +148,7 @@ public class BillExcel {
             }
 
             // Guarda los cambios en el archivo
-            FileOutputStream exit = new FileOutputStream(new File(filePath));
+            FileOutputStream exit = new FileOutputStream(file);
             book.write(exit);
 
             // Cierra los flujos de entrada y salida
@@ -158,24 +156,25 @@ public class BillExcel {
             exit.close();
 
         } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
-    public static Row getRowBill(String codigo, String filePath) {
+    public static Row getRow(String codigo, File file, String sheetName, int cellNum) {
         try {
             // Carga el archivo Excel
-            FileInputStream archive = new FileInputStream(new File(filePath));
+            FileInputStream archive = new FileInputStream(file);
             XSSFWorkbook book = new XSSFWorkbook(archive);
 
             // Selecciona la hoja
-            XSSFSheet sheet = book.getSheet("BillSale");
+            XSSFSheet sheet = book.getSheet(sheetName);
 
             // Recorre cada fila de la hoja
             for (int i = sheet.getLastRowNum(); i >= sheet.getFirstRowNum(); i--) {
                 Row fila = sheet.getRow(i);
 
-                // Compara el código con la celda 1 de la fila
-                if (fila.getCell(1).getStringCellValue().equals(codigo)) {
+                // Compara el código con la celda especificada
+                if (fila.getCell(cellNum).getStringCellValue().equals(codigo)) {
                     // Retorna la fila correspondiente
                     return fila;
                 }
@@ -193,4 +192,5 @@ public class BillExcel {
 
         return null;
     }
+
 }
