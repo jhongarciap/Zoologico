@@ -9,25 +9,5 @@ package Control;
  * @author garci
  */
 public class ComercialDepartment {
-    public static void createPlan(){
-        
-    }
-    public static void deletePlan(){
-        
-    }
-    public static void consultPlan(){
-        
-    }
-    public static void displaySupplies(){
-        
-    }
-    public static void sell(){
-        
-    }
-    public static void buy(){
-        
-    }
-    public static void printVoice(){
-        
-    }
+    
 }

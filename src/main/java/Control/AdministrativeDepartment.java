@@ -13,7 +13,4 @@ public class AdministrativeDepartment {
          
         
     
-      public static void showReport(){
-        
-    }
 }

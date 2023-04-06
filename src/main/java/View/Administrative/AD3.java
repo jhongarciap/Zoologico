@@ -1,6 +1,5 @@
 package View.Administrative;
 
-import View.Logistc.PAAdd;
 import com.formdev.flatlaf.FlatDarculaLaf;
 import com.formdev.flatlaf.FlatDarkLaf;
 import java.awt.Image;

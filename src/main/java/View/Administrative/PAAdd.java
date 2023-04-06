@@ -1,4 +1,4 @@
-package View.Logistc;
+package View.Administrative;
 
 import View.Administrative.AD3;
 import com.formdev.flatlaf.FlatDarculaLaf;
@@ -46,8 +46,7 @@ public class PAAdd extends javax.swing.JFrame {
         jSplitPane1 = new javax.swing.JSplitPane();
         bg = new javax.swing.JPanel();
         bgPanelRound = new Clases.PanelRound();
-        lbID = new javax.swing.JLabel();
-        txID = new javax.swing.JTextField();
+        lbIDGenerado = new javax.swing.JLabel();
         lbPlan = new javax.swing.JLabel();
         txValue = new javax.swing.JTextField();
         lbValue = new javax.swing.JLabel();
@@ -55,6 +54,7 @@ public class PAAdd extends javax.swing.JFrame {
         txDetails = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         txPlan = new javax.swing.JTextField();
+        lbID1 = new javax.swing.JLabel();
         btLogisticPlan = new javax.swing.JButton();
         lbZooLogo = new javax.swing.JLabel();
         lbPlanTitle = new java.awt.Label();
@@ -79,21 +79,11 @@ public class PAAdd extends javax.swing.JFrame {
         bgPanelRound.setRoundTopRight(15);
         bgPanelRound.setLayout(null);
 
-        lbID.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lbID.setForeground(new java.awt.Color(242, 242, 242));
-        lbID.setText("ID Plan:");
-        bgPanelRound.add(lbID);
-        lbID.setBounds(10, 10, 70, 16);
-
-        txID.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        txID.setText("Ingrese el ID del plan");
-        txID.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txIDActionPerformed(evt);
-            }
-        });
-        bgPanelRound.add(txID);
-        txID.setBounds(80, 10, 190, 22);
+        lbIDGenerado.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lbIDGenerado.setForeground(new java.awt.Color(242, 242, 242));
+        lbIDGenerado.setText("ID");
+        bgPanelRound.add(lbIDGenerado);
+        lbIDGenerado.setBounds(100, 10, 170, 16);
 
         lbPlan.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         lbPlan.setForeground(new java.awt.Color(242, 242, 242));
@@ -141,6 +131,12 @@ public class PAAdd extends javax.swing.JFrame {
         bgPanelRound.add(txPlan);
         txPlan.setBounds(80, 40, 190, 22);
 
+        lbID1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lbID1.setForeground(new java.awt.Color(242, 242, 242));
+        lbID1.setText("ID Plan:");
+        bgPanelRound.add(lbID1);
+        lbID1.setBounds(10, 10, 70, 16);
+
         bg.add(bgPanelRound, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 280, 260));
 
         btLogisticPlan.setBackground(new java.awt.Color(255, 153, 0));
@@ -182,10 +178,6 @@ public class PAAdd extends javax.swing.JFrame {
         MainScreen.setVisible(true);
     }//GEN-LAST:event_btLogisticPlanActionPerformed
 
-    private void txIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txIDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txIDActionPerformed
-
     private void txValueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txValueActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txValueActionPerformed
@@ -225,13 +217,13 @@ public class PAAdd extends javax.swing.JFrame {
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel lbDetails;
-    private javax.swing.JLabel lbID;
+    private javax.swing.JLabel lbID1;
+    private javax.swing.JLabel lbIDGenerado;
     private javax.swing.JLabel lbPlan;
     private java.awt.Label lbPlanTitle;
     private javax.swing.JLabel lbValue;
     private javax.swing.JLabel lbZooLogo;
     private javax.swing.JScrollPane txDetails;
-    private javax.swing.JTextField txID;
     private javax.swing.JTextField txPlan;
     private javax.swing.JTextField txValue;
     // End of variables declaration//GEN-END:variables

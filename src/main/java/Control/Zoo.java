@@ -60,8 +60,9 @@ public class Zoo {
         //deleteRow(codigo, file, sheetName, column);
         //Buscar una fila problema, hay que convertirlo en  array 
         Row row = getRow(codigo, file, sheetName, column);
+        
         //Este solo es para ver si si ejecuta 
-       for (Cell celda : row) {
+     /*  for (Cell celda : row) {
     if (celda.getCellType() == CellType.STRING) {
         System.out.print(celda.getStringCellValue() + "\t");
     } else if (celda.getCellType() == CellType.NUMERIC) {
@@ -71,7 +72,7 @@ public class Zoo {
     }
 }
 System.out.println();
-
+*/
     }
 
 }

@@ -9,13 +9,5 @@ package Control;
  * @author garci
  */
 public class LogisticsDepartment {
-      public static void displaySupplies(){
-        
-    }
-      public static void addAnimal(){
-        
-    }
-     public static void deleteAnimal(){
-        
-    }
+    
 }

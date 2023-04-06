@@ -156,7 +156,7 @@ public class LOAMinorAdd extends javax.swing.JFrame {
 
         jbHabitaMinor.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jbHabitaMinor.setForeground(new java.awt.Color(242, 242, 242));
-        jbHabitaMinor.setText("Hábitad:");
+        jbHabitaMinor.setText("Hábitat:");
         bgPanelRound.add(jbHabitaMinor);
         jbHabitaMinor.setBounds(10, 110, 70, 16);
 
