@@ -1,14 +1,8 @@
 package Utilities;
 
-import Control.LogisticDepartment.ArrayListSupply;
-import Control.LogisticDepartment.ArrayListDomestic;
-import Control.LogisticDepartment.ArrayListWild;
-import Control.LogisticDepartment.ArrayListMinor;
-import Control.ComercialDepartment.ArrayListTransation;
-import Control.ComercialDepartment.ArrayListBillShopping;
-import Control.ComercialDepartment.ArrayListBillSale;
-import Control.AdministrativeDepartment.ArrayListEmployee;
-import Control.AdministrativeDepartment.ArrayListPlan;
+import Control.LogisticDepartment.*;
+import Control.ComercialDepartment.*;
+import Control.AdministrativeDepartment.*;
 import Model.*;
 import java.io.File;
 import java.io.FileInputStream;
@@ -32,40 +26,33 @@ public class AdExcel {
             if (type != null && type.equals(SaleBill.class)) {
                 ArrayListBillSale excel = new ArrayListBillSale();
                 excel.SaveBillSaleExcel();
-            }
-            if (type != null && type.equals(ShoppingBill.class)) {
+            } else if (type != null && type.equals(ShoppingBill.class)) {
                 ArrayListBillShopping excel = new ArrayListBillShopping();
                 excel.SaveBillShoppingExcel();
-            }
-            if (type != null && type.equals(Domestic.class)) {
+            } else if (type != null && type.equals(Domestic.class)) {
                 ArrayListDomestic excel = new ArrayListDomestic();
                 excel.saveDomesticExcel();
-            }
-            if (type != null && type.equals(Employee.class)) {
+            } else if (type != null && type.equals(Employee.class)) {
                 ArrayListEmployee excel = new ArrayListEmployee();
                 excel.SaveEmployeeExcel();
-            }
-            if (type != null && type.equals(Minor.class)) {
+            } else if (type != null && type.equals(Minor.class)) {
                 ArrayListMinor excel = new ArrayListMinor();
                 excel.saveMinorExcel();
-            }
-            if (type != null && type.equals(Plan.class)) {
+            } else if (type != null && type.equals(Plan.class)) {
                 ArrayListPlan excel = new ArrayListPlan();
                 excel.SavePlanExcel();
-            }
-            if (type != null && type.equals(Supply.class)) {
+            } else if (type != null && type.equals(Supply.class)) {
                 ArrayListSupply excel = new ArrayListSupply();
                 excel.SaveSupplyeExcel();
-            }
-            if (type != null && type.equals(Transation.class)) {
+            } else if (type != null && type.equals(Transation.class)) {
                 ArrayListTransation excel = new ArrayListTransation();
                 excel.SaveTransationExcel();
-            }
-            if (type != null && type.equals(Wild.class)) {
+            } else if (type != null && type.equals(Wild.class)) {
                 ArrayListWild excel = new ArrayListWild();
                 excel.saveWildExcel();
+            } else {
+                System.out.println("La lista ingresada no existe en la base de datos");
             }
-
         }
     }
 //Muestra todos los elementos de excel
@@ -73,19 +60,19 @@ public class AdExcel {
         ArrayList<Row> rows = new ArrayList<>();
         try {
             if (file.exists()) {
-                FileInputStream fis = new FileInputStream(file);
-                XSSFWorkbook workbook = new XSSFWorkbook(fis);
-                XSSFSheet sheet = workbook.getSheetAt(0);
-                int lastRow = sheet.getLastRowNum();
-                for (int i = 0; i <= lastRow; i++) {
-                    XSSFRow row = sheet.getRow(i);
-                    rows.add(row);
+                try (FileInputStream fis = new FileInputStream(file)) {
+                    XSSFWorkbook workbook = new XSSFWorkbook(fis);
+                    XSSFSheet sheet = workbook.getSheetAt(0);
+                    int lastRow = sheet.getLastRowNum();
+                    for (int i = 0; i <= lastRow; i++) {
+                        XSSFRow row = sheet.getRow(i);
+                        rows.add(row);
+                    }
                 }
-                fis.close();
             } else {
                 System.out.println("El archivo no existe.");
             }
-        } catch (Exception e) {
+        } catch (IOException e) {
             System.out.println("Hay un error, revisa.");
         }
         return rows;
@@ -96,33 +83,33 @@ public class AdExcel {
         float totalValue = 0f;
         try {
             if (file.exists()) {
-                FileInputStream fis = new FileInputStream(file);
-                XSSFWorkbook workbook = new XSSFWorkbook(fis);
-                XSSFSheet sheet = workbook.getSheetAt(0);
-                int lastRow = sheet.getLastRowNum();
-
-                for (int i = 0; i <= lastRow; i++) {
-                    XSSFRow row = sheet.getRow(i);
-
-                    // verifica que la fila exista y no sea nula
-                    if (row != null) {
-                        XSSFCell cell = row.getCell(4);
-
-                        // verifica que la celda exista y no sea nula
-                        if (cell != null) {
-                            String stringValue = cell.toString();
-
-                            // verifica que el valor de la celda sea un número flotante
-                            try {
-                                Float value = Float.valueOf(stringValue);
-                                totalValue += value;
-                            } catch (NumberFormatException e) {
-
+                try (FileInputStream fis = new FileInputStream(file)) {
+                    XSSFWorkbook workbook = new XSSFWorkbook(fis);
+                    XSSFSheet sheet = workbook.getSheetAt(0);
+                    int lastRow = sheet.getLastRowNum();
+                    
+                    for (int i = 0; i <= lastRow; i++) {
+                        XSSFRow row = sheet.getRow(i);
+                        
+                        // verifica que la fila exista y no sea nula
+                        if (row != null) {
+                            XSSFCell cell = row.getCell(4);
+                            
+                            // verifica que la celda exista y no sea nula
+                            if (cell != null) {
+                                String stringValue = cell.toString();
+                                
+                                // verifica que el valor de la celda sea un número flotante
+                                try {
+                                    Float value = Float.valueOf(stringValue);
+                                    totalValue += value;
+                                } catch (NumberFormatException e) {
+                                    
+                                }
                             }
                         }
                     }
                 }
-                fis.close();
             } else {
                 System.out.println("El archivo no existe.");
             }
@@ -135,67 +122,56 @@ public class AdExcel {
 
     public static void deleteRow(String codigo, File file, String sheetName, int columnToDelete) {
         try {
-            // Carga el archivo Excel
-            FileInputStream archive = new FileInputStream(file);
-            XSSFWorkbook book = new XSSFWorkbook(archive);
-
-            // Selecciona la hoja
-            XSSFSheet sheet = book.getSheet(sheetName);
-
-            // Recorre cada fila de la hoja
-            for (int i = sheet.getLastRowNum(); i >= sheet.getFirstRowNum(); i--) {
-                Row fila = sheet.getRow(i);
-
-                // Compara el código con la celda de la columna especificada
-                if (fila.getCell(columnToDelete).getStringCellValue().equals(codigo)) {
-                    // Elimina la fila y desplaza las filas hacia arriba
-                    sheet.removeRow(fila);
-                    sheet.shiftRows(i + 1, sheet.getLastRowNum(), -1);
-                    i--; // Decrementa el contador para evitar omitir la fila siguiente
-                }
+            FileOutputStream exit;
+            try ( // Carga el archivo Excel
+                    FileInputStream archive = new FileInputStream(file)) {
+                XSSFWorkbook book = new XSSFWorkbook(archive);
+                // Selecciona la hoja
+                XSSFSheet sheet = book.getSheet(sheetName);
+                // Recorre cada fila de la hoja
+                for (int i = sheet.getLastRowNum(); i >= sheet.getFirstRowNum(); i--) {
+                    Row fila = sheet.getRow(i);
+                    
+                    // Compara el código con la celda de la columna especificada
+                    if (fila.getCell(columnToDelete).getStringCellValue().equals(codigo)) {
+                        // Elimina la fila y desplaza las filas hacia arriba
+                        sheet.removeRow(fila);
+                        sheet.shiftRows(i + 1, sheet.getLastRowNum(), -1);
+                        i--; // Decrementa el contador para evitar omitir la fila siguiente
+                    }
+                }   // Guarda los cambios en el archivo
+                exit = new FileOutputStream(file);
+                book.write(exit);
+                // Cierra los flujos de entrada y salida
             }
-
-            // Guarda los cambios en el archivo
-            FileOutputStream exit = new FileOutputStream(file);
-            book.write(exit);
-
-            // Cierra los flujos de entrada y salida
-            archive.close();
             exit.close();
 
         } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
     public static Row getRow(String codigo, File file, String sheetName, int cellNum) {
         try {
-            // Carga el archivo Excel
-            FileInputStream archive = new FileInputStream(file);
-            XSSFWorkbook book = new XSSFWorkbook(archive);
-
-            // Selecciona la hoja
-            XSSFSheet sheet = book.getSheet(sheetName);
-
-            // Recorre cada fila de la hoja
-            for (int i = sheet.getLastRowNum(); i >= sheet.getFirstRowNum(); i--) {
-                Row fila = sheet.getRow(i);
-
-                // Compara el código con la celda especificada
-                if (fila.getCell(cellNum).getStringCellValue().equals(codigo)) {
-                    // Retorna la fila correspondiente
-                    return fila;
-                }
+            try ( // Carga el archivo Excel
+                    FileInputStream archive = new FileInputStream(file)) {
+                XSSFWorkbook book = new XSSFWorkbook(archive);
+                // Selecciona la hoja
+                XSSFSheet sheet = book.getSheet(sheetName);
+                // Recorre cada fila de la hoja
+                for (int i = sheet.getLastRowNum(); i >= sheet.getFirstRowNum(); i--) {
+                    Row fila = sheet.getRow(i);
+                    
+                    // Compara el código con la celda especificada
+                    if (fila.getCell(cellNum).getStringCellValue().equals(codigo)) {
+                        // Retorna la fila correspondiente
+                        return fila;
+                    }
+                }   // Si no se encuentra ninguna fila correspondiente, retorna null
+                System.out.println("No se encontró ninguna fila con el código " + codigo);
+                // Cierra el flujo de entrada
             }
 
-            // Si no se encuentra ninguna fila correspondiente, retorna null
-            System.out.println("No se encontró ninguna fila con el código " + codigo);
-
-            // Cierra el flujo de entrada
-            archive.close();
-
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (IOException e) {
         }
 
         return null;
