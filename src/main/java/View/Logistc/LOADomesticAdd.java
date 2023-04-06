@@ -147,7 +147,7 @@ public class LOADomesticAdd extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(242, 242, 242));
-        jLabel7.setText("Hábitad:");
+        jLabel7.setText("Hábitat:");
         bgPanelRound.add(jLabel7);
         jLabel7.setBounds(10, 110, 70, 16);
 

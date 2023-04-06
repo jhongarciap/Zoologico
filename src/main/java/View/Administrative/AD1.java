@@ -56,7 +56,6 @@ public class AD1 extends javax.swing.JFrame {
         lbTotal = new java.awt.Label();
         lbTotalValue = new java.awt.Label();
         btDeleteReport = new javax.swing.JButton();
-        btCreateReport = new javax.swing.JButton();
         lbReportType = new java.awt.Label();
         lbReportTitle = new java.awt.Label();
         lbZRVLogo = new javax.swing.JLabel();
@@ -150,13 +149,7 @@ public class AD1 extends javax.swing.JFrame {
         btDeleteReport.setForeground(new java.awt.Color(255, 255, 255));
         btDeleteReport.setText("Eliminar Reporte");
         bgPanelRound.add(btDeleteReport);
-        btDeleteReport.setBounds(560, 357, 130, 23);
-
-        btCreateReport.setBackground(new java.awt.Color(51, 51, 51));
-        btCreateReport.setForeground(new java.awt.Color(255, 255, 255));
-        btCreateReport.setText("Crear Reporte");
-        bgPanelRound.add(btCreateReport);
-        btCreateReport.setBounds(560, 325, 130, 23);
+        btDeleteReport.setBounds(560, 340, 130, 23);
 
         bg.add(bgPanelRound, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 700, 390));
 
@@ -222,7 +215,6 @@ public class AD1 extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;
     private Clases.PanelRound bgPanelRound;
-    private javax.swing.JButton btCreateReport;
     private javax.swing.JButton btDeleteReport;
     private javax.swing.JButton btGeneratePDF1;
     private javax.swing.JComboBox<String> cbReportType;

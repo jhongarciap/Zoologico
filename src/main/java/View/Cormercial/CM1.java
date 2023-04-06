@@ -55,6 +55,7 @@ public class CM1 extends javax.swing.JFrame {
         btBill = new javax.swing.JButton();
         lbTotalSale2 = new java.awt.Label();
         txDiscount = new javax.swing.JTextField();
+        lbIDGenerado = new javax.swing.JLabel();
         lbProducto = new java.awt.Label();
         lbSalesTitle = new java.awt.Label();
         lbZRVLogo = new javax.swing.JLabel();
@@ -95,7 +96,7 @@ public class CM1 extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tbProducts);
 
         bgPanelRound.add(jScrollPane1);
-        jScrollPane1.setBounds(10, 15, 680, 300);
+        jScrollPane1.setBounds(10, 145, 680, 170);
 
         lbDiscount.setBackground(new java.awt.Color(51, 51, 51));
         lbDiscount.setFont(new java.awt.Font("Arial", 1, 22)); // NOI18N
@@ -140,6 +141,12 @@ public class CM1 extends javax.swing.JFrame {
         bgPanelRound.add(txDiscount);
         txDiscount.setBounds(140, 330, 140, 40);
 
+        lbIDGenerado.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lbIDGenerado.setForeground(new java.awt.Color(242, 242, 242));
+        lbIDGenerado.setText("Cliente ");
+        bgPanelRound.add(lbIDGenerado);
+        lbIDGenerado.setBounds(20, 20, 70, 16);
+
         bg.add(bgPanelRound, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 700, 390));
 
         lbProducto.setBackground(new java.awt.Color(35, 35, 35));
@@ -151,9 +158,8 @@ public class CM1 extends javax.swing.JFrame {
         lbSalesTitle.setBackground(new java.awt.Color(35, 35, 35));
         lbSalesTitle.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lbSalesTitle.setForeground(new java.awt.Color(188, 38, 73));
-        lbSalesTitle.setText("Compras");
+        lbSalesTitle.setText("Ventas");
         bg.add(lbSalesTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 5, -1, -1));
-        lbSalesTitle.getAccessibleContext().setAccessibleName("Ventas");
 
         lbZRVLogo.setMaximumSize(new java.awt.Dimension(549, 267));
         bg.add(lbZRVLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 10, 140, 60));
@@ -235,6 +241,7 @@ public class CM1 extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private java.awt.Label lbAmount;
     private java.awt.Label lbDiscount;
+    private javax.swing.JLabel lbIDGenerado;
     private java.awt.Label lbProducto;
     private java.awt.Label lbSalesTitle;
     private java.awt.Label lbTotalSale2;
