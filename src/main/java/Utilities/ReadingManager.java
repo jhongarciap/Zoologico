@@ -45,7 +45,7 @@ public class ReadingManager {
         BufferedReader stdin = new BufferedReader(
                 new InputStreamReader(System.in));
         ingreso = stdin.readLine();
-        numero = Float.parseFloat(ingreso); 
+        numero = Float.valueOf(ingreso); 
         return numero;
     }
     

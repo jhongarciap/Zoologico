@@ -8,6 +8,7 @@ import Model.Wild;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -35,27 +36,27 @@ public class ArrayListWild {
         try {
             File file = new File("rom/Animals/Wilds.xlsx");
             if (file.exists()) {
-                FileInputStream fis = new FileInputStream(file);
-                XSSFWorkbook workbook = new XSSFWorkbook(fis);
-                XSSFSheet sheet = workbook.getSheetAt(0);
-                int lastRow = sheet.getLastRowNum();
-
-                for (int i = 0; i < wilds.size(); i++) {
-                    lastRow++;
-                    XSSFRow row = sheet.createRow(lastRow);
-                    row.createCell(0).setCellValue(wilds.get(i).getName());
-                    row.createCell(1).setCellValue(wilds.get(i).getRace());
-                    row.createCell(2).setCellValue(wilds.get(i).getSex());
-                    row.createCell(3).setCellValue(wilds.get(i).getHabitad());
-                    row.createCell(4).setCellValue(wilds.get(i).getBirthhabitat());
-                    row.createCell(5).setCellValue(wilds.get(i).getDangerousness());
-                    row.createCell(6).setCellValue(wilds.get(i).getDiet());
+                XSSFWorkbook workbook;
+                try (FileInputStream fis = new FileInputStream(file)) {
+                    workbook = new XSSFWorkbook(fis);
+                    XSSFSheet sheet = workbook.getSheetAt(0);
+                    int lastRow = sheet.getLastRowNum();
+                    for (int i = 0; i < wilds.size(); i++) {
+                        lastRow++;
+                        XSSFRow row = sheet.createRow(lastRow);
+                        row.createCell(0).setCellValue(wilds.get(i).getName());
+                        row.createCell(1).setCellValue(wilds.get(i).getRace());
+                        row.createCell(2).setCellValue(wilds.get(i).getSex());
+                        row.createCell(3).setCellValue(wilds.get(i).getHabitad());
+                        row.createCell(4).setCellValue(wilds.get(i).getBirthhabitat());
+                        row.createCell(5).setCellValue(wilds.get(i).getDangerousness());
+                        row.createCell(6).setCellValue(wilds.get(i).getDiet());
+                    }
                 }
-                fis.close();
 
-                FileOutputStream fos = new FileOutputStream(file);
-                workbook.write(fos);
-                fos.close();
+                try (FileOutputStream fos = new FileOutputStream(file)) {
+                    workbook.write(fos);
+                }
             } else {
                 XSSFWorkbook workbook = new XSSFWorkbook();
                 XSSFSheet sheet = workbook.createSheet("Wilds");
@@ -81,11 +82,11 @@ public class ArrayListWild {
                     row.createCell(6).setCellValue(wilds.get(i).getDiet());
                 }
 
-                FileOutputStream fos = new FileOutputStream(file);
-                workbook.write(fos);
-                fos.close();
+                try (FileOutputStream fos = new FileOutputStream(file)) {
+                    workbook.write(fos);
+                }
             }
-        } catch (Exception e) {
+        } catch (IOException e) {
             System.out.println("Hay un error, revisa.");
         }
     }

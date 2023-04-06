@@ -8,6 +8,7 @@ import Model.Minor;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -37,27 +38,27 @@ public class ArrayListMinor {
         try {
             File file = new File("rom/Animals/Minors.xlsx");
             if (file.exists()) {
-                FileInputStream fis = new FileInputStream(file);
-                XSSFWorkbook workbook = new XSSFWorkbook(fis);
-                XSSFSheet sheet = workbook.getSheetAt(0);
-                int lastRow = sheet.getLastRowNum();
-
-                for (int i = 0; i < minors.size(); i++) {
-                    lastRow++;
-                    XSSFRow row = sheet.createRow(lastRow);
-                    row.createCell(0).setCellValue(minors.get(i).getName());
-                    row.createCell(1).setCellValue(minors.get(i).getRace());
-                    row.createCell(2).setCellValue(minors.get(i).getSex());
-                    row.createCell(3).setCellValue(minors.get(i).getHabitad());
-                    row.createCell(4).setCellValue(minors.get(i).getDiseases());
-                    row.createCell(5).setCellValue(minors.get(i).getNativeClimate());
-                    row.createCell(6).setCellValue(minors.get(i).getDiet());
+                XSSFWorkbook workbook;
+                try (FileInputStream fis = new FileInputStream(file)) {
+                    workbook = new XSSFWorkbook(fis);
+                    XSSFSheet sheet = workbook.getSheetAt(0);
+                    int lastRow = sheet.getLastRowNum();
+                    for (int i = 0; i < minors.size(); i++) {
+                        lastRow++;
+                        XSSFRow row = sheet.createRow(lastRow);
+                        row.createCell(0).setCellValue(minors.get(i).getName());
+                        row.createCell(1).setCellValue(minors.get(i).getRace());
+                        row.createCell(2).setCellValue(minors.get(i).getSex());
+                        row.createCell(3).setCellValue(minors.get(i).getHabitad());
+                        row.createCell(4).setCellValue(minors.get(i).getDiseases());
+                        row.createCell(5).setCellValue(minors.get(i).getNativeClimate());
+                        row.createCell(6).setCellValue(minors.get(i).getDiet());
+                    }
                 }
-                fis.close();
 
-                FileOutputStream fos = new FileOutputStream(file);
-                workbook.write(fos);
-                fos.close();
+                try (FileOutputStream fos = new FileOutputStream(file)) {
+                    workbook.write(fos);
+                }
             } else {
                 XSSFWorkbook workbook = new XSSFWorkbook();
                 XSSFSheet sheet = workbook.createSheet("Minors");
@@ -82,11 +83,11 @@ public class ArrayListMinor {
                     row.createCell(6).setCellValue(minors.get(i).getDiet());
                 }
 
-                FileOutputStream fos = new FileOutputStream(file);
-                workbook.write(fos);
-                fos.close();
+                try (FileOutputStream fos = new FileOutputStream(file)) {
+                    workbook.write(fos);
+                }
             }
-        } catch (Exception e) {
+        } catch (IOException e) {
             System.out.println("Hay un error, revisa.");
         }
     }

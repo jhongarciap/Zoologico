@@ -31,10 +31,10 @@ public class GenerateCodeBillSale {
         // Generamos el código con la letra y el número
         String codigo = letra + numero;
 
-        // Actualizamos el número en el archivo
-        FileWriter writer = new FileWriter(file);
-        writer.write(String.valueOf(numero + 1));
-        writer.close();
+        try ( // Actualizamos el número en el archivo
+                FileWriter writer = new FileWriter(file)) {
+            writer.write(String.valueOf(numero + 1));
+        }
 
         return codigo;
     } catch (IOException e) {

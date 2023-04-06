@@ -1,10 +1,15 @@
 package View.Administrative;
 
+import static Utilities.AdExcel.sumBillExcel;
+import static Utilities.loadExcelDataToTable.updateTableFromExcel;
+import static Utilities.loadExcelDataToTable.updateTableFromTwoExcelFiles;
 import com.formdev.flatlaf.FlatDarculaLaf;
 import com.formdev.flatlaf.FlatDarkLaf;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.io.File;
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
 import javax.swing.UIManager;
 
 /**
@@ -20,13 +25,13 @@ public class AD1 extends javax.swing.JFrame {
         System.setProperty("sun.java2d.uiScale", "1.0");
         FlatDarkLaf.setup(); // Sets the FlatLaf LookAndFeel as the main theme for the JFrame.
         initComponents();
-        
+
         this.setLocationRelativeTo(null); //Centers the window on-screen.
         this.setTitle("Reportes"); // Set the title for the JFrame.
-        
+
         Image faviconX1 = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/View_IconAdminZOO.png"));
         this.setIconImage(faviconX1);
-        
+
         Image logoZRV = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/ZRVC@3x.png"));
         lbZRVLogo.setIcon(new ImageIcon(logoZRV.getScaledInstance(lbZRVLogo.getWidth(), lbZRVLogo.getHeight(), Image.SCALE_AREA_AVERAGING)));
 
@@ -47,7 +52,7 @@ public class AD1 extends javax.swing.JFrame {
         bg = new javax.swing.JPanel();
         bgPanelRound = new Clases.PanelRound();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbGeneratedReports = new javax.swing.JTable();
+        tbGeneratedReports1 = new javax.swing.JTable();
         lbTotalExpenses = new java.awt.Label();
         lbGeneratedReports = new java.awt.Label();
         lbTotalExpensesValue = new java.awt.Label();
@@ -80,18 +85,18 @@ public class AD1 extends javax.swing.JFrame {
         bgPanelRound.setRoundTopRight(15);
         bgPanelRound.setLayout(null);
 
-        tbGeneratedReports.setModel(new javax.swing.table.DefaultTableModel(
+        tbGeneratedReports1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "FECHA", "CÓDIGO", "VALOR", "DESCUENTO", "CANTIDAD", "VALOR TOTAL", "Cliente", "ID PRODUCTO", "PRODUCTO"
             }
         ));
-        jScrollPane1.setViewportView(tbGeneratedReports);
+        jScrollPane1.setViewportView(tbGeneratedReports1);
 
         bgPanelRound.add(jScrollPane1);
         jScrollPane1.setBounds(10, 35, 680, 280);
@@ -100,6 +105,7 @@ public class AD1 extends javax.swing.JFrame {
         lbTotalExpenses.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         lbTotalExpenses.setForeground(new java.awt.Color(255, 255, 255));
         lbTotalExpenses.setText("Gastos totales");
+        lbTotalExpenses.setVisible(false);
         bgPanelRound.add(lbTotalExpenses);
         lbTotalExpenses.setBounds(10, 350, 140, 32);
 
@@ -108,12 +114,13 @@ public class AD1 extends javax.swing.JFrame {
         lbGeneratedReports.setForeground(new java.awt.Color(255, 255, 255));
         lbGeneratedReports.setText("Reportes Generados");
         bgPanelRound.add(lbGeneratedReports);
-        lbGeneratedReports.setBounds(10, 0, 296, 32);
+        lbGeneratedReports.setBounds(10, 0, 240, 32);
 
         lbTotalExpensesValue.setBackground(new java.awt.Color(51, 51, 51));
         lbTotalExpensesValue.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         lbTotalExpensesValue.setForeground(new java.awt.Color(255, 153, 0));
         lbTotalExpensesValue.setText("$00.000,00");
+        lbTotalExpensesValue.setVisible(false);
         bgPanelRound.add(lbTotalExpensesValue);
         lbTotalExpensesValue.setBounds(160, 350, 140, 32);
 
@@ -121,6 +128,7 @@ public class AD1 extends javax.swing.JFrame {
         lbTotalIncomes.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         lbTotalIncomes.setForeground(new java.awt.Color(255, 255, 255));
         lbTotalIncomes.setText("Ingresos totales");
+        lbTotalIncomes.setVisible(false);
         bgPanelRound.add(lbTotalIncomes);
         lbTotalIncomes.setBounds(10, 320, 150, 32);
 
@@ -128,6 +136,7 @@ public class AD1 extends javax.swing.JFrame {
         lbTotalIncomesValue.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         lbTotalIncomesValue.setForeground(new java.awt.Color(255, 153, 0));
         lbTotalIncomesValue.setText("$00.000,00");
+        lbTotalIncomesValue.setVisible(false);
         bgPanelRound.add(lbTotalIncomesValue);
         lbTotalIncomesValue.setBounds(160, 320, 140, 32);
 
@@ -168,7 +177,12 @@ public class AD1 extends javax.swing.JFrame {
         lbZRVLogo.setMaximumSize(new java.awt.Dimension(549, 267));
         bg.add(lbZRVLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 10, 140, 60));
 
-        cbReportType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbReportType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ventas", "Compras", "General", " " }));
+        cbReportType.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbReportTypeActionPerformed(evt);
+            }
+        });
         bg.add(cbReportType, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 50, 240, -1));
 
         btGeneratePDF1.setText("Generar PDF");
@@ -193,15 +207,52 @@ public class AD1 extends javax.swing.JFrame {
         this.dispose();
         MainScreen.setVisible(true);
     }//GEN-LAST:event_lbZooLogoMouseClicked
+    File file1 = new File("rom/Bills/BillSale.xlsx");
+    File file2 = new File("rom/Bills/BillShopping.xlsx");
+    
+    private void cbReportTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbReportTypeActionPerformed
+        JComboBox cbReportType = (JComboBox) evt.getSource();
+        String selectedOption = (String) cbReportType.getSelectedItem();
+
+        // Realizar acción según opción seleccionada
+        switch (selectedOption) {
+            case "Ventas":
+                updateTableFromExcel(tbGeneratedReports1, file1);
+                Float sales = sumBillExcel(file1);
+                lbTotalValue.setText("$" + sales);
+                break;
+            case "Compras":
+                updateTableFromExcel(tbGeneratedReports1, file2);
+                Float shopping = sumBillExcel(file2);
+                lbTotalValue.setText("$" + shopping);
+                break;
+            case "General":
+                updateTableFromTwoExcelFiles(tbGeneratedReports1, file1, file2);
+                lbTotalIncomesValue.setVisible(true);
+                lbTotalExpensesValue.setVisible(true);
+                lbTotalIncomes.setVisible(true);
+                lbTotalExpenses.setVisible(true);
+                Float sales1 = sumBillExcel(file1);
+                Float shopping1 = sumBillExcel(file2);
+                Float total = sales1 - shopping1;
+                lbTotalValue.setText("$" + total);
+                lbTotalIncomesValue.setText("$" + sales1);
+                lbTotalExpensesValue.setText("$" + shopping1);
+
+                break;
+            default:
+                break;
+        }
+    }//GEN-LAST:event_cbReportTypeActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        try{
+        try {
             UIManager.setLookAndFeel(new FlatDarculaLaf());
-        }catch (Exception e){
-            
+        } catch (Exception e) {
+
         }
 
         /* Create and display the form */
@@ -227,9 +278,9 @@ public class AD1 extends javax.swing.JFrame {
     private java.awt.Label lbTotalExpensesValue;
     private java.awt.Label lbTotalIncomes;
     private java.awt.Label lbTotalIncomesValue;
-    private java.awt.Label lbTotalValue;
+    public static java.awt.Label lbTotalValue;
     private javax.swing.JLabel lbZRVLogo;
     private javax.swing.JLabel lbZooLogo;
-    private javax.swing.JTable tbGeneratedReports;
+    public static javax.swing.JTable tbGeneratedReports1;
     // End of variables declaration//GEN-END:variables
 }

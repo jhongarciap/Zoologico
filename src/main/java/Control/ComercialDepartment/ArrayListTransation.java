@@ -8,6 +8,7 @@ import Model.Transation;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -36,28 +37,28 @@ public class ArrayListTransation {
         try {
             File file = new File("rom/Transations/Transations.xlsx");
             if (file.exists()) {
-                FileInputStream fis = new FileInputStream(file);
-                XSSFWorkbook workbook = new XSSFWorkbook(fis);
-                XSSFSheet sheet = workbook.getSheetAt(0);
-                int lastRow = sheet.getLastRowNum();
-
-                for (int i = 0; i < transations.size(); i++) {
-                    lastRow++;
-                    XSSFRow row = sheet.createRow(lastRow);
-                    row.createCell(0).setCellValue(transations.get(i).getDate());
-                    row.createCell(1).setCellValue(transations.get(i).getCode());
-                    row.createCell(2).setCellValue(transations.get(i).getName());
-                    row.createCell(3).setCellValue(transations.get(i).getExpenses());
-                    row.createCell(4).setCellValue(transations.get(i).getIncome());
-                    row.createCell(5).setCellValue(transations.get(i).getDiscount());
-                    row.createCell(6).setCellValue(transations.get(i).getProfits());
-                    row.createCell(7).setCellValue(transations.get(i).getEspecifications());
+                XSSFWorkbook workbook;
+                try (FileInputStream fis = new FileInputStream(file)) {
+                    workbook = new XSSFWorkbook(fis);
+                    XSSFSheet sheet = workbook.getSheetAt(0);
+                    int lastRow = sheet.getLastRowNum();
+                    for (int i = 0; i < transations.size(); i++) {
+                        lastRow++;
+                        XSSFRow row = sheet.createRow(lastRow);
+                        row.createCell(0).setCellValue(transations.get(i).getDate());
+                        row.createCell(1).setCellValue(transations.get(i).getCode());
+                        row.createCell(2).setCellValue(transations.get(i).getName());
+                        row.createCell(3).setCellValue(transations.get(i).getExpenses());
+                        row.createCell(4).setCellValue(transations.get(i).getIncome());
+                        row.createCell(5).setCellValue(transations.get(i).getDiscount());
+                        row.createCell(6).setCellValue(transations.get(i).getProfits());
+                        row.createCell(7).setCellValue(transations.get(i).getEspecifications());
+                    }
                 }
-                fis.close();
 
-                FileOutputStream fos = new FileOutputStream(file);
-                workbook.write(fos);
-                fos.close();
+                try (FileOutputStream fos = new FileOutputStream(file)) {
+                    workbook.write(fos);
+                }
             } else {
                 XSSFWorkbook workbook = new XSSFWorkbook();
                 XSSFSheet sheet = workbook.createSheet("Transations");
@@ -84,11 +85,11 @@ public class ArrayListTransation {
                     row.createCell(7).setCellValue(transations.get(i).getEspecifications());
                 }
 
-                FileOutputStream fos = new FileOutputStream(file);
-                workbook.write(fos);
-                fos.close();
+                try (FileOutputStream fos = new FileOutputStream(file)) {
+                    workbook.write(fos);
+                }
             }
-        } catch (Exception e) {
+        } catch (IOException e) {
             System.out.println("Hay un error, revisa.");
         }
     }

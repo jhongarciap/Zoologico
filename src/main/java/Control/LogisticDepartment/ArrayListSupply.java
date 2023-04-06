@@ -8,6 +8,7 @@ import Model.Supply;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -36,20 +37,20 @@ public class ArrayListSupply {
         try {
             File file = new File("rom/Supply.xlsx");
             if (file.exists()) {
-                FileInputStream fis = new FileInputStream(file);
-                XSSFWorkbook workbook = new XSSFWorkbook(fis);
-                XSSFSheet sheet = workbook.getSheetAt(0);
-                int lastRow = sheet.getLastRowNum();
-
-                for (int i = 0; i < supllys.size(); i++) {
-                    lastRow++;
-                    XSSFRow row = sheet.createRow(lastRow);
-                    row.createCell(0).setCellValue(supllys.get(i).getType());
-                    row.createCell(1).setCellValue(supllys.get(i).getName());
-                    row.createCell(2).setCellValue(supllys.get(i).getAnimal());
-                    row.createCell(3).setCellValue(supllys.get(i).getSpecifications());
+                XSSFWorkbook workbook;
+                try (FileInputStream fis = new FileInputStream(file)) {
+                    workbook = new XSSFWorkbook(fis);
+                    XSSFSheet sheet = workbook.getSheetAt(0);
+                    int lastRow = sheet.getLastRowNum();
+                    for (int i = 0; i < supllys.size(); i++) {
+                        lastRow++;
+                        XSSFRow row = sheet.createRow(lastRow);
+                        row.createCell(0).setCellValue(supllys.get(i).getType());
+                        row.createCell(1).setCellValue(supllys.get(i).getName());
+                        row.createCell(2).setCellValue(supllys.get(i).getAnimal());
+                        row.createCell(3).setCellValue(supllys.get(i).getSpecifications());
+                    }
                 }
-                fis.close();
 
                 FileOutputStream fos = new FileOutputStream(file);
                 workbook.write(fos);
@@ -72,11 +73,11 @@ public class ArrayListSupply {
                     row.createCell(3).setCellValue(supllys.get(i).getSpecifications());
                 }
 
-                FileOutputStream fos = new FileOutputStream(file);
-                workbook.write(fos);
-                fos.close();
+                try (FileOutputStream fos = new FileOutputStream(file)) {
+                    workbook.write(fos);
+                }
             }
-        } catch (Exception e) {
+        } catch (IOException e) {
             System.out.println("Hay un error, revisa.");
         }
     }

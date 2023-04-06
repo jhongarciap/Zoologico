@@ -12,7 +12,7 @@ import static Utilities.CurrentDate.currentDate;
  */
 public class Bill {
 
-    private String date;
+    private final String date;
     private Float value;
     private Float discount;
     Float totalvalue;

@@ -1,17 +1,35 @@
 package View.Administrative;
 
+import Model.Employee;
+import static Utilities.AdExcel.deleteRow;
+import static Utilities.AdExcel.getRow;
+import static Utilities.AdExcel.getRowsExcel;
+import static Utilities.AdExcel.rowToVector;
+import static Utilities.loadExcelDataToTable.updateTableFromExcel;
 import com.formdev.flatlaf.FlatDarculaLaf;
 import com.formdev.flatlaf.FlatDarkLaf;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Vector;
 import javax.swing.ImageIcon;
+import javax.swing.JTable;
 import javax.swing.UIManager;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
 
 /**
  *
  * @author juan.castro17
  */
 public class AD2 extends javax.swing.JFrame {
+
+    // Obtener los datos del archivo Excel
+    File file = new File("rom/Employees/Employees.xlsx");
+    String sheetName = "Employees";
 
     /**
      * Creates new form X1
@@ -20,13 +38,13 @@ public class AD2 extends javax.swing.JFrame {
         System.setProperty("sun.java2d.uiScale", "1.0");
         FlatDarkLaf.setup(); // Sets the FlatLaf LookAndFeel as the main theme for the JFrame.
         initComponents();
-        
+
         this.setLocationRelativeTo(null); //Centers the window on-screen.
         this.setTitle("Trabajadores"); // Set the title for the JFrame.
-        
+
         Image faviconX1 = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/View_IconAdminZOO.png"));
         this.setIconImage(faviconX1);
-        
+
         Image logoZRV = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/ZRVC@3x.png"));
         lbZRVLogo.setIcon(new ImageIcon(logoZRV.getScaledInstance(lbZRVLogo.getWidth(), lbZRVLogo.getHeight(), Image.SCALE_AREA_AVERAGING)));
 
@@ -50,11 +68,14 @@ public class AD2 extends javax.swing.JFrame {
         tbGeneratedReports = new javax.swing.JTable();
         lbPro = new java.awt.Label();
         lbWorkers = new java.awt.Label();
-        lbProWorker = new java.awt.Label();
         lbName = new java.awt.Label();
-        lbNameWorker = new java.awt.Label();
+        lbFullNameWorker = new java.awt.Label();
         btNewWorker = new javax.swing.JButton();
         btDeleteWorker = new javax.swing.JButton();
+        lbIDWorker = new java.awt.Label();
+        lbName1 = new java.awt.Label();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        lbFuntionWorker = new javax.swing.JTextArea();
         lbIDworker = new java.awt.Label();
         lbWorkersTitle = new java.awt.Label();
         lbZRVLogo = new javax.swing.JLabel();
@@ -81,26 +102,24 @@ public class AD2 extends javax.swing.JFrame {
 
         tbGeneratedReports.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+
             },
             new String [] {
-                "ID", "Nombre", "Apellido", "Fecha", "Sueldo", "Puesto", "Surcusal"
+                "ID", "NOMBRE", "Apellido", "Funciones"
             }
         ));
         spTableWorkers.setViewportView(tbGeneratedReports);
+        tbGeneratedReports.getAccessibleContext().setAccessibleDescription("");
 
         bgPanelRound.add(spTableWorkers);
-        spTableWorkers.setBounds(10, 35, 680, 280);
+        spTableWorkers.setBounds(10, 35, 680, 240);
 
         lbPro.setBackground(new java.awt.Color(51, 51, 51));
         lbPro.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         lbPro.setForeground(new java.awt.Color(255, 255, 255));
-        lbPro.setText("Profesional:");
+        lbPro.setText("ID:");
         bgPanelRound.add(lbPro);
-        lbPro.setBounds(20, 350, 140, 32);
+        lbPro.setBounds(20, 280, 30, 32);
 
         lbWorkers.setBackground(new java.awt.Color(51, 51, 51));
         lbWorkers.setFont(new java.awt.Font("Arial", 3, 24)); // NOI18N
@@ -109,36 +128,65 @@ public class AD2 extends javax.swing.JFrame {
         bgPanelRound.add(lbWorkers);
         lbWorkers.setBounds(10, 0, 296, 32);
 
-        lbProWorker.setBackground(new java.awt.Color(51, 51, 51));
-        lbProWorker.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lbProWorker.setForeground(new java.awt.Color(255, 153, 0));
-        bgPanelRound.add(lbProWorker);
-        lbProWorker.setBounds(160, 350, 140, 32);
-
         lbName.setBackground(new java.awt.Color(51, 51, 51));
         lbName.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         lbName.setForeground(new java.awt.Color(255, 255, 255));
-        lbName.setText("Nombre:");
+        lbName.setText("Nombre Completo:");
         bgPanelRound.add(lbName);
-        lbName.setBounds(20, 320, 150, 32);
+        lbName.setBounds(210, 280, 171, 32);
 
-        lbNameWorker.setBackground(new java.awt.Color(51, 51, 51));
-        lbNameWorker.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lbNameWorker.setForeground(new java.awt.Color(255, 153, 0));
-        bgPanelRound.add(lbNameWorker);
-        lbNameWorker.setBounds(160, 320, 140, 32);
+        lbFullNameWorker.setBackground(new java.awt.Color(51, 51, 51));
+        lbFullNameWorker.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lbFullNameWorker.setForeground(new java.awt.Color(255, 153, 0));
+        bgPanelRound.add(lbFullNameWorker);
+        lbFullNameWorker.setBounds(380, 280, 310, 32);
 
         btNewWorker.setBackground(new java.awt.Color(51, 51, 51));
         btNewWorker.setForeground(new java.awt.Color(255, 255, 255));
         btNewWorker.setText("Agregar Empleado");
+        btNewWorker.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btNewWorkerActionPerformed(evt);
+            }
+        });
         bgPanelRound.add(btNewWorker);
         btNewWorker.setBounds(550, 330, 130, 23);
 
         btDeleteWorker.setBackground(new java.awt.Color(51, 51, 51));
         btDeleteWorker.setForeground(new java.awt.Color(255, 255, 255));
         btDeleteWorker.setText("Eliminar Empleado");
+        btDeleteWorker.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btDeleteWorkerActionPerformed(evt);
+            }
+        });
         bgPanelRound.add(btDeleteWorker);
         btDeleteWorker.setBounds(550, 360, 130, 23);
+
+        lbIDWorker.setBackground(new java.awt.Color(51, 51, 51));
+        lbIDWorker.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lbIDWorker.setForeground(new java.awt.Color(255, 153, 0));
+        bgPanelRound.add(lbIDWorker);
+        lbIDWorker.setBounds(60, 280, 130, 32);
+
+        lbName1.setBackground(new java.awt.Color(51, 51, 51));
+        lbName1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lbName1.setForeground(new java.awt.Color(255, 255, 255));
+        lbName1.setText("Funciones:");
+        bgPanelRound.add(lbName1);
+        lbName1.setBounds(20, 330, 110, 32);
+
+        lbFuntionWorker.setEditable(false);
+        lbFuntionWorker.setBackground(new java.awt.Color(51, 51, 51));
+        lbFuntionWorker.setColumns(20);
+        lbFuntionWorker.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lbFuntionWorker.setForeground(new java.awt.Color(255, 153, 0));
+        lbFuntionWorker.setRows(5);
+        lbFuntionWorker.setBorder(javax.swing.BorderFactory.createCompoundBorder());
+        jScrollPane2.setViewportView(lbFuntionWorker);
+
+        bgPanelRound.add(jScrollPane2);
+        jScrollPane2.setBounds(140, 316, 400, 70);
 
         bg.add(bgPanelRound, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 700, 390));
 
@@ -158,9 +206,19 @@ public class AD2 extends javax.swing.JFrame {
         bg.add(lbZRVLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 10, 140, 60));
 
         btSearch.setText("Buscar");
+        btSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btSearchActionPerformed(evt);
+            }
+        });
         bg.add(btSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 50, 70, 20));
 
         txIDWorker.setText("Ingrese el ID del trabajador");
+        txIDWorker.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txIDWorkerActionPerformed(evt);
+            }
+        });
         bg.add(txIDWorker, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, 280, -1));
 
         lbZooLogo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -183,14 +241,45 @@ public class AD2 extends javax.swing.JFrame {
         MainScreen.setVisible(true);
     }//GEN-LAST:event_lbZooLogoMouseClicked
 
+    private void btNewWorkerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNewWorkerActionPerformed
+        ADAdd MainScreen = new ADAdd();
+        this.dispose();
+        MainScreen.setVisible(true);
+    }//GEN-LAST:event_btNewWorkerActionPerformed
+
+    private void btDeleteWorkerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDeleteWorkerActionPerformed
+        String id = txIDWorker.getText();
+        String tex = "";
+        lbIDWorker.setText(tex);
+        lbFullNameWorker.setText(tex);
+        lbFuntionWorker.setText(tex);
+        deleteRow(id, file, sheetName, 0);
+        updateTableFromExcel(tbGeneratedReports, file);
+
+    }//GEN-LAST:event_btDeleteWorkerActionPerformed
+
+    private void btSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSearchActionPerformed
+        String id = txIDWorker.getText();
+        Row row = getRow(id, file, sheetName, 0);
+        String[] vector = rowToVector(row);
+        lbIDWorker.setText(vector[0]);
+        lbFullNameWorker.setText(vector[1] + " " + vector[2]);
+        lbFuntionWorker.setText(vector[3]);
+
+    }//GEN-LAST:event_btSearchActionPerformed
+
+    private void txIDWorkerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txIDWorkerActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txIDWorkerActionPerformed
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        try{
+        try {
             UIManager.setLookAndFeel(new FlatDarculaLaf());
-        }catch (Exception e){
-            
+        } catch (Exception e) {
+
         }
 
         /* Create and display the form */
@@ -207,17 +296,20 @@ public class AD2 extends javax.swing.JFrame {
     private javax.swing.JButton btDeleteWorker;
     private javax.swing.JButton btNewWorker;
     private javax.swing.JButton btSearch;
+    private javax.swing.JScrollPane jScrollPane2;
+    private java.awt.Label lbFullNameWorker;
+    private javax.swing.JTextArea lbFuntionWorker;
+    private java.awt.Label lbIDWorker;
     private java.awt.Label lbIDworker;
     private java.awt.Label lbName;
-    private java.awt.Label lbNameWorker;
+    private java.awt.Label lbName1;
     private java.awt.Label lbPro;
-    private java.awt.Label lbProWorker;
     private java.awt.Label lbWorkers;
     private java.awt.Label lbWorkersTitle;
     private javax.swing.JLabel lbZRVLogo;
     private javax.swing.JLabel lbZooLogo;
     private javax.swing.JScrollPane spTableWorkers;
-    private javax.swing.JTable tbGeneratedReports;
+    public static javax.swing.JTable tbGeneratedReports;
     private javax.swing.JTextField txIDWorker;
     // End of variables declaration//GEN-END:variables
 }

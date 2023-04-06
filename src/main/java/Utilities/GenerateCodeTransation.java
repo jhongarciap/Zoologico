@@ -23,18 +23,18 @@ public class GenerateCodeTransation {
             // Si el archivo no existe, empezamos con el número 1
             numero = 1;
         } else {
-            Scanner scanner = new Scanner(file);
-            numero = Integer.parseInt(scanner.nextLine());
-            scanner.close();
+            try (Scanner scanner = new Scanner(file)) {
+                numero = Integer.parseInt(scanner.nextLine());
+            }
         }
         
         // Generamos el código con la letra y el número
         String codigo = letra + numero;
 
-        // Actualizamos el número en el archivo
-        FileWriter writer = new FileWriter(file);
-        writer.write(String.valueOf(numero + 1));
-        writer.close();
+        try ( // Actualizamos el número en el archivo
+                FileWriter writer = new FileWriter(file)) {
+            writer.write(String.valueOf(numero + 1));
+        }
 
         return codigo;
     } catch (IOException e) {

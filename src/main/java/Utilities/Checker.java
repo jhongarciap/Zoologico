@@ -16,7 +16,7 @@ public class Checker {
     */
     public static boolean IntChecker(String str) { // Este método sirve para validar si el String ingresado es Integer o String.
         try {
-            Integer.parseInt(str);
+            Integer.valueOf(str);
             return true; // Retorna true si el String puede ser cambiado en su totalidad en Integer.
         } catch (NumberFormatException e) {
             return false; // En caso contrario, retorna false.

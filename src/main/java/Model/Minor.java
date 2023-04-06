@@ -4,8 +4,6 @@
  */
 package Model;
 
-import Model.Animal;
-
 /**
  *
  * @author garci

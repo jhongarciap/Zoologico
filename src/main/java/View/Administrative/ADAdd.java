@@ -1,17 +1,30 @@
 package View.Administrative;
 
+import Control.AdministrativeDepartment.ArrayListEmployee;
+import Model.Employee;
+import static Utilities.AdExcel.getRowsExcel;
+import static View.Administrative.AD2.tbGeneratedReports;
 import com.formdev.flatlaf.FlatDarculaLaf;
 import com.formdev.flatlaf.FlatDarkLaf;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.io.File;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.UIManager;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
 
 /**
  *
  * @author juan.castro17
  */
 public class ADAdd extends javax.swing.JFrame {
+
+    //Array y añadir 
+    ArrayListEmployee employee = new ArrayListEmployee();
 
     /**
      * Creates new form X1
@@ -30,7 +43,7 @@ public class ADAdd extends javax.swing.JFrame {
         //logo del recadro debajo del logo
         Image logoZRV = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/zoo!Logo.png"));
         lbZooLogo.setIcon(new ImageIcon(logoZRV.getScaledInstance(lbZooLogo.getWidth(), lbZooLogo.getHeight(), Image.SCALE_AREA_AVERAGING)));
-       
+
     }
 
     /**
@@ -45,16 +58,16 @@ public class ADAdd extends javax.swing.JFrame {
         jSplitPane1 = new javax.swing.JSplitPane();
         bg = new javax.swing.JPanel();
         bgPanelRound = new Clases.PanelRound();
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        lbName = new javax.swing.JLabel();
+        txName = new javax.swing.JTextField();
+        lbLastName = new javax.swing.JLabel();
+        txId = new javax.swing.JTextField();
+        lbId = new javax.swing.JLabel();
+        lbFunction = new javax.swing.JLabel();
+        txLastName = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jTextField4 = new javax.swing.JTextField();
-        btLogisticWorkers = new javax.swing.JButton();
+        txFuntion = new javax.swing.JTextArea();
+        btAdd = new javax.swing.JButton();
         lbZooLogo = new javax.swing.JLabel();
         lWorkerTitle2 = new java.awt.Label();
         lWorkerTitle1 = new java.awt.Label();
@@ -79,83 +92,85 @@ public class ADAdd extends javax.swing.JFrame {
         bgPanelRound.setRoundTopRight(15);
         bgPanelRound.setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(242, 242, 242));
-        jLabel1.setText("Nombre:");
-        bgPanelRound.add(jLabel1);
-        jLabel1.setBounds(10, 10, 70, 16);
+        lbName.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lbName.setForeground(new java.awt.Color(242, 242, 242));
+        lbName.setText("Nombre:");
+        bgPanelRound.add(lbName);
+        lbName.setBounds(10, 10, 70, 16);
 
-        jTextField1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jTextField1.setText("Ingrese el nombre del empleado");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txName.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        txName.setText("Ingrese el nombre del empleado");
+        txName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txNameActionPerformed(evt);
             }
         });
-        bgPanelRound.add(jTextField1);
-        jTextField1.setBounds(80, 10, 190, 22);
+        bgPanelRound.add(txName);
+        txName.setBounds(80, 10, 190, 22);
 
-        jLabel2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(242, 242, 242));
-        jLabel2.setText("Apellido:");
-        bgPanelRound.add(jLabel2);
-        jLabel2.setBounds(10, 40, 70, 16);
+        lbLastName.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lbLastName.setForeground(new java.awt.Color(242, 242, 242));
+        lbLastName.setText("Apellido:");
+        bgPanelRound.add(lbLastName);
+        lbLastName.setBounds(10, 40, 70, 16);
 
-        jTextField2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jTextField2.setText("Ingrese la identificación del empleado");
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        txId.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        txId.setText("Ingrese la identificación del empleado");
+        txId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                txIdActionPerformed(evt);
             }
         });
-        bgPanelRound.add(jTextField2);
-        jTextField2.setBounds(80, 70, 190, 22);
+        bgPanelRound.add(txId);
+        txId.setBounds(80, 70, 190, 22);
 
-        jLabel3.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(242, 242, 242));
-        jLabel3.setText("ID:");
-        bgPanelRound.add(jLabel3);
-        jLabel3.setBounds(10, 70, 70, 16);
+        lbId.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lbId.setForeground(new java.awt.Color(242, 242, 242));
+        lbId.setText("ID:");
+        bgPanelRound.add(lbId);
+        lbId.setBounds(10, 70, 70, 16);
 
-        jLabel4.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(242, 242, 242));
-        jLabel4.setText("Función:");
-        bgPanelRound.add(jLabel4);
-        jLabel4.setBounds(10, 100, 70, 16);
+        lbFunction.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lbFunction.setForeground(new java.awt.Color(242, 242, 242));
+        lbFunction.setText("Función:");
+        bgPanelRound.add(lbFunction);
+        lbFunction.setBounds(10, 100, 70, 16);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jTextArea1.setText("Ingresa la función del nuevo empleado");
-        jScrollPane1.setViewportView(jTextArea1);
+        txLastName.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        txLastName.setText("Ingrese el apellido del empleado");
+        txLastName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txLastNameActionPerformed(evt);
+            }
+        });
+        bgPanelRound.add(txLastName);
+        txLastName.setBounds(80, 40, 190, 22);
+
+        txFuntion.setColumns(20);
+        txFuntion.setLineWrap(true);
+        txFuntion.setRows(5);
+        txFuntion.setText("Ingresa las funciones del empleado ");
+        txFuntion.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jScrollPane1.setViewportView(txFuntion);
 
         bgPanelRound.add(jScrollPane1);
-        jScrollPane1.setBounds(10, 120, 260, 130);
-
-        jTextField4.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jTextField4.setText("Ingrese el apellido del empleado");
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
-            }
-        });
-        bgPanelRound.add(jTextField4);
-        jTextField4.setBounds(80, 40, 190, 22);
+        jScrollPane1.setBounds(14, 126, 250, 120);
 
         bg.add(bgPanelRound, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 280, 260));
 
-        btLogisticWorkers.setBackground(new java.awt.Color(255, 153, 0));
-        btLogisticWorkers.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
-        btLogisticWorkers.setForeground(new java.awt.Color(242, 242, 242));
-        btLogisticWorkers.setText("+");
-        btLogisticWorkers.setActionCommand("Añadir");
-        btLogisticWorkers.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btLogisticWorkers.setFocusPainted(false);
-        btLogisticWorkers.addActionListener(new java.awt.event.ActionListener() {
+        btAdd.setBackground(new java.awt.Color(255, 153, 0));
+        btAdd.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
+        btAdd.setForeground(new java.awt.Color(242, 242, 242));
+        btAdd.setText("+");
+        btAdd.setActionCommand("Añadir");
+        btAdd.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btAdd.setFocusPainted(false);
+        btAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btLogisticWorkersActionPerformed(evt);
+                btAddActionPerformed(evt);
             }
         });
-        bg.add(btLogisticWorkers, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 320, 50, 30));
+        bg.add(btAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 320, 50, 30));
 
         lbZooLogo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lbZooLogo.setMaximumSize(new java.awt.Dimension(549, 267));
@@ -181,34 +196,67 @@ public class ADAdd extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btLogisticWorkersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLogisticWorkersActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btLogisticWorkersActionPerformed
+    private void btAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+        Employee newEmployee = new Employee(txId.getText(), txName.getText(), txLastName.getText(), txFuntion.getText());
+        employee.addemployee(newEmployee);
+        employee.saveEmployeeExcel();
+        AD2 MainScreen = new AD2();
+        this.dispose();
+        MainScreen.setVisible(true);
+        // Obtener los datos del archivo Excel
+        File file = new File("rom/Employees/Employees.xlsx");
+// Obtener los datos del archivo Excel
+// Obtener el modelo de la tabla
+        TableModel model = tbGeneratedReports.getModel();
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+// Obtener los datos del archivo Excel
+        ArrayList<Row> data = getRowsExcel(file);
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+// Limpiar la tabla
+        while (model.getRowCount() > 0) {
+            ((DefaultTableModel) model).removeRow(0);
+        }
+// Agregar los datos a la tabla, comenzando desde la fila 2
+        for (int rowIndex = 1; rowIndex < data.size(); rowIndex++) {
+            Row row = data.get(rowIndex);
+            Object[] rowData = new Object[row.getLastCellNum()];
+            for (int i = 0; i < rowData.length; i++) {
+                Cell cell = row.getCell(i);
+                rowData[i] = cell == null ? "" : cell.toString();
+            }
+            ((DefaultTableModel) model).addRow(rowData);
+        }
+
+
+    }//GEN-LAST:event_btAddActionPerformed
+
+    private void txNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txNameActionPerformed
+
+    }//GEN-LAST:event_txNameActionPerformed
+
+    private void txIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txIdActionPerformed
+
+    }//GEN-LAST:event_txIdActionPerformed
+
+    private void txLastNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txLastNameActionPerformed
+
+    }//GEN-LAST:event_txLastNameActionPerformed
 
     private void lbZooLogoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbZooLogoMouseClicked
-        // TODO add your handling code here:
+        AD2 MainScreen = new AD2();
+        this.dispose();
+        MainScreen.setVisible(true);
     }//GEN-LAST:event_lbZooLogoMouseClicked
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        try{
+        try {
             UIManager.setLookAndFeel(new FlatDarculaLaf());
-        }catch (Exception e){
-            
+        } catch (Exception e) {
+
         }
 
         /* Create and display the form */
@@ -222,19 +270,19 @@ public class ADAdd extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;
     private Clases.PanelRound bgPanelRound;
-    private javax.swing.JButton btLogisticWorkers;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JButton btAdd;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSplitPane jSplitPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField4;
     private java.awt.Label lWorkerTitle1;
     private java.awt.Label lWorkerTitle2;
+    private javax.swing.JLabel lbFunction;
+    private javax.swing.JLabel lbId;
+    private javax.swing.JLabel lbLastName;
+    private javax.swing.JLabel lbName;
     private javax.swing.JLabel lbZooLogo;
+    private javax.swing.JTextArea txFuntion;
+    private javax.swing.JTextField txId;
+    private javax.swing.JTextField txLastName;
+    private javax.swing.JTextField txName;
     // End of variables declaration//GEN-END:variables
 }
