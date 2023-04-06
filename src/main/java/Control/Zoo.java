@@ -24,7 +24,7 @@ public class Zoo {
 
     public static void main(String[] args) {
         ArrayListBillSale arrayListBillSale = new ArrayListBillSale();
-        SaleBill saleBill = new SaleBill("2023-04-04", "", 100.0f, 10.0f, 90.0f, "John Doe", "Product", "5678", 1);
+        SaleBill saleBill = new SaleBill("2023-04-04", "", 100.0f, 10.0f,1, 90.0f, "John Doe", "Product", "5678");
         //Aquí se agregan elementos al objeto saleBill
         arrayListBillSale.addBillSale(saleBill);
         arrayListBillSale.SaveBillSaleExcel();
@@ -32,7 +32,7 @@ public class Zoo {
         File file = new File("rom/Bills/BillSale.xlsx");
         String sheetName = "BillSale";
         int column = 1;
-        String codigo = "BS17";
+        String codigo = "BS38";
 
         //Muestra todas los elementos del excel en un array 
  /*             ArrayList<Row> rows = getRowsExcel(file);
@@ -57,12 +57,12 @@ public class Zoo {
         }
  */       
 //Eliminar alguna fila 
-        //deleteRow(codigo, file, sheetName, column);
+        deleteRow(codigo, file, sheetName, column);
         //Buscar una fila problema, hay que convertirlo en  array 
-        Row row = getRow(codigo, file, sheetName, column);
+//        Row row = getRow(codigo, file, sheetName, column);
         
         //Este solo es para ver si si ejecuta 
-     /*  for (Cell celda : row) {
+  /*     for (Cell celda : row) {
     if (celda.getCellType() == CellType.STRING) {
         System.out.print(celda.getStringCellValue() + "\t");
     } else if (celda.getCellType() == CellType.NUMERIC) {

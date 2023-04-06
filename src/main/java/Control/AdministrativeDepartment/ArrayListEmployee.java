@@ -31,9 +31,9 @@ public class ArrayListEmployee {
         employees.add(employee);
     }
    // Guardar/Crear/Llenar Excel
-    public void SaveEmployeeExcel() {
+    public void saveEmployeeExcel() {
         try {
-            File file = new File("rom/Employees.xlsx");
+            File file = new File("rom/Employees/Employees.xlsx");
             if (file.exists()) {
                 FileInputStream fis = new FileInputStream(file);
                 XSSFWorkbook workbook = new XSSFWorkbook(fis);
@@ -45,7 +45,7 @@ public class ArrayListEmployee {
                     XSSFRow row = sheet.createRow(lastRow);
                     row.createCell(0).setCellValue(employees.get(i).getId());
                     row.createCell(1).setCellValue(employees.get(i).getName());
-                    row.createCell(2).setCellValue(employees.get(i).getPost());
+                    row.createCell(2).setCellValue(employees.get(i).getLastName());
                     row.createCell(3).setCellValue(employees.get(i).getFuncions());
                 }
                 fis.close();
@@ -60,14 +60,14 @@ public class ArrayListEmployee {
                 XSSFRow row = sheet.createRow(0);
                 row.createCell(0).setCellValue("ID");
                 row.createCell(1).setCellValue("Name");
-                row.createCell(2).setCellValue("Post");
+                row.createCell(2).setCellValue("LastName");
                 row.createCell(3).setCellValue("Funcions");
 
                 for (int i = 0; i < employees.size(); i++) {
                     row = sheet.createRow(i + 1);
                    row.createCell(0).setCellValue(employees.get(i).getId());
                     row.createCell(1).setCellValue(employees.get(i).getName());
-                    row.createCell(2).setCellValue(employees.get(i).getPost());
+                    row.createCell(2).setCellValue(employees.get(i).getLastName());
                     row.createCell(3).setCellValue(employees.get(i).getFuncions());
                 }
 

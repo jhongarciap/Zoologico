@@ -15,6 +15,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
@@ -43,7 +44,7 @@ public class AdExcel {
             }
             if (type != null && type.equals(Employee.class)) {
                 ArrayListEmployee excel = new ArrayListEmployee();
-                excel.SaveEmployeeExcel();
+                excel.saveEmployeeExcel();
             }
             if (type != null && type.equals(Minor.class)) {
                 ArrayListMinor excel = new ArrayListMinor();
@@ -69,6 +70,7 @@ public class AdExcel {
         }
     }
 //Muestra todos los elementos de excel
+
     public static ArrayList<Row> getRowsExcel(File file) {
         ArrayList<Row> rows = new ArrayList<>();
         try {
@@ -92,7 +94,7 @@ public class AdExcel {
     }
 //Suma ventas y compras en total
 
-    public Float sumBillExcel(File file) {
+    public static Float sumBillExcel(File file) {
         float totalValue = 0f;
         try {
             if (file.exists()) {
@@ -134,27 +136,33 @@ public class AdExcel {
 //Elimina y organiza el excel 
 
     public static void deleteRow(String codigo, File file, String sheetName, int columnToDelete) {
-        try {
-            // Carga el archivo Excel
-            FileInputStream archive = new FileInputStream(file);
-            XSSFWorkbook book = new XSSFWorkbook(archive);
+    try {
+        // Carga el archivo Excel
+        FileInputStream archive = new FileInputStream(file);
+        XSSFWorkbook book = new XSSFWorkbook(archive);
 
-            // Selecciona la hoja
-            XSSFSheet sheet = book.getSheet(sheetName);
+        // Selecciona la hoja
+        XSSFSheet sheet = book.getSheet(sheetName);
 
-            // Recorre cada fila de la hoja
-            for (int i = sheet.getLastRowNum(); i >= sheet.getFirstRowNum(); i--) {
-                Row fila = sheet.getRow(i);
+        boolean rowDeleted = false; // Variable para controlar si se eliminó una fila en la iteración actual del ciclo for
 
-                // Compara el código con la celda de la columna especificada
-                if (fila.getCell(columnToDelete).getStringCellValue().equals(codigo)) {
-                    // Elimina la fila y desplaza las filas hacia arriba
+        // Recorre cada fila de la hoja
+        for (int i = sheet.getLastRowNum(); i >= sheet.getFirstRowNum(); i--) {
+            Row fila = sheet.getRow(i);
+
+            // Compara el código con la celda de la columna especificada
+            if (fila.getCell(columnToDelete).getStringCellValue().equals(codigo)) {
+                if (i == sheet.getLastRowNum()) { // Si es la última fila, elimina sin desplazar
+                    sheet.removeRow(fila);
+                } else { // De lo contrario, elimina y desplaza hacia arriba
                     sheet.removeRow(fila);
                     sheet.shiftRows(i + 1, sheet.getLastRowNum(), -1);
-                    i--; // Decrementa el contador para evitar omitir la fila siguiente
                 }
+                rowDeleted = true;
             }
+        }
 
+        if (rowDeleted) {
             // Guarda los cambios en el archivo
             FileOutputStream exit = new FileOutputStream(file);
             book.write(exit);
@@ -162,10 +170,30 @@ public class AdExcel {
             // Cierra los flujos de entrada y salida
             archive.close();
             exit.close();
-
-        } catch (IOException e) {
-            e.printStackTrace();
         }
+
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
+
+
+//Convertir a row en un vector 
+
+    public static String[] rowToVector(Row row) {
+        int numCells = row.getLastCellNum();
+        String[] vector = new String[numCells];
+
+        for (int i = 0; i < numCells; i++) {
+            Cell cell = row.getCell(i);
+            if (cell != null) {
+                vector[i] = cell.toString();
+            } else {
+                vector[i] = "";
+            }
+        }
+
+        return vector;
     }
 
     public static Row getRow(String codigo, File file, String sheetName, int cellNum) {

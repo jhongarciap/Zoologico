@@ -44,11 +44,11 @@ public class ArrayListBillShopping {
                     row.createCell(1).setCellValue(billsShoppings.get(i).getCode());
                     row.createCell(2).setCellValue(billsShoppings.get(i).getValue());
                     row.createCell(3).setCellValue(billsShoppings.get(i).getDiscount());
-                    row.createCell(4).setCellValue(billsShoppings.get(i).getTotalvalue());
-                    row.createCell(5).setCellValue(billsShoppings.get(i).getCostormerName());
-                    row.createCell(6).setCellValue(billsShoppings.get(i).getProduct());
-                    row.createCell(7).setCellValue(billsShoppings.get(i).getProductld());
-                    row.createCell(8).setCellValue(billsShoppings.get(i).getAmount());
+                    row.createCell(4).setCellValue(billsShoppings.get(i).getAmount());
+                    row.createCell(5).setCellValue(billsShoppings.get(i).getTotalvalue());
+                    row.createCell(6).setCellValue(billsShoppings.get(i).getCostormerName());
+                    row.createCell(7).setCellValue(billsShoppings.get(i).getProduct());
+                    row.createCell(8).setCellValue(billsShoppings.get(i).getProductld());
                 }
                 fis.close();
 
@@ -64,11 +64,11 @@ public class ArrayListBillShopping {
                 row.createCell(1).setCellValue("Code");
                 row.createCell(2).setCellValue("Value");
                 row.createCell(3).setCellValue("Discount");
-                row.createCell(4).setCellValue("Total Value");
-                row.createCell(5).setCellValue("Customer Name");
-                row.createCell(6).setCellValue("Product");
-                row.createCell(7).setCellValue("Product ID");
-                row.createCell(8).setCellValue("Amount");
+                row.createCell(4).setCellValue("Amount");
+                row.createCell(5).setCellValue("Total Value");
+                row.createCell(6).setCellValue("Customer Name");
+                row.createCell(7).setCellValue("Product");
+                row.createCell(8).setCellValue("Product ID");
 
                 for (int i = 0; i < billsShoppings.size(); i++) {
                     row = sheet.createRow(i + 1);
@@ -76,11 +76,11 @@ public class ArrayListBillShopping {
                     row.createCell(1).setCellValue(billsShoppings.get(i).getCode());
                     row.createCell(2).setCellValue(billsShoppings.get(i).getValue());
                     row.createCell(3).setCellValue(billsShoppings.get(i).getDiscount());
-                    row.createCell(4).setCellValue(billsShoppings.get(i).getTotalvalue());
-                    row.createCell(5).setCellValue(billsShoppings.get(i).getCostormerName());
-                    row.createCell(6).setCellValue(billsShoppings.get(i).getProduct());
-                    row.createCell(7).setCellValue(billsShoppings.get(i).getProductld());
-                    row.createCell(8).setCellValue(billsShoppings.get(i).getAmount());
+                    row.createCell(4).setCellValue(billsShoppings.get(i).getAmount());
+                    row.createCell(5).setCellValue(billsShoppings.get(i).getTotalvalue());
+                    row.createCell(6).setCellValue(billsShoppings.get(i).getCostormerName());
+                    row.createCell(7).setCellValue(billsShoppings.get(i).getProduct());
+                    row.createCell(8).setCellValue(billsShoppings.get(i).getProductld());
                 }
 
                 FileOutputStream fos = new FileOutputStream(file);

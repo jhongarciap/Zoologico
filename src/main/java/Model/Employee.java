@@ -9,29 +9,30 @@ package Model;
  * @author garci
  */
 public class Employee {
-     private String post;
+     private String lastName;
      private String name;
      private String funcions;
      private String id;
      
-    public Employee(String post, String name, String funcions, String id) {
-        this.post = post;
+    public Employee(String id,String name, String lastName,String funcions) {
+        this.lastName = lastName;
         this.name = name;
         this.funcions = funcions;
         this.id = id;
     }
+
     /**
-     * @return the post
+     * @return the lastName
      */
-    public String getPost() {
-        return post;
+    public String getLastName() {
+        return lastName;
     }
 
     /**
-     * @param post the post to set
+     * @param lastName the lastName to set
      */
-    public void setPost(String post) {
-        this.post = post;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     /**
@@ -75,6 +76,5 @@ public class Employee {
     public void setId(String id) {
         this.id = id;
     }
-
     
 }
