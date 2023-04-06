@@ -4,7 +4,7 @@
  */
 package Control;
 
-import ArrayManager.ArrayListBillSale;
+import Control.ComercialDepartment.ArrayListBillSale;
 import Utilities.AdExcel;
 import Model.SaleBill;
 import static Utilities.AdExcel.deleteRow;

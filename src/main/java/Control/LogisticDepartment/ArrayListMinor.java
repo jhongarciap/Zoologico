@@ -2,9 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package ArrayManager;
+package Control.LogisticDepartment;
 
-import Model.Domestic;
+import Model.Minor;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -17,41 +17,41 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  *
  * @author garci
  */
-public class ArrayListDomestic {
+public class ArrayListMinor {
     //Array de Employee
 
-    private ArrayList<Domestic> domestics = new ArrayList<>();
+    private ArrayList<Minor> minors = new ArrayList<>();
 
     //Constructor vacio
-    public ArrayListDomestic() {
+    public ArrayListMinor() {
 
     }
 
     //Añadir
-    public void addDomestic(Domestic domestic) {
-        domestics.add(domestic);
-        // Guardar/Crear/Llenar Excel
+    public void addDomestic(Minor minor) {
+        minors.add(minor);
     }
-        
-    public void saveDomesticExcel() {
+
+    // Guardar/Crear/Llenar Excel
+    public void saveMinorExcel() {
         try {
-            File file = new File("rom/Animals/Domestics.xlsx");
+            File file = new File("rom/Animals/Minors.xlsx");
             if (file.exists()) {
                 FileInputStream fis = new FileInputStream(file);
                 XSSFWorkbook workbook = new XSSFWorkbook(fis);
                 XSSFSheet sheet = workbook.getSheetAt(0);
                 int lastRow = sheet.getLastRowNum();
 
-                for (int i = 0; i < domestics.size(); i++) {
+                for (int i = 0; i < minors.size(); i++) {
                     lastRow++;
                     XSSFRow row = sheet.createRow(lastRow);
-                    row.createCell(0).setCellValue(domestics.get(i).getName());
-                    row.createCell(1).setCellValue(domestics.get(i).getRace());
-                    row.createCell(2).setCellValue(domestics.get(i).getSex());
-                    row.createCell(3).setCellValue(domestics.get(i).getHabitad());
-                    row.createCell(4).setCellValue(domestics.get(i).getOrigin());
-                    row.createCell(5).setCellValue(domestics.get(i).getPsyche());
-                    row.createCell(6).setCellValue(domestics.get(i).getDiet());
+                    row.createCell(0).setCellValue(minors.get(i).getName());
+                    row.createCell(1).setCellValue(minors.get(i).getRace());
+                    row.createCell(2).setCellValue(minors.get(i).getSex());
+                    row.createCell(3).setCellValue(minors.get(i).getHabitad());
+                    row.createCell(4).setCellValue(minors.get(i).getDiseases());
+                    row.createCell(5).setCellValue(minors.get(i).getNativeClimate());
+                    row.createCell(6).setCellValue(minors.get(i).getDiet());
                 }
                 fis.close();
 
@@ -60,26 +60,26 @@ public class ArrayListDomestic {
                 fos.close();
             } else {
                 XSSFWorkbook workbook = new XSSFWorkbook();
-                XSSFSheet sheet = workbook.createSheet("Domestics");
+                XSSFSheet sheet = workbook.createSheet("Minors");
 
                 XSSFRow row = sheet.createRow(0);
                 row.createCell(0).setCellValue("Name");
                 row.createCell(1).setCellValue("Race");
                 row.createCell(2).setCellValue("Sex");
                 row.createCell(3).setCellValue("Habitad");
-                row.createCell(4).setCellValue("Origin");
-                row.createCell(5).setCellValue("Psyche");
+                row.createCell(4).setCellValue("Diseases");
+                row.createCell(5).setCellValue("NativeClimate");
                 row.createCell(6).setCellValue("Diet");
 
-                for (int i = 0; i < domestics.size(); i++) {
+                for (int i = 0; i < minors.size(); i++) {
                     row = sheet.createRow(i + 1);
-                    row.createCell(0).setCellValue(domestics.get(i).getName());
-                    row.createCell(1).setCellValue(domestics.get(i).getRace());
-                    row.createCell(2).setCellValue(domestics.get(i).getSex());
-                    row.createCell(3).setCellValue(domestics.get(i).getHabitad());
-                    row.createCell(4).setCellValue(domestics.get(i).getOrigin());
-                    row.createCell(5).setCellValue(domestics.get(i).getPsyche());
-                    row.createCell(6).setCellValue(domestics.get(i).getDiet());
+                    row.createCell(0).setCellValue(minors.get(i).getName());
+                    row.createCell(1).setCellValue(minors.get(i).getRace());
+                    row.createCell(2).setCellValue(minors.get(i).getSex());
+                    row.createCell(3).setCellValue(minors.get(i).getHabitad());
+                    row.createCell(4).setCellValue(minors.get(i).getDiseases());
+                    row.createCell(5).setCellValue(minors.get(i).getNativeClimate());
+                    row.createCell(6).setCellValue(minors.get(i).getDiet());
                 }
 
                 FileOutputStream fos = new FileOutputStream(file);
@@ -90,4 +90,5 @@ public class ArrayListDomestic {
             System.out.println("Hay un error, revisa.");
         }
     }
+
 }
