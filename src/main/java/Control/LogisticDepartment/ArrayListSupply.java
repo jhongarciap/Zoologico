@@ -21,10 +21,11 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public class ArrayListSupply {
 
     //Array de Supply
-    private ArrayList<Supply> supllys = new ArrayList<>();
+    private ArrayList<Supply> supllys;
     //constructor vacio 
 
     public ArrayListSupply() {
+        this.supllys = new ArrayList<>();
     }
 
     //añadir
@@ -52,9 +53,9 @@ public class ArrayListSupply {
                     }
                 }
 
-                FileOutputStream fos = new FileOutputStream(file);
-                workbook.write(fos);
-                fos.close();
+                try (FileOutputStream fos = new FileOutputStream(file)) {
+                    workbook.write(fos);
+                }
             } else {
                 XSSFWorkbook workbook = new XSSFWorkbook();
                 XSSFSheet sheet = workbook.createSheet("Supplys");

@@ -4,13 +4,17 @@
  */
 package Control;
 
-import Control.ComercialDepartment.ArrayListBillSale;
+//import Control.ComercialDepartment.ArrayListBillSale;
 //import Utilities.AdExcel;
-import Model.SaleBill;
-import static Utilities.AdExcel.deleteRow;
+//import Model.SaleBill;
+//import static Utilities.AdExcel.deleteRow;
+import static Utilities.AdExcel.getRowsExcel;
 //import static Utilities.AdExcel.getRow;
 //import static Utilities.AdExcel.getRowsExcel;
 import java.io.File;
+import java.util.ArrayList;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
 //import java.util.ArrayList;
 //import org.apache.poi.ss.usermodel.Cell;
 //import org.apache.poi.ss.usermodel.CellType;
@@ -23,20 +27,22 @@ import java.io.File;
 public class Zoo {
 
     public static void main(String[] args) {
-        ArrayListBillSale arrayListBillSale = new ArrayListBillSale();
-        SaleBill saleBill = new SaleBill("2023-04-04", "", 100.0f, 10.0f,1, 90.0f, "John Doe", "Product", "5678");
+        File file = new File("rom/Supply.xlsx");
+        ArrayList<Row> data = getRowsExcel(file);
+        //ArrayListBillSale arrayListBillSale = new ArrayListBillSale();
+        //SaleBill saleBill = new SaleBill("2023-04-04", "", 100.0f, 10.0f,1, 90.0f, "John Doe", "Product", "5678");
         //Aquí se agregan elementos al objeto saleBill
-        arrayListBillSale.addBillSale(saleBill);
-        arrayListBillSale.SaveBillSaleExcel();
+        //arrayListBillSale.addBillSale(saleBill);
+        //arrayListBillSale.SaveBillSaleExcel();
 //Datos asociados a los metodos AdExcel
-        File file = new File("rom/Bills/BillSale.xlsx");
-        String sheetName = "BillSale";
-        int column = 1;
-        String codigo = "BS38";
+        //File file = new File("rom/Bills/BillSale.xlsx");
+        //String sheetName = "BillSale";
+        //int column = 1;
+        //String codigo = "BS38";
 
         //Muestra todas los elementos del excel en un array 
- /*             ArrayList<Row> rows = getRowsExcel(file);
-        for (Row row : rows) {
+//ArrayList<Row> rows = getRowsExcel(file);
+        for (Row row : data) {
             for (int j = 0; j < row.getLastCellNum(); j++) {
                 Cell cell = row.getCell(j);
                 switch (cell.getCellType()) {
@@ -54,10 +60,9 @@ public class Zoo {
                 }
             }
             System.out.println();
-        }
- */       
+        }     
 //Eliminar alguna fila 
-        deleteRow(codigo, file, sheetName, column);
+        //deleteRow(codigo, file, sheetName, column);
         //Buscar una fila problema, hay que convertirlo en  array 
 //        Row row = getRow(codigo, file, sheetName, column);
         
