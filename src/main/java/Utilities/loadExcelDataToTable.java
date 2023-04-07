@@ -18,26 +18,31 @@ import org.apache.poi.ss.usermodel.Row;
  */
 public class loadExcelDataToTable {
     public static void updateTableFromExcel(JTable table, File excelFile) {
-    // Obtener el modelo de la tabla
-    DefaultTableModel model = (DefaultTableModel) table.getModel();
+        // Obtener el modelo de la tabla
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
 
-    // Obtener los datos del archivo Excel
-    ArrayList<Row> data = getRowsExcel(excelFile);
+        // Obtener los datos del archivo Excel
+        ArrayList<Row> data = getRowsExcel(excelFile);
 
-    // Limpiar la tabla
-    model.setRowCount(0);
+        // Limpiar la tabla
+        model.setRowCount(0);
 
-    // Agregar los datos a la tabla, comenzando desde la fila 2
-    for (int rowIndex = 1; rowIndex < data.size(); rowIndex++) {
-        Row row = data.get(rowIndex);
-        Object[] rowData = new Object[row.getLastCellNum()];
-        for (int i = 0; i < rowData.length; i++) {
-            Cell cell = row.getCell(i);
-            rowData[i] = cell == null ? "" : cell.toString();
+        // Agregar los datos a la tabla, comenzando desde la fila 2
+        for (int rowIndex = 1; rowIndex < data.size(); rowIndex++) {
+            Row row = data.get(rowIndex);
+            Object[] rowData = new Object[row.getLastCellNum()];
+            for (int i = 0; i < rowData.length; i++) {
+                Cell cell = row.getCell(i);
+                rowData[i] = cell == null ? "" : cell.toString();
+            }
+            model.addRow(rowData);
         }
-        model.addRow(rowData);
+
+        // Hacer que la tabla no sea editable
+        table.setDefaultEditor(Object.class, null);
     }
-    }
+
+
     public static void updateTableFromTwoExcelFiles(JTable table, File excelFile1, File excelFile2) {
     // Actualizar tabla con el primer archivo de Excel
     updateTableFromExcel(table, excelFile1);

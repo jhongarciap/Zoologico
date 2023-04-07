@@ -60,7 +60,6 @@ public class AD1 extends javax.swing.JFrame {
         lbTotalIncomesValue = new java.awt.Label();
         lbTotal = new java.awt.Label();
         lbTotalValue = new java.awt.Label();
-        btDeleteReport = new javax.swing.JButton();
         lbReportType = new java.awt.Label();
         lbReportTitle = new java.awt.Label();
         lbZRVLogo = new javax.swing.JLabel();
@@ -145,20 +144,14 @@ public class AD1 extends javax.swing.JFrame {
         lbTotal.setForeground(new java.awt.Color(255, 255, 255));
         lbTotal.setText("Total");
         bgPanelRound.add(lbTotal);
-        lbTotal.setBounds(310, 330, 60, 40);
+        lbTotal.setBounds(450, 330, 60, 40);
 
         lbTotalValue.setBackground(new java.awt.Color(51, 51, 51));
         lbTotalValue.setFont(new java.awt.Font("Arial", 1, 22)); // NOI18N
         lbTotalValue.setForeground(new java.awt.Color(255, 153, 0));
         lbTotalValue.setText("$00.000,00");
         bgPanelRound.add(lbTotalValue);
-        lbTotalValue.setBounds(380, 330, 160, 40);
-
-        btDeleteReport.setBackground(new java.awt.Color(51, 51, 51));
-        btDeleteReport.setForeground(new java.awt.Color(255, 255, 255));
-        btDeleteReport.setText("Eliminar Reporte");
-        bgPanelRound.add(btDeleteReport);
-        btDeleteReport.setBounds(560, 340, 130, 23);
+        lbTotalValue.setBounds(520, 330, 160, 40);
 
         bg.add(bgPanelRound, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 700, 390));
 
@@ -266,7 +259,6 @@ public class AD1 extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;
     private Clases.PanelRound bgPanelRound;
-    private javax.swing.JButton btDeleteReport;
     private javax.swing.JButton btGeneratePDF1;
     private javax.swing.JComboBox<String> cbReportType;
     private javax.swing.JScrollPane jScrollPane1;

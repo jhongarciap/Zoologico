@@ -3,6 +3,7 @@ package View.Administrative;
 import Control.AdministrativeDepartment.ArrayListEmployee;
 import Model.Employee;
 import static Utilities.AdExcel.getRowsExcel;
+import static Utilities.loadExcelDataToTable.updateTableFromExcel;
 import static View.Administrative.AD2.tbGeneratedReports;
 import com.formdev.flatlaf.FlatDarculaLaf;
 import com.formdev.flatlaf.FlatDarkLaf;
@@ -71,6 +72,7 @@ public class ADAdd extends javax.swing.JFrame {
         lbZooLogo = new javax.swing.JLabel();
         lWorkerTitle2 = new java.awt.Label();
         lWorkerTitle1 = new java.awt.Label();
+        lbAdvert = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -99,7 +101,6 @@ public class ADAdd extends javax.swing.JFrame {
         lbName.setBounds(10, 10, 70, 16);
 
         txName.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        txName.setText("Ingrese el nombre del empleado");
         txName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txNameActionPerformed(evt);
@@ -115,7 +116,6 @@ public class ADAdd extends javax.swing.JFrame {
         lbLastName.setBounds(10, 40, 70, 16);
 
         txId.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        txId.setText("Ingrese la identificación del empleado");
         txId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txIdActionPerformed(evt);
@@ -137,7 +137,6 @@ public class ADAdd extends javax.swing.JFrame {
         lbFunction.setBounds(10, 100, 70, 16);
 
         txLastName.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        txLastName.setText("Ingrese el apellido del empleado");
         txLastName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txLastNameActionPerformed(evt);
@@ -149,7 +148,6 @@ public class ADAdd extends javax.swing.JFrame {
         txFuntion.setColumns(20);
         txFuntion.setLineWrap(true);
         txFuntion.setRows(5);
-        txFuntion.setText("Ingresa las funciones del empleado ");
         txFuntion.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         jScrollPane1.setViewportView(txFuntion);
 
@@ -191,6 +189,9 @@ public class ADAdd extends javax.swing.JFrame {
         lWorkerTitle1.setText("Empleado");
         bg.add(lWorkerTitle1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, -1, -1));
 
+        lbAdvert.setForeground(new java.awt.Color(255, 0, 0));
+        bg.add(lbAdvert, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 110, 20));
+
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 370));
 
         pack();
@@ -198,36 +199,28 @@ public class ADAdd extends javax.swing.JFrame {
 
     private void btAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddActionPerformed
 
+        
+        if (txName.getText().equals("")
+                || txLastName.getText().equals("") 
+                || txId.getText().equals("") 
+                || txFuntion.getText().equals("")){ 
+            // Mostramos un mensaje que hay campos vacios
+            lbAdvert.setText("Hay campos vacios");
+        } else {
+            // En caso de que la vez anterior fuera incorrecta, esta vez no aparece el mensaje de campos vacios
+            lbAdvert.setText("");
+            //Se llena la array 
         Employee newEmployee = new Employee(txId.getText(), txName.getText(), txLastName.getText(), txFuntion.getText());
         employee.addemployee(newEmployee);
         employee.saveEmployeeExcel();
+        //se habre la ventana AD2 
         AD2 MainScreen = new AD2();
         this.dispose();
         MainScreen.setVisible(true);
-        // Obtener los datos del archivo Excel
+        //Se carga la tabla actualizada 
         File file = new File("rom/Employees/Employees.xlsx");
-// Obtener los datos del archivo Excel
-// Obtener el modelo de la tabla
-        TableModel model = tbGeneratedReports.getModel();
-
-// Obtener los datos del archivo Excel
-        ArrayList<Row> data = getRowsExcel(file);
-
-// Limpiar la tabla
-        while (model.getRowCount() > 0) {
-            ((DefaultTableModel) model).removeRow(0);
+         updateTableFromExcel(tbGeneratedReports, file);
         }
-// Agregar los datos a la tabla, comenzando desde la fila 2
-        for (int rowIndex = 1; rowIndex < data.size(); rowIndex++) {
-            Row row = data.get(rowIndex);
-            Object[] rowData = new Object[row.getLastCellNum()];
-            for (int i = 0; i < rowData.length; i++) {
-                Cell cell = row.getCell(i);
-                rowData[i] = cell == null ? "" : cell.toString();
-            }
-            ((DefaultTableModel) model).addRow(rowData);
-        }
-
 
     }//GEN-LAST:event_btAddActionPerformed
 
@@ -275,6 +268,7 @@ public class ADAdd extends javax.swing.JFrame {
     private javax.swing.JSplitPane jSplitPane1;
     private java.awt.Label lWorkerTitle1;
     private java.awt.Label lWorkerTitle2;
+    private javax.swing.JLabel lbAdvert;
     private javax.swing.JLabel lbFunction;
     private javax.swing.JLabel lbId;
     private javax.swing.JLabel lbLastName;

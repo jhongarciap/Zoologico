@@ -82,6 +82,7 @@ public class AD2 extends javax.swing.JFrame {
         btSearch = new javax.swing.JButton();
         txIDWorker = new javax.swing.JTextField();
         lbZooLogo = new javax.swing.JLabel();
+        lbAdvert = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -193,14 +194,14 @@ public class AD2 extends javax.swing.JFrame {
         lbIDworker.setBackground(new java.awt.Color(35, 35, 35));
         lbIDworker.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         lbIDworker.setForeground(new java.awt.Color(255, 255, 255));
-        lbIDworker.setText("Trabajador:");
+        lbIDworker.setText("Trabajador ID:");
         bg.add(lbIDworker, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, 20));
 
         lbWorkersTitle.setBackground(new java.awt.Color(35, 35, 35));
         lbWorkersTitle.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lbWorkersTitle.setForeground(new java.awt.Color(255, 153, 0));
         lbWorkersTitle.setText("Recursos Humanos");
-        bg.add(lbWorkersTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 5, -1, -1));
+        bg.add(lbWorkersTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, -1, -1));
 
         lbZRVLogo.setMaximumSize(new java.awt.Dimension(549, 267));
         bg.add(lbZRVLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 10, 140, 60));
@@ -213,13 +214,12 @@ public class AD2 extends javax.swing.JFrame {
         });
         bg.add(btSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 50, 70, 20));
 
-        txIDWorker.setText("Ingrese el ID del trabajador");
         txIDWorker.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txIDWorkerActionPerformed(evt);
             }
         });
-        bg.add(txIDWorker, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, 280, -1));
+        bg.add(txIDWorker, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 50, 250, -1));
 
         lbZooLogo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lbZooLogo.setMaximumSize(new java.awt.Dimension(549, 267));
@@ -229,6 +229,9 @@ public class AD2 extends javax.swing.JFrame {
             }
         });
         bg.add(lbZooLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 2, 90, 45));
+
+        lbAdvert.setForeground(new java.awt.Color(255, 0, 0));
+        bg.add(lbAdvert, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 20, 110, 20));
 
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 480));
 
@@ -259,13 +262,20 @@ public class AD2 extends javax.swing.JFrame {
     }//GEN-LAST:event_btDeleteWorkerActionPerformed
 
     private void btSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSearchActionPerformed
+        // Este if lo que hace es verificar si todas las casillas estan diligenciadas
+        if (txIDWorker.getText().equals("")) {
+            // Mostramos un mensaje que hay campos vacios
+            lbAdvert.setText("Hay campos vacios");
+        } else {
+            // En caso de que la vez anterior fuera incorrecta, esta vez no aparece el mensaje de campos vacios
+            lbAdvert.setText("");
         String id = txIDWorker.getText();
         Row row = getRow(id, file, sheetName, 0);
         String[] vector = rowToVector(row);
         lbIDWorker.setText(vector[0]);
         lbFullNameWorker.setText(vector[1] + " " + vector[2]);
         lbFuntionWorker.setText(vector[3]);
-
+        }
     }//GEN-LAST:event_btSearchActionPerformed
 
     private void txIDWorkerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txIDWorkerActionPerformed
@@ -297,6 +307,7 @@ public class AD2 extends javax.swing.JFrame {
     private javax.swing.JButton btNewWorker;
     private javax.swing.JButton btSearch;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lbAdvert;
     private java.awt.Label lbFullNameWorker;
     private javax.swing.JTextArea lbFuntionWorker;
     private java.awt.Label lbIDWorker;
