@@ -206,5 +206,34 @@ public class AdExcel {
 
         return null;
     }
+    
+//  Obetener una columna de una tabla
+    public ArrayList<String> getColumn(File file, int columnIndex) {
+    ArrayList<String> columnValues = new ArrayList<>();
+
+    try {
+        if (file.exists()) {
+            XSSFWorkbook workbook;
+            try (FileInputStream fis = new FileInputStream(file)) {
+                workbook = new XSSFWorkbook(fis);
+                XSSFSheet sheet = workbook.getSheetAt(0);
+
+                for (int i = 1; i <= sheet.getLastRowNum(); i++) {
+                    XSSFRow row = sheet.getRow(i);
+                    if (row != null) {
+                        XSSFCell cell = row.getCell(columnIndex);
+                        if (cell != null) {
+                            columnValues.add(cell.getStringCellValue());
+                        }
+                    }
+                }
+            }
+        }
+    } catch (IOException e) {
+        // Manejo de excepciones
+    }
+
+    return columnValues;
+}
 
 }

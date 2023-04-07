@@ -21,10 +21,11 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public class ArrayListSupply {
 
     //Array de Supply
-    private ArrayList<Supply> supllys = new ArrayList<>();
+    private ArrayList<Supply> supllys;
     //constructor vacio 
 
     public ArrayListSupply() {
+        this.supllys = new ArrayList<>();
     }
 
     //añadir
@@ -33,7 +34,7 @@ public class ArrayListSupply {
     }
 
     // Guardar/Crear/Llenar Excel
-    public void SaveSupplyeExcel() {
+    public boolean SaveSupplyeExcel() {
         try {
             File file = new File("rom/Supply.xlsx");
             if (file.exists()) {
@@ -52,9 +53,9 @@ public class ArrayListSupply {
                     }
                 }
 
-                FileOutputStream fos = new FileOutputStream(file);
-                workbook.write(fos);
-                fos.close();
+                try (FileOutputStream fos = new FileOutputStream(file)) {
+                    workbook.write(fos);
+                }
             } else {
                 XSSFWorkbook workbook = new XSSFWorkbook();
                 XSSFSheet sheet = workbook.createSheet("Supplys");
@@ -77,8 +78,9 @@ public class ArrayListSupply {
                     workbook.write(fos);
                 }
             }
+            return true;
         } catch (IOException e) {
-            System.out.println("Hay un error, revisa.");
+            return false;
         }
     }
 }

@@ -6,6 +6,12 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 import javax.swing.UIManager;
+import Model.Supply;
+import Control.LogisticDepartment.ArrayListSupply;
+import Utilities.AdExcel;
+import java.io.File;
+import java.util.ArrayList;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  *
@@ -30,7 +36,25 @@ public class LO2Add extends javax.swing.JFrame {
         //logo del recadro debajo del logo
         Image logoZRV = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/zoo!Logo.png"));
         lbZooLogo.setIcon(new ImageIcon(logoZRV.getScaledInstance(lbZooLogo.getWidth(), lbZooLogo.getHeight(), Image.SCALE_AREA_AVERAGING)));
-       
+        // Añadimos los animales existentes en el combobox
+        ComboBoxDinamico();
+    }
+    
+    private void ComboBoxDinamico(){
+        String[] urls = new String[3];
+        urls[0] = "rom/Animals/Wilds.xlsx";
+        urls[1] = "rom/Animals/Minors.xlsx";
+        urls[2] = "rom/Animals/Domestics.xlsx";
+        AdExcel column = new AdExcel();
+        for (String url : urls) {
+            File file = new File(url);
+            if (file.exists()) {
+                ArrayList<String> columns = column.getColumn(file, 1);
+                for (int i = 0; i < columns.size(); i++) {
+                    cbAnimalNewSupply.addItem(columns.get(i));
+                }
+            }
+        }
     }
 
     /**
@@ -59,6 +83,7 @@ public class LO2Add extends javax.swing.JFrame {
         lbZooLogo = new javax.swing.JLabel();
         lbNewSupplyTitle1 = new java.awt.Label();
         lbNewSupplyTitle2 = new java.awt.Label();
+        lbAdvert = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -87,7 +112,6 @@ public class LO2Add extends javax.swing.JFrame {
         jbNameNewSupply.setBounds(10, 25, 70, 16);
 
         txNameNewSupply.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        txNameNewSupply.setText("Ingresa el Nombre del supl");
         txNameNewSupply.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txNameNewSupplyActionPerformed(evt);
@@ -116,17 +140,16 @@ public class LO2Add extends javax.swing.JFrame {
 
         txSpecificationsNewSupply.setColumns(20);
         txSpecificationsNewSupply.setRows(5);
-        txSpecificationsNewSupply.setText("Ingresa la dieta del animal");
         jScrollPane1.setViewportView(txSpecificationsNewSupply);
 
         bgPanelRound.add(jScrollPane1);
         jScrollPane1.setBounds(10, 130, 260, 130);
 
-        cbTypeNewSupply.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", "Femenino", "Masculino" }));
+        cbTypeNewSupply.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar...", "Analgésicos", "Anestésicos", "Antibióticos", "Antifúngicos", "Antiinflamatorios", "Antiparasitarios", "Antivirales", "Alimento", "Hormonas", "Oftálmicos", "Suplementos", "Vitaminas", "Otro", " " }));
         bgPanelRound.add(cbTypeNewSupply);
         cbTypeNewSupply.setBounds(90, 50, 180, 22);
 
-        cbAnimalNewSupply.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbAnimalNewSupply.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar..." }));
         bgPanelRound.add(cbAnimalNewSupply);
         cbAnimalNewSupply.setBounds(90, 80, 180, 22);
 
@@ -140,15 +163,24 @@ public class LO2Add extends javax.swing.JFrame {
         btAddNewSupply.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         btAddNewSupply.setForeground(new java.awt.Color(242, 242, 242));
         btAddNewSupply.setText("+");
-        btAddNewSupply.setActionCommand("Añadir");
         btAddNewSupply.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btAddNewSupply.setFocusPainted(false);
+        btAddNewSupply.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btAddNewSupplyMouseClicked(evt);
+            }
+        });
         btAddNewSupply.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btAddNewSupplyActionPerformed(evt);
             }
         });
-        bg.add(btAddNewSupply, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 330, 50, 30));
+        btAddNewSupply.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                btAddNewSupplyKeyTyped(evt);
+            }
+        });
+        bg.add(btAddNewSupply, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 330, 50, 30));
 
         lbZooLogo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         lbZooLogo.setMaximumSize(new java.awt.Dimension(549, 267));
@@ -169,15 +201,40 @@ public class LO2Add extends javax.swing.JFrame {
         lbNewSupplyTitle2.setText("Suplemento");
         bg.add(lbNewSupplyTitle2, new org.netbeans.lib.awtextra.AbsoluteConstraints(82, 20, 120, -1));
 
+        lbAdvert.setForeground(new java.awt.Color(255, 0, 0));
+        bg.add(lbAdvert, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, 110, 20));
+
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btAddNewSupplyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddNewSupplyActionPerformed
-       LO2 MainScreen = new LO2();
-        this.dispose();
-        MainScreen.setVisible(true);
+        System.out.println("btAddNewSupplyMouseClicked() method invoked");
+        // Este if lo que hace es verificar si todas las casillas estan diligenciadas
+        if (txNameNewSupply.getText().equals("")
+                || cbTypeNewSupply.getSelectedItem().toString().equals("Seleccionar...")
+                || cbAnimalNewSupply.getSelectedItem().toString().equals("Seleccionar...")
+                || txSpecificationsNewSupply.getText().equals("")) {
+            // Mostramos un mensaje que hay campos vacios
+            lbAdvert.setText("Hay campos vacios");
+        } else {
+            // En caso de que la vez anterior fuera incorrecta, esta vez no aparece el mensaje de campos vacios
+            lbAdvert.setText("");
+            // Creamos un objeto Supply con los datos diligenciados Supply View
+            Supply supply = new Supply(txNameNewSupply.getText(),
+                    cbTypeNewSupply.getSelectedItem().toString(),
+                    cbAnimalNewSupply.getSelectedItem().toString(),
+                    txSpecificationsNewSupply.getText()); // Lo añadimos al excel
+            // Añadimos el nuevo excel
+            ArrayListSupply list = new ArrayListSupply();
+            list.addSupply(supply);
+            list.SaveSupplyeExcel();
+            // Cambiamos de ventana
+            LO2 MainScreen = new LO2();
+            this.dispose();
+            MainScreen.setVisible(true);
+        }
     }//GEN-LAST:event_btAddNewSupplyActionPerformed
 
     private void txNameNewSupplyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txNameNewSupplyActionPerformed
@@ -185,26 +242,32 @@ public class LO2Add extends javax.swing.JFrame {
     }//GEN-LAST:event_txNameNewSupplyActionPerformed
 
     private void lbZooLogoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbZooLogoMouseClicked
-       ILS1 MainScreen = new ILS1();
+        ILS1 MainScreen = new ILS1();
         this.dispose();
         MainScreen.setVisible(true);
     }//GEN-LAST:event_lbZooLogoMouseClicked
+
+    private void btAddNewSupplyKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btAddNewSupplyKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btAddNewSupplyKeyTyped
+
+    private void btAddNewSupplyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btAddNewSupplyMouseClicked
+
+    }//GEN-LAST:event_btAddNewSupplyMouseClicked
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        try{
+        try {
             UIManager.setLookAndFeel(new FlatDarculaLaf());
-        }catch (Exception e){
-            
+        } catch (UnsupportedLookAndFeelException e) {
+
         }
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new LO2Add().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new LO2Add().setVisible(true);
         });
     }
 
@@ -221,6 +284,7 @@ public class LO2Add extends javax.swing.JFrame {
     private javax.swing.JLabel jbNameNewSupply;
     private javax.swing.JLabel jbSpecificationsNewSupply;
     private javax.swing.JLabel jbTypeNewSupply;
+    private javax.swing.JLabel lbAdvert;
     private java.awt.Label lbNewSupplyTitle1;
     private java.awt.Label lbNewSupplyTitle2;
     private javax.swing.JLabel lbZooLogo;
