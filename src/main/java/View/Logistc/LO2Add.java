@@ -70,15 +70,17 @@ public class LO2Add extends javax.swing.JFrame {
         bg = new javax.swing.JPanel();
         bgPanelRound = new Clases.PanelRound();
         jbNameNewSupply = new javax.swing.JLabel();
-        txNameNewSupply = new javax.swing.JTextField();
+        txQuantityNewSupply = new javax.swing.JTextField();
         jbTypeNewSupply = new javax.swing.JLabel();
         jbSpecificationsNewSupply = new javax.swing.JLabel();
-        jbAnimalNewSupply = new javax.swing.JLabel();
+        jbQuantityNewSupply = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txSpecificationsNewSupply = new javax.swing.JTextArea();
         cbTypeNewSupply = new javax.swing.JComboBox<>();
         cbAnimalNewSupply = new javax.swing.JComboBox<>();
         cbHabitaMinor = new javax.swing.JComboBox<>();
+        jbAnimalNewSupply1 = new javax.swing.JLabel();
+        txNameNewSupply = new javax.swing.JTextField();
         btAddNewSupply = new javax.swing.JButton();
         lbZooLogo = new javax.swing.JLabel();
         lbNewSupplyTitle1 = new java.awt.Label();
@@ -111,14 +113,14 @@ public class LO2Add extends javax.swing.JFrame {
         bgPanelRound.add(jbNameNewSupply);
         jbNameNewSupply.setBounds(10, 25, 70, 16);
 
-        txNameNewSupply.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        txNameNewSupply.addActionListener(new java.awt.event.ActionListener() {
+        txQuantityNewSupply.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        txQuantityNewSupply.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txNameNewSupplyActionPerformed(evt);
+                txQuantityNewSupplyActionPerformed(evt);
             }
         });
-        bgPanelRound.add(txNameNewSupply);
-        txNameNewSupply.setBounds(90, 20, 180, 22);
+        bgPanelRound.add(txQuantityNewSupply);
+        txQuantityNewSupply.setBounds(90, 110, 180, 22);
 
         jbTypeNewSupply.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jbTypeNewSupply.setForeground(new java.awt.Color(242, 242, 242));
@@ -130,32 +132,47 @@ public class LO2Add extends javax.swing.JFrame {
         jbSpecificationsNewSupply.setForeground(new java.awt.Color(242, 242, 242));
         jbSpecificationsNewSupply.setText("Especificaciones:");
         bgPanelRound.add(jbSpecificationsNewSupply);
-        jbSpecificationsNewSupply.setBounds(10, 110, 150, 16);
+        jbSpecificationsNewSupply.setBounds(10, 140, 150, 16);
 
-        jbAnimalNewSupply.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jbAnimalNewSupply.setForeground(new java.awt.Color(242, 242, 242));
-        jbAnimalNewSupply.setText("Animal:");
-        bgPanelRound.add(jbAnimalNewSupply);
-        jbAnimalNewSupply.setBounds(10, 80, 70, 16);
+        jbQuantityNewSupply.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jbQuantityNewSupply.setForeground(new java.awt.Color(242, 242, 242));
+        jbQuantityNewSupply.setText("Cantidad:");
+        bgPanelRound.add(jbQuantityNewSupply);
+        jbQuantityNewSupply.setBounds(10, 110, 80, 16);
 
         txSpecificationsNewSupply.setColumns(20);
         txSpecificationsNewSupply.setRows(5);
         jScrollPane1.setViewportView(txSpecificationsNewSupply);
 
         bgPanelRound.add(jScrollPane1);
-        jScrollPane1.setBounds(10, 130, 260, 130);
+        jScrollPane1.setBounds(10, 160, 260, 100);
 
-        cbTypeNewSupply.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar...", "Analgésicos", "Anestésicos", "Antibióticos", "Antifúngicos", "Antiinflamatorios", "Antiparasitarios", "Antivirales", "Alimento", "Hormonas", "Oftálmicos", "Suplementos", "Vitaminas", "Otro", " " }));
+        cbTypeNewSupply.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar...", "Analgésicos", "Anestésicos", "Antibióticos", "Antifúngicos", "Antiinflamatorios", "Antiparasitarios", "Antivirales", "Alimento", "Hormonas", "Oftálmicos", "Suplementos", "Vitaminas", "Otro" }));
         bgPanelRound.add(cbTypeNewSupply);
         cbTypeNewSupply.setBounds(90, 50, 180, 22);
 
-        cbAnimalNewSupply.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar..." }));
+        cbAnimalNewSupply.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar...", "León", "Jirafa" }));
         bgPanelRound.add(cbAnimalNewSupply);
         cbAnimalNewSupply.setBounds(90, 80, 180, 22);
 
         cbHabitaMinor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hábitad 1", "Hábitad 2", "Hábitad 3" }));
         bgPanelRound.add(cbHabitaMinor);
         cbHabitaMinor.setBounds(90, 80, 180, 22);
+
+        jbAnimalNewSupply1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jbAnimalNewSupply1.setForeground(new java.awt.Color(242, 242, 242));
+        jbAnimalNewSupply1.setText("Animal:");
+        bgPanelRound.add(jbAnimalNewSupply1);
+        jbAnimalNewSupply1.setBounds(10, 80, 70, 16);
+
+        txNameNewSupply.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        txNameNewSupply.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txNameNewSupplyActionPerformed(evt);
+            }
+        });
+        bgPanelRound.add(txNameNewSupply);
+        txNameNewSupply.setBounds(90, 20, 180, 22);
 
         bg.add(bgPanelRound, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 280, 270));
 
@@ -212,7 +229,7 @@ public class LO2Add extends javax.swing.JFrame {
     private void btAddNewSupplyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddNewSupplyActionPerformed
         System.out.println("btAddNewSupplyMouseClicked() method invoked");
         // Este if lo que hace es verificar si todas las casillas estan diligenciadas
-        if (txNameNewSupply.getText().equals("")
+        if (txQuantityNewSupply.getText().equals("")
                 || cbTypeNewSupply.getSelectedItem().toString().equals("Seleccionar...")
                 || cbAnimalNewSupply.getSelectedItem().toString().equals("Seleccionar...")
                 || txSpecificationsNewSupply.getText().equals("")) {
@@ -222,9 +239,10 @@ public class LO2Add extends javax.swing.JFrame {
             // En caso de que la vez anterior fuera incorrecta, esta vez no aparece el mensaje de campos vacios
             lbAdvert.setText("");
             // Creamos un objeto Supply con los datos diligenciados Supply View
-            Supply supply = new Supply(txNameNewSupply.getText(),
-                    cbTypeNewSupply.getSelectedItem().toString(),
+            Supply supply = new Supply(cbTypeNewSupply.getSelectedItem().toString(),
+                    txNameNewSupply.getText(),
                     cbAnimalNewSupply.getSelectedItem().toString(),
+                    txQuantityNewSupply.getText(),
                     txSpecificationsNewSupply.getText()); // Lo añadimos al excel
             // Añadimos el nuevo excel
             ArrayListSupply list = new ArrayListSupply();
@@ -237,9 +255,9 @@ public class LO2Add extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btAddNewSupplyActionPerformed
 
-    private void txNameNewSupplyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txNameNewSupplyActionPerformed
+    private void txQuantityNewSupplyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txQuantityNewSupplyActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txNameNewSupplyActionPerformed
+    }//GEN-LAST:event_txQuantityNewSupplyActionPerformed
 
     private void lbZooLogoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbZooLogoMouseClicked
         ILS1 MainScreen = new ILS1();
@@ -254,6 +272,10 @@ public class LO2Add extends javax.swing.JFrame {
     private void btAddNewSupplyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btAddNewSupplyMouseClicked
 
     }//GEN-LAST:event_btAddNewSupplyMouseClicked
+
+    private void txNameNewSupplyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txNameNewSupplyActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txNameNewSupplyActionPerformed
 
     /**
      * @param args the command line arguments
@@ -280,8 +302,9 @@ public class LO2Add extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbTypeNewSupply;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSplitPane jSplitPane1;
-    private javax.swing.JLabel jbAnimalNewSupply;
+    private javax.swing.JLabel jbAnimalNewSupply1;
     private javax.swing.JLabel jbNameNewSupply;
+    private javax.swing.JLabel jbQuantityNewSupply;
     private javax.swing.JLabel jbSpecificationsNewSupply;
     private javax.swing.JLabel jbTypeNewSupply;
     private javax.swing.JLabel lbAdvert;
@@ -289,6 +312,7 @@ public class LO2Add extends javax.swing.JFrame {
     private java.awt.Label lbNewSupplyTitle2;
     private javax.swing.JLabel lbZooLogo;
     private javax.swing.JTextField txNameNewSupply;
+    private javax.swing.JTextField txQuantityNewSupply;
     private javax.swing.JTextArea txSpecificationsNewSupply;
     // End of variables declaration//GEN-END:variables
 }

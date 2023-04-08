@@ -49,7 +49,8 @@ public class ArrayListSupply {
                         row.createCell(0).setCellValue(supllys.get(i).getType());
                         row.createCell(1).setCellValue(supllys.get(i).getName());
                         row.createCell(2).setCellValue(supllys.get(i).getAnimal());
-                        row.createCell(3).setCellValue(supllys.get(i).getSpecifications());
+                        row.createCell(3).setCellValue(supllys.get(i).getQuantity());
+                        row.createCell(4).setCellValue(supllys.get(i).getSpecifications());
                     }
                 }
 
@@ -64,14 +65,16 @@ public class ArrayListSupply {
                 row.createCell(0).setCellValue("Type");
                 row.createCell(1).setCellValue("Name");
                 row.createCell(2).setCellValue("Animal");
-                row.createCell(3).setCellValue("Specifications");
+                row.createCell(3).setCellValue("Quantity");
+                row.createCell(4).setCellValue("Specifications");
 
                 for (int i = 0; i < supllys.size(); i++) {
                     row = sheet.createRow(i + 1);
                     row.createCell(0).setCellValue(supllys.get(i).getType());
                     row.createCell(1).setCellValue(supllys.get(i).getName());
                     row.createCell(2).setCellValue(supllys.get(i).getAnimal());
-                    row.createCell(3).setCellValue(supllys.get(i).getSpecifications());
+                    row.createCell(3).setCellValue(supllys.get(i).getQuantity());
+                    row.createCell(4).setCellValue(supllys.get(i).getSpecifications());
                 }
 
                 try (FileOutputStream fos = new FileOutputStream(file)) {
