@@ -1,6 +1,5 @@
 package View.Cormercial;
 
-import com.zoosantafe.zoologico.CMProAdd;
 import com.formdev.flatlaf.FlatDarculaLaf;
 import com.formdev.flatlaf.FlatDarkLaf;
 import java.awt.Image;
@@ -186,9 +185,7 @@ public class CM2 extends javax.swing.JFrame {
     }//GEN-LAST:event_lbZooLogoMouseClicked
 
     private void btNewPurchaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNewPurchaseActionPerformed
-       CMProAdd MainScreen = new CMProAdd();
-        this.dispose();
-        MainScreen.setVisible(true);
+
     }//GEN-LAST:event_btNewPurchaseActionPerformed
 
     /**
