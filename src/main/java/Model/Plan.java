@@ -4,6 +4,10 @@
  */
 package Model;
 
+import static Utilities.GenerateCodePlan.generateCodePlan;
+
+
+
 /**
  *
  * @author garci
@@ -14,11 +18,11 @@ public class Plan {
     private String product;
     private String productId;
 
-   public Plan(int amount, Float value, String sfications, String product, String productId) {
+   public Plan(String productId, String product, Float value, String sfications) {
         this.value = value;
         this.sfications = sfications;
         this.product = product;
-        this.productId = productId;
+        this.productId = generateCodePlan("PL");
     }
     /**
      * @return the value

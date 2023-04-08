@@ -1,10 +1,16 @@
 package View.Administrative;
 
+import Control.AdministrativeDepartment.ArrayListPlan;
+import Model.Plan;
+import Utilities.GenerateCodePlan;
+import static Utilities.loadExcelDataToTable.updateTableFromExcel;
+import static View.Administrative.AD2.tbGeneratedReports;
 import View.Administrative.AD3;
 import com.formdev.flatlaf.FlatDarculaLaf;
 import com.formdev.flatlaf.FlatDarkLaf;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.io.File;
 import javax.swing.ImageIcon;
 import javax.swing.UIManager;
 
@@ -14,9 +20,8 @@ import javax.swing.UIManager;
  */
 public class PAAdd extends javax.swing.JFrame {
 
-    /**
-     * Creates new form X1
-     */
+    ArrayListPlan plans = new ArrayListPlan();
+    
     public PAAdd() {
         //define tamaño
         System.setProperty("sun.java2d.uiScale", "1.0");
@@ -31,8 +36,9 @@ public class PAAdd extends javax.swing.JFrame {
         //logo del recadro debajo del logo
         Image logoZRV = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/zoo!Logo.png"));
         lbZooLogo.setIcon(new ImageIcon(logoZRV.getScaledInstance(lbZooLogo.getWidth(), lbZooLogo.getHeight(), Image.SCALE_AREA_AVERAGING)));
-       
     }
+    
+       
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -46,18 +52,17 @@ public class PAAdd extends javax.swing.JFrame {
         jSplitPane1 = new javax.swing.JSplitPane();
         bg = new javax.swing.JPanel();
         bgPanelRound = new Clases.PanelRound();
-        lbIDGenerado = new javax.swing.JLabel();
         lbPlan = new javax.swing.JLabel();
         txValue = new javax.swing.JTextField();
         lbValue = new javax.swing.JLabel();
         lbDetails = new javax.swing.JLabel();
         txDetails = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        txPlan = new javax.swing.JTextField();
-        lbID1 = new javax.swing.JLabel();
+        txPlanDetail = new javax.swing.JTextArea();
+        txPlanName = new javax.swing.JTextField();
         btLogisticPlan = new javax.swing.JButton();
         lbZooLogo = new javax.swing.JLabel();
         lbPlanTitle = new java.awt.Label();
+        lbAdvert = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -79,63 +84,48 @@ public class PAAdd extends javax.swing.JFrame {
         bgPanelRound.setRoundTopRight(15);
         bgPanelRound.setLayout(null);
 
-        lbIDGenerado.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lbIDGenerado.setForeground(new java.awt.Color(242, 242, 242));
-        lbIDGenerado.setText("ID");
-        bgPanelRound.add(lbIDGenerado);
-        lbIDGenerado.setBounds(100, 10, 170, 16);
-
         lbPlan.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         lbPlan.setForeground(new java.awt.Color(242, 242, 242));
         lbPlan.setText("Plan:");
         bgPanelRound.add(lbPlan);
-        lbPlan.setBounds(10, 40, 70, 16);
+        lbPlan.setBounds(10, 10, 70, 16);
 
         txValue.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        txValue.setText("Ingrese el valor del plan");
         txValue.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txValueActionPerformed(evt);
             }
         });
         bgPanelRound.add(txValue);
-        txValue.setBounds(80, 70, 190, 22);
+        txValue.setBounds(80, 40, 190, 22);
 
         lbValue.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         lbValue.setForeground(new java.awt.Color(242, 242, 242));
         lbValue.setText("Valor:");
         bgPanelRound.add(lbValue);
-        lbValue.setBounds(10, 70, 70, 16);
+        lbValue.setBounds(10, 40, 70, 16);
 
         lbDetails.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         lbDetails.setForeground(new java.awt.Color(242, 242, 242));
         lbDetails.setText("Especificaciones:");
         bgPanelRound.add(lbDetails);
-        lbDetails.setBounds(10, 100, 170, 16);
+        lbDetails.setBounds(10, 73, 170, 16);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jTextArea1.setText("Ingresa las especificaciones del plan");
-        txDetails.setViewportView(jTextArea1);
+        txPlanDetail.setColumns(20);
+        txPlanDetail.setRows(5);
+        txDetails.setViewportView(txPlanDetail);
 
         bgPanelRound.add(txDetails);
-        txDetails.setBounds(10, 120, 260, 130);
+        txDetails.setBounds(10, 100, 260, 150);
 
-        txPlan.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        txPlan.setText("Ingrese el plan");
-        txPlan.addActionListener(new java.awt.event.ActionListener() {
+        txPlanName.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        txPlanName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txPlanActionPerformed(evt);
+                txPlanNameActionPerformed(evt);
             }
         });
-        bgPanelRound.add(txPlan);
-        txPlan.setBounds(80, 40, 190, 22);
-
-        lbID1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lbID1.setForeground(new java.awt.Color(242, 242, 242));
-        lbID1.setText("ID Plan:");
-        bgPanelRound.add(lbID1);
-        lbID1.setBounds(10, 10, 70, 16);
+        bgPanelRound.add(txPlanName);
+        txPlanName.setBounds(80, 10, 190, 22);
 
         bg.add(bgPanelRound, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 280, 260));
 
@@ -151,7 +141,7 @@ public class PAAdd extends javax.swing.JFrame {
                 btLogisticPlanActionPerformed(evt);
             }
         });
-        bg.add(btLogisticPlan, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, 50, 30));
+        bg.add(btLogisticPlan, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 325, 50, 30));
 
         lbZooLogo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lbZooLogo.setMaximumSize(new java.awt.Dimension(549, 267));
@@ -165,26 +155,46 @@ public class PAAdd extends javax.swing.JFrame {
         lbPlanTitle.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         lbPlanTitle.setForeground(new java.awt.Color(255, 153, 0));
         lbPlanTitle.setText("Nuevo Plan");
-        bg.add(lbPlanTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 110, -1));
+        bg.add(lbPlanTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 110, -1));
 
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 370));
+
+        lbAdvert.setForeground(new java.awt.Color(255, 0, 0));
+        getContentPane().add(lbAdvert, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 110, 20));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btLogisticPlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLogisticPlanActionPerformed
-       AD3 MainScreen = new AD3();
+         if (txPlanName.getText().equals("")
+                || txValue.getText().equals("") 
+                || txPlanDetail.getText().equals("")){ 
+            
+            lbAdvert.setText("Hay campos vacios");
+        } else {
+            
+            lbAdvert.setText("");
+            //Se llena la array 
+        Plan newPlan = new Plan("",txPlanName.getText(),Float.valueOf(txValue.getText()),txPlanDetail.getText());
+        plans.addPlan(newPlan);
+        plans.SavePlanExcel();
+        //se habre la ventana AD2 
+        AD3 MainScreen = new AD3();
         this.dispose();
         MainScreen.setVisible(true);
+        //Se carga la tabla actualizada 
+        File file = new File("rom/Plans/Plans.xlsx");
+         updateTableFromExcel(AD3.tbPlans, file);
+         }
     }//GEN-LAST:event_btLogisticPlanActionPerformed
 
     private void txValueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txValueActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txValueActionPerformed
 
-    private void txPlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txPlanActionPerformed
+    private void txPlanNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txPlanNameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txPlanActionPerformed
+    }//GEN-LAST:event_txPlanNameActionPerformed
 
     private void lbZooLogoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbZooLogoMouseClicked
          AD3 ReportWindow = new AD3();
@@ -215,16 +225,15 @@ public class PAAdd extends javax.swing.JFrame {
     private Clases.PanelRound bgPanelRound;
     private javax.swing.JButton btLogisticPlan;
     private javax.swing.JSplitPane jSplitPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JLabel lbAdvert;
     private javax.swing.JLabel lbDetails;
-    private javax.swing.JLabel lbID1;
-    private javax.swing.JLabel lbIDGenerado;
     private javax.swing.JLabel lbPlan;
     private java.awt.Label lbPlanTitle;
     private javax.swing.JLabel lbValue;
     private javax.swing.JLabel lbZooLogo;
     private javax.swing.JScrollPane txDetails;
-    private javax.swing.JTextField txPlan;
+    private javax.swing.JTextArea txPlanDetail;
+    private javax.swing.JTextField txPlanName;
     private javax.swing.JTextField txValue;
     // End of variables declaration//GEN-END:variables
 }

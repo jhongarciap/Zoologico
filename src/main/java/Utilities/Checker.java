@@ -22,4 +22,13 @@ public class Checker {
             return false; // En caso contrario, retorna false.
         }
     }
+    
+    public static boolean FloatChecker(String str) { // Este método sirve para validar si el String ingresado es Float o String.
+        try {
+            Float.valueOf(str);
+            return true; // Retorna true si el String puede ser cambiado en su totalidad en Integer.
+        } catch (NumberFormatException e) {
+            return false; // En caso contrario, retorna false.
+        }
+    }
 }

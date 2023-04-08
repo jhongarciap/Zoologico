@@ -23,6 +23,7 @@ import javax.swing.table.TableModel;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import static View.Administrative.AD1.tbGeneratedReports1;
+import static org.apache.poi.hssf.usermodel.HeaderFooter.file;
 
 /**
  *
@@ -176,6 +177,8 @@ public class IS1 extends javax.swing.JFrame {
         AD3 ReportWindow = new AD3();
         this.dispose();
         ReportWindow.setVisible(true);
+        File file = new File("rom/Plans/Plans.xlsx");
+        updateTableFromExcel(AD3.tbPlans, file);
     }//GEN-LAST:event_btComercialShoppingActionPerformed
 
     private void btComercialSale1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btComercialSale1ActionPerformed

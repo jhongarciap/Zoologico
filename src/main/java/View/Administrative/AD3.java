@@ -54,15 +54,15 @@ public class AD3 extends javax.swing.JFrame {
         btDeletePlan = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         txSpecificationsPlan = new javax.swing.JTextArea();
+        txSearchPlans = new javax.swing.JTextField();
         lbSearchPlans = new java.awt.Label();
         lbPlansTitle = new java.awt.Label();
         lbZRVLogo = new javax.swing.JLabel();
         btSearchPlan = new javax.swing.JButton();
-        txSearchPlans = new javax.swing.JTextField();
         lbZooLogo = new javax.swing.JLabel();
         btAddPlan = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
         setMinimumSize(new java.awt.Dimension(720, 480));
         setResizable(false);
@@ -81,13 +81,13 @@ public class AD3 extends javax.swing.JFrame {
 
         tbPlans.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "ID", "Plan", "Valor"
+                "ID", "Plan", "Valor", "Especificaciones"
             }
         ));
         jScrollPane1.setViewportView(tbPlans);
@@ -129,27 +129,25 @@ public class AD3 extends javax.swing.JFrame {
         jScrollPane2.setBounds(250, 250, 440, 86);
 
         bg.add(bgPanelRound, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 700, 390));
+        bg.add(txSearchPlans, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, 340, -1));
 
         lbSearchPlans.setBackground(new java.awt.Color(35, 35, 35));
         lbSearchPlans.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         lbSearchPlans.setForeground(new java.awt.Color(255, 255, 255));
-        lbSearchPlans.setText("Planes Existentes");
+        lbSearchPlans.setText("ID del Plan");
         bg.add(lbSearchPlans, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, -1));
 
         lbPlansTitle.setBackground(new java.awt.Color(35, 35, 35));
         lbPlansTitle.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lbPlansTitle.setForeground(new java.awt.Color(255, 153, 0));
         lbPlansTitle.setText("Planes");
-        bg.add(lbPlansTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 5, -1, -1));
+        bg.add(lbPlansTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 7, -1, -1));
 
         lbZRVLogo.setMaximumSize(new java.awt.Dimension(549, 267));
         bg.add(lbZRVLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 10, 140, 60));
 
         btSearchPlan.setText("Buscar");
         bg.add(btSearchPlan, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 50, 70, 20));
-
-        txSearchPlans.setText("Ingresa el Id el plan a buscar");
-        bg.add(txSearchPlans, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, 280, -1));
 
         lbZooLogo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lbZooLogo.setMaximumSize(new java.awt.Dimension(549, 267));
@@ -183,8 +181,9 @@ public class AD3 extends javax.swing.JFrame {
 
     private void btAddPlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddPlanActionPerformed
        PAAdd ReportWindow = new PAAdd();
-       this.dispose();
        ReportWindow.setVisible(true);
+       this.dispose();
+      
     }//GEN-LAST:event_btAddPlanActionPerformed
 
     /**
@@ -220,7 +219,7 @@ public class AD3 extends javax.swing.JFrame {
     private java.awt.Label lbTotalExpensesValue;
     private javax.swing.JLabel lbZRVLogo;
     private javax.swing.JLabel lbZooLogo;
-    private javax.swing.JTable tbPlans;
+    public static javax.swing.JTable tbPlans;
     private javax.swing.JTextField txSearchPlans;
     private javax.swing.JTextArea txSpecificationsPlan;
     // End of variables declaration//GEN-END:variables

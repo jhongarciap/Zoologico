@@ -15,27 +15,28 @@ import java.util.Scanner;
  */
 public class GenerateCodePlan {
     public static String generateCodePlan(String baseId){
-        int number;
+        int numero;
     try {
         // Leemos el número desde el archivo
-        File file = new File("rom/Numero/numberPlanID.txt");
+        File file = new File("rom/Numero/numeroPlanID.txt");
         if (!file.exists()) {
-            // If the file doesn't exist, sets its number to 1 for being the
-            // first code generated
-            number = 1;
+            // Si el archivo no existe, empezamos con el número 1
+            numero = 1;
         } else {
-            try (Scanner scanner = new Scanner(file)) {
-                number = Integer.parseInt(scanner.nextLine());
-            }
+            Scanner scanner = new Scanner(file);
+            numero = Integer.parseInt(scanner.nextLine());
+            scanner.close();
         }
-        // Generate the code for the plans
-        String code = baseId + number;
+        
+        // Generamos el código con la letra y el número
+        String codigo = baseId + numero;
 
-        try (FileWriter writer = new FileWriter(file)) {
-            writer.write(String.valueOf(number + 1));
+        try ( // Actualizamos el número en el archivo
+                FileWriter writer = new FileWriter(file)) {
+            writer.write(String.valueOf(numero + 1));
         }
 
-        return code;
+        return codigo;
     } catch (IOException e) {
         System.out.println("Error al generar el código: " + e.getMessage());
         return null;

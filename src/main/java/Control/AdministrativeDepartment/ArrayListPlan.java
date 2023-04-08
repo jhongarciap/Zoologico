@@ -35,7 +35,7 @@ public class ArrayListPlan {
 // Guardar/Crear/Llenar Excel
     public void SavePlanExcel() {
         try {
-            File file = new File("rom/Plans.xlsx");
+            File file = new File("rom/Plans/Plans.xlsx");
             if (file.exists()) {
                 XSSFWorkbook workbook;
                 try (FileInputStream fis = new FileInputStream(file)) {
