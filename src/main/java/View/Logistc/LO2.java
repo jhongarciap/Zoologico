@@ -1,12 +1,26 @@
 package View.Logistc;
 
+import Utilities.AdExcel;
+import Utilities.loadExcelDataToTable;
 import View.Administrative.IS1;
 import com.formdev.flatlaf.FlatDarculaLaf;
 import com.formdev.flatlaf.FlatDarkLaf;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  *
@@ -21,19 +35,96 @@ public class LO2 extends javax.swing.JFrame {
         System.setProperty("sun.java2d.uiScale", "1.0");
         FlatDarkLaf.setup(); // Sets the FlatLaf LookAndFeel as the main theme for the JFrame.
         initComponents();
-        
+
         this.setLocationRelativeTo(null); //Centers the window on-screen.
         this.setTitle("Reportes"); // Set the title for the JFrame.
-        
+
         Image faviconX1 = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/View_IconAdminZOO.png"));
         this.setIconImage(faviconX1);
-        
+
         Image logoZRV = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/ZRVC@3x.png"));
         lbZRVLogo.setIcon(new ImageIcon(logoZRV.getScaledInstance(lbZRVLogo.getWidth(), lbZRVLogo.getHeight(), Image.SCALE_AREA_AVERAGING)));
 
         Image logoZoo = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/zoo!Logo.png"));
         lbZooLogo.setIcon(new ImageIcon(logoZoo.getScaledInstance(lbZooLogo.getWidth(), lbZooLogo.getHeight(), Image.SCALE_AREA_AVERAGING)));
 
+        // Generamos la tabla general
+        generalTable();
+        comboboxType();
+        comboboxAnimal();
+    }
+
+    private void comboboxType() {
+        AdExcel excel = new AdExcel();
+        File file = new File("rom/Supply.xlsx");
+        if (file.exists()) {
+            ArrayList<String> columns = excel.getColumn(file, 0);
+            for (String column : columns) {
+                ArrayList<String> types = new ArrayList();
+                for (int i = 0; i < cbSupplementType.getItemCount(); i++) {
+                    types.add(cbSupplementType.getItemAt(i));
+                }
+                if (!types.contains(column)) {
+                    cbSupplementType.addItem(column);
+                }
+            }
+        }
+    }
+    
+    private void comboboxAnimal(){
+        AdExcel excel = new AdExcel();
+            File file = new File("rom/Supply.xlsx");
+            if (file.exists()) {
+                ArrayList<String> columns = excel.getColumn(file, 2);
+                for (String column : columns) {
+                    ArrayList<String> types = new ArrayList();
+                    for (int i = 0; i < cbSupplementAnimal.getItemCount(); i++) {
+                        types.add(cbSupplementAnimal.getItemAt(i));
+                    }
+                    if (!types.contains(column)) {
+                        cbSupplementAnimal.addItem(column);
+                    }
+                }
+            }
+    }
+
+    private void comboxAnimalType(String value) throws FileNotFoundException, IOException {
+        cbSupplementAnimal.removeAllItems();
+        cbSupplementAnimal.addItem("Todos");
+        File file = new File("rom/Supply.xlsx");
+        ArrayList<Row> typeRows = new ArrayList();
+        ArrayList<String> columns = new ArrayList();
+        if (file.exists()) {
+            XSSFWorkbook workbook;
+            try (FileInputStream fis = new FileInputStream(file)) {
+                workbook = new XSSFWorkbook(fis);
+                XSSFSheet sheet = workbook.getSheet("Supplys");
+                for (int i = 0; i <= sheet.getLastRowNum(); i++) {
+                    XSSFRow row = sheet.getRow(i);
+                    if (row.getCell(0).getStringCellValue().equals(value)) {
+                        typeRows.add(row);
+                    }
+                }
+                for (Row row : typeRows) {
+                    String nameValue = row.getCell(2).getStringCellValue();
+                    columns.add(nameValue);
+                }
+                for (String column : columns) {
+                    ArrayList<String> animals = new ArrayList();
+                    for (int i = 0; i < cbSupplementAnimal.getItemCount(); i++) {
+                        animals.add(cbSupplementAnimal.getItemAt(i));
+                    }
+                    if (!animals.contains(column) && true) {
+                        cbSupplementAnimal.addItem(column);
+                    }
+                }
+            }
+        }
+    }
+
+    private void generalTable() {
+        File file = new File("rom/Supply.xlsx");
+        loadExcelDataToTable.updateTableFromExcel(tbGeneratedSupplements, file);
     }
 
     /**
@@ -49,25 +140,19 @@ public class LO2 extends javax.swing.JFrame {
         bgPanelRound = new Clases.PanelRound();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbGeneratedSupplements = new javax.swing.JTable();
-        lbSupplementAmountStatic = new java.awt.Label();
         lbGeneratedSupplements = new java.awt.Label();
-        lbAnimalSupplement = new java.awt.Label();
         lbAnimalSupplementStatic = new java.awt.Label();
-        lbSupplementAmount = new java.awt.Label();
         btDeleteSupplement = new javax.swing.JButton();
         btCreateSupplement = new javax.swing.JButton();
-        lbSupplementType = new java.awt.Label();
         lbSupplementsSpecificationsStatic = new java.awt.Label();
-        lbSupplementName = new java.awt.Label();
         lbSupplementTypeStatic = new java.awt.Label();
-        lbSupplementNameStatic = new java.awt.Label();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        taSupplementsSpecifications = new javax.swing.JTextArea();
         lbSuplementHeadLine = new java.awt.Label();
         lbSupplementTitle = new java.awt.Label();
         lbZRVLogo = new javax.swing.JLabel();
-        cbSupplementType = new javax.swing.JComboBox<>();
+        cbSupplementAnimal = new javax.swing.JComboBox<>();
         lbZooLogo = new javax.swing.JLabel();
+        btSearch = new javax.swing.JButton();
+        cbSupplementType = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -88,62 +173,41 @@ public class LO2 extends javax.swing.JFrame {
 
         tbGeneratedSupplements.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Tipo", "Nombre", "Animal", "Cantidad", "Especificaciones"
             }
         ));
         jScrollPane1.setViewportView(tbGeneratedSupplements);
 
         bgPanelRound.add(jScrollPane1);
-        jScrollPane1.setBounds(10, 35, 680, 210);
-
-        lbSupplementAmountStatic.setBackground(new java.awt.Color(51, 51, 51));
-        lbSupplementAmountStatic.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lbSupplementAmountStatic.setForeground(new java.awt.Color(255, 255, 255));
-        lbSupplementAmountStatic.setText("Cantidad:");
-        bgPanelRound.add(lbSupplementAmountStatic);
-        lbSupplementAmountStatic.setBounds(250, 250, 90, 32);
+        jScrollPane1.setBounds(10, 35, 680, 230);
 
         lbGeneratedSupplements.setBackground(new java.awt.Color(51, 51, 51));
         lbGeneratedSupplements.setFont(new java.awt.Font("Arial", 3, 24)); // NOI18N
-        lbGeneratedSupplements.setForeground(new java.awt.Color(255, 255, 255));
+        lbGeneratedSupplements.setForeground(new java.awt.Color(69, 106, 48));
         lbGeneratedSupplements.setText("Suplementos");
         bgPanelRound.add(lbGeneratedSupplements);
         lbGeneratedSupplements.setBounds(10, 0, 296, 32);
 
-        lbAnimalSupplement.setBackground(new java.awt.Color(51, 51, 51));
-        lbAnimalSupplement.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lbAnimalSupplement.setForeground(new java.awt.Color(69, 106, 48));
-        lbAnimalSupplement.setText("Delfín");
-        bgPanelRound.add(lbAnimalSupplement);
-        lbAnimalSupplement.setBounds(90, 310, 140, 32);
-
         lbAnimalSupplementStatic.setBackground(new java.awt.Color(51, 51, 51));
         lbAnimalSupplementStatic.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         lbAnimalSupplementStatic.setForeground(new java.awt.Color(255, 255, 255));
-        lbAnimalSupplementStatic.setText("Animal:");
         bgPanelRound.add(lbAnimalSupplementStatic);
-        lbAnimalSupplementStatic.setBounds(18, 310, 72, 32);
+        lbAnimalSupplementStatic.setBounds(18, 310, 4, 32);
 
-        lbSupplementAmount.setBackground(new java.awt.Color(51, 51, 51));
-        lbSupplementAmount.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lbSupplementAmount.setForeground(new java.awt.Color(69, 106, 48));
-        lbSupplementAmount.setText("15");
-        bgPanelRound.add(lbSupplementAmount);
-        lbSupplementAmount.setBounds(340, 250, 90, 32);
-
-        btDeleteSupplement.setBackground(new java.awt.Color(51, 51, 51));
+        btDeleteSupplement.setBackground(new java.awt.Color(69, 106, 48));
         btDeleteSupplement.setForeground(new java.awt.Color(255, 255, 255));
         btDeleteSupplement.setText("Eliminar Suplemento");
         bgPanelRound.add(btDeleteSupplement);
-        btDeleteSupplement.setBounds(550, 310, 140, 23);
+        btDeleteSupplement.setBounds(280, 320, 150, 27);
 
-        btCreateSupplement.setBackground(new java.awt.Color(51, 51, 51));
+        btCreateSupplement.setBackground(new java.awt.Color(69, 106, 48));
         btCreateSupplement.setForeground(new java.awt.Color(255, 255, 255));
         btCreateSupplement.setText("Crear Suplemento");
         btCreateSupplement.addActionListener(new java.awt.event.ActionListener() {
@@ -152,49 +216,19 @@ public class LO2 extends javax.swing.JFrame {
             }
         });
         bgPanelRound.add(btCreateSupplement);
-        btCreateSupplement.setBounds(550, 280, 140, 23);
-
-        lbSupplementType.setBackground(new java.awt.Color(51, 51, 51));
-        lbSupplementType.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lbSupplementType.setForeground(new java.awt.Color(69, 106, 48));
-        lbSupplementType.setText("Medicamento");
-        bgPanelRound.add(lbSupplementType);
-        lbSupplementType.setBounds(90, 280, 110, 32);
+        btCreateSupplement.setBounds(280, 280, 150, 27);
 
         lbSupplementsSpecificationsStatic.setBackground(new java.awt.Color(51, 51, 51));
         lbSupplementsSpecificationsStatic.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         lbSupplementsSpecificationsStatic.setForeground(new java.awt.Color(255, 255, 255));
-        lbSupplementsSpecificationsStatic.setText("Especificaciones:");
         bgPanelRound.add(lbSupplementsSpecificationsStatic);
-        lbSupplementsSpecificationsStatic.setBounds(250, 280, 159, 32);
-
-        lbSupplementName.setBackground(new java.awt.Color(51, 51, 51));
-        lbSupplementName.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lbSupplementName.setForeground(new java.awt.Color(69, 106, 48));
-        lbSupplementName.setText("Acetaminofen");
-        bgPanelRound.add(lbSupplementName);
-        lbSupplementName.setBounds(90, 250, 110, 32);
+        lbSupplementsSpecificationsStatic.setBounds(250, 280, 4, 32);
 
         lbSupplementTypeStatic.setBackground(new java.awt.Color(51, 51, 51));
         lbSupplementTypeStatic.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         lbSupplementTypeStatic.setForeground(new java.awt.Color(255, 255, 255));
-        lbSupplementTypeStatic.setText("Tipo:");
         bgPanelRound.add(lbSupplementTypeStatic);
-        lbSupplementTypeStatic.setBounds(40, 280, 50, 32);
-
-        lbSupplementNameStatic.setBackground(new java.awt.Color(51, 51, 51));
-        lbSupplementNameStatic.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lbSupplementNameStatic.setForeground(new java.awt.Color(255, 255, 255));
-        lbSupplementNameStatic.setText("Nombre:");
-        bgPanelRound.add(lbSupplementNameStatic);
-        lbSupplementNameStatic.setBounds(10, 250, 80, 32);
-
-        taSupplementsSpecifications.setColumns(20);
-        taSupplementsSpecifications.setRows(5);
-        jScrollPane2.setViewportView(taSupplementsSpecifications);
-
-        bgPanelRound.add(jScrollPane2);
-        jScrollPane2.setBounds(250, 320, 250, 40);
+        lbSupplementTypeStatic.setBounds(20, 280, 50, 32);
 
         bg.add(bgPanelRound, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 700, 360));
 
@@ -202,7 +236,7 @@ public class LO2 extends javax.swing.JFrame {
         lbSuplementHeadLine.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         lbSuplementHeadLine.setForeground(new java.awt.Color(255, 255, 255));
         lbSuplementHeadLine.setText("Suplemento");
-        bg.add(lbSuplementHeadLine, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 90, 20));
+        bg.add(lbSuplementHeadLine, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 90, 20));
 
         lbSupplementTitle.setBackground(new java.awt.Color(35, 35, 35));
         lbSupplementTitle.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
@@ -213,8 +247,13 @@ public class LO2 extends javax.swing.JFrame {
         lbZRVLogo.setMaximumSize(new java.awt.Dimension(549, 267));
         bg.add(lbZRVLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 10, 140, 60));
 
-        cbSupplementType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        bg.add(cbSupplementType, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 240, -1));
+        cbSupplementAnimal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos" }));
+        cbSupplementAnimal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbSupplementAnimalActionPerformed(evt);
+            }
+        });
+        bg.add(cbSupplementAnimal, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 70, 240, -1));
 
         lbZooLogo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lbZooLogo.setMaximumSize(new java.awt.Dimension(549, 267));
@@ -224,6 +263,23 @@ public class LO2 extends javax.swing.JFrame {
             }
         });
         bg.add(lbZooLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 2, 90, 45));
+
+        btSearch.setBackground(new java.awt.Color(69, 106, 48));
+        btSearch.setText("Buscar");
+        btSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btSearchActionPerformed(evt);
+            }
+        });
+        bg.add(btSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 70, 70, -1));
+
+        cbSupplementType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos" }));
+        cbSupplementType.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbSupplementTypeActionPerformed(evt);
+            }
+        });
+        bg.add(cbSupplementType, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 240, -1));
 
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 480));
 
@@ -237,26 +293,45 @@ public class LO2 extends javax.swing.JFrame {
     }//GEN-LAST:event_lbZooLogoMouseClicked
 
     private void btCreateSupplementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCreateSupplementActionPerformed
-       LO2Add MainScreen = new LO2Add();
+        LO2Add MainScreen = new LO2Add();
         this.dispose();
         MainScreen.setVisible(true);
     }//GEN-LAST:event_btCreateSupplementActionPerformed
+
+    private void cbSupplementAnimalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbSupplementAnimalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbSupplementAnimalActionPerformed
+
+    private void cbSupplementTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbSupplementTypeActionPerformed
+        if (cbSupplementType.getSelectedItem().toString().equals("Todos")) {
+            comboboxAnimal();
+        } else {
+            try {
+                comboxAnimalType(cbSupplementType.getSelectedItem().toString());
+            } catch (IOException ex) {
+                Logger.getLogger(LO2.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_cbSupplementTypeActionPerformed
+
+    private void btSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSearchActionPerformed
+        File file = new File("rom/Supply.xlsx");
+        loadExcelDataToTable.updateTableFromExcelAtribute(tbGeneratedSupplements, file, cbSupplementType.getSelectedItem().toString(), cbSupplementAnimal.getSelectedItem().toString());
+    }//GEN-LAST:event_btSearchActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        try{
+        try {
             UIManager.setLookAndFeel(new FlatDarculaLaf());
-        }catch (Exception e){
-            
+        } catch (UnsupportedLookAndFeelException e) {
+
         }
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new LO2().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new LO2().setVisible(true);
         });
     }
 
@@ -265,24 +340,18 @@ public class LO2 extends javax.swing.JFrame {
     private Clases.PanelRound bgPanelRound;
     private javax.swing.JButton btCreateSupplement;
     private javax.swing.JButton btDeleteSupplement;
+    private javax.swing.JButton btSearch;
+    private javax.swing.JComboBox<String> cbSupplementAnimal;
     private javax.swing.JComboBox<String> cbSupplementType;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private java.awt.Label lbAnimalSupplement;
     private java.awt.Label lbAnimalSupplementStatic;
     private java.awt.Label lbGeneratedSupplements;
     private java.awt.Label lbSuplementHeadLine;
-    private java.awt.Label lbSupplementAmount;
-    private java.awt.Label lbSupplementAmountStatic;
-    private java.awt.Label lbSupplementName;
-    private java.awt.Label lbSupplementNameStatic;
     private java.awt.Label lbSupplementTitle;
-    private java.awt.Label lbSupplementType;
     private java.awt.Label lbSupplementTypeStatic;
     private java.awt.Label lbSupplementsSpecificationsStatic;
     private javax.swing.JLabel lbZRVLogo;
     private javax.swing.JLabel lbZooLogo;
-    private javax.swing.JTextArea taSupplementsSpecifications;
     private javax.swing.JTable tbGeneratedSupplements;
     // End of variables declaration//GEN-END:variables
 }

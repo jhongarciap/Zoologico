@@ -10,10 +10,6 @@ package Model;
  */
 public class Domestic extends Animal{
     
-    public Domestic(String name, String race, String sex, String habitad, String diet) {
-        super(name, race, sex, habitad, diet);
-    }
-    
     private String psyche;
     private String origin;
 
