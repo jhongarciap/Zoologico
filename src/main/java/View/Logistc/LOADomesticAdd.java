@@ -137,7 +137,7 @@ public class LOADomesticAdd extends javax.swing.JFrame {
         lbOriginDomestic.setForeground(new java.awt.Color(242, 242, 242));
         lbOriginDomestic.setText("Origen:");
         bgPanelRound.add(lbOriginDomestic);
-        lbOriginDomestic.setBounds(10, 140, 190, 20);
+        lbOriginDomestic.setBounds(10, 140, 60, 20);
 
         lbPsycheDomestic.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         lbPsycheDomestic.setForeground(new java.awt.Color(242, 242, 242));

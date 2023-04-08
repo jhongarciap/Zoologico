@@ -179,6 +179,11 @@ public class AD1 extends javax.swing.JFrame {
         bg.add(cbReportType, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 50, 240, -1));
 
         btGeneratePDF1.setText("Generar PDF");
+        btGeneratePDF1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btGeneratePDF1ActionPerformed(evt);
+            }
+        });
         bg.add(btGeneratePDF1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 50, 130, -1));
 
         lbZooLogo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -237,6 +242,10 @@ public class AD1 extends javax.swing.JFrame {
                 break;
         }
     }//GEN-LAST:event_cbReportTypeActionPerformed
+
+    private void btGeneratePDF1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGeneratePDF1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btGeneratePDF1ActionPerformed
 
     /**
      * @param args the command line arguments

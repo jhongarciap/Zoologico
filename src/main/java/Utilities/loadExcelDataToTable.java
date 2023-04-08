@@ -42,7 +42,7 @@ public class loadExcelDataToTable {
         table.setDefaultEditor(Object.class, null);
     }
 
-
+//Se llena una tabla con dos archivos excel.
     public static void updateTableFromTwoExcelFiles(JTable table, File excelFile1, File excelFile2) {
     // Actualizar tabla con el primer archivo de Excel
     updateTableFromExcel(table, excelFile1);
