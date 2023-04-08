@@ -2,6 +2,7 @@ package View.Administrative;
 
 import Control.AdministrativeDepartment.ArrayListPlan;
 import Model.Plan;
+import Utilities.Checker;
 import Utilities.GenerateCodePlan;
 import static Utilities.loadExcelDataToTable.updateTableFromExcel;
 import static View.Administrative.AD2.tbGeneratedReports;
@@ -21,7 +22,7 @@ import javax.swing.UIManager;
 public class PAAdd extends javax.swing.JFrame {
 
     ArrayListPlan plans = new ArrayListPlan();
-    
+
     public PAAdd() {
         //define tamaño
         System.setProperty("sun.java2d.uiScale", "1.0");
@@ -29,7 +30,7 @@ public class PAAdd extends javax.swing.JFrame {
         initComponents();
         //ubica el nombre de la ventana 
         this.setLocationRelativeTo(null); //Centers the window on-screen.
-        this.setTitle("Departamento Administrativo"); // Set the title for the JFrame.
+        this.setTitle("Añadir plan"); // Set the title for the JFrame.
         //icono de la ventana 
         Image faviconX1 = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/View_IconAdminZOO.png"));
         this.setIconImage(faviconX1);
@@ -37,8 +38,6 @@ public class PAAdd extends javax.swing.JFrame {
         Image logoZRV = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/zoo!Logo.png"));
         lbZooLogo.setIcon(new ImageIcon(logoZRV.getScaledInstance(lbZooLogo.getWidth(), lbZooLogo.getHeight(), Image.SCALE_AREA_AVERAGING)));
     }
-    
-       
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -112,7 +111,9 @@ public class PAAdd extends javax.swing.JFrame {
         lbDetails.setBounds(10, 73, 170, 16);
 
         txPlanDetail.setColumns(20);
+        txPlanDetail.setLineWrap(true);
         txPlanDetail.setRows(5);
+        txPlanDetail.setWrapStyleWord(true);
         txDetails.setViewportView(txPlanDetail);
 
         bgPanelRound.add(txDetails);
@@ -157,35 +158,37 @@ public class PAAdd extends javax.swing.JFrame {
         lbPlanTitle.setText("Nuevo Plan");
         bg.add(lbPlanTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 110, -1));
 
-        getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 370));
-
         lbAdvert.setForeground(new java.awt.Color(255, 0, 0));
-        getContentPane().add(lbAdvert, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 110, 20));
+        bg.add(lbAdvert, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 110, 20));
+
+        getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 370));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btLogisticPlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLogisticPlanActionPerformed
-         if (txPlanName.getText().equals("")
-                || txValue.getText().equals("") 
-                || txPlanDetail.getText().equals("")){ 
-            
+        if (txPlanName.getText().equals("")
+                || txValue.getText().equals("")
+                || txPlanDetail.getText().equals("")) {
+
             lbAdvert.setText("Hay campos vacios");
         } else {
-            
-            lbAdvert.setText("");
-            //Se llena la array 
-        Plan newPlan = new Plan("",txPlanName.getText(),Float.valueOf(txValue.getText()),txPlanDetail.getText());
-        plans.addPlan(newPlan);
-        plans.SavePlanExcel();
-        //se habre la ventana AD2 
-        AD3 MainScreen = new AD3();
-        this.dispose();
-        MainScreen.setVisible(true);
-        //Se carga la tabla actualizada 
-        File file = new File("rom/Plans/Plans.xlsx");
-         updateTableFromExcel(AD3.tbPlans, file);
-         }
+            if (Checker.FloatChecker(txValue.getText())) {
+                Plan newPlan = new Plan("", txPlanName.getText(), Float.valueOf(txValue.getText()), txPlanDetail.getText());
+                plans.addPlan(newPlan);
+                plans.SavePlanExcel();
+                // Opens AD3
+                AD3 MainScreen = new AD3();
+                this.dispose();
+                MainScreen.setVisible(true);
+                //Updates the table in AD3
+                File file = new File("rom/Plans/Plans.xlsx");
+                updateTableFromExcel(AD3.tbPlans, file);
+            } else {
+                lbAdvert.setText("El valor no es válido");
+            }
+
+        }
     }//GEN-LAST:event_btLogisticPlanActionPerformed
 
     private void txValueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txValueActionPerformed
@@ -197,19 +200,19 @@ public class PAAdd extends javax.swing.JFrame {
     }//GEN-LAST:event_txPlanNameActionPerformed
 
     private void lbZooLogoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbZooLogoMouseClicked
-         AD3 ReportWindow = new AD3();
-       this.dispose();
-       ReportWindow.setVisible(true);
+        AD3 ReportWindow = new AD3();
+        this.dispose();
+        ReportWindow.setVisible(true);
     }//GEN-LAST:event_lbZooLogoMouseClicked
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        try{
+        try {
             UIManager.setLookAndFeel(new FlatDarculaLaf());
-        }catch (Exception e){
-            
+        } catch (Exception e) {
+
         }
 
         /* Create and display the form */

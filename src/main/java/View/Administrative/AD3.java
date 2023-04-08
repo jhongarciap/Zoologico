@@ -1,11 +1,17 @@
 package View.Administrative;
 
+import static Utilities.AdExcel.deleteRow;
+import static Utilities.AdExcel.getRow;
+import static Utilities.AdExcel.rowToVector;
+import Utilities.loadExcelDataToTable;
 import com.formdev.flatlaf.FlatDarculaLaf;
 import com.formdev.flatlaf.FlatDarkLaf;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.io.File;
 import javax.swing.ImageIcon;
 import javax.swing.UIManager;
+import org.apache.poi.ss.usermodel.Row;
 
 /**
  *
@@ -13,26 +19,35 @@ import javax.swing.UIManager;
  */
 public class AD3 extends javax.swing.JFrame {
 
-    /**
-     * Creates new form X1
-     */
+    File file = new File("rom/Plans/Plans.xlsx");
+
     public AD3() {
         System.setProperty("sun.java2d.uiScale", "1.0");
         FlatDarkLaf.setup(); // Sets the FlatLaf LookAndFeel as the main theme for the JFrame.
         initComponents();
-        
+
         this.setLocationRelativeTo(null); //Centers the window on-screen.
-        this.setTitle("Trabajadores"); // Set the title for the JFrame.
-        
+        this.setTitle("Planes"); // Set the title for the JFrame.
+
         Image faviconX1 = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/View_IconAdminZOO.png"));
         this.setIconImage(faviconX1);
-        
+
         Image logoZRV = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/ZRVC@3x.png"));
         lbZRVLogo.setIcon(new ImageIcon(logoZRV.getScaledInstance(lbZRVLogo.getWidth(), lbZRVLogo.getHeight(), Image.SCALE_AREA_AVERAGING)));
 
         Image logoZoo = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/zoo!Logo.png"));
         lbZooLogo.setIcon(new ImageIcon(logoZoo.getScaledInstance(lbZooLogo.getWidth(), lbZooLogo.getHeight(), Image.SCALE_AREA_AVERAGING)));
 
+        enableDeleteButton();
+
+    }
+
+    private void enableDeleteButton() {
+        if (!txSpecificationsPlan.getText().equals("")) {
+            btDeletePlan.setEnabled(true);
+        } else {
+            btDeletePlan.setEnabled(false);
+        }
     }
 
     /**
@@ -48,12 +63,13 @@ public class AD3 extends javax.swing.JFrame {
         bgPanelRound = new Clases.PanelRound();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbPlans = new javax.swing.JTable();
-        lbShowPlans = new java.awt.Label();
-        lbTotalExpensesValue = new java.awt.Label();
-        lbSpecificationsPlan = new java.awt.Label();
-        btDeletePlan = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         txSpecificationsPlan = new javax.swing.JTextArea();
+        lbShowPlans = new java.awt.Label();
+        lbDisplayPlanName = new java.awt.Label();
+        btDeletePlan = new javax.swing.JButton();
+        lbSpecificationsPlan1 = new java.awt.Label();
+        lbPlanPrice = new java.awt.Label();
         txSearchPlans = new javax.swing.JTextField();
         lbSearchPlans = new java.awt.Label();
         lbPlansTitle = new java.awt.Label();
@@ -95,38 +111,52 @@ public class AD3 extends javax.swing.JFrame {
         bgPanelRound.add(jScrollPane1);
         jScrollPane1.setBounds(10, 35, 680, 200);
 
+        txSpecificationsPlan.setEditable(false);
+        txSpecificationsPlan.setColumns(20);
+        txSpecificationsPlan.setLineWrap(true);
+        txSpecificationsPlan.setRows(5);
+        txSpecificationsPlan.setWrapStyleWord(true);
+        jScrollPane2.setViewportView(txSpecificationsPlan);
+
+        bgPanelRound.add(jScrollPane2);
+        jScrollPane2.setBounds(10, 290, 680, 50);
+
         lbShowPlans.setBackground(new java.awt.Color(51, 51, 51));
         lbShowPlans.setFont(new java.awt.Font("Arial", 3, 24)); // NOI18N
         lbShowPlans.setForeground(new java.awt.Color(255, 255, 255));
-        lbShowPlans.setText("Planes");
+        lbShowPlans.setText("Planes existentes");
         bgPanelRound.add(lbShowPlans);
         lbShowPlans.setBounds(10, 0, 296, 32);
 
-        lbTotalExpensesValue.setBackground(new java.awt.Color(51, 51, 51));
-        lbTotalExpensesValue.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lbTotalExpensesValue.setForeground(new java.awt.Color(255, 153, 0));
-        bgPanelRound.add(lbTotalExpensesValue);
-        lbTotalExpensesValue.setBounds(160, 350, 140, 32);
-
-        lbSpecificationsPlan.setBackground(new java.awt.Color(51, 51, 51));
-        lbSpecificationsPlan.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lbSpecificationsPlan.setForeground(new java.awt.Color(255, 255, 255));
-        lbSpecificationsPlan.setText("Especificaciones del plan:");
-        bgPanelRound.add(lbSpecificationsPlan);
-        lbSpecificationsPlan.setBounds(10, 240, 230, 32);
+        lbDisplayPlanName.setBackground(new java.awt.Color(51, 51, 51));
+        lbDisplayPlanName.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        lbDisplayPlanName.setForeground(new java.awt.Color(255, 255, 255));
+        bgPanelRound.add(lbDisplayPlanName);
+        lbDisplayPlanName.setBounds(10, 240, 440, 50);
 
         btDeletePlan.setBackground(new java.awt.Color(51, 51, 51));
         btDeletePlan.setForeground(new java.awt.Color(255, 255, 255));
         btDeletePlan.setText("Eliminar Plan");
+        btDeletePlan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btDeletePlanActionPerformed(evt);
+            }
+        });
         bgPanelRound.add(btDeletePlan);
-        btDeletePlan.setBounds(560, 350, 130, 23);
+        btDeletePlan.setBounds(560, 355, 130, 23);
 
-        txSpecificationsPlan.setColumns(20);
-        txSpecificationsPlan.setRows(5);
-        jScrollPane2.setViewportView(txSpecificationsPlan);
+        lbSpecificationsPlan1.setBackground(new java.awt.Color(51, 51, 51));
+        lbSpecificationsPlan1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lbSpecificationsPlan1.setForeground(new java.awt.Color(255, 255, 255));
+        lbSpecificationsPlan1.setText("Especificaciones del plan");
+        bgPanelRound.add(lbSpecificationsPlan1);
+        lbSpecificationsPlan1.setBounds(460, 250, 230, 32);
 
-        bgPanelRound.add(jScrollPane2);
-        jScrollPane2.setBounds(250, 250, 440, 86);
+        lbPlanPrice.setBackground(new java.awt.Color(51, 51, 51));
+        lbPlanPrice.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        lbPlanPrice.setForeground(new java.awt.Color(255, 153, 0));
+        bgPanelRound.add(lbPlanPrice);
+        lbPlanPrice.setBounds(10, 340, 230, 50);
 
         bg.add(bgPanelRound, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 700, 390));
         bg.add(txSearchPlans, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, 340, -1));
@@ -147,6 +177,11 @@ public class AD3 extends javax.swing.JFrame {
         bg.add(lbZRVLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 10, 140, 60));
 
         btSearchPlan.setText("Buscar");
+        btSearchPlan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btSearchPlanActionPerformed(evt);
+            }
+        });
         bg.add(btSearchPlan, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 50, 70, 20));
 
         lbZooLogo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -180,20 +215,52 @@ public class AD3 extends javax.swing.JFrame {
     }//GEN-LAST:event_lbZooLogoMouseClicked
 
     private void btAddPlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddPlanActionPerformed
-       PAAdd ReportWindow = new PAAdd();
-       ReportWindow.setVisible(true);
-       this.dispose();
-      
+        PAAdd ReportWindow = new PAAdd();
+        ReportWindow.setVisible(true);
+        this.dispose();
+
     }//GEN-LAST:event_btAddPlanActionPerformed
+
+    private void btDeletePlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDeletePlanActionPerformed
+        String planId = txSearchPlans.getText();
+        txSpecificationsPlan.setText("");
+        txSearchPlans.setText("");
+        lbPlanPrice.setText("");
+        lbDisplayPlanName.setText("");
+        deleteRow(planId, file, "Plans", 0);
+        loadExcelDataToTable.updateTableFromExcel(tbPlans, file);
+        enableDeleteButton();
+    }//GEN-LAST:event_btDeletePlanActionPerformed
+
+    private void btSearchPlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSearchPlanActionPerformed
+        String planId = txSearchPlans.getText();
+
+        if ("".equals(planId)) {
+            lbDisplayPlanName.setText("Digite un ID");
+        } else {
+            Row row = getRow(planId, file, "Plans", 0);
+            if (row == null) {
+                lbDisplayPlanName.setText("ID no existe");
+            } else {
+                String[] vector = rowToVector(row);
+                lbDisplayPlanName.setText(vector[1]);
+                lbPlanPrice.setText("$"+vector[2]);
+                txSpecificationsPlan.setText(vector[3]);
+            }
+
+        }
+
+        enableDeleteButton();
+    }//GEN-LAST:event_btSearchPlanActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        try{
+        try {
             UIManager.setLookAndFeel(new FlatDarculaLaf());
-        }catch (Exception e){
-            
+        } catch (Exception e) {
+
         }
 
         /* Create and display the form */
@@ -212,11 +279,12 @@ public class AD3 extends javax.swing.JFrame {
     private javax.swing.JButton btSearchPlan;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private java.awt.Label lbDisplayPlanName;
+    private java.awt.Label lbPlanPrice;
     private java.awt.Label lbPlansTitle;
     private java.awt.Label lbSearchPlans;
     private java.awt.Label lbShowPlans;
-    private java.awt.Label lbSpecificationsPlan;
-    private java.awt.Label lbTotalExpensesValue;
+    private java.awt.Label lbSpecificationsPlan1;
     private javax.swing.JLabel lbZRVLogo;
     private javax.swing.JLabel lbZooLogo;
     public static javax.swing.JTable tbPlans;
