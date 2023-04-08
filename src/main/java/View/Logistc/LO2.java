@@ -1,8 +1,7 @@
 package View.Logistc;
 
 import Utilities.AdExcel;
-import static Utilities.loadExcelDataToTable.updateTableFromExcel;
-import static View.Administrative.AD1.tbGeneratedReports1;
+import Utilities.loadExcelDataToTable;
 import View.Administrative.IS1;
 import com.formdev.flatlaf.FlatDarculaLaf;
 import com.formdev.flatlaf.FlatDarkLaf;
@@ -17,6 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -51,6 +51,7 @@ public class LO2 extends javax.swing.JFrame {
         // Generamos la tabla general
         generalTable();
         comboboxType();
+        comboboxAnimal();
     }
 
     private void comboboxType() {
@@ -69,8 +70,25 @@ public class LO2 extends javax.swing.JFrame {
             }
         }
     }
+    
+    private void comboboxAnimal(){
+        AdExcel excel = new AdExcel();
+            File file = new File("rom/Supply.xlsx");
+            if (file.exists()) {
+                ArrayList<String> columns = excel.getColumn(file, 2);
+                for (String column : columns) {
+                    ArrayList<String> types = new ArrayList();
+                    for (int i = 0; i < cbSupplementAnimal.getItemCount(); i++) {
+                        types.add(cbSupplementAnimal.getItemAt(i));
+                    }
+                    if (!types.contains(column)) {
+                        cbSupplementAnimal.addItem(column);
+                    }
+                }
+            }
+    }
 
-    private void comboxAnimal(String value) throws FileNotFoundException, IOException {
+    private void comboxAnimalType(String value) throws FileNotFoundException, IOException {
         cbSupplementAnimal.removeAllItems();
         cbSupplementAnimal.addItem("Todos");
         File file = new File("rom/Supply.xlsx");
@@ -106,7 +124,7 @@ public class LO2 extends javax.swing.JFrame {
 
     private void generalTable() {
         File file = new File("rom/Supply.xlsx");
-        updateTableFromExcel(tbGeneratedSupplements, file);
+        loadExcelDataToTable.updateTableFromExcel(tbGeneratedSupplements, file);
     }
 
     /**
@@ -248,6 +266,11 @@ public class LO2 extends javax.swing.JFrame {
 
         btSearch.setBackground(new java.awt.Color(69, 106, 48));
         btSearch.setText("Buscar");
+        btSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btSearchActionPerformed(evt);
+            }
+        });
         bg.add(btSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 70, 70, -1));
 
         cbSupplementType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos" }));
@@ -281,28 +304,20 @@ public class LO2 extends javax.swing.JFrame {
 
     private void cbSupplementTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbSupplementTypeActionPerformed
         if (cbSupplementType.getSelectedItem().toString().equals("Todos")) {
-            AdExcel excel = new AdExcel();
-            File file = new File("rom/Supply.xlsx");
-            if (file.exists()) {
-                ArrayList<String> columns = excel.getColumn(file, 2);
-                for (String column : columns) {
-                    ArrayList<String> types = new ArrayList();
-                    for (int i = 0; i < cbSupplementAnimal.getItemCount(); i++) {
-                        types.add(cbSupplementAnimal.getItemAt(i));
-                    }
-                    if (!types.contains(column)) {
-                        cbSupplementAnimal.addItem(column);
-                    }
-                }
-            }
+            comboboxAnimal();
         } else {
             try {
-                comboxAnimal(cbSupplementType.getSelectedItem().toString());
+                comboxAnimalType(cbSupplementType.getSelectedItem().toString());
             } catch (IOException ex) {
                 Logger.getLogger(LO2.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }//GEN-LAST:event_cbSupplementTypeActionPerformed
+
+    private void btSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSearchActionPerformed
+        File file = new File("rom/Supply.xlsx");
+        loadExcelDataToTable.updateTableFromExcelAtribute(tbGeneratedSupplements, file, cbSupplementType.getSelectedItem().toString(), cbSupplementAnimal.getSelectedItem().toString());
+    }//GEN-LAST:event_btSearchActionPerformed
 
     /**
      * @param args the command line arguments
@@ -310,15 +325,13 @@ public class LO2 extends javax.swing.JFrame {
     public static void main(String args[]) {
         try {
             UIManager.setLookAndFeel(new FlatDarculaLaf());
-        } catch (Exception e) {
+        } catch (UnsupportedLookAndFeelException e) {
 
         }
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new LO2().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new LO2().setVisible(true);
         });
     }
 
