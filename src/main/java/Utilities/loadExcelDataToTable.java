@@ -45,6 +45,7 @@ public class loadExcelDataToTable {
     }
 
     public static void updateTableFromExcelAtribute(JTable table, File excelFile, String value1, String value2) {
+        boolean hashData = false;
         // Obtener el modelo de la tabla
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         boolean hasData = false;
@@ -64,6 +65,7 @@ public class loadExcelDataToTable {
                     Cell cell = row.getCell(i);
                     rowData[i] = cell == null ? "" : cell.toString();
                     if (!rowData[i].equals("")) {
+<<<<<<< HEAD
                         hasData = true;
                     }
                 }
@@ -71,6 +73,16 @@ public class loadExcelDataToTable {
             if (hasData) {
                 model.addRow(rowData);
             }
+=======
+                        hashData = true;
+                    }
+                }
+            }
+            if (hashData){
+                model.addRow(rowData);
+            }
+            
+>>>>>>> a2d5bcead76742dfdb9ff949b8353b2a6256fb89
         }
 
         // Hacer que la tabla no sea editable

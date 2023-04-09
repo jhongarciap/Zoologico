@@ -204,8 +204,13 @@ public class LO2 extends javax.swing.JFrame {
         btDeleteSupplement.setBackground(new java.awt.Color(69, 106, 48));
         btDeleteSupplement.setForeground(new java.awt.Color(255, 255, 255));
         btDeleteSupplement.setText("Eliminar Suplemento");
+        btDeleteSupplement.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btDeleteSupplementActionPerformed(evt);
+            }
+        });
         bgPanelRound.add(btDeleteSupplement);
-        btDeleteSupplement.setBounds(280, 320, 150, 27);
+        btDeleteSupplement.setBounds(280, 320, 150, 23);
 
         btCreateSupplement.setBackground(new java.awt.Color(69, 106, 48));
         btCreateSupplement.setForeground(new java.awt.Color(255, 255, 255));
@@ -216,7 +221,7 @@ public class LO2 extends javax.swing.JFrame {
             }
         });
         bgPanelRound.add(btCreateSupplement);
-        btCreateSupplement.setBounds(280, 280, 150, 27);
+        btCreateSupplement.setBounds(280, 280, 150, 23);
 
         lbSupplementsSpecificationsStatic.setBackground(new java.awt.Color(51, 51, 51));
         lbSupplementsSpecificationsStatic.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -317,7 +322,14 @@ public class LO2 extends javax.swing.JFrame {
     private void btSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSearchActionPerformed
         File file = new File("rom/Supply.xlsx");
         loadExcelDataToTable.updateTableFromExcelAtribute(tbGeneratedSupplements, file, cbSupplementType.getSelectedItem().toString(), cbSupplementAnimal.getSelectedItem().toString());
+        
     }//GEN-LAST:event_btSearchActionPerformed
+
+    private void btDeleteSupplementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDeleteSupplementActionPerformed
+        LO2Delete jf = new LO2Delete();
+        jf.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btDeleteSupplementActionPerformed
 
     /**
      * @param args the command line arguments
@@ -352,6 +364,6 @@ public class LO2 extends javax.swing.JFrame {
     private java.awt.Label lbSupplementsSpecificationsStatic;
     private javax.swing.JLabel lbZRVLogo;
     private javax.swing.JLabel lbZooLogo;
-    private javax.swing.JTable tbGeneratedSupplements;
+    public static javax.swing.JTable tbGeneratedSupplements;
     // End of variables declaration//GEN-END:variables
 }
