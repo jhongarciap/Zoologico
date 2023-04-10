@@ -7,7 +7,6 @@ package Utilities;
 import static Utilities.AdExcel.getRowsExcel;
 import java.io.File;
 import java.util.ArrayList;
-import static javax.management.Query.value;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import org.apache.poi.ss.usermodel.Cell;
@@ -43,9 +42,8 @@ public class loadExcelDataToTable {
         // Hacer que la tabla no sea editable
         table.setDefaultEditor(Object.class, null);
     }
-
-    public static void updateTableFromExcelAtribute(JTable table, File excelFile, String value1, String value2) {
-        boolean hashData = false;
+    
+    public static void updateTableFromExcelOneAtribute(JTable table, File excelFile, String value, int columnValue) {
         // Obtener el modelo de la tabla
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         boolean hasData = false;
@@ -61,33 +59,51 @@ public class loadExcelDataToTable {
             Row row = data.get(rowIndex);
             Object[] rowData = new Object[row.getLastCellNum()];
             for (int i = 0; i < rowData.length; i++) {
-                if (row.getCell(0).getStringCellValue().equals(value1) && row.getCell(2).getStringCellValue().equals(value2)) {
+                if (row.getCell(columnValue).getStringCellValue().equals(value)) {
                     Cell cell = row.getCell(i);
                     rowData[i] = cell == null ? "" : cell.toString();
                     if (!rowData[i].equals("")) {
-<<<<<<< HEAD
                         hasData = true;
                     }
                 }
             }
-            if (hasData) {
+            if (hasData == true) {
                 model.addRow(rowData);
             }
-=======
-                        hashData = true;
+        }
+    }
+
+    public static void updateTableFromExcelTwoAtribute(JTable table, File excelFile, String value1, int columnValue1, String value2, int columnValue2) {
+        // Obtener el modelo de la tabla
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        boolean hasData = false;
+
+        // Obtener los datos del archivo Excel
+        ArrayList<Row> data = getRowsExcel(excelFile);
+
+        // Limpiar la tabla
+        model.setRowCount(0);
+
+        // Agregar los datos a la tabla, comenzando desde la fila 2
+        for (int rowIndex = 1; rowIndex < data.size(); rowIndex++) {
+            Row row = data.get(rowIndex);
+            Object[] rowData = new Object[row.getLastCellNum()];
+            for (int i = 0; i < rowData.length; i++) {
+                if (row.getCell(columnValue1).getStringCellValue().equals(value1) && row.getCell(columnValue2).getStringCellValue().equals(value2)) {
+                    Cell cell = row.getCell(i);
+                    rowData[i] = cell == null ? "" : cell.toString();
+                    if (!rowData[i].equals("")) {
+                        hasData = true;
                     }
                 }
             }
-            if (hashData){
+            if (hasData == true) {
                 model.addRow(rowData);
             }
-            
->>>>>>> a2d5bcead76742dfdb9ff949b8353b2a6256fb89
         }
-
-        // Hacer que la tabla no sea editable
-        table.setDefaultEditor(Object.class, null);
     }
+
+// Hacer que la tabla no sea editable
 
 //Se llena una tabla con dos archivos excel.
     public static void updateTableFromTwoExcelFiles(JTable table, File excelFile1, File excelFile2) {
