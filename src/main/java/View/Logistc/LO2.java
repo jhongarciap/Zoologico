@@ -70,22 +70,22 @@ public class LO2 extends javax.swing.JFrame {
             }
         }
     }
-    
-    private void comboboxAnimal(){
+
+    private void comboboxAnimal() {
         AdExcel excel = new AdExcel();
-            File file = new File("rom/Supply.xlsx");
-            if (file.exists()) {
-                ArrayList<String> columns = excel.getColumn(file, 2);
-                for (String column : columns) {
-                    ArrayList<String> types = new ArrayList();
-                    for (int i = 0; i < cbSupplementAnimal.getItemCount(); i++) {
-                        types.add(cbSupplementAnimal.getItemAt(i));
-                    }
-                    if (!types.contains(column)) {
-                        cbSupplementAnimal.addItem(column);
-                    }
+        File file = new File("rom/Supply.xlsx");
+        if (file.exists()) {
+            ArrayList<String> columns = excel.getColumn(file, 2);
+            for (String column : columns) {
+                ArrayList<String> types = new ArrayList();
+                for (int i = 0; i < cbSupplementAnimal.getItemCount(); i++) {
+                    types.add(cbSupplementAnimal.getItemAt(i));
+                }
+                if (!types.contains(column)) {
+                    cbSupplementAnimal.addItem(column);
                 }
             }
+        }
     }
 
     private void comboxAnimalType(String value) throws FileNotFoundException, IOException {
@@ -321,8 +321,15 @@ public class LO2 extends javax.swing.JFrame {
 
     private void btSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSearchActionPerformed
         File file = new File("rom/Supply.xlsx");
-        loadExcelDataToTable.updateTableFromExcelAtribute(tbGeneratedSupplements, file, cbSupplementType.getSelectedItem().toString(), cbSupplementAnimal.getSelectedItem().toString());
-        
+        if (cbSupplementType.getSelectedItem().toString().equals("Todos") && cbSupplementAnimal.getSelectedItem().toString().equals("Todos")) {
+            generalTable();
+        } else if (cbSupplementType.getSelectedItem().toString().equals("Todos")){
+            loadExcelDataToTable.updateTableFromExcelOneAtribute(tbGeneratedSupplements, file, cbSupplementAnimal.getSelectedItem().toString(), 2);
+        } else if (cbSupplementAnimal.getSelectedItem().toString().equals("Todos")){
+            loadExcelDataToTable.updateTableFromExcelOneAtribute(tbGeneratedSupplements, file, cbSupplementType.getSelectedItem().toString(), 0);
+        } else {
+            loadExcelDataToTable.updateTableFromExcelTwoAtribute(tbGeneratedSupplements, file, cbSupplementType.getSelectedItem().toString(), 0, cbSupplementAnimal.getSelectedItem().toString(), 2);
+        }
     }//GEN-LAST:event_btSearchActionPerformed
 
     private void btDeleteSupplementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDeleteSupplementActionPerformed

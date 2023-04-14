@@ -9,9 +9,22 @@ import javax.swing.UIManager;
 import Model.Supply;
 import Control.LogisticDepartment.ArrayListSupply;
 import Utilities.AdExcel;
+import static Utilities.AdExcel.getRowsExcel;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.UnsupportedLookAndFeelException;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  *
@@ -39,8 +52,8 @@ public class LO2Add extends javax.swing.JFrame {
         // Añadimos los animales existentes en el combobox
         ComboBoxDinamico();
     }
-    
-    private void ComboBoxDinamico(){
+
+    private void ComboBoxDinamico() {
         String[] urls = new String[3];
         urls[0] = "rom/Animals/Wilds.xlsx";
         urls[1] = "rom/Animals/Minors.xlsx";
@@ -227,7 +240,6 @@ public class LO2Add extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btAddNewSupplyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddNewSupplyActionPerformed
-        System.out.println("btAddNewSupplyMouseClicked() method invoked");
         // Este if lo que hace es verificar si todas las casillas estan diligenciadas
         if (txQuantityNewSupply.getText().equals("")
                 || cbTypeNewSupply.getSelectedItem().toString().equals("Seleccionar...")
@@ -236,22 +248,69 @@ public class LO2Add extends javax.swing.JFrame {
             // Mostramos un mensaje que hay campos vacios
             lbAdvert.setText("Hay campos vacios");
         } else {
-            // En caso de que la vez anterior fuera incorrecta, esta vez no aparece el mensaje de campos vacios
             lbAdvert.setText("");
-            // Creamos un objeto Supply con los datos diligenciados Supply View
-            Supply supply = new Supply(cbTypeNewSupply.getSelectedItem().toString(),
-                    txNameNewSupply.getText(),
-                    cbAnimalNewSupply.getSelectedItem().toString(),
-                    txQuantityNewSupply.getText(),
-                    txSpecificationsNewSupply.getText()); // Lo añadimos al excel
-            // Añadimos el nuevo excel
-            ArrayListSupply list = new ArrayListSupply();
-            list.addSupply(supply);
-            list.SaveSupplyeExcel();
-            // Cambiamos de ventana
-            LO2 MainScreen = new LO2();
-            this.dispose();
-            MainScreen.setVisible(true);
+            File file = new File("rom/Supply.xlsx");
+            ArrayList<Row> data = getRowsExcel(file);
+            boolean same = false;
+            int r = 0;
+            int num = 0;
+            for (int rowIndex = 1; rowIndex < data.size(); rowIndex++) {
+                Row row = data.get(rowIndex);
+                Object[] rowData = new Object[row.getLastCellNum()];
+                for (int i = 0; i < rowData.length; i++) {
+                    if (row.getCell(0).getStringCellValue().equals(cbTypeNewSupply.getSelectedItem().toString())
+                            && row.getCell(1).getStringCellValue().equals(txNameNewSupply.getText())
+                            && row.getCell(2).getStringCellValue().equals(cbAnimalNewSupply.getSelectedItem().toString())
+                            && row.getCell(4).getStringCellValue().equals(txSpecificationsNewSupply.getText())) {
+                        r = i;
+                        num = Integer.parseInt(row.getCell(3).getStringCellValue());
+                        same = true;
+                    }
+                }
+            }
+            if (same == true) {
+                XSSFWorkbook workbook = null;
+                try (FileInputStream fis = new FileInputStream(file)) {
+                    workbook = new XSSFWorkbook(fis);
+                    XSSFSheet sheet = workbook.getSheet("Supplys");
+                    XSSFRow row = sheet.getRow(r); // Get the second row (0-based)
+                    if (row != null) {
+                        XSSFCell cell = row.getCell(3); // Get the fourth cell (0-based)
+                        if (cell != null) {
+                            cell.setCellValue(String.valueOf(num + Integer.parseInt(txQuantityNewSupply.getText()))); // Set the new value
+                        }
+                    }
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(LO2Add.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(LO2Add.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                try (FileOutputStream fos = new FileOutputStream(file)) {
+                    workbook.write(fos);
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(LO2Add.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(LO2Add.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                LO2 MainScreen = new LO2();
+                this.dispose();
+                MainScreen.setVisible(true);
+            } else {
+                // Creamos un objeto Supply con los datos diligenciados Supply View
+                Supply supply = new Supply(cbTypeNewSupply.getSelectedItem().toString(),
+                        txNameNewSupply.getText(),
+                        cbAnimalNewSupply.getSelectedItem().toString(),
+                        txQuantityNewSupply.getText(),
+                        txSpecificationsNewSupply.getText()); // Lo añadimos al excel
+                // Añadimos el nuevo excel
+                ArrayListSupply list = new ArrayListSupply();
+                list.addSupply(supply);
+                list.SaveSupplyeExcel();
+                // Cambiamos de ventana
+                LO2 MainScreen = new LO2();
+                this.dispose();
+                MainScreen.setVisible(true);
+            }
         }
     }//GEN-LAST:event_btAddNewSupplyActionPerformed
 
