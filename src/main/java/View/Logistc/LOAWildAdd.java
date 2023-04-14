@@ -1,12 +1,16 @@
 package View.Logistc;
 
-import View.Logistc.LO1Wild;
+import Control.LogisticDepartment.ArrayListWild;
 import com.formdev.flatlaf.FlatDarculaLaf;
 import com.formdev.flatlaf.FlatDarkLaf;
+import static Utilities.loadExcelDataToTable.updateTableFromExcel;
 import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 import javax.swing.UIManager;
+import Model.Wild;
+import java.io.File;
+import static View.Logistc.LO1Wild.tbWildAnimals;
 
 /**
  *
@@ -17,6 +21,7 @@ public class LOAWildAdd extends javax.swing.JFrame {
     /**
      * Creates new form X1
      */
+    ArrayListWild wilds = new ArrayListWild();
     public LOAWildAdd() {
         //define tamaño
         System.setProperty("sun.java2d.uiScale", "1.0");
@@ -51,7 +56,6 @@ public class LOAWildAdd extends javax.swing.JFrame {
         jbRaceWild = new javax.swing.JLabel();
         txRaceWild = new javax.swing.JTextField();
         jbSexWild = new javax.swing.JLabel();
-        jbDietWild = new javax.swing.JLabel();
         jbBirthhabitatWild = new javax.swing.JLabel();
         txBirthhabitatWild = new javax.swing.JTextField();
         jbDangerousnessWild = new javax.swing.JLabel();
@@ -62,11 +66,13 @@ public class LOAWildAdd extends javax.swing.JFrame {
         cbSexWild = new javax.swing.JComboBox<>();
         jComboBox3 = new javax.swing.JComboBox<>();
         cbHabitadWild = new javax.swing.JComboBox<>();
+        jbDietWild1 = new javax.swing.JLabel();
         btLogisticAnimals = new javax.swing.JButton();
         lbZooLogo = new javax.swing.JLabel();
         lbWildTitle1 = new java.awt.Label();
         lbWildTitle2 = new java.awt.Label();
         lbWildTitle3 = new java.awt.Label();
+        lbAdvert = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -95,7 +101,6 @@ public class LOAWildAdd extends javax.swing.JFrame {
         jbNameWild.setBounds(10, 25, 70, 16);
 
         txNameWild.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        txNameWild.setText("Ingresa el nombre del animal");
         txNameWild.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txNameWildActionPerformed(evt);
@@ -111,7 +116,6 @@ public class LOAWildAdd extends javax.swing.JFrame {
         jbRaceWild.setBounds(10, 50, 70, 16);
 
         txRaceWild.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        txRaceWild.setText("Ingresa la raza del animal");
         txRaceWild.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txRaceWildActionPerformed(evt);
@@ -126,12 +130,6 @@ public class LOAWildAdd extends javax.swing.JFrame {
         bgPanelRound.add(jbSexWild);
         jbSexWild.setBounds(10, 80, 70, 16);
 
-        jbDietWild.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jbDietWild.setForeground(new java.awt.Color(242, 242, 242));
-        jbDietWild.setText("Dieta:");
-        bgPanelRound.add(jbDietWild);
-        jbDietWild.setBounds(10, 220, 70, 16);
-
         jbBirthhabitatWild.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jbBirthhabitatWild.setForeground(new java.awt.Color(242, 242, 242));
         jbBirthhabitatWild.setText("Hábitat de Nacimiento:");
@@ -139,7 +137,6 @@ public class LOAWildAdd extends javax.swing.JFrame {
         jbBirthhabitatWild.setBounds(10, 140, 190, 16);
 
         txBirthhabitatWild.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        txBirthhabitatWild.setText("Ingresa el hábitad de nacimiento del animal");
         txBirthhabitatWild.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txBirthhabitatWildActionPerformed(evt);
@@ -162,7 +159,7 @@ public class LOAWildAdd extends javax.swing.JFrame {
 
         txDietWild.setColumns(20);
         txDietWild.setRows(5);
-        txDietWild.setText("Ingresa la dieta del animal");
+        txDietWild.setText("\n");
         jScrollPane1.setViewportView(txDietWild);
 
         bgPanelRound.add(jScrollPane1);
@@ -172,7 +169,7 @@ public class LOAWildAdd extends javax.swing.JFrame {
         bgPanelRound.add(cbDangerousnessWild);
         cbDangerousnessWild.setBounds(120, 190, 150, 22);
 
-        cbSexWild.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", "Femenino", "Masculino" }));
+        cbSexWild.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Femenino", "Masculino" }));
         bgPanelRound.add(cbSexWild);
         cbSexWild.setBounds(90, 80, 180, 22);
 
@@ -180,9 +177,15 @@ public class LOAWildAdd extends javax.swing.JFrame {
         bgPanelRound.add(jComboBox3);
         jComboBox3.setBounds(90, 80, 180, 22);
 
-        cbHabitadWild.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hábitad 1", "Hábitad 2", "Hábitad 3" }));
+        cbHabitadWild.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hábitat 1", "Hábitat 2", "Hábitat 3" }));
         bgPanelRound.add(cbHabitadWild);
         cbHabitadWild.setBounds(90, 110, 180, 22);
+
+        jbDietWild1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jbDietWild1.setForeground(new java.awt.Color(242, 242, 242));
+        jbDietWild1.setText("Dieta:");
+        bgPanelRound.add(jbDietWild1);
+        jbDietWild1.setBounds(10, 220, 70, 16);
 
         bg.add(bgPanelRound, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 280, 380));
 
@@ -224,15 +227,38 @@ public class LOAWildAdd extends javax.swing.JFrame {
         lbWildTitle3.setText("Salvaje");
         bg.add(lbWildTitle3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, 70, -1));
 
+        lbAdvert.setForeground(new java.awt.Color(255, 0, 0));
+        lbAdvert.setRequestFocusEnabled(false);
+        bg.add(lbAdvert, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 440, 100, 20));
+
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 480));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btLogisticAnimalsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLogisticAnimalsActionPerformed
+        if (txNameWild.getText().equals("")
+                || txRaceWild.getText().equals("") 
+                || txBirthhabitatWild.getText().equals("") 
+                || txDietWild.getText().equals("")){ 
+            // Mostramos un mensaje que hay campos vacios
+            lbAdvert.setText("Hay campos vacios");
+        } else {
+            // En caso de que la vez anterior fuera incorrecta, esta vez no aparece el mensaje de campos vacios
+            lbAdvert.setText("");
+            //Se llena la array 
+        Wild wild = new Wild(txNameWild.getText(), txRaceWild.getText(), cbSexWild.getSelectedItem().toString(), cbHabitadWild.getSelectedItem().toString(), txBirthhabitatWild.getText(), cbDangerousnessWild.getSelectedItem().toString(), txDietWild.getText());
+        wilds.addWild(wild);
+        wilds.saveWildExcel();
+        //se habre la ventana LO1Wild
         LO1Wild MainScreen = new LO1Wild();
         this.dispose();
         MainScreen.setVisible(true);
+        //Se carga la tabla actualizada 
+        File file = new File("rom/Animals/Wilds.xlsx");
+         updateTableFromExcel(tbWildAnimals, file);
+        }
+        
     }//GEN-LAST:event_btLogisticAnimalsActionPerformed
 
     private void txNameWildActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txNameWildActionPerformed
@@ -283,11 +309,12 @@ public class LOAWildAdd extends javax.swing.JFrame {
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JLabel jbBirthhabitatWild;
     private javax.swing.JLabel jbDangerousnessWild;
-    private javax.swing.JLabel jbDietWild;
+    private javax.swing.JLabel jbDietWild1;
     private javax.swing.JLabel jbHabitadWild;
     private javax.swing.JLabel jbNameWild;
     private javax.swing.JLabel jbRaceWild;
     private javax.swing.JLabel jbSexWild;
+    private javax.swing.JLabel lbAdvert;
     private java.awt.Label lbWildTitle1;
     private java.awt.Label lbWildTitle2;
     private java.awt.Label lbWildTitle3;

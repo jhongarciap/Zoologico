@@ -1,9 +1,14 @@
 package View.Logistc;
 
+import static Utilities.loadExcelDataToTable.updateTableFromExcel;
+import static View.Logistc.LO1Domestic.tbDomesticAnimals;
+import static View.Logistc.LO1Minor.tbMinorAnimals;
+import static View.Logistc.LO1Wild.tbWildAnimals;
 import com.formdev.flatlaf.FlatDarculaLaf;
 import com.formdev.flatlaf.FlatDarkLaf;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.io.File;
 import javax.swing.ImageIcon;
 import javax.swing.UIManager;
 
@@ -30,10 +35,10 @@ public class ILS1 extends javax.swing.JFrame {
         //logo del recadro debajo del logo
         Image logoZRV = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/zoo!Logo.png"));
         lbZooLogo.setIcon(new ImageIcon(logoZRV.getScaledInstance(lbZooLogo.getWidth(), lbZooLogo.getHeight(), Image.SCALE_AREA_AVERAGING)));
-       
+
         Image logoZV = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/animals@3x.png"));
         lbAnimals.setIcon(new ImageIcon(logoZV.getScaledInstance(lbAnimals.getWidth(), lbAnimals.getHeight(), Image.SCALE_AREA_AVERAGING)));
-       
+
     }
 
     /**
@@ -148,18 +153,25 @@ public class ILS1 extends javax.swing.JFrame {
         LO1Minor minorTab = new LO1Minor();
         this.dispose();
         minorTab.setVisible(true);
+        File file = new File("rom/Animals/Minors.xlsx");
+        updateTableFromExcel(tbMinorAnimals, file);
+
     }//GEN-LAST:event_btMinorActionPerformed
 
     private void btWildActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btWildActionPerformed
         LO1Wild WildTab = new LO1Wild();
         this.dispose();
         WildTab.setVisible(true);
+        File file = new File("rom/Animals/Wilds.xlsx");
+        updateTableFromExcel(tbWildAnimals, file);
     }//GEN-LAST:event_btWildActionPerformed
 
     private void btDomesticActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDomesticActionPerformed
         LO1Domestic domesticTab = new LO1Domestic();
         this.dispose();
         domesticTab.setVisible(true);
+        File file = new File("rom/Animals/Domestics.xlsx");
+        updateTableFromExcel(tbDomesticAnimals, file);
     }//GEN-LAST:event_btDomesticActionPerformed
 
     private void lbZooLogoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbZooLogoMouseClicked
@@ -172,10 +184,10 @@ public class ILS1 extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        try{
+        try {
             UIManager.setLookAndFeel(new FlatDarculaLaf());
-        }catch (Exception e){
-            
+        } catch (Exception e) {
+
         }
 
         /* Create and display the form */

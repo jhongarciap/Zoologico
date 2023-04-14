@@ -1,11 +1,17 @@
 package View.Logistc;
 
+import static Utilities.AdExcel.deleteRow;
+import static Utilities.AdExcel.getRow;
+import static Utilities.AdExcel.rowToVector;
+import static Utilities.loadExcelDataToTable.updateTableFromExcel;
 import com.formdev.flatlaf.FlatDarculaLaf;
 import com.formdev.flatlaf.FlatDarkLaf;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.io.File;
 import javax.swing.ImageIcon;
 import javax.swing.UIManager;
+import org.apache.poi.ss.usermodel.Row;
 
 /**
  *
@@ -16,6 +22,8 @@ public class LO1Wild extends javax.swing.JFrame {
     /**
      * Creates new form X1
      */
+    File file = new File("rom/Animals/Wilds.xlsx");
+    String sheetName = "Wilds";
     public LO1Wild() {
         System.setProperty("sun.java2d.uiScale", "1.0");
         FlatDarkLaf.setup(); // Sets the FlatLaf LookAndFeel as the main theme for the JFrame.
@@ -61,13 +69,14 @@ public class LO1Wild extends javax.swing.JFrame {
         sbDietDomesticAnimal = new javax.swing.JScrollPane();
         taDietWildAnimal = new javax.swing.JTextArea();
         btRemoveWildAnimal = new javax.swing.JButton();
-        lbAnimalType = new java.awt.Label();
+        lbAdvert = new java.awt.Label();
         lbManageWildAnimals = new java.awt.Label();
         lbZRVLogo = new javax.swing.JLabel();
         btSearchWildAnimal = new javax.swing.JButton();
         lbZooLogo = new javax.swing.JLabel();
         txSearchWildAnimal = new javax.swing.JTextField();
         btAddWildAnimal = new javax.swing.JButton();
+        lbAnimalType1 = new java.awt.Label();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -88,13 +97,13 @@ public class LO1Wild extends javax.swing.JFrame {
 
         tbWildAnimals.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Nombre", "Raza", "Sexo", "Hábitat", "Hábitat de nacimiento", "Peligrosidad"
             }
         ));
         jScrollPane1.setViewportView(tbWildAnimals);
@@ -126,7 +135,6 @@ public class LO1Wild extends javax.swing.JFrame {
         lbHabitatWildAnimal.setBackground(new java.awt.Color(51, 51, 51));
         lbHabitatWildAnimal.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         lbHabitatWildAnimal.setForeground(new java.awt.Color(69, 106, 48));
-        lbHabitatWildAnimal.setText("Acuático");
         bgPanelRound.add(lbHabitatWildAnimal);
         lbHabitatWildAnimal.setBounds(620, 280, 70, 32);
 
@@ -140,7 +148,6 @@ public class LO1Wild extends javax.swing.JFrame {
         lbNameWildAnimal.setBackground(new java.awt.Color(51, 51, 51));
         lbNameWildAnimal.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         lbNameWildAnimal.setForeground(new java.awt.Color(69, 106, 48));
-        lbNameWildAnimal.setText("Pedro");
         bgPanelRound.add(lbNameWildAnimal);
         lbNameWildAnimal.setBounds(90, 280, 100, 32);
 
@@ -154,7 +161,6 @@ public class LO1Wild extends javax.swing.JFrame {
         lbBreedWildAnimal.setBackground(new java.awt.Color(51, 51, 51));
         lbBreedWildAnimal.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         lbBreedWildAnimal.setForeground(new java.awt.Color(69, 106, 48));
-        lbBreedWildAnimal.setText("Allobates");
         bgPanelRound.add(lbBreedWildAnimal);
         lbBreedWildAnimal.setBounds(250, 280, 120, 32);
 
@@ -168,7 +174,6 @@ public class LO1Wild extends javax.swing.JFrame {
         lbGenderWildAnimal.setBackground(new java.awt.Color(51, 51, 51));
         lbGenderWildAnimal.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         lbGenderWildAnimal.setForeground(new java.awt.Color(69, 106, 48));
-        lbGenderWildAnimal.setText("Hembra");
         bgPanelRound.add(lbGenderWildAnimal);
         lbGenderWildAnimal.setBounds(430, 280, 70, 32);
 
@@ -180,16 +185,20 @@ public class LO1Wild extends javax.swing.JFrame {
         sbDietDomesticAnimal.setBounds(90, 320, 450, 30);
 
         btRemoveWildAnimal.setText("Eliminar animal");
+        btRemoveWildAnimal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btRemoveWildAnimalActionPerformed(evt);
+            }
+        });
         bgPanelRound.add(btRemoveWildAnimal);
         btRemoveWildAnimal.setBounds(560, 320, 120, 23);
 
         bg.add(bgPanelRound, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 700, 360));
 
-        lbAnimalType.setBackground(new java.awt.Color(35, 35, 35));
-        lbAnimalType.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lbAnimalType.setForeground(new java.awt.Color(255, 255, 255));
-        lbAnimalType.setText("Animal");
-        bg.add(lbAnimalType, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, 20));
+        lbAdvert.setBackground(new java.awt.Color(35, 35, 35));
+        lbAdvert.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        lbAdvert.setForeground(new java.awt.Color(255, 0, 0));
+        bg.add(lbAdvert, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, 170, 20));
 
         lbManageWildAnimals.setBackground(new java.awt.Color(35, 35, 35));
         lbManageWildAnimals.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
@@ -201,6 +210,11 @@ public class LO1Wild extends javax.swing.JFrame {
         bg.add(lbZRVLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 10, 140, 60));
 
         btSearchWildAnimal.setText("Buscar");
+        btSearchWildAnimal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btSearchWildAnimalActionPerformed(evt);
+            }
+        });
         bg.add(btSearchWildAnimal, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 80, 70, -1));
 
         lbZooLogo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -211,8 +225,6 @@ public class LO1Wild extends javax.swing.JFrame {
             }
         });
         bg.add(lbZooLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 2, 90, 45));
-
-        txSearchWildAnimal.setText("Buscar por nombre");
         bg.add(txSearchWildAnimal, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 490, -1));
 
         btAddWildAnimal.setText("Añadir animal");
@@ -222,6 +234,12 @@ public class LO1Wild extends javax.swing.JFrame {
             }
         });
         bg.add(btAddWildAnimal, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 80, 110, -1));
+
+        lbAnimalType1.setBackground(new java.awt.Color(35, 35, 35));
+        lbAnimalType1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lbAnimalType1.setForeground(new java.awt.Color(255, 255, 255));
+        lbAnimalType1.setText("Animal");
+        bg.add(lbAnimalType1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, 20));
 
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 480));
 
@@ -239,6 +257,36 @@ public class LO1Wild extends javax.swing.JFrame {
         this.dispose();
         MainScreen.setVisible(true);                                
     }//GEN-LAST:event_btAddWildAnimalActionPerformed
+
+    private void btRemoveWildAnimalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRemoveWildAnimalActionPerformed
+        String name = txSearchWildAnimal.getText();
+        String tex = "";
+        lbNameWildAnimal.setText(tex);
+        lbBreedWildAnimal.setText(tex);
+        lbGenderWildAnimal.setText(tex);
+        lbHabitatWildAnimal.setText(tex);
+        taDietWildAnimal.setText(tex);
+        deleteRow(name, file, sheetName, 0);
+        updateTableFromExcel(tbWildAnimals, file);
+    }//GEN-LAST:event_btRemoveWildAnimalActionPerformed
+
+    private void btSearchWildAnimalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSearchWildAnimalActionPerformed
+        if (txSearchWildAnimal.getText().equals("")) {
+            // Mostramos un mensaje que hay campos vacios
+            lbAdvert.setText("Hay campos vacios");
+        } else {
+            // En caso de que la vez anterior fuera incorrecta, esta vez no aparece el mensaje de campos vacios
+            lbAdvert.setText("");
+        String name = txSearchWildAnimal.getText();
+        Row row = getRow(name, file, sheetName, 0);
+        String[] vector = rowToVector(row);
+        lbNameWildAnimal.setText(vector[0]);
+        lbBreedWildAnimal.setText(vector[1]);
+        lbGenderWildAnimal.setText(vector[2]);
+        lbHabitatWildAnimal.setText(vector[3]);
+        taDietWildAnimal.setText(vector[6]);
+        }
+    }//GEN-LAST:event_btSearchWildAnimalActionPerformed
 
     /**
      * @param args the command line arguments
@@ -265,7 +313,8 @@ public class LO1Wild extends javax.swing.JFrame {
     private javax.swing.JButton btRemoveWildAnimal;
     private javax.swing.JButton btSearchWildAnimal;
     private javax.swing.JScrollPane jScrollPane1;
-    private java.awt.Label lbAnimalType;
+    private java.awt.Label lbAdvert;
+    private java.awt.Label lbAnimalType1;
     private java.awt.Label lbBreedStatic;
     private java.awt.Label lbBreedWildAnimal;
     private java.awt.Label lbDietAnimal;
@@ -281,7 +330,7 @@ public class LO1Wild extends javax.swing.JFrame {
     private javax.swing.JLabel lbZooLogo;
     private javax.swing.JScrollPane sbDietDomesticAnimal;
     private javax.swing.JTextArea taDietWildAnimal;
-    private javax.swing.JTable tbWildAnimals;
+    public static javax.swing.JTable tbWildAnimals;
     private javax.swing.JTextField txSearchWildAnimal;
     // End of variables declaration//GEN-END:variables
 }

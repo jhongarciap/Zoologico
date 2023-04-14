@@ -10,15 +10,15 @@ package Model;
  */
 public class Minor extends Animal{
     
-    public Minor(String name, String race, String sex, String habitad, String diet) {
-        super(name, race, sex, habitad, diet);
+    public Minor(String name, String race, String sex, String habitat, String diet) {
+        super(name, race, sex, habitat, diet);
     }
      
     private String diseases;
     private String nativeClimate;
 
-    public Minor(String diseases, String nativeClimate, String name, String race, String sex, String habitad, String diet) {
-        super(name, race, sex, habitad, diet);
+    public Minor(String name, String race, String sex, String habitat, String diseases, String nativeClimate, String diet) {
+        super(name, race, sex, habitat, diet);
         this.diseases = diseases;
         this.nativeClimate = nativeClimate;
     }

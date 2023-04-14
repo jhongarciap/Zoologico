@@ -1,0 +1,26 @@
+-classpath
+'C:/Users/garci/.m2/repository/com/formdev/flatlaf/3.0/flatlaf-3.0.jar;C:/Users/garci/.m2/repository/org/apache/poi/poi/5.2.2/poi-5.2.2.jar;C:/Users/garci/.m2/repository/commons-codec/commons-codec/1.15/commons-codec-1.15.jar;C:/Users/garci/.m2/repository/org/apache/commons/commons-collections4/4.4/commons-collections4-4.4.jar;C:/Users/garci/.m2/repository/org/apache/commons/commons-math3/3.6.1/commons-math3-3.6.1.jar;C:/Users/garci/.m2/repository/commons-io/commons-io/2.11.0/commons-io-2.11.0.jar;C:/Users/garci/.m2/repository/com/zaxxer/SparseBitSet/1.2/SparseBitSet-1.2.jar;C:/Users/garci/.m2/repository/org/apache/logging/log4j/log4j-api/2.17.2/log4j-api-2.17.2.jar;C:/Users/garci/.m2/repository/org/apache/poi/poi-ooxml/5.2.2/poi-ooxml-5.2.2.jar;C:/Users/garci/.m2/repository/org/apache/poi/poi-ooxml-lite/5.2.2/poi-ooxml-lite-5.2.2.jar;C:/Users/garci/.m2/repository/org/apache/xmlbeans/xmlbeans/5.0.3/xmlbeans-5.0.3.jar;C:/Users/garci/.m2/repository/org/apache/commons/commons-compress/1.21/commons-compress-1.21.jar;C:/Users/garci/.m2/repository/com/github/virtuald/curvesapi/1.07/curvesapi-1.07.jar;C:/Users/garci/.m2/repository/org/apache/logging/log4j/log4j-core/2.14.1/log4j-core-2.14.1.jar;C:/Users/garci/.m2/repository/org/netbeans/external/AbsoluteLayout/RELEASE150/AbsoluteLayout-RELEASE150.jar'
+-encoding
+'UTF-8'
+-protected
+-source
+'11'
+-sourcepath
+'C:/Users/garci/OneDrive/Documentos/GitHub/Zoologico/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2023. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'C:/Users/garci/OneDrive/Documentos/GitHub/Zoologico/target/site/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'Zoologico 1.0-SNAPSHOT API'
+-linkoffline
+'https://docs.oracle.com/en/java/javase/11/docs/api' 'C:/Users/garci/OneDrive/Documentos/GitHub/Zoologico/target/javadoc-bundle-options'
+-use
+-version
+-windowtitle
+'Zoologico 1.0-SNAPSHOT API'

@@ -1,12 +1,16 @@
 package View.Logistc;
 
-import View.Logistc.LO1Domestic;
+import Control.LogisticDepartment.ArrayListDomestic;
+import Model.Domestic;
+import static Utilities.loadExcelDataToTable.updateTableFromExcel;
+import static View.Logistc.LO1Domestic.tbDomesticAnimals;
 import com.formdev.flatlaf.FlatDarculaLaf;
 import com.formdev.flatlaf.FlatDarkLaf;
 import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 import javax.swing.UIManager;
+import java.io.File;
 
 /**
  *
@@ -17,6 +21,8 @@ public class LOADomesticAdd extends javax.swing.JFrame {
     /**
      * Creates new form X1
      */
+       
+    ArrayListDomestic domestics = new ArrayListDomestic();
     public LOADomesticAdd() {
         //define tamaño
         System.setProperty("sun.java2d.uiScale", "1.0");
@@ -60,13 +66,14 @@ public class LOADomesticAdd extends javax.swing.JFrame {
         cbOriginDomestic = new javax.swing.JComboBox<>();
         cbSexDomestic = new javax.swing.JComboBox<>();
         jComboBox3 = new javax.swing.JComboBox<>();
-        jComboBox4 = new javax.swing.JComboBox<>();
+        cbHabitatDomestic = new javax.swing.JComboBox<>();
         txRaceDomestic = new javax.swing.JTextField();
         btAddDomestic = new javax.swing.JButton();
         lbZooLogo = new javax.swing.JLabel();
         lbDomesticTitle1 = new java.awt.Label();
         lbDomesticTitle2 = new java.awt.Label();
         lbDomesticTitle3 = new java.awt.Label();
+        lbAdvert = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -95,7 +102,6 @@ public class LOADomesticAdd extends javax.swing.JFrame {
         lbNameDomestic.setBounds(10, 25, 70, 16);
 
         txNameDomestic.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        txNameDomestic.setText("Ingresa el nombre del animal");
         txNameDomestic.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txNameDomesticActionPerformed(evt);
@@ -111,7 +117,6 @@ public class LOADomesticAdd extends javax.swing.JFrame {
         lbRaceDomestic.setBounds(10, 50, 70, 16);
 
         txPsycheDomestic.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        txPsycheDomestic.setText("Ingresa la psique del animal");
         txPsycheDomestic.setToolTipText("");
         txPsycheDomestic.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -153,7 +158,6 @@ public class LOADomesticAdd extends javax.swing.JFrame {
 
         txlDietDomestic.setColumns(20);
         txlDietDomestic.setRows(5);
-        txlDietDomestic.setText("Ingresa la dieta del animal");
         jScrollPane1.setViewportView(txlDietDomestic);
 
         bgPanelRound.add(jScrollPane1);
@@ -163,7 +167,7 @@ public class LOADomesticAdd extends javax.swing.JFrame {
         bgPanelRound.add(cbOriginDomestic);
         cbOriginDomestic.setBounds(90, 140, 180, 22);
 
-        cbSexDomestic.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", "Femenino", "Masculino" }));
+        cbSexDomestic.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Femenino", "Masculino" }));
         bgPanelRound.add(cbSexDomestic);
         cbSexDomestic.setBounds(90, 80, 180, 22);
 
@@ -171,12 +175,11 @@ public class LOADomesticAdd extends javax.swing.JFrame {
         bgPanelRound.add(jComboBox3);
         jComboBox3.setBounds(90, 80, 180, 22);
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hábitad 1", "Hábitad 2", "Hábitad 3" }));
-        bgPanelRound.add(jComboBox4);
-        jComboBox4.setBounds(90, 110, 180, 22);
+        cbHabitatDomestic.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bosque andino", "Desierto", "Pantano" }));
+        bgPanelRound.add(cbHabitatDomestic);
+        cbHabitatDomestic.setBounds(90, 110, 180, 22);
 
         txRaceDomestic.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        txRaceDomestic.setText("Ingresa la raza del animal");
         txRaceDomestic.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txRaceDomesticActionPerformed(evt);
@@ -225,15 +228,36 @@ public class LOADomesticAdd extends javax.swing.JFrame {
         lbDomesticTitle3.setText("Doméstico");
         bg.add(lbDomesticTitle3, new org.netbeans.lib.awtextra.AbsoluteConstraints(131, 20, 100, -1));
 
+        lbAdvert.setForeground(new java.awt.Color(255, 0, 0));
+        bg.add(lbAdvert, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 440, 100, 20));
+
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 480));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btAddDomesticActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddDomesticActionPerformed
+        if (txNameDomestic.getText().equals("")
+                || txRaceDomestic.getText().equals("") 
+                || txPsycheDomestic.getText().equals("") 
+                || txlDietDomestic.getText().equals("")){ 
+            // Mostramos un mensaje que hay campos vacios
+            lbAdvert.setText("Hay campos vacios");
+        } else {
+            // En caso de que la vez anterior fuera incorrecta, esta vez no aparece el mensaje de campos vacios
+            lbAdvert.setText("");
+            //Se llena la array 
+        Domestic domestic = new Domestic(txNameDomestic.getText(), txRaceDomestic.getText(), cbSexDomestic.getSelectedItem().toString(), cbHabitatDomestic.getSelectedItem().toString(), cbOriginDomestic.getSelectedItem().toString(), txPsycheDomestic.getText(), txlDietDomestic.getText());
+        domestics.addDomestic(domestic);
+        domestics.saveDomesticExcel();
+        //se habre la ventana AD2 
         LO1Domestic MainScreen = new LO1Domestic();
         this.dispose();
         MainScreen.setVisible(true);
+        //Se carga la tabla actualizada 
+        File file = new File("rom/Animals/Domestics.xlsx");
+         updateTableFromExcel(tbDomesticAnimals, file);
+        }
     }//GEN-LAST:event_btAddDomesticActionPerformed
 
     private void txNameDomesticActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txNameDomesticActionPerformed
@@ -276,13 +300,14 @@ public class LOADomesticAdd extends javax.swing.JFrame {
     private javax.swing.JPanel bg;
     private Clases.PanelRound bgPanelRound;
     private javax.swing.JButton btAddDomestic;
+    private javax.swing.JComboBox<String> cbHabitatDomestic;
     private javax.swing.JComboBox<String> cbOriginDomestic;
     private javax.swing.JComboBox<String> cbSexDomestic;
     private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JLabel lbAdvert;
     private javax.swing.JLabel lbDietDomestic;
     private java.awt.Label lbDomesticTitle1;
     private java.awt.Label lbDomesticTitle2;

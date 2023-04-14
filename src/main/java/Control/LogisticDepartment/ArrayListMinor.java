@@ -29,7 +29,7 @@ public class ArrayListMinor {
     }
 
     //Añadir
-    public void addDomestic(Minor minor) {
+    public void addMinor(Minor minor) {
         minors.add(minor);
     }
 

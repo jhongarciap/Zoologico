@@ -1,12 +1,17 @@
 package View.Logistc;
 
-import View.Logistc.LO1Minor;
+import Control.LogisticDepartment.ArrayListMinor;
+import Model.Minor;
+import static Utilities.loadExcelDataToTable.updateTableFromExcel;
 import com.formdev.flatlaf.FlatDarculaLaf;
 import com.formdev.flatlaf.FlatDarkLaf;
 import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 import javax.swing.UIManager;
+import java.io.File;
+import static View.Logistc.LO1Minor.tbMinorAnimals;
+
 
 /**
  *
@@ -17,6 +22,7 @@ public class LOAMinorAdd extends javax.swing.JFrame {
     /**
      * Creates new form X1
      */
+    ArrayListMinor minors = new ArrayListMinor();
     public LOAMinorAdd() {
         //define tamaño
         System.setProperty("sun.java2d.uiScale", "1.0");
@@ -51,7 +57,6 @@ public class LOAMinorAdd extends javax.swing.JFrame {
         jbRaceMinor = new javax.swing.JLabel();
         txRaceMinor = new javax.swing.JTextField();
         jbSexMinor = new javax.swing.JLabel();
-        jbDietMinor = new javax.swing.JLabel();
         jbDiseasesMinor = new javax.swing.JLabel();
         txDiseasesMinor = new javax.swing.JTextField();
         jbNativeClimateMinor = new javax.swing.JLabel();
@@ -62,11 +67,13 @@ public class LOAMinorAdd extends javax.swing.JFrame {
         cbSexMinor = new javax.swing.JComboBox<>();
         jComboBox3 = new javax.swing.JComboBox<>();
         cbHabitaMinor = new javax.swing.JComboBox<>();
+        jbDietMinor1 = new javax.swing.JLabel();
         btAddMinor = new javax.swing.JButton();
         lbZooLogo = new javax.swing.JLabel();
         lbMinorTitle1 = new java.awt.Label();
         lbMinorTitle2 = new java.awt.Label();
         lbMinorTitle3 = new java.awt.Label();
+        lbAdvert = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -95,7 +102,6 @@ public class LOAMinorAdd extends javax.swing.JFrame {
         jbNameMinor.setBounds(10, 25, 70, 16);
 
         txNameMinor.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        txNameMinor.setText("Ingresa el nombre del animal");
         txNameMinor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txNameMinorActionPerformed(evt);
@@ -111,7 +117,6 @@ public class LOAMinorAdd extends javax.swing.JFrame {
         jbRaceMinor.setBounds(10, 50, 70, 16);
 
         txRaceMinor.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        txRaceMinor.setText("Ingresa la raza del animal");
         txRaceMinor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txRaceMinorActionPerformed(evt);
@@ -126,12 +131,6 @@ public class LOAMinorAdd extends javax.swing.JFrame {
         bgPanelRound.add(jbSexMinor);
         jbSexMinor.setBounds(10, 80, 70, 16);
 
-        jbDietMinor.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jbDietMinor.setForeground(new java.awt.Color(242, 242, 242));
-        jbDietMinor.setText("Dieta:");
-        bgPanelRound.add(jbDietMinor);
-        jbDietMinor.setBounds(10, 220, 70, 16);
-
         jbDiseasesMinor.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jbDiseasesMinor.setForeground(new java.awt.Color(242, 242, 242));
         jbDiseasesMinor.setText("Enfermedades a transmitir:");
@@ -139,7 +138,6 @@ public class LOAMinorAdd extends javax.swing.JFrame {
         jbDiseasesMinor.setBounds(10, 140, 220, 16);
 
         txDiseasesMinor.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        txDiseasesMinor.setText("Ingresa el hábitad de nacimiento del animal");
         txDiseasesMinor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txDiseasesMinorActionPerformed(evt);
@@ -162,7 +160,6 @@ public class LOAMinorAdd extends javax.swing.JFrame {
 
         txDietMinor.setColumns(20);
         txDietMinor.setRows(5);
-        txDietMinor.setText("Ingresa la dieta del animal");
         jScrollPane1.setViewportView(txDietMinor);
 
         bgPanelRound.add(jScrollPane1);
@@ -172,7 +169,7 @@ public class LOAMinorAdd extends javax.swing.JFrame {
         bgPanelRound.add(cbNativeClimateMinor);
         cbNativeClimateMinor.setBounds(120, 190, 150, 22);
 
-        cbSexMinor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", "Femenino", "Masculino" }));
+        cbSexMinor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Femenino", "Masculino" }));
         bgPanelRound.add(cbSexMinor);
         cbSexMinor.setBounds(90, 80, 180, 22);
 
@@ -180,9 +177,15 @@ public class LOAMinorAdd extends javax.swing.JFrame {
         bgPanelRound.add(jComboBox3);
         jComboBox3.setBounds(90, 80, 180, 22);
 
-        cbHabitaMinor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hábitad 1", "Hábitad 2", "Hábitad 3" }));
+        cbHabitaMinor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hábitat 1", "Hábitat 2", "Hábitat 3" }));
         bgPanelRound.add(cbHabitaMinor);
         cbHabitaMinor.setBounds(90, 110, 180, 22);
+
+        jbDietMinor1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jbDietMinor1.setForeground(new java.awt.Color(242, 242, 242));
+        jbDietMinor1.setText("Dieta:");
+        bgPanelRound.add(jbDietMinor1);
+        jbDietMinor1.setBounds(10, 220, 70, 16);
 
         bg.add(bgPanelRound, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 280, 380));
 
@@ -224,15 +227,38 @@ public class LOAMinorAdd extends javax.swing.JFrame {
         lbMinorTitle3.setText("Menor");
         bg.add(lbMinorTitle3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, 70, -1));
 
+        lbAdvert.setForeground(new java.awt.Color(255, 0, 0));
+        bg.add(lbAdvert, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 440, 100, 30));
+
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 480));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btAddMinorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddMinorActionPerformed
+        if (txNameMinor.getText().equals("")
+                || txRaceMinor.getText().equals("") 
+                || txDiseasesMinor.getText().equals("") 
+                || txDietMinor.getText().equals("")){ 
+            // Mostramos un mensaje que hay campos vacios
+            lbAdvert.setText("Hay campos vacios");
+        } else {
+            // En caso de que la vez anterior fuera incorrecta, esta vez no aparece el mensaje de campos vacios
+            lbAdvert.setText("");
+            //Se llena la array 
+        Minor minor = new Minor(txNameMinor.getText(), txRaceMinor.getText(), cbSexMinor.getSelectedItem().toString(), cbHabitaMinor.getSelectedItem().toString(), txDiseasesMinor.getText(), cbNativeClimateMinor.getSelectedItem().toString(), txDietMinor.getText());
+        minors.addMinor(minor);
+        minors.saveMinorExcel();
+        //se habre la ventana LO1Minor
         LO1Minor MainScreen = new LO1Minor();
         this.dispose();
         MainScreen.setVisible(true);
+        //Se carga la tabla actualizada 
+        File file = new File("rom/Animals/Minors.xlsx");
+         updateTableFromExcel(tbMinorAnimals, file);
+        }
+        
+        
     }//GEN-LAST:event_btAddMinorActionPerformed
 
     private void txNameMinorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txNameMinorActionPerformed
@@ -281,13 +307,14 @@ public class LOAMinorAdd extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSplitPane jSplitPane1;
-    private javax.swing.JLabel jbDietMinor;
+    private javax.swing.JLabel jbDietMinor1;
     private javax.swing.JLabel jbDiseasesMinor;
     private javax.swing.JLabel jbHabitaMinor;
     private javax.swing.JLabel jbNameMinor;
     private javax.swing.JLabel jbNativeClimateMinor;
     private javax.swing.JLabel jbRaceMinor;
     private javax.swing.JLabel jbSexMinor;
+    private javax.swing.JLabel lbAdvert;
     private java.awt.Label lbMinorTitle1;
     private java.awt.Label lbMinorTitle2;
     private java.awt.Label lbMinorTitle3;

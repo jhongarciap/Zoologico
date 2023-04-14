@@ -13,8 +13,8 @@ public class Domestic extends Animal{
     private String psyche;
     private String origin;
 
-    public Domestic(String psyche, String origin, String name, String race, String sex, String habitad, String diet) {
-        super(name, race, sex, habitad, diet);
+    public Domestic(String name, String race, String sex, String habitat, String origin, String psyche, String diet) {
+        super(name, race, sex, habitat, diet);
         this.psyche = psyche;
         this.origin = origin;
     }

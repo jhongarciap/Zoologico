@@ -4,8 +4,6 @@
  */
 package Control;
 
-import Control.LogisticDepartment.ArrayListDomestic;
-import Model.Domestic;
 import View.X1;
 
 /**
@@ -15,13 +13,9 @@ import View.X1;
 public class Zoo {
 
     public static void main(String[] args) {
-        //X1 MainScreen = new X1();
-        //MainScreen.setVisible(true);
-        // prueba
-        ArrayListDomestic domestics = new ArrayListDomestic();
-        Domestic domestic = new Domestic("Loco", "Cautiverio", "Juan", "Caballo", "Indefinido", "Ciudad", "Hamburguesas");
-        domestics.addDomestic(domestic);
-        domestics.saveDomesticExcel();
+        X1 MainScreen = new X1();
+        MainScreen.setVisible(true);
+       
     }
 
 }
