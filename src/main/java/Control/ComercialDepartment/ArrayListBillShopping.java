@@ -4,12 +4,15 @@
  */
 package Control.ComercialDepartment;
 
+import Model.SaleBill;
 import Model.ShoppingBill;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -92,4 +95,40 @@ public class ArrayListBillShopping {
             System.out.println("Hay un error, revisa.");
         }
     }
+    public void printBillsToTable(JTable tbProducts) {
+    // Obtener el modelo actual de la tabla
+    DefaultTableModel model = (DefaultTableModel) tbProducts.getModel();
+    
+    // Limpiar los datos existentes en la tabla
+    model.setRowCount(0);
+    
+    // Recorrer la lista de facturas de venta
+    for (ShoppingBill bill : billsShoppings) {
+        // Agregar una nueva fila al modelo de la tabla
+        Object[] rowData = { bill.getDate(), bill.getCode(), bill.getValue(), bill.getDiscount(), bill.getAmount(), bill.getTotalvalue(), bill.getCostormerName(), bill.getProduct(), bill.getProductld() };
+        model.addRow(rowData);
+    }
+    
+    // Establecer el modelo actualizado en la tabla
+    tbProducts.setModel(model);
+}
+//Suma todas las compras de la array 
+public String getTotalSales() {
+    Float total = 0.0f;
+    String total1= "";
+    for (ShoppingBill bill : billsShoppings) {
+        total += bill.getTotalvalue();
+        total1=String.valueOf(total);
+    }
+    return total1;
+}
+//Eliminar el producto de la array 
+public void removeBillSaleCode(String code) {
+    for (int i = 0; i < billsShoppings.size(); i++) {
+        if (billsShoppings.get(i).getCode().equals(code)) {
+            billsShoppings.remove(i);
+            break;
+        }
+    }
+}
 }

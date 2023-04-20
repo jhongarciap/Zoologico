@@ -8,38 +8,27 @@ import javax.swing.ImageIcon;
 import javax.swing.UIManager;
 import Model.SaleBill;
 import static Utilities.CurrentDate.currentDate;
-import static Utilities.AdExcel.getRowsExcel;
 import Control.ComercialDepartment.ArrayListBillSale;
 import Utilities.AdExcel;
 import static Utilities.AdExcel.getRow;
 import static Utilities.AdExcel.rowToVector;
 import Utilities.Checker;
-import static Utilities.loadExcelDataToTable.updateTableFromExcel;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellType;
+import javax.swing.table.DefaultTableModel;
 import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFCell;
 
 /**
  *
  * @author juan.castro17
  */
 public class CM1 extends javax.swing.JFrame {
+
     ArrayListBillSale billSale = new ArrayListBillSale();
+    ArrayList<SaleBill> sales = new ArrayList<>();
     File file = new File("rom/Plans/Plans.xlsx");
     AdExcel utils = new AdExcel();
-    
+
     ArrayList<String> productIdColumn = utils.getColumn(file, 0);
     ArrayList<String> productColumn = utils.getColumn(file, 1);
     ArrayList<Float> valueColumn = utils.getColumnFloat(file, 2);
@@ -51,24 +40,24 @@ public class CM1 extends javax.swing.JFrame {
         System.setProperty("sun.java2d.uiScale", "1.0");
         FlatDarkLaf.setup(); // Sets the FlatLaf LookAndFeel as the main theme for the JFrame.
         initComponents();
-        
+
         this.setLocationRelativeTo(null); //Centers the window on-screen.
         this.setTitle("Ventas"); // Set the title for the JFrame.
-        
+
         Image faviconX1 = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/View_IconCommZOO.png"));
         this.setIconImage(faviconX1);
-        
+
         Image logoZRV = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/ZRVC@3x.png"));
         lbZRVLogo.setIcon(new ImageIcon(logoZRV.getScaledInstance(lbZRVLogo.getWidth(), lbZRVLogo.getHeight(), Image.SCALE_AREA_AVERAGING)));
 
         Image logoZoo = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/zoo!Logo.png"));
         lbZooLogo.setIcon(new ImageIcon(logoZoo.getScaledInstance(lbZooLogo.getWidth(), lbZooLogo.getHeight(), Image.SCALE_AREA_AVERAGING)));
-        
-        
+
         for (int i = 0; i < productColumn.size(); i++) {
             cbProduct.addItem(productColumn.get(i));
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -86,21 +75,23 @@ public class CM1 extends javax.swing.JFrame {
         btNewSale = new javax.swing.JButton();
         btBill = new javax.swing.JButton();
         lbTotalSale2 = new java.awt.Label();
-        lbIDGenerado = new javax.swing.JLabel();
+        LbVentas = new javax.swing.JLabel();
         lbPlan = new javax.swing.JLabel();
+        txDelete = new javax.swing.JTextField();
+        btDeleteProduct = new javax.swing.JButton();
         lbProducto = new java.awt.Label();
         lbSalesTitle = new java.awt.Label();
         lbZRVLogo = new javax.swing.JLabel();
         cbProduct = new javax.swing.JComboBox<>();
-        btAddProduct = new javax.swing.JButton();
         lbClient = new java.awt.Label();
         spAmount = new javax.swing.JSpinner();
         lbZooLogo = new javax.swing.JLabel();
         lbDiscount = new java.awt.Label();
         txDiscount = new javax.swing.JTextField();
         lbAmount = new java.awt.Label();
-        txClient = new javax.swing.JTextField();
         lbAdvertise = new javax.swing.JLabel();
+        txClient = new javax.swing.JTextField();
+        btAddProduct = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -133,7 +124,7 @@ public class CM1 extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tbProducts);
 
         bgPanelRound.add(jScrollPane1);
-        jScrollPane1.setBounds(10, 80, 680, 170);
+        jScrollPane1.setBounds(10, 70, 680, 180);
 
         lbTotalSaleValue.setBackground(new java.awt.Color(51, 51, 51));
         lbTotalSaleValue.setFont(new java.awt.Font("Arial", 1, 22)); // NOI18N
@@ -156,6 +147,11 @@ public class CM1 extends javax.swing.JFrame {
         btBill.setBackground(new java.awt.Color(51, 51, 51));
         btBill.setForeground(new java.awt.Color(255, 255, 255));
         btBill.setText("Facturar");
+        btBill.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btBillActionPerformed(evt);
+            }
+        });
         bgPanelRound.add(btBill);
         btBill.setBounds(560, 260, 130, 23);
 
@@ -166,16 +162,26 @@ public class CM1 extends javax.swing.JFrame {
         bgPanelRound.add(lbTotalSale2);
         lbTotalSale2.setBounds(10, 270, 110, 40);
 
-        lbIDGenerado.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lbIDGenerado.setForeground(new java.awt.Color(242, 242, 242));
-        lbIDGenerado.setText("Cliente ");
-        bgPanelRound.add(lbIDGenerado);
-        lbIDGenerado.setBounds(20, 20, 70, 16);
+        LbVentas.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        LbVentas.setForeground(new java.awt.Color(188, 38, 73));
+        bgPanelRound.add(LbVentas);
+        LbVentas.setBounds(20, 16, 270, 20);
 
-        lbPlan.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        lbPlan.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         lbPlan.setForeground(new java.awt.Color(242, 242, 242));
         bgPanelRound.add(lbPlan);
-        lbPlan.setBounds(20, 50, 670, 20);
+        lbPlan.setBounds(20, 40, 670, 20);
+        bgPanelRound.add(txDelete);
+        txDelete.setBounds(390, 270, 160, 22);
+
+        btDeleteProduct.setText("Eliminar");
+        btDeleteProduct.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btDeleteProductActionPerformed(evt);
+            }
+        });
+        bgPanelRound.add(btDeleteProduct);
+        btDeleteProduct.setBounds(310, 270, 73, 23);
 
         bg.add(bgPanelRound, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 700, 320));
 
@@ -201,14 +207,6 @@ public class CM1 extends javax.swing.JFrame {
             }
         });
         bg.add(cbProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 60, -1, -1));
-
-        btAddProduct.setText("Agregar producto");
-        btAddProduct.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btAddProductActionPerformed(evt);
-            }
-        });
-        bg.add(btAddProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 90, 130, 30));
 
         lbClient.setBackground(new java.awt.Color(35, 35, 35));
         lbClient.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -241,41 +239,23 @@ public class CM1 extends javax.swing.JFrame {
         lbAmount.setForeground(new java.awt.Color(255, 255, 255));
         lbAmount.setText("Cantidad");
         bg.add(lbAmount, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, 20));
-        bg.add(txClient, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 100, 160, -1));
 
         lbAdvertise.setForeground(new java.awt.Color(255, 0, 0));
         bg.add(lbAdvertise, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 130, 130, 20));
+        bg.add(txClient, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 100, 160, -1));
+
+        btAddProduct.setText("Añadir");
+        btAddProduct.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAddProductActionPerformed(evt);
+            }
+        });
+        bg.add(btAddProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 80, -1, -1));
 
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 480));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btAddProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddProductActionPerformed
-        int x = (Integer) spAmount.getValue();
-        if (txDiscount.getText().equals("")
-                || txClient.getText().equals("")
-                || x <= 0
-                || cbProduct.getSelectedIndex() == 0
-                || !Checker.FloatChecker(txDiscount.getText())) {
-            lbAdvertise.setText("Hay campos inválidos.");
-        }else{
-            lbAdvertise.setText("");
-            
-            float y = 0;
-            
-            Float value = valueColumn.get(cbProduct.getSelectedIndex()-1);
-            String productId = productIdColumn.get(cbProduct.getSelectedIndex()-1);
-            String product = productColumn.get(cbProduct.getSelectedIndex()-1);
-            float discount = Float.parseFloat(txDiscount.getText());
-            
-            
-            SaleBill newSaleBill = new SaleBill("213123", currentDate(),value , discount, x, TOP_ALIGNMENT, txClient.getText(), product, productId);
-            billSale.addBillSale(newSaleBill);
-            billSale.SaveBillSaleExcel();
-            
-        }
-    }//GEN-LAST:event_btAddProductActionPerformed
 
     private void lbZooLogoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbZooLogoMouseClicked
         IS2 MainScreen = new IS2();
@@ -284,8 +264,9 @@ public class CM1 extends javax.swing.JFrame {
     }//GEN-LAST:event_lbZooLogoMouseClicked
 
     private void btNewSaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNewSaleActionPerformed
+        DefaultTableModel model = (DefaultTableModel) tbProducts.getModel();
+        model.setRowCount(0);
 
-                                    
     }//GEN-LAST:event_btNewSaleActionPerformed
 
     private void cbProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbProductActionPerformed
@@ -293,18 +274,70 @@ public class CM1 extends javax.swing.JFrame {
         if (cbProduct.getSelectedIndex() != 0) {
             Row row = getRow(cbProduct.getSelectedItem().toString(), file, "Plans", 1);
             String[] vector = rowToVector(row);
+            LbVentas.setText("Informacion de la venta:");
             lbPlan.setText("El producto " + vector[1] + " con ID " + vector[0] + ", tiene un valor de: $" + vector[2]);
         }
     }//GEN-LAST:event_cbProductActionPerformed
+
+    private void btBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBillActionPerformed
+        DefaultTableModel model = (DefaultTableModel) tbProducts.getModel();
+        model.setRowCount(0);
+    }//GEN-LAST:event_btBillActionPerformed
+
+    private void btAddProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddProductActionPerformed
+        int x = (Integer) spAmount.getValue();
+        if (txDiscount.getText().equals("")
+            || txClient.getText().equals("")
+            || x <= 0
+            || cbProduct.getSelectedIndex() == 0
+            || !Checker.FloatChecker(txDiscount.getText())) {
+            lbAdvertise.setText("Hay campos inválidos.");
+        } else {
+            lbAdvertise.setText("");
+
+            float y = 0;
+
+            Float value = valueColumn.get(cbProduct.getSelectedIndex() - 1);
+            String productId = productIdColumn.get(cbProduct.getSelectedIndex() - 1);
+            String product = productColumn.get(cbProduct.getSelectedIndex() - 1);
+            float discount = Float.parseFloat(txDiscount.getText());
+
+            SaleBill newSaleBill = new SaleBill("213123", currentDate(), value, discount, x, TOP_ALIGNMENT, txClient.getText(), product, productId);
+            billSale.addBillSale(newSaleBill);
+            billSale.SaveBillSaleExcel();
+            billSale.printBillsToTable(tbProducts);
+            String total=billSale.getTotalSales();
+            lbTotalSaleValue.setText(total);
+            txDiscount.setText("");
+            txClient.setText("");
+            LbVentas.setText("");
+            lbPlan.setText("");
+        }
+    }//GEN-LAST:event_btAddProductActionPerformed
+
+    private void btDeleteProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDeleteProductActionPerformed
+        if ( txDelete.getText().equals("")){
+            lbAdvertise.setText("Hay campos vacios");
+            } else {
+            lbAdvertise.setText("");
+            File file = new File("rom/Bills/BillSale.xlsx");
+            String sheetName = "BillSale";
+            AdExcel.deleteRow(txDelete.getText(), file, sheetName, 1);
+            billSale.removeBillSaleCode(txDelete.getText());
+            billSale.printBillsToTable(tbProducts);
+            String total=billSale.getTotalSales();
+            lbTotalSaleValue.setText(total);
+            }
+    }//GEN-LAST:event_btDeleteProductActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        try{
+        try {
             UIManager.setLookAndFeel(new FlatDarculaLaf());
-        }catch (Exception e){
-            
+        } catch (Exception e) {
+
         }
 
         /* Create and display the form */
@@ -316,10 +349,12 @@ public class CM1 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel LbVentas;
     private javax.swing.JPanel bg;
     private Clases.PanelRound bgPanelRound;
     private javax.swing.JButton btAddProduct;
     private javax.swing.JButton btBill;
+    private javax.swing.JButton btDeleteProduct;
     private javax.swing.JButton btNewSale;
     private javax.swing.JComboBox<String> cbProduct;
     private javax.swing.JScrollPane jScrollPane1;
@@ -327,7 +362,6 @@ public class CM1 extends javax.swing.JFrame {
     private java.awt.Label lbAmount;
     private java.awt.Label lbClient;
     private java.awt.Label lbDiscount;
-    private javax.swing.JLabel lbIDGenerado;
     private javax.swing.JLabel lbPlan;
     private java.awt.Label lbProducto;
     private java.awt.Label lbSalesTitle;
@@ -336,8 +370,9 @@ public class CM1 extends javax.swing.JFrame {
     private javax.swing.JLabel lbZRVLogo;
     private javax.swing.JLabel lbZooLogo;
     private javax.swing.JSpinner spAmount;
-    private javax.swing.JTable tbProducts;
+    public static javax.swing.JTable tbProducts;
     private javax.swing.JTextField txClient;
+    private javax.swing.JTextField txDelete;
     private javax.swing.JTextField txDiscount;
     // End of variables declaration//GEN-END:variables
 }
