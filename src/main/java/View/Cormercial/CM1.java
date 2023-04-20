@@ -6,12 +6,43 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 import javax.swing.UIManager;
+import Model.SaleBill;
+import static Utilities.CurrentDate.currentDate;
+import static Utilities.AdExcel.getRowsExcel;
+import Control.ComercialDepartment.ArrayListBillSale;
+import Utilities.AdExcel;
+import static Utilities.AdExcel.getRow;
+import static Utilities.AdExcel.rowToVector;
+import Utilities.Checker;
+import static Utilities.loadExcelDataToTable.updateTableFromExcel;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFCell;
 
 /**
  *
  * @author juan.castro17
  */
 public class CM1 extends javax.swing.JFrame {
+    ArrayListBillSale billSale = new ArrayListBillSale();
+    File file = new File("rom/Plans/Plans.xlsx");
+    AdExcel utils = new AdExcel();
+    
+    ArrayList<String> productIdColumn = utils.getColumn(file, 0);
+    ArrayList<String> productColumn = utils.getColumn(file, 1);
+    ArrayList<Float> valueColumn = utils.getColumnFloat(file, 2);
 
     /**
      * Creates new form X1
@@ -32,9 +63,12 @@ public class CM1 extends javax.swing.JFrame {
 
         Image logoZoo = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/zoo!Logo.png"));
         lbZooLogo.setIcon(new ImageIcon(logoZoo.getScaledInstance(lbZooLogo.getWidth(), lbZooLogo.getHeight(), Image.SCALE_AREA_AVERAGING)));
-
+        
+        
+        for (int i = 0; i < productColumn.size(); i++) {
+            cbProduct.addItem(productColumn.get(i));
+        }
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -48,21 +82,25 @@ public class CM1 extends javax.swing.JFrame {
         bgPanelRound = new Clases.PanelRound();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbProducts = new javax.swing.JTable();
-        lbDiscount = new java.awt.Label();
         lbTotalSaleValue = new java.awt.Label();
         btNewSale = new javax.swing.JButton();
         btBill = new javax.swing.JButton();
         lbTotalSale2 = new java.awt.Label();
-        txDiscount = new javax.swing.JTextField();
         lbIDGenerado = new javax.swing.JLabel();
+        lbPlan = new javax.swing.JLabel();
         lbProducto = new java.awt.Label();
         lbSalesTitle = new java.awt.Label();
         lbZRVLogo = new javax.swing.JLabel();
         cbProduct = new javax.swing.JComboBox<>();
         btAddProduct = new javax.swing.JButton();
-        lbAmount = new java.awt.Label();
+        lbClient = new java.awt.Label();
         spAmount = new javax.swing.JSpinner();
         lbZooLogo = new javax.swing.JLabel();
+        lbDiscount = new java.awt.Label();
+        txDiscount = new javax.swing.JTextField();
+        lbAmount = new java.awt.Label();
+        txClient = new javax.swing.JTextField();
+        lbAdvertise = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -83,33 +121,26 @@ public class CM1 extends javax.swing.JFrame {
 
         tbProducts.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Cod", "Producto", "Cantidad", "Valor"
+                "Fecha", "Cod", "Valor", "Descuento", "Cantidad", "Total Value", "Cliente", "Producto", "ID"
             }
         ));
         jScrollPane1.setViewportView(tbProducts);
 
         bgPanelRound.add(jScrollPane1);
-        jScrollPane1.setBounds(10, 145, 680, 170);
-
-        lbDiscount.setBackground(new java.awt.Color(51, 51, 51));
-        lbDiscount.setFont(new java.awt.Font("Arial", 1, 22)); // NOI18N
-        lbDiscount.setForeground(new java.awt.Color(255, 255, 255));
-        lbDiscount.setText("Descuento");
-        bgPanelRound.add(lbDiscount);
-        lbDiscount.setBounds(20, 330, 110, 40);
+        jScrollPane1.setBounds(10, 80, 680, 170);
 
         lbTotalSaleValue.setBackground(new java.awt.Color(51, 51, 51));
         lbTotalSaleValue.setFont(new java.awt.Font("Arial", 1, 22)); // NOI18N
         lbTotalSaleValue.setForeground(new java.awt.Color(188, 38, 73));
-        lbTotalSaleValue.setText("$00.000,00");
+        lbTotalSaleValue.setText("$0,0");
         bgPanelRound.add(lbTotalSaleValue);
-        lbTotalSaleValue.setBounds(410, 330, 140, 40);
+        lbTotalSaleValue.setBounds(130, 270, 140, 40);
 
         btNewSale.setBackground(new java.awt.Color(51, 51, 51));
         btNewSale.setForeground(new java.awt.Color(255, 255, 255));
@@ -120,25 +151,20 @@ public class CM1 extends javax.swing.JFrame {
             }
         });
         bgPanelRound.add(btNewSale);
-        btNewSale.setBounds(560, 357, 130, 23);
+        btNewSale.setBounds(560, 290, 130, 23);
 
         btBill.setBackground(new java.awt.Color(51, 51, 51));
         btBill.setForeground(new java.awt.Color(255, 255, 255));
         btBill.setText("Facturar");
         bgPanelRound.add(btBill);
-        btBill.setBounds(560, 325, 130, 23);
+        btBill.setBounds(560, 260, 130, 23);
 
         lbTotalSale2.setBackground(new java.awt.Color(51, 51, 51));
         lbTotalSale2.setFont(new java.awt.Font("Arial", 1, 22)); // NOI18N
         lbTotalSale2.setForeground(new java.awt.Color(255, 255, 255));
         lbTotalSale2.setText("Valor total");
         bgPanelRound.add(lbTotalSale2);
-        lbTotalSale2.setBounds(290, 330, 110, 40);
-
-        txDiscount.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        txDiscount.setForeground(new java.awt.Color(188, 38, 73));
-        bgPanelRound.add(txDiscount);
-        txDiscount.setBounds(140, 330, 140, 40);
+        lbTotalSale2.setBounds(10, 270, 110, 40);
 
         lbIDGenerado.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         lbIDGenerado.setForeground(new java.awt.Color(242, 242, 242));
@@ -146,13 +172,18 @@ public class CM1 extends javax.swing.JFrame {
         bgPanelRound.add(lbIDGenerado);
         lbIDGenerado.setBounds(20, 20, 70, 16);
 
-        bg.add(bgPanelRound, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 700, 390));
+        lbPlan.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        lbPlan.setForeground(new java.awt.Color(242, 242, 242));
+        bgPanelRound.add(lbPlan);
+        lbPlan.setBounds(20, 50, 670, 20);
+
+        bg.add(bgPanelRound, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 700, 320));
 
         lbProducto.setBackground(new java.awt.Color(35, 35, 35));
         lbProducto.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         lbProducto.setForeground(new java.awt.Color(255, 255, 255));
         lbProducto.setText("Producto");
-        bg.add(lbProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, 20));
+        bg.add(lbProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 60, -1, 20));
 
         lbSalesTitle.setBackground(new java.awt.Color(35, 35, 35));
         lbSalesTitle.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
@@ -163,8 +194,13 @@ public class CM1 extends javax.swing.JFrame {
         lbZRVLogo.setMaximumSize(new java.awt.Dimension(549, 267));
         bg.add(lbZRVLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 10, 140, 60));
 
-        cbProduct.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        bg.add(cbProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, 170, -1));
+        cbProduct.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona un producto" }));
+        cbProduct.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbProductActionPerformed(evt);
+            }
+        });
+        bg.add(cbProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 60, -1, -1));
 
         btAddProduct.setText("Agregar producto");
         btAddProduct.addActionListener(new java.awt.event.ActionListener() {
@@ -172,14 +208,14 @@ public class CM1 extends javax.swing.JFrame {
                 btAddProductActionPerformed(evt);
             }
         });
-        bg.add(btAddProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 50, 130, -1));
+        bg.add(btAddProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 90, 130, 30));
 
-        lbAmount.setBackground(new java.awt.Color(35, 35, 35));
-        lbAmount.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        lbAmount.setForeground(new java.awt.Color(255, 255, 255));
-        lbAmount.setText("Cantidad");
-        bg.add(lbAmount, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 70, 20));
-        bg.add(spAmount, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 50, 50, -1));
+        lbClient.setBackground(new java.awt.Color(35, 35, 35));
+        lbClient.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        lbClient.setForeground(new java.awt.Color(255, 255, 255));
+        lbClient.setText("Cliente");
+        bg.add(lbClient, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 100, 50, 20));
+        bg.add(spAmount, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, 50, -1));
 
         lbZooLogo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lbZooLogo.setMaximumSize(new java.awt.Dimension(549, 267));
@@ -190,13 +226,55 @@ public class CM1 extends javax.swing.JFrame {
         });
         bg.add(lbZooLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 2, 90, 45));
 
+        lbDiscount.setBackground(new java.awt.Color(35, 35, 35));
+        lbDiscount.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        lbDiscount.setForeground(new java.awt.Color(255, 255, 255));
+        lbDiscount.setText("Descuento");
+        bg.add(lbDiscount, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 80, 20));
+
+        txDiscount.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        txDiscount.setForeground(new java.awt.Color(188, 38, 73));
+        bg.add(txDiscount, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, 130, 20));
+
+        lbAmount.setBackground(new java.awt.Color(35, 35, 35));
+        lbAmount.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        lbAmount.setForeground(new java.awt.Color(255, 255, 255));
+        lbAmount.setText("Cantidad");
+        bg.add(lbAmount, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, 20));
+        bg.add(txClient, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 100, 160, -1));
+
+        lbAdvertise.setForeground(new java.awt.Color(255, 0, 0));
+        bg.add(lbAdvertise, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 130, 130, 20));
+
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 480));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btAddProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddProductActionPerformed
-        // TODO add your handling code here:
+        int x = (Integer) spAmount.getValue();
+        if (txDiscount.getText().equals("")
+                || txClient.getText().equals("")
+                || x <= 0
+                || cbProduct.getSelectedIndex() == 0
+                || !Checker.FloatChecker(txDiscount.getText())) {
+            lbAdvertise.setText("Hay campos inválidos.");
+        }else{
+            lbAdvertise.setText("");
+            
+            float y = 0;
+            
+            Float value = valueColumn.get(cbProduct.getSelectedIndex()-1);
+            String productId = productIdColumn.get(cbProduct.getSelectedIndex()-1);
+            String product = productColumn.get(cbProduct.getSelectedIndex()-1);
+            float discount = Float.parseFloat(txDiscount.getText());
+            
+            
+            SaleBill newSaleBill = new SaleBill("213123", currentDate(),value , discount, x, TOP_ALIGNMENT, txClient.getText(), product, productId);
+            billSale.addBillSale(newSaleBill);
+            billSale.SaveBillSaleExcel();
+            
+        }
     }//GEN-LAST:event_btAddProductActionPerformed
 
     private void lbZooLogoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbZooLogoMouseClicked
@@ -209,6 +287,15 @@ public class CM1 extends javax.swing.JFrame {
 
                                     
     }//GEN-LAST:event_btNewSaleActionPerformed
+
+    private void cbProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbProductActionPerformed
+        // TODO add your handling code here:
+        if (cbProduct.getSelectedIndex() != 0) {
+            Row row = getRow(cbProduct.getSelectedItem().toString(), file, "Plans", 1);
+            String[] vector = rowToVector(row);
+            lbPlan.setText("El producto " + vector[1] + " con ID " + vector[0] + ", tiene un valor de: $" + vector[2]);
+        }
+    }//GEN-LAST:event_cbProductActionPerformed
 
     /**
      * @param args the command line arguments
@@ -236,9 +323,12 @@ public class CM1 extends javax.swing.JFrame {
     private javax.swing.JButton btNewSale;
     private javax.swing.JComboBox<String> cbProduct;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lbAdvertise;
     private java.awt.Label lbAmount;
+    private java.awt.Label lbClient;
     private java.awt.Label lbDiscount;
     private javax.swing.JLabel lbIDGenerado;
+    private javax.swing.JLabel lbPlan;
     private java.awt.Label lbProducto;
     private java.awt.Label lbSalesTitle;
     private java.awt.Label lbTotalSale2;
@@ -247,6 +337,7 @@ public class CM1 extends javax.swing.JFrame {
     private javax.swing.JLabel lbZooLogo;
     private javax.swing.JSpinner spAmount;
     private javax.swing.JTable tbProducts;
+    private javax.swing.JTextField txClient;
     private javax.swing.JTextField txDiscount;
     // End of variables declaration//GEN-END:variables
 }

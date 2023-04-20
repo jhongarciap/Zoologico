@@ -236,4 +236,33 @@ public class AdExcel {
     return columnValues;
 }
 
+    //  Obetener una columna de una tabla
+    public ArrayList<Float> getColumnFloat(File file, int columnIndex) {
+    ArrayList<Float> columnValues = new ArrayList<>();
+
+    try {
+        if (file.exists()) {
+            XSSFWorkbook workbook;
+            try (FileInputStream fis = new FileInputStream(file)) {
+                workbook = new XSSFWorkbook(fis);
+                XSSFSheet sheet = workbook.getSheetAt(0);
+
+                for (int i = 1; i <= sheet.getLastRowNum(); i++) {
+                    XSSFRow row = sheet.getRow(i);
+                    if (row != null) {
+                        XSSFCell cell = row.getCell(columnIndex);
+                        if (cell != null) {
+                            float cellFloat = Float.parseFloat(Double.toString(cell.getNumericCellValue()));
+                            columnValues.add(cellFloat);
+                        }
+                    }
+                }
+            }
+        }
+    } catch (IOException e) {
+        // Manejo de excepciones
+    }
+
+    return columnValues;
+}
 }
