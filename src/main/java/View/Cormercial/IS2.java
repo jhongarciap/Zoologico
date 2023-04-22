@@ -48,7 +48,6 @@ public class IS2 extends javax.swing.JFrame {
 
         bg = new javax.swing.JPanel();
         bgPanelRound = new Clases.PanelRound();
-        btComercialShopping = new javax.swing.JButton();
         btComercialSale = new javax.swing.JButton();
         lbTicket = new javax.swing.JLabel();
         LbComercialTitle = new java.awt.Label();
@@ -74,25 +73,8 @@ public class IS2 extends javax.swing.JFrame {
         bgPanelRound.setRoundTopRight(15);
         bgPanelRound.setLayout(null);
 
-        btComercialShopping.setBackground(new java.awt.Color(188, 38, 73));
-        btComercialShopping.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
-        btComercialShopping.setForeground(new java.awt.Color(242, 242, 242));
-        btComercialShopping.setText("Compra");
-        btComercialShopping.setFocusPainted(false);
-        btComercialShopping.setMaximumSize(new java.awt.Dimension(123, 49));
-        btComercialShopping.setMinimumSize(new java.awt.Dimension(123, 49));
-        btComercialShopping.setOpaque(true);
-        btComercialShopping.setPreferredSize(new java.awt.Dimension(123, 49));
-        btComercialShopping.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btComercialShoppingActionPerformed(evt);
-            }
-        });
-        bgPanelRound.add(btComercialShopping);
-        btComercialShopping.setBounds(30, 230, 220, 40);
-
         btComercialSale.setBackground(new java.awt.Color(188, 38, 73));
-        btComercialSale.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
+        btComercialSale.setFont(new java.awt.Font("Arial", 0, 48)); // NOI18N
         btComercialSale.setForeground(new java.awt.Color(242, 242, 242));
         btComercialSale.setText("Venta");
         btComercialSale.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -103,7 +85,7 @@ public class IS2 extends javax.swing.JFrame {
             }
         });
         bgPanelRound.add(btComercialSale);
-        btComercialSale.setBounds(30, 170, 220, 40);
+        btComercialSale.setBounds(30, 170, 220, 100);
 
         lbTicket.setMaximumSize(new java.awt.Dimension(549, 267));
         bgPanelRound.add(lbTicket);
@@ -129,12 +111,6 @@ public class IS2 extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btComercialShoppingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btComercialShoppingActionPerformed
-       CM2 PurchaseWindow = new CM2();
-        this.dispose();
-        PurchaseWindow.setVisible(true);
-    }//GEN-LAST:event_btComercialShoppingActionPerformed
 
     private void btComercialSaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btComercialSaleActionPerformed
         CM1 SaleWindow = new CM1();
@@ -171,7 +147,6 @@ public class IS2 extends javax.swing.JFrame {
     private javax.swing.JPanel bg;
     private Clases.PanelRound bgPanelRound;
     private javax.swing.JButton btComercialSale;
-    private javax.swing.JButton btComercialShopping;
     private javax.swing.JLabel lbTicket;
     private javax.swing.JLabel lbZooLogo;
     // End of variables declaration//GEN-END:variables

@@ -1,16 +1,10 @@
 package Utilities;
 
-import Control.LogisticDepartment.*;
-import Control.ComercialDepartment.*;
-import Control.AdministrativeDepartment.*;
-import Model.*;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFCell;
@@ -23,41 +17,6 @@ public class AdExcel {
     public AdExcel() {
     }
 
-    public void createExcel(ArrayList list) {
-        if (list instanceof ArrayList<?>) {
-            Class<?> type = list.getClass().getComponentType();
-            if (type != null && type.equals(SaleBill.class)) {
-                ArrayListBillSale excel = new ArrayListBillSale();
-                excel.SaveBillSaleExcel();
-            } else if (type != null && type.equals(ShoppingBill.class)) {
-                ArrayListBillShopping excel = new ArrayListBillShopping();
-                excel.SaveBillShoppingExcel();
-            } else if (type != null && type.equals(Domestic.class)) {
-                ArrayListDomestic excel = new ArrayListDomestic();
-                excel.saveDomesticExcel();
-            } else if (type != null && type.equals(Employee.class)) {
-                ArrayListEmployee excel = new ArrayListEmployee();
-                excel.saveEmployeeExcel();
-            } else if (type != null && type.equals(Minor.class)) {
-                ArrayListMinor excel = new ArrayListMinor();
-                excel.saveMinorExcel();
-            } else if (type != null && type.equals(Plan.class)) {
-                ArrayListPlan excel = new ArrayListPlan();
-                excel.SavePlanExcel();
-            } else if (type != null && type.equals(Supply.class)) {
-                ArrayListSupply excel = new ArrayListSupply();
-                excel.SaveSupplyeExcel();
-            } else if (type != null && type.equals(Transation.class)) {
-                ArrayListTransation excel = new ArrayListTransation();
-                excel.SaveTransationExcel();
-            } else if (type != null && type.equals(Wild.class)) {
-                ArrayListWild excel = new ArrayListWild();
-                excel.saveWildExcel();
-            } else {
-                System.out.println("La lista ingresada no existe en la base de datos");
-            }
-        }
-    }
 //Muestra todos los elementos de excel
 
     public static ArrayList<Row> getRowsExcel(File file) {
