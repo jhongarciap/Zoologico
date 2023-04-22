@@ -4,6 +4,7 @@
  */
 package Control.AdministrativeDepartment;
 
+import Control.IList;
 import Model.Employee;
 import java.io.File;
 import java.io.FileInputStream;
@@ -18,7 +19,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  *
  * @author garci
  */
-public class ArrayListEmployee {
+public class ArrayListEmployee implements IList{
     //Array de Employee
 
     private ArrayList<Employee> employees = new ArrayList<>();
@@ -28,11 +29,12 @@ public class ArrayListEmployee {
     }
 
     //Añadir
-    public void addemployee(Employee employee) {
-        employees.add(employee);
+    public void add(Object o) {
+        employees.add((Employee) o);
     }
    // Guardar/Crear/Llenar Excel
-    public void saveEmployeeExcel() {
+    @Override
+    public void saveExcel() {
         try {
             File file = new File("rom/Employees/Employees.xlsx");
             if (file.exists()) {
@@ -80,5 +82,5 @@ public class ArrayListEmployee {
             System.out.println("Hay un error, revisa.");
         }
     }
-
+   
 }

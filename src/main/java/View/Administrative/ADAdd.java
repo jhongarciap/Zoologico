@@ -2,7 +2,6 @@ package View.Administrative;
 
 import Control.AdministrativeDepartment.ArrayListEmployee;
 import Model.Employee;
-import static Utilities.AdExcel.getRowsExcel;
 import static Utilities.loadExcelDataToTable.updateTableFromExcel;
 import static View.Administrative.AD2.tbGeneratedReports;
 import com.formdev.flatlaf.FlatDarculaLaf;
@@ -10,13 +9,9 @@ import com.formdev.flatlaf.FlatDarkLaf;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.io.File;
-import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.UIManager;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
+
 
 /**
  *
@@ -211,8 +206,8 @@ public class ADAdd extends javax.swing.JFrame {
             lbAdvert.setText("");
             //Se llena la array 
         Employee newEmployee = new Employee(txId.getText(), txName.getText(), txLastName.getText(), txFuntion.getText());
-        employee.addemployee(newEmployee);
-        employee.saveEmployeeExcel();
+        employee.add(newEmployee);
+        employee.saveExcel();
         //se habre la ventana AD2 
         AD2 MainScreen = new AD2();
         this.dispose();
