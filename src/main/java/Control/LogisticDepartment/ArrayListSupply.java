@@ -1,9 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Control.LogisticDepartment;
 
+import Control.IList;
 import Model.Supply;
 import java.io.File;
 import java.io.FileInputStream;
@@ -18,23 +15,16 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  *
  * @author garci
  */
-public class ArrayListSupply {
-
-    //Array de Supply
+public class ArrayListSupply implements IList{
     private ArrayList<Supply> supllys;
-    //constructor vacio 
 
     public ArrayListSupply() {
         this.supllys = new ArrayList<>();
     }
-
-    //añadir
-    public void addSupply(Supply supply) {
-        supllys.add(supply);
+    public void add(Object o) {
+        supllys.add((Supply) o);
     }
-
-    // Guardar/Crear/Llenar Excel
-    public void SaveSupplyeExcel() {
+    public void saveExcel() {
         try {
             File file = new File("rom/Supply.xlsx");
             if (file.exists()) {
@@ -85,4 +75,6 @@ public class ArrayListSupply {
             System.out.println("Hay un error, revisa.");
         }
     }
+
+    
 }

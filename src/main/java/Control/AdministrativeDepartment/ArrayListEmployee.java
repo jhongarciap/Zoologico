@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Control.AdministrativeDepartment;
 
 import Control.IList;
@@ -20,19 +16,15 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  * @author garci
  */
 public class ArrayListEmployee implements IList{
-    //Array de Employee
 
     private ArrayList<Employee> employees = new ArrayList<>();
 
     public ArrayListEmployee() {
 
     }
-
-    //Añadir
     public void add(Object o) {
         employees.add((Employee) o);
     }
-   // Guardar/Crear/Llenar Excel
     @Override
     public void saveExcel() {
         try {

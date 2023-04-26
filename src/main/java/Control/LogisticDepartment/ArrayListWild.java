@@ -1,10 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Control.LogisticDepartment;
 
 import Model.Wild;
+import Control.IList;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -18,21 +15,15 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  *
  * @author garci
  */
-public class ArrayListWild {
-    //Array de Employee
-
+public class ArrayListWild implements IList{
     private ArrayList<Wild> wilds = new ArrayList<>();
-    //Constructor vacio
     public ArrayListWild(){
 
     }
-
-    //Añadir
-    public void addWild(Wild wild) {
-        wilds.add(wild);
+    public void add(Object o) {
+        wilds.add((Wild)o);
     }
-    // Guardar/Crear/Llenar Excel
-    public void saveWildExcel() {
+    public void saveExcel() {
         try {
             File file = new File("rom/Animals/Wilds.xlsx");
             if (file.exists()) {
