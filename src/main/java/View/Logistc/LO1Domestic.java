@@ -22,16 +22,15 @@ public class LO1Domestic extends javax.swing.JFrame {
     /**
      * Creates new form X1
      */
-    // Obtener los datos del archivo Excel
     File file = new File("rom/Animals/Domestics.xlsx");
     String sheetName = "Domestics";
     public LO1Domestic() {
         System.setProperty("sun.java2d.uiScale", "1.0");
-        FlatDarkLaf.setup(); // Sets the FlatLaf LookAndFeel as the main theme for the JFrame.
+        FlatDarkLaf.setup();
         initComponents();
         
-        this.setLocationRelativeTo(null); //Centers the window on-screen.
-        this.setTitle("Reportes"); // Set the title for the JFrame.
+        this.setLocationRelativeTo(null);
+        this.setTitle("Reportes");
         
         Image faviconX1 = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/View_IconAdminZOO.png"));
         this.setIconImage(faviconX1);
@@ -273,12 +272,9 @@ public class LO1Domestic extends javax.swing.JFrame {
     }//GEN-LAST:event_btRemoveDomesticAnimalActionPerformed
 
     private void btSearchDomesticAnimalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSearchDomesticAnimalActionPerformed
-        // Este if lo que hace es verificar si todas las casillas estan diligenciadas
         if (txSearchDomesticAnimal.getText().equals("")) {
-            // Mostramos un mensaje que hay campos vacios
             lbAdvert.setText("Hay campos vacios");
         } else {
-            // En caso de que la vez anterior fuera incorrecta, esta vez no aparece el mensaje de campos vacios
             lbAdvert.setText("");
         String name = txSearchDomesticAnimal.getText();
         Row row = getRow(name, file, sheetName, 0);

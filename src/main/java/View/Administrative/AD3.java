@@ -23,11 +23,11 @@ public class AD3 extends javax.swing.JFrame {
 
     public AD3() {
         System.setProperty("sun.java2d.uiScale", "1.0");
-        FlatDarkLaf.setup(); // Sets the FlatLaf LookAndFeel as the main theme for the JFrame.
+        FlatDarkLaf.setup();
         initComponents();
 
-        this.setLocationRelativeTo(null); //Centers the window on-screen.
-        this.setTitle("Planes"); // Set the title for the JFrame.
+        this.setLocationRelativeTo(null);
+        this.setTitle("Planes");
 
         Image faviconX1 = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/View_IconAdminZOO.png"));
         this.setIconImage(faviconX1);

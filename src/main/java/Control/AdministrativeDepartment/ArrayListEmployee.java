@@ -1,9 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Control.AdministrativeDepartment;
 
+import Control.IList;
 import Model.Employee;
 import java.io.File;
 import java.io.FileInputStream;
@@ -18,21 +15,18 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  *
  * @author garci
  */
-public class ArrayListEmployee {
-    //Array de Employee
+public class ArrayListEmployee implements IList{
 
     private ArrayList<Employee> employees = new ArrayList<>();
 
     public ArrayListEmployee() {
 
     }
-
-    //Añadir
-    public void addemployee(Employee employee) {
-        employees.add(employee);
+    public void add(Object o) {
+        employees.add((Employee) o);
     }
-   // Guardar/Crear/Llenar Excel
-    public void saveEmployeeExcel() {
+    @Override
+    public void saveExcel() {
         try {
             File file = new File("rom/Employees/Employees.xlsx");
             if (file.exists()) {
@@ -80,5 +74,5 @@ public class ArrayListEmployee {
             System.out.println("Hay un error, revisa.");
         }
     }
-
+   
 }

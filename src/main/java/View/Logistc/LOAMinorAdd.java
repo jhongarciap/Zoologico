@@ -24,17 +24,14 @@ public class LOAMinorAdd extends javax.swing.JFrame {
      */
     ArrayListMinor minors = new ArrayListMinor();
     public LOAMinorAdd() {
-        //define tamaño
         System.setProperty("sun.java2d.uiScale", "1.0");
-        FlatDarkLaf.setup(); // Sets the FlatLaf LookAndFeel as the main theme for the JFrame.
+        FlatDarkLaf.setup();
         initComponents();
-        //ubica el nombre de la ventana 
-        this.setLocationRelativeTo(null); //Centers the window on-screen.
-        this.setTitle("Departamento Logístico"); // Set the title for the JFrame.
+        this.setLocationRelativeTo(null);
+        this.setTitle("Departamento Logístico");
         //icono de la ventana 
         Image faviconX1 = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/View_IconLogiZOO.png"));
         this.setIconImage(faviconX1);
-        //logo del recadro debajo del logo
         Image logoZRV = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/zoo!Logo.png"));
         lbZooLogo.setIcon(new ImageIcon(logoZRV.getScaledInstance(lbZooLogo.getWidth(), lbZooLogo.getHeight(), Image.SCALE_AREA_AVERAGING)));
 
@@ -240,20 +237,15 @@ public class LOAMinorAdd extends javax.swing.JFrame {
                 || txRaceMinor.getText().equals("") 
                 || txDiseasesMinor.getText().equals("") 
                 || txDietMinor.getText().equals("")){ 
-            // Mostramos un mensaje que hay campos vacios
             lbAdvert.setText("Hay campos vacios");
         } else {
-            // En caso de que la vez anterior fuera incorrecta, esta vez no aparece el mensaje de campos vacios
             lbAdvert.setText("");
-            //Se llena la array 
         Minor minor = new Minor(txNameMinor.getText(), txRaceMinor.getText(), cbSexMinor.getSelectedItem().toString(), cbHabitaMinor.getSelectedItem().toString(), txDiseasesMinor.getText(), cbNativeClimateMinor.getSelectedItem().toString(), txDietMinor.getText());
-        minors.addMinor(minor);
-        minors.saveMinorExcel();
-        //se habre la ventana LO1Minor
+        minors.add(minor);
+        minors.saveExcel();
         LO1Minor MainScreen = new LO1Minor();
         this.dispose();
         MainScreen.setVisible(true);
-        //Se carga la tabla actualizada 
         File file = new File("rom/Animals/Minors.xlsx");
          updateTableFromExcel(tbMinorAnimals, file);
         }
@@ -262,15 +254,15 @@ public class LOAMinorAdd extends javax.swing.JFrame {
     }//GEN-LAST:event_btAddMinorActionPerformed
 
     private void txNameMinorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txNameMinorActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_txNameMinorActionPerformed
 
     private void txRaceMinorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txRaceMinorActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_txRaceMinorActionPerformed
 
     private void txDiseasesMinorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txDiseasesMinorActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_txDiseasesMinorActionPerformed
 
     private void lbZooLogoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbZooLogoMouseClicked

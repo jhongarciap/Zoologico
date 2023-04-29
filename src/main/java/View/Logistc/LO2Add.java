@@ -19,7 +19,6 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UnsupportedLookAndFeelException;
-import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
@@ -36,20 +35,15 @@ public class LO2Add extends javax.swing.JFrame {
      * Creates new form X1
      */
     public LO2Add() {
-        //define tamaño
         System.setProperty("sun.java2d.uiScale", "1.0");
-        FlatDarkLaf.setup(); // Sets the FlatLaf LookAndFeel as the main theme for the JFrame.
+        FlatDarkLaf.setup();
         initComponents();
-        //ubica el nombre de la ventana 
-        this.setLocationRelativeTo(null); //Centers the window on-screen.
-        this.setTitle("Departamento Logístico"); // Set the title for the JFrame.
-        //icono de la ventana 
+        this.setLocationRelativeTo(null);
+        this.setTitle("Departamento Logístico");
         Image faviconX1 = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/View_IconLogiZOO.png"));
         this.setIconImage(faviconX1);
-        //logo del recadro debajo del logo
         Image logoZRV = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/zoo!Logo.png"));
         lbZooLogo.setIcon(new ImageIcon(logoZRV.getScaledInstance(lbZooLogo.getWidth(), lbZooLogo.getHeight(), Image.SCALE_AREA_AVERAGING)));
-        // Añadimos los animales existentes en el combobox
         ComboBoxDinamico();
     }
 
@@ -240,12 +234,10 @@ public class LO2Add extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btAddNewSupplyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddNewSupplyActionPerformed
-        // Este if lo que hace es verificar si todas las casillas estan diligenciadas
         if (txQuantityNewSupply.getText().equals("")
                 || cbTypeNewSupply.getSelectedItem().toString().equals("Seleccionar...")
                 || cbAnimalNewSupply.getSelectedItem().toString().equals("Seleccionar...")
                 || txSpecificationsNewSupply.getText().equals("")) {
-            // Mostramos un mensaje que hay campos vacios
             lbAdvert.setText("Hay campos vacios");
         } else {
             lbAdvert.setText("");
@@ -273,9 +265,9 @@ public class LO2Add extends javax.swing.JFrame {
                 try (FileInputStream fis = new FileInputStream(file)) {
                     workbook = new XSSFWorkbook(fis);
                     XSSFSheet sheet = workbook.getSheet("Supplys");
-                    XSSFRow row = sheet.getRow(r); // Get the second row (0-based)
+                    XSSFRow row = sheet.getRow(r);
                     if (row != null) {
-                        XSSFCell cell = row.getCell(3); // Get the fourth cell (0-based)
+                        XSSFCell cell = row.getCell(3);
                         if (cell != null) {
                             cell.setCellValue(String.valueOf(num + Integer.parseInt(txQuantityNewSupply.getText()))); // Set the new value
                         }
@@ -296,17 +288,14 @@ public class LO2Add extends javax.swing.JFrame {
                 this.dispose();
                 MainScreen.setVisible(true);
             } else {
-                // Creamos un objeto Supply con los datos diligenciados Supply View
                 Supply supply = new Supply(cbTypeNewSupply.getSelectedItem().toString(),
                         txNameNewSupply.getText(),
                         cbAnimalNewSupply.getSelectedItem().toString(),
                         txQuantityNewSupply.getText(),
-                        txSpecificationsNewSupply.getText()); // Lo añadimos al excel
-                // Añadimos el nuevo excel
+                        txSpecificationsNewSupply.getText());
                 ArrayListSupply list = new ArrayListSupply();
-                list.addSupply(supply);
-                list.SaveSupplyeExcel();
-                // Cambiamos de ventana
+                list.add(supply);
+                list.saveExcel();
                 LO2 MainScreen = new LO2();
                 this.dispose();
                 MainScreen.setVisible(true);
@@ -315,7 +304,7 @@ public class LO2Add extends javax.swing.JFrame {
     }//GEN-LAST:event_btAddNewSupplyActionPerformed
 
     private void txQuantityNewSupplyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txQuantityNewSupplyActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_txQuantityNewSupplyActionPerformed
 
     private void lbZooLogoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbZooLogoMouseClicked
@@ -325,7 +314,7 @@ public class LO2Add extends javax.swing.JFrame {
     }//GEN-LAST:event_lbZooLogoMouseClicked
 
     private void btAddNewSupplyKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btAddNewSupplyKeyTyped
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_btAddNewSupplyKeyTyped
 
     private void btAddNewSupplyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btAddNewSupplyMouseClicked
@@ -333,7 +322,7 @@ public class LO2Add extends javax.swing.JFrame {
     }//GEN-LAST:event_btAddNewSupplyMouseClicked
 
     private void txNameNewSupplyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txNameNewSupplyActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_txNameNewSupplyActionPerformed
 
     /**

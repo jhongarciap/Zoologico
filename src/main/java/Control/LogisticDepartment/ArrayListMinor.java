@@ -1,9 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Control.LogisticDepartment;
 
+import Control.IList;
 import Model.Minor;
 import java.io.File;
 import java.io.FileInputStream;
@@ -18,23 +15,15 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  *
  * @author garci
  */
-public class ArrayListMinor {
-    //Array de Employee
-
+public class ArrayListMinor implements IList{
     private ArrayList<Minor> minors = new ArrayList<>();
-
-    //Constructor vacio
     public ArrayListMinor() {
 
     }
-
-    //Añadir
-    public void addMinor(Minor minor) {
-        minors.add(minor);
+    public void add(Object o) {
+        minors.add((Minor) o);
     }
-
-    // Guardar/Crear/Llenar Excel
-    public void saveMinorExcel() {
+    public void saveExcel() {
         try {
             File file = new File("rom/Animals/Minors.xlsx");
             if (file.exists()) {
@@ -91,5 +80,7 @@ public class ArrayListMinor {
             System.out.println("Hay un error, revisa.");
         }
     }
+
+    
 
 }

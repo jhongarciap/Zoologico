@@ -33,11 +33,11 @@ public class LO2 extends javax.swing.JFrame {
      */
     public LO2() {
         System.setProperty("sun.java2d.uiScale", "1.0");
-        FlatDarkLaf.setup(); // Sets the FlatLaf LookAndFeel as the main theme for the JFrame.
+        FlatDarkLaf.setup();
         initComponents();
 
-        this.setLocationRelativeTo(null); //Centers the window on-screen.
-        this.setTitle("Reportes"); // Set the title for the JFrame.
+        this.setLocationRelativeTo(null);
+        this.setTitle("Reportes");
 
         Image faviconX1 = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/View_IconAdminZOO.png"));
         this.setIconImage(faviconX1);
@@ -48,7 +48,6 @@ public class LO2 extends javax.swing.JFrame {
         Image logoZoo = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/zoo!Logo.png"));
         lbZooLogo.setIcon(new ImageIcon(logoZoo.getScaledInstance(lbZooLogo.getWidth(), lbZooLogo.getHeight(), Image.SCALE_AREA_AVERAGING)));
 
-        // Generamos la tabla general
         generalTable();
         comboboxType();
         comboboxAnimal();
@@ -304,7 +303,7 @@ public class LO2 extends javax.swing.JFrame {
     }//GEN-LAST:event_btCreateSupplementActionPerformed
 
     private void cbSupplementAnimalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbSupplementAnimalActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_cbSupplementAnimalActionPerformed
 
     private void cbSupplementTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbSupplementTypeActionPerformed
