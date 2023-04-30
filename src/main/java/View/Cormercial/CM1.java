@@ -38,11 +38,11 @@ public class CM1 extends javax.swing.JFrame {
      */
     public CM1() {
         System.setProperty("sun.java2d.uiScale", "1.0");
-        FlatDarkLaf.setup(); // Sets the FlatLaf LookAndFeel as the main theme for the JFrame.
+        FlatDarkLaf.setup();
         initComponents();
 
-        this.setLocationRelativeTo(null); //Centers the window on-screen.
-        this.setTitle("Ventas"); // Set the title for the JFrame.
+        this.setLocationRelativeTo(null);
+        this.setTitle("Ventas");
 
         Image faviconX1 = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/View_IconCommZOO.png"));
         this.setIconImage(faviconX1);
@@ -270,7 +270,6 @@ public class CM1 extends javax.swing.JFrame {
     }//GEN-LAST:event_btNewSaleActionPerformed
 
     private void cbProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbProductActionPerformed
-        // TODO add your handling code here:
         if (cbProduct.getSelectedIndex() != 0) {
             Row row = getRow(cbProduct.getSelectedItem().toString(), file, "Plans", 1);
             String[] vector = rowToVector(row);
@@ -303,8 +302,8 @@ public class CM1 extends javax.swing.JFrame {
             float discount = Float.parseFloat(txDiscount.getText());
 
             SaleBill newSaleBill = new SaleBill("213123", currentDate(), value, discount, x, TOP_ALIGNMENT, txClient.getText(), product, productId);
-            billSale.addBillSale(newSaleBill);
-            billSale.SaveBillSaleExcel();
+            billSale.add(newSaleBill);
+            billSale.saveExcel();
             billSale.printBillsToTable(tbProducts);
             String total=billSale.getTotalSales();
             lbTotalSaleValue.setText(total);

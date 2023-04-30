@@ -1,8 +1,6 @@
 package View.Administrative;
 
-import static Utilities.AdExcel.getRowsExcel;
 import static Utilities.AdExcel.sumBillExcel;
-import Utilities.loadExcelDataToTable;
 import static Utilities.loadExcelDataToTable.updateTableFromExcel;
 import View.Administrative.AD3;
 import View.Administrative.AD2;
@@ -15,16 +13,9 @@ import com.formdev.flatlaf.FlatDarkLaf;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.io.File;
-import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.UIManager;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
 import static View.Administrative.AD1.tbGeneratedReports1;
-import static org.apache.poi.hssf.usermodel.HeaderFooter.file;
-
 /**
  *
  * @author juan.castro17
@@ -36,11 +27,11 @@ public class IS1 extends javax.swing.JFrame {
      */
     public IS1() {
         System.setProperty("sun.java2d.uiScale", "1.0");
-        FlatDarkLaf.setup(); // Sets the FlatLaf LookAndFeel as the main theme for the JFrame.
+        FlatDarkLaf.setup();
         initComponents();
 
-        this.setLocationRelativeTo(null); //Centers the window on-screen.
-        this.setTitle("Departamento Administrativo"); // Set the title for the JFrame.
+        this.setLocationRelativeTo(null);
+        this.setTitle("Departamento Administrativo");
 
         Image faviconX1 = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/View_IconAdminZOO.png"));
         this.setIconImage(faviconX1);
@@ -165,12 +156,10 @@ public class IS1 extends javax.swing.JFrame {
         AD1 ReportWindow = new AD1();
         this.dispose();
         ReportWindow.setVisible(true);
-        //obtener los datos del excel 
         File file = new File("rom/Bills/BillSale.xlsx");
-       updateTableFromExcel(tbGeneratedReports1,file);
-       Float Sales= sumBillExcel(file);
+        updateTableFromExcel(tbGeneratedReports1, file);
         Float sales = sumBillExcel(file);
-       lbTotalValue.setText("$" + sales);
+        lbTotalValue.setText("$" + sales);
     }//GEN-LAST:event_btComercialSaleActionPerformed
 
     private void btComercialShoppingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btComercialShoppingActionPerformed
@@ -185,7 +174,6 @@ public class IS1 extends javax.swing.JFrame {
         AD2 MainScreen = new AD2();
         this.dispose();
         MainScreen.setVisible(true);
-// Obtener los datos del archivo Excel
         File file = new File("rom/Employees/Employees.xlsx");
         updateTableFromExcel(tbGeneratedReports, file);
     }//GEN-LAST:event_btComercialSale1ActionPerformed

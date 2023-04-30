@@ -1,9 +1,7 @@
 package View.Administrative;
 
-import Model.Employee;
 import static Utilities.AdExcel.deleteRow;
 import static Utilities.AdExcel.getRow;
-import static Utilities.AdExcel.getRowsExcel;
 import static Utilities.AdExcel.rowToVector;
 import static Utilities.loadExcelDataToTable.updateTableFromExcel;
 import com.formdev.flatlaf.FlatDarculaLaf;
@@ -11,14 +9,8 @@ import com.formdev.flatlaf.FlatDarkLaf;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Vector;
 import javax.swing.ImageIcon;
-import javax.swing.JTable;
 import javax.swing.UIManager;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
-import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 
 /**
@@ -26,8 +18,6 @@ import org.apache.poi.ss.usermodel.Row;
  * @author juan.castro17
  */
 public class AD2 extends javax.swing.JFrame {
-
-    // Obtener los datos del archivo Excel
     File file = new File("rom/Employees/Employees.xlsx");
     String sheetName = "Employees";
 
@@ -36,11 +26,11 @@ public class AD2 extends javax.swing.JFrame {
      */
     public AD2() {
         System.setProperty("sun.java2d.uiScale", "1.0");
-        FlatDarkLaf.setup(); // Sets the FlatLaf LookAndFeel as the main theme for the JFrame.
+        FlatDarkLaf.setup();
         initComponents();
 
-        this.setLocationRelativeTo(null); //Centers the window on-screen.
-        this.setTitle("Trabajadores"); // Set the title for the JFrame.
+        this.setLocationRelativeTo(null);
+        this.setTitle("Trabajadores");
 
         Image faviconX1 = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/View_IconAdminZOO.png"));
         this.setIconImage(faviconX1);
@@ -262,12 +252,9 @@ public class AD2 extends javax.swing.JFrame {
     }//GEN-LAST:event_btDeleteWorkerActionPerformed
 
     private void btSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSearchActionPerformed
-        // Este if lo que hace es verificar si todas las casillas estan diligenciadas
         if (txIDWorker.getText().equals("")) {
-            // Mostramos un mensaje que hay campos vacios
             lbAdvert.setText("Hay campos vacios");
         } else {
-            // En caso de que la vez anterior fuera incorrecta, esta vez no aparece el mensaje de campos vacios
             lbAdvert.setText("");
         String id = txIDWorker.getText();
         Row row = getRow(id, file, sheetName, 0);
@@ -279,7 +266,7 @@ public class AD2 extends javax.swing.JFrame {
     }//GEN-LAST:event_btSearchActionPerformed
 
     private void txIDWorkerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txIDWorkerActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_txIDWorkerActionPerformed
 
     /**
