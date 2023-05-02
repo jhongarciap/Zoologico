@@ -1,6 +1,9 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package Control.LogisticDepartment;
 
-import Control.IList;
 import Model.Domestic;
 import java.io.File;
 import java.io.FileInputStream;
@@ -15,17 +18,23 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  *
  * @author garci
  */
-public class ArrayListDomestic implements IList{
+public class ArrayListDomestic {
+    //Array de Employee
 
     private ArrayList<Domestic> domestics = new ArrayList<>();
+
+    //Constructor vacio
     public ArrayListDomestic() {
 
     }
-    public void add(Object o) {
-        domestics.add((Domestic) o);
+
+    //Añadir
+    public void addDomestic(Domestic domestic) {
+        domestics.add(domestic);
+        // Guardar/Crear/Llenar Excel
     }
         
-    public void saveExcel() {
+    public void saveDomesticExcel() {
         try {
             File file = new File("rom/Animals/Domestics.xlsx");
             if (file.exists()) {
@@ -82,6 +91,4 @@ public class ArrayListDomestic implements IList{
             System.out.println("Hay un error, revisa.");
         }
     }
-
-    
 }

@@ -26,11 +26,11 @@ public class LO1Wild extends javax.swing.JFrame {
     String sheetName = "Wilds";
     public LO1Wild() {
         System.setProperty("sun.java2d.uiScale", "1.0");
-        FlatDarkLaf.setup();
+        FlatDarkLaf.setup(); // Sets the FlatLaf LookAndFeel as the main theme for the JFrame.
         initComponents();
         
-        this.setLocationRelativeTo(null);
-        this.setTitle("Reportes");
+        this.setLocationRelativeTo(null); //Centers the window on-screen.
+        this.setTitle("Reportes"); // Set the title for the JFrame.
         
         Image faviconX1 = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/View_IconAdminZOO.png"));
         this.setIconImage(faviconX1);
@@ -272,8 +272,10 @@ public class LO1Wild extends javax.swing.JFrame {
 
     private void btSearchWildAnimalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSearchWildAnimalActionPerformed
         if (txSearchWildAnimal.getText().equals("")) {
+            // Mostramos un mensaje que hay campos vacios
             lbAdvert.setText("Hay campos vacios");
         } else {
+            // En caso de que la vez anterior fuera incorrecta, esta vez no aparece el mensaje de campos vacios
             lbAdvert.setText("");
         String name = txSearchWildAnimal.getText();
         Row row = getRow(name, file, sheetName, 0);

@@ -23,13 +23,17 @@ public class LOAWildAdd extends javax.swing.JFrame {
      */
     ArrayListWild wilds = new ArrayListWild();
     public LOAWildAdd() {
+        //define tamaño
         System.setProperty("sun.java2d.uiScale", "1.0");
-        FlatDarkLaf.setup();
+        FlatDarkLaf.setup(); // Sets the FlatLaf LookAndFeel as the main theme for the JFrame.
         initComponents();
-        this.setLocationRelativeTo(null);
-        this.setTitle("Departamento Logístico");
+        //ubica el nombre de la ventana 
+        this.setLocationRelativeTo(null); //Centers the window on-screen.
+        this.setTitle("Departamento Logístico"); // Set the title for the JFrame.
+        //icono de la ventana 
         Image faviconX1 = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/View_IconLogiZOO.png"));
         this.setIconImage(faviconX1);
+        //logo del recadro debajo del logo
         Image logoZRV = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/zoo!Logo.png"));
         lbZooLogo.setIcon(new ImageIcon(logoZRV.getScaledInstance(lbZooLogo.getWidth(), lbZooLogo.getHeight(), Image.SCALE_AREA_AVERAGING)));
        
@@ -237,15 +241,20 @@ public class LOAWildAdd extends javax.swing.JFrame {
                 || txRaceWild.getText().equals("") 
                 || txBirthhabitatWild.getText().equals("") 
                 || txDietWild.getText().equals("")){ 
+            // Mostramos un mensaje que hay campos vacios
             lbAdvert.setText("Hay campos vacios");
         } else {
+            // En caso de que la vez anterior fuera incorrecta, esta vez no aparece el mensaje de campos vacios
             lbAdvert.setText("");
+            //Se llena la array 
         Wild wild = new Wild(txNameWild.getText(), txRaceWild.getText(), cbSexWild.getSelectedItem().toString(), cbHabitadWild.getSelectedItem().toString(), txBirthhabitatWild.getText(), cbDangerousnessWild.getSelectedItem().toString(), txDietWild.getText());
-        wilds.add(wild);
-        wilds.saveExcel();
+        wilds.addWild(wild);
+        wilds.saveWildExcel();
+        //se habre la ventana LO1Wild
         LO1Wild MainScreen = new LO1Wild();
         this.dispose();
         MainScreen.setVisible(true);
+        //Se carga la tabla actualizada 
         File file = new File("rom/Animals/Wilds.xlsx");
          updateTableFromExcel(tbWildAnimals, file);
         }
@@ -253,15 +262,15 @@ public class LOAWildAdd extends javax.swing.JFrame {
     }//GEN-LAST:event_btLogisticAnimalsActionPerformed
 
     private void txNameWildActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txNameWildActionPerformed
-        
+        // TODO add your handling code here:
     }//GEN-LAST:event_txNameWildActionPerformed
 
     private void txRaceWildActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txRaceWildActionPerformed
-        
+        // TODO add your handling code here:
     }//GEN-LAST:event_txRaceWildActionPerformed
 
     private void txBirthhabitatWildActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txBirthhabitatWildActionPerformed
-        
+        // TODO add your handling code here:
     }//GEN-LAST:event_txBirthhabitatWildActionPerformed
 
     private void lbZooLogoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbZooLogoMouseClicked

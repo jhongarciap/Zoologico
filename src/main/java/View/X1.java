@@ -21,11 +21,11 @@ public class X1 extends javax.swing.JFrame {
      */
     public X1() {
         System.setProperty("sun.java2d.uiScale", "1.0");
-        FlatDarkLaf.setup();
+        FlatDarkLaf.setup(); // Sets the FlatLaf LookAndFeel as the main theme for the JFrame.
         initComponents();
         
-        this.setLocationRelativeTo(null);
-        this.setTitle("by NeoSolutions Inc.");
+        this.setLocationRelativeTo(null); //Centers the window on-screen.
+        this.setTitle("by NeoSolutions Inc."); // Set the title for the JFrame.
         
         Image faviconX1 = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/View_IconZOO.png"));
         this.setIconImage(faviconX1);

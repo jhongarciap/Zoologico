@@ -1,6 +1,9 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package Control.AdministrativeDepartment;
 
-import Control.IList;
 import Model.Plan;
 import java.io.File;
 import java.io.FileInputStream;
@@ -15,16 +18,22 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  *
  * @author garci
  */
+public class ArrayListPlan {
 
-public class ArrayListPlan implements IList{
-    
+    //Array de Plan
     private ArrayList<Plan> plans = new ArrayList<>();
+
+    //Contructor vacio
     public ArrayListPlan() {
     }
-    public void add(Object o) {
-        plans.add((Plan) o);
+
+    //Añadir
+    public void addPlan(Plan plan) {
+        plans.add(plan);
     }
-    public void saveExcel() {
+
+// Guardar/Crear/Llenar Excel
+    public void SavePlanExcel() {
         try {
             File file = new File("rom/Plans/Plans.xlsx");
             if (file.exists()) {

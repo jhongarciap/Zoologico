@@ -18,13 +18,17 @@ public class IS2 extends javax.swing.JFrame {
      * Creates new form X1
      */
     public IS2() {
+        //define tamaño
         System.setProperty("sun.java2d.uiScale", "1.0");
-        FlatDarkLaf.setup();
+        FlatDarkLaf.setup(); // Sets the FlatLaf LookAndFeel as the main theme for the JFrame.
         initComponents();
-        this.setLocationRelativeTo(null);
-        this.setTitle("Departamento Comercial");
+        //ubica el nombre de la ventana 
+        this.setLocationRelativeTo(null); //Centers the window on-screen.
+        this.setTitle("Departamento Comercial"); // Set the title for the JFrame.
+        //icono de la ventana 
         Image faviconX1 = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/View_IconCommZOO.png"));
         this.setIconImage(faviconX1);
+        //logo del recadro debajo del logo
         Image logoZRV = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/zoo!Logo.png"));
         lbZooLogo.setIcon(new ImageIcon(logoZRV.getScaledInstance(lbZooLogo.getWidth(), lbZooLogo.getHeight(), Image.SCALE_AREA_AVERAGING)));
        

@@ -6,7 +6,10 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 import javax.swing.UIManager;
+import Model.Supply;
+import Control.LogisticDepartment.ArrayListSupply;
 import Utilities.AdExcel;
+import static Utilities.loadExcelDataToTable.updateTableFromExcel;
 import java.io.File;
 import java.util.ArrayList;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -21,15 +24,20 @@ public class LO2Delete extends javax.swing.JFrame {
      * Creates new form X1
      */
     public LO2Delete() {
+        //define tamaño
         System.setProperty("sun.java2d.uiScale", "1.0");
-        FlatDarkLaf.setup();
+        FlatDarkLaf.setup(); // Sets the FlatLaf LookAndFeel as the main theme for the JFrame.
         initComponents();
-        this.setLocationRelativeTo(null);
-        this.setTitle("Departamento Logístico");
+        //ubica el nombre de la ventana 
+        this.setLocationRelativeTo(null); //Centers the window on-screen.
+        this.setTitle("Departamento Logístico"); // Set the title for the JFrame.
+        //icono de la ventana 
         Image faviconX1 = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/View_IconLogiZOO.png"));
         this.setIconImage(faviconX1);
+        //logo del recadro debajo del logo
         Image logoZRV = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/zoo!Logo.png"));
         lbZooLogo.setIcon(new ImageIcon(logoZRV.getScaledInstance(lbZooLogo.getWidth(), lbZooLogo.getHeight(), Image.SCALE_AREA_AVERAGING)));
+        // Añadimos los animales existentes en el combobox
         comboBoxDelete();
     }
     
@@ -178,7 +186,7 @@ public class LO2Delete extends javax.swing.JFrame {
     }//GEN-LAST:event_lbZooLogoMouseClicked
 
     private void btDeleteSupplyKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btDeleteSupplyKeyTyped
-        
+        // TODO add your handling code here:
     }//GEN-LAST:event_btDeleteSupplyKeyTyped
 
     private void btDeleteSupplyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btDeleteSupplyMouseClicked

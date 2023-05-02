@@ -2,6 +2,7 @@ package View.Administrative;
 
 import Control.AdministrativeDepartment.ArrayListEmployee;
 import Model.Employee;
+import static Utilities.AdExcel.getRowsExcel;
 import static Utilities.loadExcelDataToTable.updateTableFromExcel;
 import static View.Administrative.AD2.tbGeneratedReports;
 import com.formdev.flatlaf.FlatDarculaLaf;
@@ -9,28 +10,38 @@ import com.formdev.flatlaf.FlatDarkLaf;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.io.File;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.UIManager;
-
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
 
 /**
  *
  * @author juan.castro17
  */
 public class ADAdd extends javax.swing.JFrame {
+
+    //Array y añadir 
     ArrayListEmployee employee = new ArrayListEmployee();
 
     /**
      * Creates new form X1
      */
     public ADAdd() {
+        //define tamaño
         System.setProperty("sun.java2d.uiScale", "1.0");
-        FlatDarkLaf.setup();
+        FlatDarkLaf.setup(); // Sets the FlatLaf LookAndFeel as the main theme for the JFrame.
         initComponents();
-        this.setLocationRelativeTo(null);
-        this.setTitle("Departamento Administrativo");
+        //ubica el nombre de la ventana 
+        this.setLocationRelativeTo(null); //Centers the window on-screen.
+        this.setTitle("Departamento Administrativo"); // Set the title for the JFrame.
+        //icono de la ventana 
         Image faviconX1 = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/View_IconAdminZOO.png"));
         this.setIconImage(faviconX1);
+        //logo del recadro debajo del logo
         Image logoZRV = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/zoo!Logo.png"));
         lbZooLogo.setIcon(new ImageIcon(logoZRV.getScaledInstance(lbZooLogo.getWidth(), lbZooLogo.getHeight(), Image.SCALE_AREA_AVERAGING)));
 
@@ -192,16 +203,21 @@ public class ADAdd extends javax.swing.JFrame {
         if (txName.getText().equals("")
                 || txLastName.getText().equals("") 
                 || txId.getText().equals("") 
-                || txFuntion.getText().equals("")){
+                || txFuntion.getText().equals("")){ 
+            // Mostramos un mensaje que hay campos vacios
             lbAdvert.setText("Hay campos vacios");
         } else {
+            // En caso de que la vez anterior fuera incorrecta, esta vez no aparece el mensaje de campos vacios
             lbAdvert.setText("");
+            //Se llena la array 
         Employee newEmployee = new Employee(txId.getText(), txName.getText(), txLastName.getText(), txFuntion.getText());
-        employee.add(newEmployee);
-        employee.saveExcel();
+        employee.addemployee(newEmployee);
+        employee.saveEmployeeExcel();
+        //se habre la ventana AD2 
         AD2 MainScreen = new AD2();
         this.dispose();
         MainScreen.setVisible(true);
+        //Se carga la tabla actualizada 
         File file = new File("rom/Employees/Employees.xlsx");
          updateTableFromExcel(tbGeneratedReports, file);
         }

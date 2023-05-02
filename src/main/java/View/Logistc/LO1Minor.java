@@ -26,11 +26,11 @@ public class LO1Minor extends javax.swing.JFrame {
     String sheetName = "Minors";
     public LO1Minor() {
         System.setProperty("sun.java2d.uiScale", "1.0");
-        FlatDarkLaf.setup();
+        FlatDarkLaf.setup(); // Sets the FlatLaf LookAndFeel as the main theme for the JFrame.
         initComponents();
         
-        this.setLocationRelativeTo(null);
-        this.setTitle("Reportes");
+        this.setLocationRelativeTo(null); //Centers the window on-screen.
+        this.setTitle("Reportes"); // Set the title for the JFrame.
         
         Image faviconX1 = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/View_IconAdminZOO.png"));
         this.setIconImage(faviconX1);
@@ -275,8 +275,10 @@ public class LO1Minor extends javax.swing.JFrame {
 
     private void btSearchMinorAnimalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSearchMinorAnimalActionPerformed
         if (txSearchMinorAnimal.getText().equals("")) {
+            // Mostramos un mensaje que hay campos vacios
             lbAdvert.setText("Hay campos vacios");
         } else {
+            // En caso de que la vez anterior fuera incorrecta, esta vez no aparece el mensaje de campos vacios
             lbAdvert.setText("");
         String name = txSearchMinorAnimal.getText();
         Row row = getRow(name, file, sheetName, 0);

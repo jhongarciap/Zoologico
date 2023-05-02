@@ -17,15 +17,24 @@ import java.io.File;
  * @author juan.castro17
  */
 public class LOADomesticAdd extends javax.swing.JFrame {
+
+    /**
+     * Creates new form X1
+     */
+       
     ArrayListDomestic domestics = new ArrayListDomestic();
     public LOADomesticAdd() {
+        //define tamaño
         System.setProperty("sun.java2d.uiScale", "1.0");
-        FlatDarkLaf.setup();
+        FlatDarkLaf.setup(); // Sets the FlatLaf LookAndFeel as the main theme for the JFrame.
         initComponents();
-        this.setLocationRelativeTo(null);
-        this.setTitle("Departamento Logístico");
+        //ubica el nombre de la ventana 
+        this.setLocationRelativeTo(null); //Centers the window on-screen.
+        this.setTitle("Departamento Logístico"); // Set the title for the JFrame.
+        //icono de la ventana 
         Image faviconX1 = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/View_IconLogiZOO.png"));
         this.setIconImage(faviconX1);
+        //logo del recadro debajo del logo
         Image logoZRV = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/zoo!Logo.png"));
         lbZooLogo.setIcon(new ImageIcon(logoZRV.getScaledInstance(lbZooLogo.getWidth(), lbZooLogo.getHeight(), Image.SCALE_AREA_AVERAGING)));
 
@@ -232,30 +241,35 @@ public class LOADomesticAdd extends javax.swing.JFrame {
                 || txRaceDomestic.getText().equals("") 
                 || txPsycheDomestic.getText().equals("") 
                 || txlDietDomestic.getText().equals("")){ 
+            // Mostramos un mensaje que hay campos vacios
             lbAdvert.setText("Hay campos vacios");
         } else {
+            // En caso de que la vez anterior fuera incorrecta, esta vez no aparece el mensaje de campos vacios
             lbAdvert.setText("");
+            //Se llena la array 
         Domestic domestic = new Domestic(txNameDomestic.getText(), txRaceDomestic.getText(), cbSexDomestic.getSelectedItem().toString(), cbHabitatDomestic.getSelectedItem().toString(), cbOriginDomestic.getSelectedItem().toString(), txPsycheDomestic.getText(), txlDietDomestic.getText());
-        domestics.add(domestic);
-        domestics.saveExcel();
+        domestics.addDomestic(domestic);
+        domestics.saveDomesticExcel();
+        //se habre la ventana AD2 
         LO1Domestic MainScreen = new LO1Domestic();
         this.dispose();
         MainScreen.setVisible(true);
+        //Se carga la tabla actualizada 
         File file = new File("rom/Animals/Domestics.xlsx");
          updateTableFromExcel(tbDomesticAnimals, file);
         }
     }//GEN-LAST:event_btAddDomesticActionPerformed
 
     private void txNameDomesticActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txNameDomesticActionPerformed
-        
+        // TODO add your handling code here:
     }//GEN-LAST:event_txNameDomesticActionPerformed
 
     private void txPsycheDomesticActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txPsycheDomesticActionPerformed
-        
+        // TODO add your handling code here:
     }//GEN-LAST:event_txPsycheDomesticActionPerformed
 
     private void txRaceDomesticActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txRaceDomesticActionPerformed
-        
+        // TODO add your handling code here:
     }//GEN-LAST:event_txRaceDomesticActionPerformed
 
     private void lbZooLogoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbZooLogoMouseClicked

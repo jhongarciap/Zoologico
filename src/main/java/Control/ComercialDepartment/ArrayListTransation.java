@@ -1,6 +1,9 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package Control.ComercialDepartment;
 
-import Control.IList;
 import Model.Transation;
 import java.io.File;
 import java.io.FileInputStream;
@@ -15,15 +18,22 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  *
  * @author garci
  */
-public class ArrayListTransation implements IList{
+public class ArrayListTransation {
+
+    //Array de Transation
     private ArrayList<Transation> transations = new ArrayList<>();
+    //constructor vacio 
 
     public ArrayListTransation() {
     }
-    public void add(Object o) {
-        transations.add((Transation)o);
+
+    //Añadir
+    public void addTransation(Transation transation) {
+        transations.add(transation);
     }
-    public void saveExcel() {
+
+    // Guardar/Crear/Llenar Excel
+    public void SaveTransationExcel() {
         try {
             File file = new File("rom/Transations/Transations.xlsx");
             if (file.exists()) {
@@ -83,6 +93,4 @@ public class ArrayListTransation implements IList{
             System.out.println("Hay un error, revisa.");
         }
     }
-
-    
 }
