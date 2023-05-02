@@ -26,7 +26,7 @@ public class AD1 extends javax.swing.JFrame {
         FlatDarkLaf.setup();
         initComponents();
 
-        this.setLocationRelativeTo(null); 
+        this.setLocationRelativeTo(null);
         this.setTitle("Reportes");
 
         Image faviconX1 = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/View_IconAdminZOO.png"));
@@ -40,7 +40,6 @@ public class AD1 extends javax.swing.JFrame {
 
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -56,11 +55,10 @@ public class AD1 extends javax.swing.JFrame {
         lbTotalIncomesValue = new java.awt.Label();
         lbTotal = new java.awt.Label();
         lbTotalValue = new java.awt.Label();
+        btGeneratePDF1 = new javax.swing.JButton();
         lbReportType = new java.awt.Label();
         lbReportTitle = new java.awt.Label();
         lbZRVLogo = new javax.swing.JLabel();
-        cbReportType = new javax.swing.JComboBox<>();
-        btGeneratePDF1 = new javax.swing.JButton();
         lbZooLogo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -140,22 +138,31 @@ public class AD1 extends javax.swing.JFrame {
         lbTotal.setForeground(new java.awt.Color(255, 255, 255));
         lbTotal.setText("Total");
         bgPanelRound.add(lbTotal);
-        lbTotal.setBounds(450, 330, 60, 40);
+        lbTotal.setBounds(30, 330, 60, 40);
 
         lbTotalValue.setBackground(new java.awt.Color(51, 51, 51));
         lbTotalValue.setFont(new java.awt.Font("Arial", 1, 22)); // NOI18N
         lbTotalValue.setForeground(new java.awt.Color(255, 153, 0));
         lbTotalValue.setText("$00.000,00");
         bgPanelRound.add(lbTotalValue);
-        lbTotalValue.setBounds(520, 330, 160, 40);
+        lbTotalValue.setBounds(100, 330, 160, 40);
+
+        btGeneratePDF1.setText("Generar PDF");
+        btGeneratePDF1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btGeneratePDF1ActionPerformed(evt);
+            }
+        });
+        bgPanelRound.add(btGeneratePDF1);
+        btGeneratePDF1.setBounds(550, 340, 130, 23);
 
         bg.add(bgPanelRound, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 700, 390));
 
         lbReportType.setBackground(new java.awt.Color(35, 35, 35));
-        lbReportType.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        lbReportType.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         lbReportType.setForeground(new java.awt.Color(255, 255, 255));
-        lbReportType.setText("Tipo de Reporte");
-        bg.add(lbReportType, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 120, 20));
+        lbReportType.setText("Ventas Totales");
+        bg.add(lbReportType, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 120, 20));
 
         lbReportTitle.setBackground(new java.awt.Color(35, 35, 35));
         lbReportTitle.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
@@ -165,22 +172,6 @@ public class AD1 extends javax.swing.JFrame {
 
         lbZRVLogo.setMaximumSize(new java.awt.Dimension(549, 267));
         bg.add(lbZRVLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 10, 140, 60));
-
-        cbReportType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ventas", "Compras", "General", " " }));
-        cbReportType.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbReportTypeActionPerformed(evt);
-            }
-        });
-        bg.add(cbReportType, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 50, 240, -1));
-
-        btGeneratePDF1.setText("Generar PDF");
-        btGeneratePDF1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btGeneratePDF1ActionPerformed(evt);
-            }
-        });
-        bg.add(btGeneratePDF1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 50, 130, -1));
 
         lbZooLogo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lbZooLogo.setMaximumSize(new java.awt.Dimension(549, 267));
@@ -203,42 +194,11 @@ public class AD1 extends javax.swing.JFrame {
     }//GEN-LAST:event_lbZooLogoMouseClicked
     File file1 = new File("rom/Bills/BillSale.xlsx");
     File file2 = new File("rom/Bills/BillShopping.xlsx");
-    
-    private void cbReportTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbReportTypeActionPerformed
-        JComboBox cbReportType = (JComboBox) evt.getSource();
-        String selectedOption = (String) cbReportType.getSelectedItem();
-        switch (selectedOption) {
-            case "Ventas":
-                updateTableFromExcel(tbGeneratedReports1, file1);
-                Float sales = sumBillExcel(file1);
-                lbTotalValue.setText("$" + sales);
-                break;
-            case "Compras":
-                updateTableFromExcel(tbGeneratedReports1, file2);
-                Float shopping = sumBillExcel(file2);
-                lbTotalValue.setText("$" + shopping);
-                break;
-            case "General":
-                updateTableFromTwoExcelFiles(tbGeneratedReports1, file1, file2);
-                lbTotalIncomesValue.setVisible(true);
-                lbTotalExpensesValue.setVisible(true);
-                lbTotalIncomes.setVisible(true);
-                lbTotalExpenses.setVisible(true);
-                Float sales1 = sumBillExcel(file1);
-                Float shopping1 = sumBillExcel(file2);
-                Float total = sales1 - shopping1;
-                lbTotalValue.setText("$" + total);
-                lbTotalIncomesValue.setText("$" + sales1);
-                lbTotalExpensesValue.setText("$" + shopping1);
-
-                break;
-            default:
-                break;
-        }
-    }//GEN-LAST:event_cbReportTypeActionPerformed
 
     private void btGeneratePDF1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGeneratePDF1ActionPerformed
-        
+        updateTableFromExcel(tbGeneratedReports1, file1);
+        Float sales = sumBillExcel(file1);
+        lbTotalValue.setText("$" + sales);
     }//GEN-LAST:event_btGeneratePDF1ActionPerformed
 
     /**
@@ -263,7 +223,6 @@ public class AD1 extends javax.swing.JFrame {
     private javax.swing.JPanel bg;
     private Clases.PanelRound bgPanelRound;
     private javax.swing.JButton btGeneratePDF1;
-    private javax.swing.JComboBox<String> cbReportType;
     private javax.swing.JScrollPane jScrollPane1;
     private java.awt.Label lbGeneratedReports;
     private java.awt.Label lbReportTitle;
