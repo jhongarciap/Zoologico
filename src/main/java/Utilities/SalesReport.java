@@ -53,7 +53,7 @@ public class SalesReport {
 
     public static void addTitleTable(Document document) throws DocumentException {
         Font titleFont = new Font(Font.FontFamily.HELVETICA, 28, Font.BOLD, BaseColor.BLACK);
-        Paragraph title = new Paragraph("Reporte de Ventas", titleFont);
+        Paragraph title = new Paragraph("Reporte de Ventas\r\n  " , titleFont);
         title.setAlignment(Element.ALIGN_CENTER);
         title.setSpacingAfter(3);
         document.add(title);
@@ -150,7 +150,7 @@ public class SalesReport {
 
         Font totalFont = new Font(Font.FontFamily.HELVETICA, 14, Font.BOLD, BaseColor.BLACK);
 
-        PdfPCell totalSalesCell = new PdfPCell(new Phrase(String.format("Total de ventas: %.2f", totalSales), totalFont));
+        PdfPCell totalSalesCell = new PdfPCell(new Phrase(String.format("\r\nTotal de ventas: %.2f", totalSales), totalFont));
         totalSalesCell.setBorder(0);
         totalSalesCell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 
@@ -302,9 +302,10 @@ public class SalesReport {
                 scrollPane.setPreferredSize(new Dimension(size.width + 50, size.height + 50));
                 JFrame frame = new JFrame();
                 frame.getContentPane().add(scrollPane, BorderLayout.CENTER);
-                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 frame.setTitle(file.getName());
                 frame.pack();
+                frame.setAlwaysOnTop(true);
                 frame.setVisible(true);
             }
         } catch (IOException e) {
