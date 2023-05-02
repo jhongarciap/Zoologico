@@ -194,14 +194,13 @@ public class AD1 extends javax.swing.JFrame {
         MainScreen.setVisible(true);
     }//GEN-LAST:event_lbZooLogoMouseClicked
     File file1 = new File("rom/Bills/BillSale.xlsx");
-    File file2 = new File("rom/Bills/BillShopping.xlsx");
 
     private void btGeneratePDF1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGeneratePDF1ActionPerformed
         updateTableFromExcel(tbGeneratedReports1, file1);
         Float sales = sumBillExcel(file1);
         lbTotalValue.setText("$" + sales);
         try {
-            SalesReport pdf = new SalesReport("rom/Bills/SalesReport.pdf");
+            SalesReport pdf = new SalesReport();
         } catch (Exception ex) {
             Logger.getLogger(AD1.class.getName()).log(Level.SEVERE, null, ex);
         }

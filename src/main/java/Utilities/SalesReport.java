@@ -39,9 +39,16 @@ import org.apache.pdfbox.rendering.PDFRenderer;
 
 public class SalesReport {
 
-    public SalesReport(String url) throws Exception {
+    public SalesReport() throws Exception {
+        String url = generateURL();
         generateReport(url);
         displayPDF(url);
+    }
+    
+    public static String generateURL(){
+        String date = LocalDate.now().toString();
+        String url = "rom/Bills/SalesReport " + date + ".pdf";
+        return url;
     }
 
     public static void addTitleTable(Document document) throws DocumentException {
@@ -289,7 +296,7 @@ public class SalesReport {
             try (PDDocument document = PDDocument.load(file)) {
                 PDFRenderer renderer = new PDFRenderer(document);
                 JLabel label = new JLabel();
-                label.setIcon(new ImageIcon(renderer.renderImageWithDPI(0, 72)));
+                label.setIcon(new ImageIcon(renderer.renderImageWithDPI(0, 100)));
                 JScrollPane scrollPane = new JScrollPane(label);
                 Dimension size = label.getPreferredSize();
                 scrollPane.setPreferredSize(new Dimension(size.width + 50, size.height + 50));
