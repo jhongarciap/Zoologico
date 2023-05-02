@@ -47,7 +47,7 @@ public class SalesReport {
     
     public static String generateURL(){
         String date = LocalDate.now().toString();
-        String url = "rom/Bills/SalesReport " + date + ".pdf";
+        String url = "rom/PDF/Report/SalesReport " + date + ".pdf";
         return url;
     }
 
@@ -161,7 +161,7 @@ public class SalesReport {
 
     public static void generateReport(String url) throws Exception {
         List<SaleBill> saleBills = readSalesFromExcel("rom/Bills/BillSale.xlsx");
-        Document document = new Document(PageSize.A4.rotate());
+        Document document = new Document(PageSize.A4);
         PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(url));
         document.open();
         addHeader(document);
