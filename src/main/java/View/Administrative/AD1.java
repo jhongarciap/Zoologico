@@ -201,7 +201,7 @@ public class AD1 extends javax.swing.JFrame {
         Float sales = sumBillExcel(file1);
         lbTotalValue.setText("$" + sales);
         try {
-            SalesReport pdf = new SalesReport("rom/Bills/SalesReport.pdf");
+            SalesReport pdf = new SalesReport("rom/PDF/Bills/SalesReport.pdf");
         } catch (Exception ex) {
             Logger.getLogger(AD1.class.getName()).log(Level.SEVERE, null, ex);
         }
