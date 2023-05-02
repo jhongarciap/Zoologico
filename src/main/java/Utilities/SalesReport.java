@@ -220,9 +220,9 @@ public class SalesReport {
     }
 
     public static void addHeader(Document document) throws Exception {
-        addLogo(document, "C:\\Users\\aguir\\OneDrive\\Documentos\\NetBeansProjects\\Zoologico\\NoCode\\Logo Zoologico Reserva de la Vida@3x.png");
+        addLogo(document,"target/classes/Resources/ZRVC@3x.png");
         addTitleHeader(document, "Zoológico Reserva de la Vida");
-        addSubtitleHeader(document, "Calle 123, Ciudad, País");
+        addSubtitleHeader(document, "Calle 123, Medellín, Colombia");
         addInfoHeader(document, "Teléfono: 123-456-7890", "Correo electrónico: info@zooxyz.com");
         document.add(new Chunk("\n")); // Agregar espacio antes de la línea de separación
     }
