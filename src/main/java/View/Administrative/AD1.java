@@ -2,25 +2,16 @@ package View.Administrative;
 
 import static Utilities.AdExcel.sumBillExcel;
 import Utilities.SalesReport;
-import Utilities.ShowPDF;
 import static Utilities.loadExcelDataToTable.updateTableFromExcel;
-import static Utilities.loadExcelDataToTable.updateTableFromTwoExcelFiles;
 import com.formdev.flatlaf.FlatDarculaLaf;
 import com.formdev.flatlaf.FlatDarkLaf;
-import java.awt.BorderLayout;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.io.File;
-import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.UIManager;
-import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.rendering.PDFRenderer;
 
 /**
  *
@@ -209,42 +200,12 @@ public class AD1 extends javax.swing.JFrame {
         updateTableFromExcel(tbGeneratedReports1, file1);
         Float sales = sumBillExcel(file1);
         lbTotalValue.setText("$" + sales);
-        displayPDf("rom/Bills/SalesReport.pdf");
-    }//GEN-LAST:event_btGeneratePDF1ActionPerformed
-
-    public void displayPDf(String url) {
-        File file = new File(url);
         try {
             SalesReport pdf = new SalesReport("rom/Bills/SalesReport.pdf");
         } catch (Exception ex) {
             Logger.getLogger(AD1.class.getName()).log(Level.SEVERE, null, ex);
         }
-        try {
-            // Create a PDDocument object that represents the PDF file
-            PDDocument document = PDDocument.load(file);
-
-            // Create a PDFRenderer object to render the PDF
-            PDFRenderer renderer = new PDFRenderer(document);
-
-            // Create a JLabel object to display the PDF
-            JLabel label = new JLabel();
-
-            // Set the JLabel's content to the image of the first page of the PDF
-            label.setIcon(new ImageIcon(renderer.renderImageWithDPI(0, 300)));
-
-            // Create a window to display the JLabel
-            JFrame frame = new JFrame();
-            frame.getContentPane().add(label, BorderLayout.CENTER);
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.pack();
-            frame.setVisible(true);
-
-            // Close the PDDocument object
-            document.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+    }//GEN-LAST:event_btGeneratePDF1ActionPerformed
 
     /**
      * @param args the command line arguments
