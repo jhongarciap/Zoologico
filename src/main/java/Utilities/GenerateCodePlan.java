@@ -1,5 +1,6 @@
 package Utilities;
 
+import Control.IGenerate;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -8,15 +9,15 @@ import java.io.IOException;
  *
  * @author Lenovo
  */
-public class GenerateCodePlan {
-    public static String generateCodePlan(String baseId){
+public class GenerateCodePlan implements IGenerate{
+    public String generateCode(String o){
         int numero=0;
     try {
         File file = new File("rom/Numero/numeroPlanID.txt");
         if (!file.exists()) {
             numero = 1;
         }
-        String codigo = baseId + numero;
+        String codigo = o + numero;
 
         try (
                 FileWriter writer = new FileWriter(file)) {

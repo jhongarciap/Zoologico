@@ -1,6 +1,6 @@
 package Model;
 
-import static Utilities.GenerateCodePlan.generateCodePlan;
+import Utilities.GenerateCodePlan;
 
 
 
@@ -18,7 +18,8 @@ public class Plan {
         this.value = value;
         this.sfications = sfications;
         this.product = product;
-        this.productId = generateCodePlan("PL");
+        GenerateCodePlan generator = new GenerateCodePlan();
+        this.productId = generator.generateCode("PL");
     }
     /**
      * @return the value

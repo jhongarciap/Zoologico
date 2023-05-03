@@ -1,23 +1,23 @@
 package Utilities;
 
+import Control.IGenerate;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Scanner;
 
 /**
  *
  * @author garci
  */
-public class GenerateCodeBillSale {
-    public static String generateCodeSale(String letra) {
+public class GenerateCodeBillSale implements IGenerate{
+    public String generateCode(String o) {
     int numero=0;
     try {
         File file = new File("rom/Numero/numeroBillSale.txt");
         if (!file.exists()) {
             numero = 1;
         }
-        String codigo = letra + numero;
+        String codigo = o + numero;
 
         try (
                 FileWriter writer = new FileWriter(file)) {

@@ -1,7 +1,7 @@
 package Model;
 
 import static Utilities.CurrentDate.currentDate;
-import static Utilities.GenerateCodeTransation.generateCodeTransation;
+import Utilities.GenerateCodeTransation;
 /**
  *
  * @author garci
@@ -18,7 +18,8 @@ public class Transation {
     private String especifications;
 
     public Transation(String code, String name, Float discount, String date, Float income, Float expenses, Float profits, String especifications) {
-        this.code = generateCodeTransation("TRS");
+        GenerateCodeTransation generator = new GenerateCodeTransation();
+        this.code = generator.generateCode("TRS");
         this.name = name;
         this.discount = discount;
         this.date = currentDate();
