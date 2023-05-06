@@ -1,6 +1,6 @@
 package Model;
 
-import static Utilities.GenerateCodeBillSale.generateCodeSale;
+import Utilities.GenerateCodeBillSale;
 
 
 
@@ -15,7 +15,8 @@ public class SaleBill  extends Bill{
 
     public SaleBill(String code, String date, Float value, Float discount,int amount, Float totalvalue, String costormerName, String product, String productld) {
         super(date, value, discount, totalvalue, costormerName, product, productld, amount);
-        this.code = generateCodeSale("BS");
+        GenerateCodeBillSale generator = new GenerateCodeBillSale();
+        this.code = generator.generateCode("BS");
     }
 
     /**

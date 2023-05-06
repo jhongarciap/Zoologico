@@ -1,5 +1,6 @@
 package Utilities;
 
+import Control.IGenerate;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -8,15 +9,15 @@ import java.io.IOException;
  *
  * @author garci
  */
-public class GenerateCodeTransation {
-    public static String generateCodeTransation(String letra) {
+public class GenerateCodeTransation implements IGenerate{
+    public String generateCode(String o) {
     int numero = 0;
     try {
         File file = new File("rom/Numero/numeroTransation.txt");
         if (!file.exists()) {
             numero = 1;
         }
-        String codigo = letra + numero;
+        String codigo = o + numero;
 
         try (
                 FileWriter writer = new FileWriter(file)) {
