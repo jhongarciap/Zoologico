@@ -22,9 +22,14 @@ public class ArrayListBillSale implements IList{
     public ArrayListBillSale() {
     }
     private final ArrayList<SaleBill> billsSales = new ArrayList<>();
+    @Override
     public void add(Object o) {
         billsSales.add((SaleBill) o);
     }
+    public ArrayList<SaleBill> get(){
+        return billsSales;
+    }
+    @Override
     public void saveExcel() {
         try {
             File file = new File("rom/Bills/BillSale.xlsx");

@@ -13,8 +13,12 @@ import Utilities.AdExcel;
 import static Utilities.AdExcel.getRow;
 import static Utilities.AdExcel.rowToVector;
 import Utilities.Checker;
+import Utilities.SalesInvoice;
+import View.Administrative.AD1;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import org.apache.poi.ss.usermodel.Row;
 
@@ -281,6 +285,11 @@ public class CM1 extends javax.swing.JFrame {
     private void btBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBillActionPerformed
         DefaultTableModel model = (DefaultTableModel) tbProducts.getModel();
         model.setRowCount(0);
+        try {
+            SalesInvoice pdf = new SalesInvoice();
+        } catch (Exception ex) {
+            Logger.getLogger(CM1.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btBillActionPerformed
 
     private void btAddProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddProductActionPerformed

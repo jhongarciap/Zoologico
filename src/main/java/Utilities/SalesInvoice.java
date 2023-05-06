@@ -1,11 +1,14 @@
 package Utilities;
 
+import Control.ComercialDepartment.ArrayListBillSale;
 import Model.SaleBill;
 import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Chunk;
 import java.io.FileOutputStream;
 import java.util.List;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -28,8 +31,10 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -37,22 +42,25 @@ import javax.swing.JScrollPane;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.rendering.PDFRenderer;
 
-public class SalesReport {
+public class SalesInvoice {
 
-    public SalesReport() throws Exception {
+    public SalesInvoice() throws Exception {
         String url = generateURL();
         generateReport(url);
         displayPDF(url);
     }
     
     public static String generateURL(){
-        String date = LocalDate.now().toString();
-        String url = "rom/Bills/SalesReport " + date + ".pdf";
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
+        String formattedDateTime = currentDateTime.format(dateTimeFormatter);
+        String url = "rom/Bills/SalesInvoice " + formattedDateTime + ".pdf";
         return url;
     }
     
     public static void generateReport(String url) throws Exception {
-        List<SaleBill> saleBills = readSalesFromExcel("rom/Bills/BillSale.xlsx");
+        ArrayListBillSale billSale = new ArrayListBillSale();
+        ArrayList<SaleBill> saleBills = billSale.get();
         Document document = new Document(PageSize.A4.rotate());
         PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(url));
         document.open();
@@ -121,7 +129,7 @@ public class SalesReport {
 
         public static void addTitleTable(Document document) throws DocumentException {
         Font titleFont = new Font(Font.FontFamily.HELVETICA, 28, Font.BOLD, BaseColor.BLACK);
-        Paragraph title = new Paragraph("Reporte de Ventas", titleFont);
+        Paragraph title = new Paragraph("Factura de venta", titleFont);
         title.setAlignment(Element.ALIGN_CENTER);
         title.setSpacingAfter(3);
         document.add(title);
@@ -263,31 +271,6 @@ public class SalesReport {
         Font pageNumberFont = new Font(Font.FontFamily.HELVETICA, 8, Font.NORMAL, BaseColor.GRAY);
         Chunk pageNumberChunk = new Chunk(" | Página " + pageNumber + " de " + totalPages, pageNumberFont);
         footer.add(pageNumberChunk);
-    }
-
-        public static List<SaleBill> readSalesFromExcel(String url) throws Exception {
-        List<SaleBill> saleBills;
-        try (Workbook workbook = new XSSFWorkbook(url)) {
-            Sheet sheet = workbook.getSheetAt(0);
-            saleBills = new ArrayList<>();
-            for (Row row : sheet) {
-                // Ignoramos la primera fila, que contiene los encabezados de las columnas
-                if (row.getRowNum() == 0) {
-                    continue;
-                }
-                SaleBill sale = new SaleBill(row.getCell(0).getStringCellValue(),
-                        row.getCell(1).getStringCellValue(),
-                        (float) row.getCell(2).getNumericCellValue(),
-                        (float) row.getCell(3).getNumericCellValue(),
-                        (int) row.getCell(4).getNumericCellValue(),
-                        (float) row.getCell(5).getNumericCellValue(),
-                        row.getCell(6).getStringCellValue(),
-                        row.getCell(7).getStringCellValue(),
-                        row.getCell(8).getStringCellValue());
-                saleBills.add(sale);
-            }
-        }
-        return saleBills;
     }
 
     public static void displayPDF(String url) {
