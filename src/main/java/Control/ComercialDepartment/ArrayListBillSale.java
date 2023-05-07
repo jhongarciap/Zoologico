@@ -17,18 +17,21 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  *
  * @author garci
  */
-public class ArrayListBillSale implements IList{
+public class ArrayListBillSale implements IList {
 
     public ArrayListBillSale() {
     }
     private final ArrayList<SaleBill> billsSales = new ArrayList<>();
+
     @Override
     public void add(Object o) {
         billsSales.add((SaleBill) o);
     }
-    public ArrayList<SaleBill> get(){
+
+    public ArrayList<SaleBill> get() {
         return billsSales;
     }
+
     @Override
     public void saveExcel() {
         try {
@@ -93,33 +96,38 @@ public class ArrayListBillSale implements IList{
             System.out.println("Hay un error, revisa.");
         }
     }
-public void printBillsToTable(JTable tbProducts) {
-    DefaultTableModel model = (DefaultTableModel) tbProducts.getModel();
-    model.setRowCount(0);
-    for (SaleBill bill : billsSales) {
-        Object[] rowData = { bill.getDate(), bill.getCode(), bill.getValue(), bill.getDiscount(), bill.getAmount(), bill.getTotalvalue(), bill.getCostormerName(), bill.getProduct(), bill.getProductld() };
-        model.addRow(rowData);
+
+    public void printBillsToTable(JTable tbProducts) {
+        DefaultTableModel model = (DefaultTableModel) tbProducts.getModel();
+        model.setRowCount(0);
+        for (SaleBill bill : billsSales) {
+            Object[] rowData = {bill.getDate(), bill.getCode(), bill.getValue(), bill.getDiscount(), bill.getAmount(), bill.getTotalvalue(), bill.getCostormerName(), bill.getProduct(), bill.getProductld()};
+            model.addRow(rowData);
+        }
+        tbProducts.setModel(model);
     }
-    tbProducts.setModel(model);
-}
-public String getTotalSales() {
-    Float total = 0.0f;
-    String total1= "";
-    for (SaleBill bill : billsSales) {
-        total += bill.getTotalvalue();
-        total1=String.valueOf(total);
+
+    public String getTotalSales() {
+        Float total = 0.0f;
+        String total1 = "";
+        for (SaleBill bill : billsSales) {
+            total += bill.getTotalvalue();
+            total1 = String.valueOf(total);
+        }
+        return total1;
     }
-    return total1;
-}
-public void removeBillSaleCode(String code) {
-    for (int i = 0; i < billsSales.size(); i++) {
-        if (billsSales.get(i).getCode().equals(code)) {
-            billsSales.remove(i);
-            break;
+
+    public void removeBillSaleCode(String code) {
+        for (int i = 0; i < billsSales.size(); i++) {
+            if (billsSales.get(i).getCode().equals(code)) {
+                billsSales.remove(i);
+                break;
+            }
         }
     }
-}
 
-    
+    public void clearAllBillsSales() {
+        billsSales.clear();
+    }
 
 }

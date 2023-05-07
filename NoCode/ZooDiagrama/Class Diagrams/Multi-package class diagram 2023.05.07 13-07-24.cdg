@@ -1,0 +1,859 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="Multi-package class diagram">
+  <ClassDiagramComponents>
+    <Class name="ArrayListEmployee" package="Control.AdministrativeDepartment" visibility="public" xPosition="20.0" yPosition="20.0">
+      <Fields>
+        <Field name="employees" type="ArrayList&lt;Employee&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="add" returnType="Object" visibility="public">
+          <Argument type="Object" name="o"/>
+        </Method>
+        <Method name="saveExcel" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="ArrayListPlan" package="Control.AdministrativeDepartment" visibility="public" xPosition="320.0" yPosition="20.0">
+      <Fields>
+        <Field name="plans" type="ArrayList&lt;Plan&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="add" returnType="Object" visibility="public">
+          <Argument type="Object" name="o"/>
+        </Method>
+        <Method name="saveExcel" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="ArrayListBillSale" package="Control.ComercialDepartment" visibility="public" xPosition="620.0" yPosition="20.0">
+      <Fields>
+        <Field name="billsSales" type="ArrayList&lt;SaleBill&gt;" visibility="private" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="add" returnType="Object" visibility="public">
+          <Argument type="Object" name="o"/>
+        </Method>
+        <Method name="get" returnType="ArrayList&lt;SaleBill&gt;" visibility="public"/>
+        <Method name="saveExcel" returnType="void" visibility="public"/>
+        <Method name="printBillsToTable" returnType="JTable" visibility="public">
+          <Argument type="JTable" name="tbProducts"/>
+        </Method>
+        <Method name="getTotalSales" returnType="String" visibility="public"/>
+        <Method name="removeBillSaleCode" returnType="String" visibility="public">
+          <Argument type="String" name="code"/>
+        </Method>
+        <Method name="clearAllBillsSales" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="ArrayListTransation" package="Control.ComercialDepartment" visibility="public" xPosition="920.0" yPosition="20.0">
+      <Fields>
+        <Field name="transations" type="ArrayList&lt;Transation&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="add" returnType="Object" visibility="public">
+          <Argument type="Object" name="o"/>
+        </Method>
+        <Method name="saveExcel" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Interface name="IGenerate" package="Control" visibility="public" xPosition="1220.0" yPosition="20.0">
+      <Methods>
+        <Method name="generateCode" returnType="String" visibility="package">
+          <Argument type="String" name="o"/>
+        </Method>
+      </Methods>
+    </Interface>
+    <Interface name="IList" package="Control" visibility="public" xPosition="1520.0" yPosition="20.0">
+      <Methods>
+        <Method name="add" returnType="Object" visibility="package">
+          <Argument type="Object" name="o"/>
+        </Method>
+        <Method name="saveExcel" returnType="void" visibility="package"/>
+      </Methods>
+    </Interface>
+    <Class name="ArrayListDomestic" package="Control.LogisticDepartment" visibility="public" xPosition="1820.0" yPosition="20.0">
+      <Fields>
+        <Field name="domestics" type="ArrayList&lt;Domestic&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="add" returnType="Object" visibility="public">
+          <Argument type="Object" name="o"/>
+        </Method>
+        <Method name="saveExcel" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="ArrayListMinor" package="Control.LogisticDepartment" visibility="public" xPosition="2120.0" yPosition="20.0">
+      <Fields>
+        <Field name="minors" type="ArrayList&lt;Minor&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="add" returnType="Object" visibility="public">
+          <Argument type="Object" name="o"/>
+        </Method>
+        <Method name="saveExcel" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="ArrayListSupply" package="Control.LogisticDepartment" visibility="public" xPosition="20.0" yPosition="420.0">
+      <Fields>
+        <Field name="supllys" type="ArrayList&lt;Supply&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="add" returnType="Object" visibility="public">
+          <Argument type="Object" name="o"/>
+        </Method>
+        <Method name="saveExcel" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="ArrayListWild" package="Control.LogisticDepartment" visibility="public" xPosition="320.0" yPosition="420.0">
+      <Fields>
+        <Field name="wilds" type="ArrayList&lt;Wild&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="add" returnType="Object" visibility="public">
+          <Argument type="Object" name="o"/>
+        </Method>
+        <Method name="saveExcel" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Zoo" package="Control" visibility="public" xPosition="620.0" yPosition="420.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="main" returnType="String[]" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ArrayListEmployee1" package="Control.AdministrativeDepartment" visibility="public" xPosition="920.0" yPosition="420.0">
+      <Fields>
+        <Field name="employees" type="ArrayList&lt;Employee&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="add" returnType="Object" visibility="public">
+          <Argument type="Object" name="o"/>
+        </Method>
+        <Method name="saveExcel" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="ArrayListPlan1" package="Control.AdministrativeDepartment" visibility="public" xPosition="1220.0" yPosition="420.0">
+      <Fields>
+        <Field name="plans" type="ArrayList&lt;Plan&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="add" returnType="Object" visibility="public">
+          <Argument type="Object" name="o"/>
+        </Method>
+        <Method name="saveExcel" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="ArrayListBillSale1" package="Control.ComercialDepartment" visibility="public" xPosition="1520.0" yPosition="420.0">
+      <Fields>
+        <Field name="billsSales" type="ArrayList&lt;SaleBill&gt;" visibility="private" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="add" returnType="Object" visibility="public">
+          <Argument type="Object" name="o"/>
+        </Method>
+        <Method name="get" returnType="ArrayList&lt;SaleBill&gt;" visibility="public"/>
+        <Method name="saveExcel" returnType="void" visibility="public"/>
+        <Method name="printBillsToTable" returnType="JTable" visibility="public">
+          <Argument type="JTable" name="tbProducts"/>
+        </Method>
+        <Method name="getTotalSales" returnType="String" visibility="public"/>
+        <Method name="removeBillSaleCode" returnType="String" visibility="public">
+          <Argument type="String" name="code"/>
+        </Method>
+        <Method name="clearAllBillsSales" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="ArrayListTransation1" package="Control.ComercialDepartment" visibility="public" xPosition="1820.0" yPosition="420.0">
+      <Fields>
+        <Field name="transations" type="ArrayList&lt;Transation&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="add" returnType="Object" visibility="public">
+          <Argument type="Object" name="o"/>
+        </Method>
+        <Method name="saveExcel" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="ArrayListDomestic1" package="Control.LogisticDepartment" visibility="public" xPosition="2120.0" yPosition="420.0">
+      <Fields>
+        <Field name="domestics" type="ArrayList&lt;Domestic&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="add" returnType="Object" visibility="public">
+          <Argument type="Object" name="o"/>
+        </Method>
+        <Method name="saveExcel" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="ArrayListMinor1" package="Control.LogisticDepartment" visibility="public" xPosition="20.0" yPosition="820.0">
+      <Fields>
+        <Field name="minors" type="ArrayList&lt;Minor&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="add" returnType="Object" visibility="public">
+          <Argument type="Object" name="o"/>
+        </Method>
+        <Method name="saveExcel" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="ArrayListSupply1" package="Control.LogisticDepartment" visibility="public" xPosition="320.0" yPosition="820.0">
+      <Fields>
+        <Field name="supllys" type="ArrayList&lt;Supply&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="add" returnType="Object" visibility="public">
+          <Argument type="Object" name="o"/>
+        </Method>
+        <Method name="saveExcel" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="ArrayListWild1" package="Control.LogisticDepartment" visibility="public" xPosition="620.0" yPosition="820.0">
+      <Fields>
+        <Field name="wilds" type="ArrayList&lt;Wild&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="add" returnType="Object" visibility="public">
+          <Argument type="Object" name="o"/>
+        </Method>
+        <Method name="saveExcel" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Animal" package="Model" visibility="public" xPosition="920.0" yPosition="820.0">
+      <Fields>
+        <Field name="name" type="String" visibility="private"/>
+        <Field name="race" type="String" visibility="private"/>
+        <Field name="sex" type="String" visibility="private"/>
+        <Field name="habitad" type="String" visibility="private"/>
+        <Field name="diet" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="name"/>
+          <Argument type="String" name="race"/>
+          <Argument type="String" name="sex"/>
+          <Argument type="String" name="habitad"/>
+          <Argument type="String" name="diet"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getName" returnType="String" visibility="public"/>
+        <Method name="setName" returnType="void" visibility="public">
+          <Argument type="String" name="name"/>
+        </Method>
+        <Method name="getRace" returnType="String" visibility="public"/>
+        <Method name="setRace" returnType="void" visibility="public">
+          <Argument type="String" name="race"/>
+        </Method>
+        <Method name="getSex" returnType="String" visibility="public"/>
+        <Method name="setSex" returnType="void" visibility="public">
+          <Argument type="String" name="sex"/>
+        </Method>
+        <Method name="getHabitad" returnType="String" visibility="public"/>
+        <Method name="setHabitad" returnType="void" visibility="public">
+          <Argument type="String" name="habitad"/>
+        </Method>
+        <Method name="getDiet" returnType="String" visibility="public"/>
+        <Method name="setDiet" returnType="void" visibility="public">
+          <Argument type="String" name="diet"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Bill" package="Model" visibility="public" xPosition="1220.0" yPosition="820.0">
+      <Fields>
+        <Field name="date" type="String" visibility="private" isFinal="true"/>
+        <Field name="value" type="Float" visibility="private"/>
+        <Field name="discount" type="Float" visibility="private"/>
+        <Field name="totalvalue" type="Float" visibility="package"/>
+        <Field name="costormerName" type="String" visibility="private"/>
+        <Field name="product" type="String" visibility="private"/>
+        <Field name="productld" type="String" visibility="private"/>
+        <Field name="amount" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="date"/>
+          <Argument type="Float" name="value"/>
+          <Argument type="Float" name="discount"/>
+          <Argument type="Float" name="totalvalue"/>
+          <Argument type="String" name="costormerName"/>
+          <Argument type="String" name="product"/>
+          <Argument type="String" name="productld"/>
+          <Argument type="int" name="amount"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getDate" returnType="String" visibility="public"/>
+        <Method name="getValue" returnType="Float" visibility="public"/>
+        <Method name="setValue" returnType="void" visibility="public">
+          <Argument type="Float" name="value"/>
+        </Method>
+        <Method name="getDiscount" returnType="Float" visibility="public"/>
+        <Method name="setDiscount" returnType="void" visibility="public">
+          <Argument type="Float" name="discount"/>
+        </Method>
+        <Method name="getTotalvalue" returnType="Float" visibility="public"/>
+        <Method name="setTotalvalue" returnType="void" visibility="public">
+          <Argument type="Float" name="totalvalue"/>
+        </Method>
+        <Method name="getCostormerName" returnType="String" visibility="public"/>
+        <Method name="setCostormerName" returnType="void" visibility="public">
+          <Argument type="String" name="costormerName"/>
+        </Method>
+        <Method name="getProduct" returnType="String" visibility="public"/>
+        <Method name="setProduct" returnType="void" visibility="public">
+          <Argument type="String" name="product"/>
+        </Method>
+        <Method name="getProductld" returnType="String" visibility="public"/>
+        <Method name="setProductld" returnType="void" visibility="public">
+          <Argument type="String" name="productld"/>
+        </Method>
+        <Method name="getAmount" returnType="int" visibility="public"/>
+        <Method name="setAmount" returnType="void" visibility="public">
+          <Argument type="int" name="amount"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Domestic" package="Model" visibility="public" xPosition="1520.0" yPosition="820.0">
+      <Fields>
+        <Field name="psyche" type="String" visibility="private"/>
+        <Field name="origin" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="name"/>
+          <Argument type="String" name="race"/>
+          <Argument type="String" name="sex"/>
+          <Argument type="String" name="habitat"/>
+          <Argument type="String" name="origin"/>
+          <Argument type="String" name="psyche"/>
+          <Argument type="String" name="diet"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getPsyche" returnType="String" visibility="public"/>
+        <Method name="setPsyche" returnType="void" visibility="public">
+          <Argument type="String" name="psyche"/>
+        </Method>
+        <Method name="getOrigin" returnType="String" visibility="public"/>
+        <Method name="setOrigin" returnType="void" visibility="public">
+          <Argument type="String" name="origin"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Employee" package="Model" visibility="public" xPosition="1820.0" yPosition="820.0">
+      <Fields>
+        <Field name="lastName" type="String" visibility="private"/>
+        <Field name="name" type="String" visibility="private"/>
+        <Field name="funcions" type="String" visibility="private"/>
+        <Field name="id" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="id"/>
+          <Argument type="String" name="name"/>
+          <Argument type="String" name="lastName"/>
+          <Argument type="String" name="funcions"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getLastName" returnType="String" visibility="public"/>
+        <Method name="setLastName" returnType="void" visibility="public">
+          <Argument type="String" name="lastName"/>
+        </Method>
+        <Method name="getName" returnType="String" visibility="public"/>
+        <Method name="setName" returnType="void" visibility="public">
+          <Argument type="String" name="name"/>
+        </Method>
+        <Method name="getFuncions" returnType="String" visibility="public"/>
+        <Method name="setFuncions" returnType="void" visibility="public">
+          <Argument type="String" name="funcions"/>
+        </Method>
+        <Method name="getId" returnType="String" visibility="public"/>
+        <Method name="setId" returnType="void" visibility="public">
+          <Argument type="String" name="id"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Minor" package="Model" visibility="public" xPosition="2120.0" yPosition="820.0">
+      <Fields>
+        <Field name="diseases" type="String" visibility="private"/>
+        <Field name="nativeClimate" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="name"/>
+          <Argument type="String" name="race"/>
+          <Argument type="String" name="sex"/>
+          <Argument type="String" name="habitat"/>
+          <Argument type="String" name="diet"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="String" name="name"/>
+          <Argument type="String" name="race"/>
+          <Argument type="String" name="sex"/>
+          <Argument type="String" name="habitat"/>
+          <Argument type="String" name="diseases"/>
+          <Argument type="String" name="nativeClimate"/>
+          <Argument type="String" name="diet"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getDiseases" returnType="String" visibility="public"/>
+        <Method name="setDiseases" returnType="void" visibility="public">
+          <Argument type="String" name="diseases"/>
+        </Method>
+        <Method name="getNativeClimate" returnType="String" visibility="public"/>
+        <Method name="setNativeClimate" returnType="void" visibility="public">
+          <Argument type="String" name="nativeClimate"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Plan" package="Model" visibility="public" xPosition="20.0" yPosition="1220.0">
+      <Fields>
+        <Field name="value" type="Float" visibility="private"/>
+        <Field name="sfications" type="String" visibility="private"/>
+        <Field name="product" type="String" visibility="private"/>
+        <Field name="productId" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="productId"/>
+          <Argument type="String" name="product"/>
+          <Argument type="Float" name="value"/>
+          <Argument type="String" name="sfications"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getValue" returnType="Float" visibility="public"/>
+        <Method name="setValue" returnType="void" visibility="public">
+          <Argument type="Float" name="value"/>
+        </Method>
+        <Method name="getSfications" returnType="String" visibility="public"/>
+        <Method name="setSfications" returnType="void" visibility="public">
+          <Argument type="String" name="sfications"/>
+        </Method>
+        <Method name="getProduct" returnType="String" visibility="public"/>
+        <Method name="setProduct" returnType="void" visibility="public">
+          <Argument type="String" name="product"/>
+        </Method>
+        <Method name="getProductId" returnType="String" visibility="public"/>
+        <Method name="setProductId" returnType="void" visibility="public">
+          <Argument type="String" name="productId"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="SaleBill" package="Model" visibility="public" xPosition="320.0" yPosition="1220.0">
+      <Fields>
+        <Field name="code" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="code"/>
+          <Argument type="String" name="date"/>
+          <Argument type="Float" name="value"/>
+          <Argument type="Float" name="discount"/>
+          <Argument type="int" name="amount"/>
+          <Argument type="Float" name="totalvalue"/>
+          <Argument type="String" name="costormerName"/>
+          <Argument type="String" name="product"/>
+          <Argument type="String" name="productld"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getCode" returnType="String" visibility="public"/>
+        <Method name="setCode" returnType="void" visibility="public">
+          <Argument type="String" name="code"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Supply" package="Model" visibility="public" xPosition="620.0" yPosition="1220.0">
+      <Fields>
+        <Field name="name" type="String" visibility="private"/>
+        <Field name="type" type="String" visibility="private"/>
+        <Field name="animal" type="String" visibility="private"/>
+        <Field name="specifications" type="String" visibility="private"/>
+        <Field name="quantity" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="type"/>
+          <Argument type="String" name="name"/>
+          <Argument type="String" name="animal"/>
+          <Argument type="String" name="quantity"/>
+          <Argument type="String" name="specifications"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getName" returnType="String" visibility="public"/>
+        <Method name="setName" returnType="void" visibility="public">
+          <Argument type="String" name="name"/>
+        </Method>
+        <Method name="getType" returnType="String" visibility="public"/>
+        <Method name="setType" returnType="void" visibility="public">
+          <Argument type="String" name="type"/>
+        </Method>
+        <Method name="getAnimal" returnType="String" visibility="public"/>
+        <Method name="setAnimal" returnType="void" visibility="public">
+          <Argument type="String" name="animal"/>
+        </Method>
+        <Method name="getSpecifications" returnType="String" visibility="public"/>
+        <Method name="setSpecifications" returnType="void" visibility="public">
+          <Argument type="String" name="specifications"/>
+        </Method>
+        <Method name="getQuantity" returnType="String" visibility="public"/>
+        <Method name="setQuantity" returnType="void" visibility="public">
+          <Argument type="String" name="quantity"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Transation" package="Model" visibility="public" xPosition="920.0" yPosition="1220.0">
+      <Fields>
+        <Field name="code" type="String" visibility="private"/>
+        <Field name="name" type="String" visibility="private"/>
+        <Field name="discount" type="Float" visibility="private"/>
+        <Field name="date" type="String" visibility="private"/>
+        <Field name="income" type="Float" visibility="private"/>
+        <Field name="expenses" type="Float" visibility="private"/>
+        <Field name="profits" type="Float" visibility="private"/>
+        <Field name="especifications" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="code"/>
+          <Argument type="String" name="name"/>
+          <Argument type="Float" name="discount"/>
+          <Argument type="String" name="date"/>
+          <Argument type="Float" name="income"/>
+          <Argument type="Float" name="expenses"/>
+          <Argument type="Float" name="profits"/>
+          <Argument type="String" name="especifications"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getCode" returnType="String" visibility="public"/>
+        <Method name="setCode" returnType="void" visibility="public">
+          <Argument type="String" name="code"/>
+        </Method>
+        <Method name="getName" returnType="String" visibility="public"/>
+        <Method name="setName" returnType="void" visibility="public">
+          <Argument type="String" name="name"/>
+        </Method>
+        <Method name="getDiscount" returnType="Float" visibility="public"/>
+        <Method name="setDiscount" returnType="void" visibility="public">
+          <Argument type="Float" name="discount"/>
+        </Method>
+        <Method name="getDate" returnType="String" visibility="public"/>
+        <Method name="setDate" returnType="void" visibility="public">
+          <Argument type="String" name="date"/>
+        </Method>
+        <Method name="getIncome" returnType="Float" visibility="public"/>
+        <Method name="setIncome" returnType="void" visibility="public">
+          <Argument type="Float" name="income"/>
+        </Method>
+        <Method name="getExpenses" returnType="Float" visibility="public"/>
+        <Method name="setExpenses" returnType="void" visibility="public">
+          <Argument type="Float" name="expenses"/>
+        </Method>
+        <Method name="getProfits" returnType="Float" visibility="public"/>
+        <Method name="setProfits" returnType="void" visibility="public">
+          <Argument type="Float" name="profits"/>
+        </Method>
+        <Method name="getEspecifications" returnType="String" visibility="public"/>
+        <Method name="setEspecifications" returnType="void" visibility="public">
+          <Argument type="String" name="especifications"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Wild" package="Model" visibility="public" xPosition="1220.0" yPosition="1220.0">
+      <Fields>
+        <Field name="birthhabitat" type="String" visibility="private"/>
+        <Field name="dangerousness" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="name"/>
+          <Argument type="String" name="race"/>
+          <Argument type="String" name="sex"/>
+          <Argument type="String" name="habitat"/>
+          <Argument type="String" name="diet"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="String" name="name"/>
+          <Argument type="String" name="race"/>
+          <Argument type="String" name="sex"/>
+          <Argument type="String" name="habitat"/>
+          <Argument type="String" name="birthhabitat"/>
+          <Argument type="String" name="dangerousness"/>
+          <Argument type="String" name="diet"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getBirthhabitat" returnType="String" visibility="public"/>
+        <Method name="setBirthhabitat" returnType="void" visibility="public">
+          <Argument type="String" name="birthhabitat"/>
+        </Method>
+        <Method name="getDangerousness" returnType="String" visibility="public"/>
+        <Method name="setDangerousness" returnType="void" visibility="public">
+          <Argument type="String" name="dangerousness"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="AdExcel" package="Utilities" visibility="public" xPosition="1520.0" yPosition="1220.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="getRowsExcel" returnType="ArrayList&lt;Row&gt;" visibility="public" isStatic="true">
+          <Argument type="File" name="file"/>
+        </Method>
+        <Method name="sumBillExcel" returnType="Float" visibility="public" isStatic="true">
+          <Argument type="File" name="file"/>
+        </Method>
+        <Method name="deleteRow" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="codigo"/>
+          <Argument type="File" name="file"/>
+          <Argument type="String" name="sheetName"/>
+          <Argument type="int" name="columnToDelete"/>
+        </Method>
+        <Method name="rowToVector" returnType="String[]" visibility="public" isStatic="true">
+          <Argument type="Row" name="row"/>
+        </Method>
+        <Method name="getRow" returnType="Row" visibility="public" isStatic="true">
+          <Argument type="String" name="codigo"/>
+          <Argument type="File" name="file"/>
+          <Argument type="String" name="sheetName"/>
+          <Argument type="int" name="cellNum"/>
+        </Method>
+        <Method name="getColumn" returnType="ArrayList&lt;String&gt;" visibility="public">
+          <Argument type="File" name="file"/>
+          <Argument type="int" name="columnIndex"/>
+        </Method>
+        <Method name="getColumnFloat" returnType="ArrayList&lt;Float&gt;" visibility="public">
+          <Argument type="File" name="file"/>
+          <Argument type="int" name="columnIndex"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Checker" package="Utilities" visibility="public" xPosition="1820.0" yPosition="1220.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="IntChecker" returnType="boolean" visibility="public" isStatic="true">
+          <Argument type="String" name="str"/>
+        </Method>
+        <Method name="FloatChecker" returnType="boolean" visibility="public" isStatic="true">
+          <Argument type="String" name="str"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="CurrentDate" package="Utilities" visibility="public" xPosition="2120.0" yPosition="1220.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="currentDate" returnType="String" visibility="public" isStatic="true"/>
+      </Methods>
+    </Class>
+    <Class name="GenerateCodeBillSale" package="Utilities" visibility="public" xPosition="20.0" yPosition="1620.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="generateCode" returnType="String" visibility="public">
+          <Argument type="String" name="o"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="GenerateCodePlan" package="Utilities" visibility="public" xPosition="320.0" yPosition="1620.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="generateCode" returnType="String" visibility="public">
+          <Argument type="String" name="o"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="GenerateCodeTransation" package="Utilities" visibility="public" xPosition="620.0" yPosition="1620.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="generateCode" returnType="String" visibility="public">
+          <Argument type="String" name="o"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="loadExcelDataToTable" package="Utilities" visibility="public" xPosition="920.0" yPosition="1620.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="updateTableFromExcel" returnType="void" visibility="public" isStatic="true">
+          <Argument type="JTable" name="table"/>
+          <Argument type="File" name="excelFile"/>
+        </Method>
+        <Method name="updateTableFromExcelOneAtribute" returnType="void" visibility="public" isStatic="true">
+          <Argument type="JTable" name="table"/>
+          <Argument type="File" name="excelFile"/>
+          <Argument type="String" name="value"/>
+          <Argument type="int" name="columnValue"/>
+        </Method>
+        <Method name="updateTableFromExcelTwoAtribute" returnType="void" visibility="public" isStatic="true">
+          <Argument type="JTable" name="table"/>
+          <Argument type="File" name="excelFile"/>
+          <Argument type="String" name="value1"/>
+          <Argument type="int" name="columnValue1"/>
+          <Argument type="String" name="value2"/>
+          <Argument type="int" name="columnValue2"/>
+        </Method>
+        <Method name="updateTableFromTwoExcelFiles" returnType="void" visibility="public" isStatic="true">
+          <Argument type="JTable" name="table"/>
+          <Argument type="File" name="excelFile1"/>
+          <Argument type="File" name="excelFile2"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ReportTemplate" package="Utilities" visibility="public" xPosition="1220.0" yPosition="1620.0">
+      <Fields/>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="SalesReport" package="Utilities" visibility="public" xPosition="1520.0" yPosition="1620.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="generateURL" returnType="String" visibility="public" isStatic="true"/>
+        <Method name="generateReport" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="url"/>
+        </Method>
+        <Method name="addHeader" returnType="void" visibility="public" isStatic="true">
+          <Argument type="Document" name="document"/>
+        </Method>
+        <Method name="addLogo" returnType="void" visibility="public" isStatic="true">
+          <Argument type="Document" name="document"/>
+          <Argument type="String" name="direction"/>
+        </Method>
+        <Method name="addTitleHeader" returnType="void" visibility="public" isStatic="true">
+          <Argument type="Document" name="document"/>
+          <Argument type="String" name="tl"/>
+        </Method>
+        <Method name="addSubtitleHeader" returnType="void" visibility="public" isStatic="true">
+          <Argument type="Document" name="document"/>
+          <Argument type="String" name="tl"/>
+        </Method>
+        <Method name="addInfoHeader" returnType="void" visibility="public" isStatic="true">
+          <Argument type="Document" name="document"/>
+          <Argument type="String" name="tl1"/>
+          <Argument type="String" name="tl2"/>
+        </Method>
+        <Method name="addTitleTable" returnType="void" visibility="public" isStatic="true">
+          <Argument type="Document" name="document"/>
+        </Method>
+        <Method name="createSalesTable" returnType="void" visibility="public" isStatic="true">
+          <Argument type="Document" name="document"/>
+          <Argument type="List&lt;SaleBill&gt;" name="saleBills"/>
+        </Method>
+        <Method name="calculateTotalSales" returnType="void" visibility="public" isStatic="true">
+          <Argument type="Document" name="document"/>
+          <Argument type="List&lt;SaleBill&gt;" name="saleBills"/>
+        </Method>
+        <Method name="addFooter" returnType="void" visibility="public" isStatic="true">
+          <Argument type="Document" name="document"/>
+        </Method>
+        <Method name="addNameFooter" returnType="void" visibility="public" isStatic="true">
+          <Argument type="Paragraph" name="footer"/>
+          <Argument type="String" name="tl"/>
+        </Method>
+        <Method name="addDateFooter" returnType="void" visibility="public" isStatic="true">
+          <Argument type="Paragraph" name="footer"/>
+        </Method>
+        <Method name="addNumberFooter" returnType="void" visibility="public" isStatic="true">
+          <Argument type="Paragraph" name="footer"/>
+          <Argument type="Document" name="document"/>
+        </Method>
+        <Method name="readSalesFromExcel" returnType="List&lt;SaleBill&gt;" visibility="public" isStatic="true">
+          <Argument type="String" name="url"/>
+        </Method>
+        <Method name="displayPDF" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="url"/>
+        </Method>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <UseRelation source="Utilities.SalesReport" target="Model.SaleBill" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="Utilities.GenerateCodeTransation" target="Control.IGenerate"/>
+    <IsRelation name="is" source="Model.Domestic" target="Model.Animal"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="Control.AdministrativeDepartment.ArrayListEmployee" target="Control.IList"/>
+    <HasRelation name="supllys" source="Control.LogisticDepartment.ArrayListSupply" target="Model.Supply" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Supply&gt;"/>
+    <IsRelation name="is" source="Model.Minor" target="Model.Animal"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="Utilities.GenerateCodeBillSale" target="Control.IGenerate"/>
+    <HasRelation name="wilds" source="Control.LogisticDepartment.ArrayListWild" target="Model.Wild" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Wild&gt;"/>
+    <IsRelation name="is" source="Model.SaleBill" target="Model.Bill"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="Control.LogisticDepartment.ArrayListMinor" target="Control.IList"/>
+    <HasRelation name="billsSales" source="Control.ComercialDepartment.ArrayListBillSale" target="Model.SaleBill" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;SaleBill&gt;"/>
+    <HasRelation name="transations" source="Control.ComercialDepartment.ArrayListTransation" target="Model.Transation" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Transation&gt;"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="Control.LogisticDepartment.ArrayListDomestic" target="Control.IList"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="Utilities.GenerateCodePlan" target="Control.IGenerate"/>
+    <HasRelation name="plans" source="Control.AdministrativeDepartment.ArrayListPlan" target="Model.Plan" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Plan&gt;"/>
+    <HasRelation name="domestics" source="Control.LogisticDepartment.ArrayListDomestic" target="Model.Domestic" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Domestic&gt;"/>
+    <HasRelation name="employees" source="Control.AdministrativeDepartment.ArrayListEmployee" target="Model.Employee" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Employee&gt;"/>
+    <HasRelation name="minors" source="Control.LogisticDepartment.ArrayListMinor" target="Model.Minor" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Minor&gt;"/>
+    <IsRelation name="is" source="Model.Wild" target="Model.Animal"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="Control.LogisticDepartment.ArrayListSupply" target="Control.IList"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="Control.ComercialDepartment.ArrayListTransation" target="Control.IList"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="Control.LogisticDepartment.ArrayListWild" target="Control.IList"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="Control.ComercialDepartment.ArrayListBillSale" target="Control.IList"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="Control.AdministrativeDepartment.ArrayListPlan" target="Control.IList"/>
+    <UseRelation source="Control.ComercialDepartment.ArrayListBillSale" target="Model.SaleBill" sourceCardinality="1..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>

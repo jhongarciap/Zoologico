@@ -13,7 +13,6 @@ import Utilities.AdExcel;
 import static Utilities.AdExcel.getRow;
 import static Utilities.AdExcel.rowToVector;
 import Utilities.Checker;
-import Utilities.SalesInvoice;
 import View.Administrative.AD1;
 import java.io.File;
 import java.util.ArrayList;
@@ -77,7 +76,6 @@ public class CM1 extends javax.swing.JFrame {
         tbProducts = new javax.swing.JTable();
         lbTotalSaleValue = new java.awt.Label();
         btNewSale = new javax.swing.JButton();
-        btBill = new javax.swing.JButton();
         lbTotalSale2 = new java.awt.Label();
         LbVentas = new javax.swing.JLabel();
         lbPlan = new javax.swing.JLabel();
@@ -146,18 +144,7 @@ public class CM1 extends javax.swing.JFrame {
             }
         });
         bgPanelRound.add(btNewSale);
-        btNewSale.setBounds(560, 290, 130, 23);
-
-        btBill.setBackground(new java.awt.Color(51, 51, 51));
-        btBill.setForeground(new java.awt.Color(255, 255, 255));
-        btBill.setText("Facturar");
-        btBill.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btBillActionPerformed(evt);
-            }
-        });
-        bgPanelRound.add(btBill);
-        btBill.setBounds(560, 260, 130, 23);
+        btNewSale.setBounds(560, 270, 130, 23);
 
         lbTotalSale2.setBackground(new java.awt.Color(51, 51, 51));
         lbTotalSale2.setFont(new java.awt.Font("Arial", 1, 22)); // NOI18N
@@ -270,6 +257,7 @@ public class CM1 extends javax.swing.JFrame {
     private void btNewSaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNewSaleActionPerformed
         DefaultTableModel model = (DefaultTableModel) tbProducts.getModel();
         model.setRowCount(0);
+        billSale.clearAllBillsSales();
 
     }//GEN-LAST:event_btNewSaleActionPerformed
 
@@ -281,16 +269,6 @@ public class CM1 extends javax.swing.JFrame {
             lbPlan.setText("El producto " + vector[1] + " con ID " + vector[0] + ", tiene un valor de: $" + vector[2]);
         }
     }//GEN-LAST:event_cbProductActionPerformed
-
-    private void btBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBillActionPerformed
-        DefaultTableModel model = (DefaultTableModel) tbProducts.getModel();
-        model.setRowCount(0);
-        try {
-            SalesInvoice pdf = new SalesInvoice();
-        } catch (Exception ex) {
-            Logger.getLogger(CM1.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_btBillActionPerformed
 
     private void btAddProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddProductActionPerformed
         int x = (Integer) spAmount.getValue();
@@ -361,7 +339,6 @@ public class CM1 extends javax.swing.JFrame {
     private javax.swing.JPanel bg;
     private Clases.PanelRound bgPanelRound;
     private javax.swing.JButton btAddProduct;
-    private javax.swing.JButton btBill;
     private javax.swing.JButton btDeleteProduct;
     private javax.swing.JButton btNewSale;
     private javax.swing.JComboBox<String> cbProduct;
