@@ -309,6 +309,9 @@
             <Component class="javax.swing.JButton" name="btRemoveDomesticAnimal">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Eliminar animal"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Hand Cursor"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btRemoveDomesticAnimalActionPerformed"/>
@@ -410,6 +413,9 @@
         <Component class="javax.swing.JButton" name="btSearchDomesticAnimal">
           <Properties>
             <Property name="text" type="java.lang.String" value="Buscar"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Hand Cursor"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btSearchDomesticAnimalActionPerformed"/>
@@ -448,6 +454,9 @@
         <Component class="javax.swing.JButton" name="btAddDomesticAnimal">
           <Properties>
             <Property name="text" type="java.lang.String" value="A&#xf1;adir animal"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Hand Cursor"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btAddDomesticAnimalActionPerformed"/>

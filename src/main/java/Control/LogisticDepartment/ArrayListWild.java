@@ -15,20 +15,26 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  *
  * @author garci
  */
-public class ArrayListWild implements IList{
+public class ArrayListWild implements IList {
+
     private ArrayList<Wild> wilds = new ArrayList<>();
-    public ArrayListWild(){
+
+    public ArrayListWild() {
 
     }
+
+    @Override
     public void add(Object o) {
-        wilds.add((Wild)o);
+        wilds.add((Wild) o);
     }
+
+    @Override
     public void saveExcel() {
         try {
             File file = new File("rom/Animals/Wilds.xlsx");
             if (file.exists()) {
                 XSSFWorkbook workbook;
-                try (FileInputStream fis = new FileInputStream(file)) {
+                try ( FileInputStream fis = new FileInputStream(file)) {
                     workbook = new XSSFWorkbook(fis);
                     XSSFSheet sheet = workbook.getSheetAt(0);
                     int lastRow = sheet.getLastRowNum();
@@ -45,7 +51,7 @@ public class ArrayListWild implements IList{
                     }
                 }
 
-                try (FileOutputStream fos = new FileOutputStream(file)) {
+                try ( FileOutputStream fos = new FileOutputStream(file)) {
                     workbook.write(fos);
                 }
             } else {
@@ -60,7 +66,6 @@ public class ArrayListWild implements IList{
                 row.createCell(4).setCellValue("Birth habitat");
                 row.createCell(5).setCellValue("Dangerousness");
                 row.createCell(6).setCellValue("Diet");
-                
 
                 for (int i = 0; i < wilds.size(); i++) {
                     row = sheet.createRow(i + 1);
@@ -73,7 +78,7 @@ public class ArrayListWild implements IList{
                     row.createCell(6).setCellValue(wilds.get(i).getDiet());
                 }
 
-                try (FileOutputStream fos = new FileOutputStream(file)) {
+                try ( FileOutputStream fos = new FileOutputStream(file)) {
                     workbook.write(fos);
                 }
             }

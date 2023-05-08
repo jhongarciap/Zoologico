@@ -5,11 +5,12 @@ package Model;
  * @author garci
  */
 public class Animal {
-    private String name; 
-    private String race; 
-    private String sex; 
-    private String habitad; 
-    private String diet; 
+
+    private String name;
+    private String race;
+    private String sex;
+    private String habitad;
+    private String diet;
 
     public Animal(String name, String race, String sex, String habitad, String diet) {
         this.name = name;
@@ -88,6 +89,5 @@ public class Animal {
     public void setDiet(String diet) {
         this.diet = diet;
     }
-    
-    
+
 }

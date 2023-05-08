@@ -5,12 +5,13 @@ package Model;
  * @author garci
  */
 public class Employee {
-     private String lastName;
-     private String name;
-     private String funcions;
-     private String id;
-     
-    public Employee(String id,String name, String lastName,String funcions) {
+
+    private String lastName;
+    private String name;
+    private String funcions;
+    private String id;
+
+    public Employee(String id, String name, String lastName, String funcions) {
         this.lastName = lastName;
         this.name = name;
         this.funcions = funcions;
@@ -72,5 +73,5 @@ public class Employee {
     public void setId(String id) {
         this.id = id;
     }
-    
+
 }

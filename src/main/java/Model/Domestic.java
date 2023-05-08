@@ -4,8 +4,8 @@ package Model;
  *
  * @author garci
  */
-public class Domestic extends Animal{
-    
+public class Domestic extends Animal {
+
     private String psyche;
     private String origin;
 
@@ -42,8 +42,5 @@ public class Domestic extends Animal{
     public void setOrigin(String origin) {
         this.origin = origin;
     }
-    
-    
-    
-    
+
 }

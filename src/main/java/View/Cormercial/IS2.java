@@ -27,10 +27,10 @@ public class IS2 extends javax.swing.JFrame {
         this.setIconImage(faviconX1);
         Image logoZRV = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/zoo!Logo.png"));
         lbZooLogo.setIcon(new ImageIcon(logoZRV.getScaledInstance(lbZooLogo.getWidth(), lbZooLogo.getHeight(), Image.SCALE_AREA_AVERAGING)));
-       
+
         Image logoZV = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/ticket.png"));
         lbTicket.setIcon(new ImageIcon(logoZV.getScaledInstance(lbTicket.getWidth(), lbTicket.getHeight(), Image.SCALE_AREA_AVERAGING)));
-       
+
     }
 
     /**
@@ -73,7 +73,7 @@ public class IS2 extends javax.swing.JFrame {
         btComercialSale.setFont(new java.awt.Font("Arial", 0, 48)); // NOI18N
         btComercialSale.setForeground(new java.awt.Color(242, 242, 242));
         btComercialSale.setText("Venta");
-        btComercialSale.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btComercialSale.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btComercialSale.setFocusPainted(false);
         btComercialSale.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,10 +124,10 @@ public class IS2 extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        try{
+        try {
             UIManager.setLookAndFeel(new FlatDarculaLaf());
-        }catch (Exception e){
-            
+        } catch (Exception e) {
+
         }
 
         /* Create and display the form */

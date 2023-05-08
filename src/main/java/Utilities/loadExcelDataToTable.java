@@ -29,7 +29,7 @@ public class loadExcelDataToTable {
         }
         table.setDefaultEditor(Object.class, null);
     }
-    
+
     public static void updateTableFromExcelOneAtribute(JTable table, File excelFile, String value, int columnValue) {
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         boolean hasData = false;
@@ -75,6 +75,7 @@ public class loadExcelDataToTable {
             }
         }
     }
+
     public static void updateTableFromTwoExcelFiles(JTable table, File excelFile1, File excelFile2) {
         updateTableFromExcel(table, excelFile1);
         DefaultTableModel model = (DefaultTableModel) table.getModel();

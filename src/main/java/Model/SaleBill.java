@@ -2,18 +2,15 @@ package Model;
 
 import Utilities.GenerateCodeBillSale;
 
-
-
-
 /**
  *
  * @author garci
  */
-public class SaleBill  extends Bill{
-    
-    private String code;    
+public class SaleBill extends Bill {
 
-    public SaleBill(String code, String date, Float value, Float discount,int amount, Float totalvalue, String costormerName, String product, String productld) {
+    private String code;
+
+    public SaleBill(String code, String date, Float value, Float discount, int amount, Float totalvalue, String costormerName, String product, String productld) {
         super(date, value, discount, totalvalue, costormerName, product, productld, amount);
         GenerateCodeBillSale generator = new GenerateCodeBillSale();
         this.code = generator.generateCode("BS");
@@ -33,7 +30,4 @@ public class SaleBill  extends Bill{
         this.code = code;
     }
 
-    
-    
-    
 }

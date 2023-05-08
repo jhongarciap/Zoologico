@@ -44,13 +44,13 @@ public class SalesReport {
         generateReport(url);
         displayPDF(url);
     }
-    
-    public static String generateURL(){
+
+    public static String generateURL() {
         String date = LocalDate.now().toString();
         String url = "rom/PDF/Report/SalesReport " + date + ".pdf";
         return url;
     }
-    
+
     public static void generateReport(String url) throws Exception {
         List<SaleBill> saleBills = readSalesFromExcel("rom/Bills/BillSale.xlsx");
         Document document = new Document(PageSize.A4.rotate());
@@ -63,24 +63,24 @@ public class SalesReport {
         addFooter(document);
         document.close();
     }
-    
-        public static void addHeader(Document document) throws Exception {
-        addLogo(document,"target/classes/Resources/ZRVC@3x.png");
+
+    public static void addHeader(Document document) throws Exception {
+        addLogo(document, "target/classes/Resources/ZRVC@3x.png");
         addTitleHeader(document, "Zoológico Reserva de la Vida");
         addSubtitleHeader(document, "Calle 123, Medellín, Colombia");
         addInfoHeader(document, "Teléfono: 123-456-7890", "Correo electrónico: info@zooxyz.com");
         document.add(new Chunk("\n")); // Agregar espacio antes de la línea de separación
     }
-    
-            public static void addLogo(Document document, String direction) throws BadElementException, IOException, DocumentException {
+
+    public static void addLogo(Document document, String direction) throws BadElementException, IOException, DocumentException {
         Image image = Image.getInstance(direction);
         image.setAlignment(Element.ALIGN_RIGHT); // Alinear el logo a la derecha
         image.scaleToFit(PageSize.A4.getWidth() * 0.4f, PageSize.A4.getHeight() * 0.1f);
         image.setSpacingAfter(10);
         document.add(image);
     }
-    
-            public static void addTitleHeader(Document document, String tl) throws DocumentException {
+
+    public static void addTitleHeader(Document document, String tl) throws DocumentException {
         // Crear la fuente para el título del encabezado
         Font titleFont = new Font(Font.FontFamily.HELVETICA, 24, Font.BOLD);
         titleFont.setColor(BaseColor.BLACK);
@@ -92,8 +92,8 @@ public class SalesReport {
         title.setSpacingAfter(5);
         document.add(title);
     }
-    
-            public static void addSubtitleHeader(Document document, String tl) throws DocumentException {
+
+    public static void addSubtitleHeader(Document document, String tl) throws DocumentException {
         // Crear la fuente para el subtítulo del encabezado
         Font subtitleFont = new Font(Font.FontFamily.HELVETICA, 12, Font.NORMAL, BaseColor.BLACK);
         // Agregar subtítulo del encabezado
@@ -104,8 +104,8 @@ public class SalesReport {
         subtitle.setSpacingAfter(10);
         document.add(subtitle);
     }
-    
-            public static void addInfoHeader(Document document, String tl1, String tl2) throws DocumentException {
+
+    public static void addInfoHeader(Document document, String tl1, String tl2) throws DocumentException {
         Font contactFont = new Font(Font.FontFamily.HELVETICA, 10, Font.NORMAL, BaseColor.BLACK);
         Paragraph contact = new Paragraph(tl1, contactFont);
         contact.setAlignment(Element.ALIGN_LEFT);
@@ -119,15 +119,15 @@ public class SalesReport {
         document.add(contact);
     }
 
-        public static void addTitleTable(Document document) throws DocumentException {
+    public static void addTitleTable(Document document) throws DocumentException {
         Font titleFont = new Font(Font.FontFamily.HELVETICA, 28, Font.BOLD, BaseColor.BLACK);
-        Paragraph title = new Paragraph("Reporte de Ventas\r\n  " , titleFont);
+        Paragraph title = new Paragraph("Reporte de Ventas\r\n  ", titleFont);
         title.setAlignment(Element.ALIGN_CENTER);
         title.setSpacingAfter(3);
         document.add(title);
     }
 
-        public static void createSalesTable(Document document, List<SaleBill> saleBills) throws DocumentException {
+    public static void createSalesTable(Document document, List<SaleBill> saleBills) throws DocumentException {
         PdfPTable table = new PdfPTable(new float[]{1, 1.5f, 1, 1, 1, 1.5f, 2, 2, 1.5f});
         table.setWidthPercentage(100);
 
@@ -204,7 +204,7 @@ public class SalesReport {
         document.add(table);
     }
 
-        public static void calculateTotalSales(Document document, List<SaleBill> saleBills) throws DocumentException {
+    public static void calculateTotalSales(Document document, List<SaleBill> saleBills) throws DocumentException {
         double totalSales = 0;
         for (SaleBill sale : saleBills) {
             totalSales += sale.getTotalvalue();
@@ -241,15 +241,15 @@ public class SalesReport {
         // Agregar el pie de página al documento
         document.add(footer);
     }
-    
-            public static void addNameFooter(Paragraph footer, String tl) {
+
+    public static void addNameFooter(Paragraph footer, String tl) {
         // Agregar la información de la empresa
         Font companyFont = new Font(Font.FontFamily.HELVETICA, 8, Font.NORMAL, BaseColor.GRAY);
         Chunk companyChunk = new Chunk(tl, companyFont);
         footer.add(companyChunk);
     }
 
-            public static void addDateFooter(Paragraph footer) {
+    public static void addDateFooter(Paragraph footer) {
         // Agregar la información de la fecha
         Font dateFont = new Font(Font.FontFamily.HELVETICA, 8, Font.NORMAL, BaseColor.GRAY);
         String date = LocalDate.now().toString();
@@ -257,7 +257,7 @@ public class SalesReport {
         footer.add(dateChunk);
     }
 
-            public static void addNumberFooter(Paragraph footer, Document document) {
+    public static void addNumberFooter(Paragraph footer, Document document) {
         int pageNumber = document.getPageNumber() + 1;
         int totalPages = document.getPageNumber() + 1;
         Font pageNumberFont = new Font(Font.FontFamily.HELVETICA, 8, Font.NORMAL, BaseColor.GRAY);
@@ -265,9 +265,9 @@ public class SalesReport {
         footer.add(pageNumberChunk);
     }
 
-        public static List<SaleBill> readSalesFromExcel(String url) throws Exception {
+    public static List<SaleBill> readSalesFromExcel(String url) throws Exception {
         List<SaleBill> saleBills;
-        try (Workbook workbook = new XSSFWorkbook(url)) {
+        try ( Workbook workbook = new XSSFWorkbook(url)) {
             Sheet sheet = workbook.getSheetAt(0);
             saleBills = new ArrayList<>();
             for (Row row : sheet) {
@@ -293,7 +293,7 @@ public class SalesReport {
     public static void displayPDF(String url) {
         File file = new File(url);
         try {
-            try (PDDocument document = PDDocument.load(file)) {
+            try ( PDDocument document = PDDocument.load(file)) {
                 PDFRenderer renderer = new PDFRenderer(document);
                 JLabel label = new JLabel();
                 label.setIcon(new ImageIcon(renderer.renderImageWithDPI(0, 100)));

@@ -15,20 +15,25 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  *
  * @author garci
  */
-public class ArrayListTransation implements IList{
+public class ArrayListTransation implements IList {
+
     private ArrayList<Transation> transations = new ArrayList<>();
 
     public ArrayListTransation() {
     }
+
+    @Override
     public void add(Object o) {
-        transations.add((Transation)o);
+        transations.add((Transation) o);
     }
+
+    @Override
     public void saveExcel() {
         try {
             File file = new File("rom/Transations/Transations.xlsx");
             if (file.exists()) {
                 XSSFWorkbook workbook;
-                try (FileInputStream fis = new FileInputStream(file)) {
+                try ( FileInputStream fis = new FileInputStream(file)) {
                     workbook = new XSSFWorkbook(fis);
                     XSSFSheet sheet = workbook.getSheetAt(0);
                     int lastRow = sheet.getLastRowNum();
@@ -46,7 +51,7 @@ public class ArrayListTransation implements IList{
                     }
                 }
 
-                try (FileOutputStream fos = new FileOutputStream(file)) {
+                try ( FileOutputStream fos = new FileOutputStream(file)) {
                     workbook.write(fos);
                 }
             } else {
@@ -75,7 +80,7 @@ public class ArrayListTransation implements IList{
                     row.createCell(7).setCellValue(transations.get(i).getEspecifications());
                 }
 
-                try (FileOutputStream fos = new FileOutputStream(file)) {
+                try ( FileOutputStream fos = new FileOutputStream(file)) {
                     workbook.write(fos);
                 }
             }
@@ -84,5 +89,4 @@ public class ArrayListTransation implements IList{
         }
     }
 
-    
 }

@@ -15,23 +15,26 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  *
  * @author garci
  */
-public class ArrayListEmployee implements IList{
+public class ArrayListEmployee implements IList {
 
     private ArrayList<Employee> employees = new ArrayList<>();
 
     public ArrayListEmployee() {
 
     }
+
+    @Override
     public void add(Object o) {
         employees.add((Employee) o);
     }
+
     @Override
     public void saveExcel() {
         try {
             File file = new File("rom/Employees/Employees.xlsx");
             if (file.exists()) {
                 XSSFWorkbook workbook;
-                try (FileInputStream fis = new FileInputStream(file)) {
+                try ( FileInputStream fis = new FileInputStream(file)) {
                     workbook = new XSSFWorkbook(fis);
                     XSSFSheet sheet = workbook.getSheetAt(0);
                     int lastRow = sheet.getLastRowNum();
@@ -45,7 +48,7 @@ public class ArrayListEmployee implements IList{
                     }
                 }
 
-                try (FileOutputStream fos = new FileOutputStream(file)) {
+                try ( FileOutputStream fos = new FileOutputStream(file)) {
                     workbook.write(fos);
                 }
             } else {
@@ -60,13 +63,13 @@ public class ArrayListEmployee implements IList{
 
                 for (int i = 0; i < employees.size(); i++) {
                     row = sheet.createRow(i + 1);
-                   row.createCell(0).setCellValue(employees.get(i).getId());
+                    row.createCell(0).setCellValue(employees.get(i).getId());
                     row.createCell(1).setCellValue(employees.get(i).getName());
                     row.createCell(2).setCellValue(employees.get(i).getLastName());
                     row.createCell(3).setCellValue(employees.get(i).getFuncions());
                 }
 
-                try (FileOutputStream fos = new FileOutputStream(file)) {
+                try ( FileOutputStream fos = new FileOutputStream(file)) {
                     workbook.write(fos);
                 }
             }
@@ -74,5 +77,5 @@ public class ArrayListEmployee implements IList{
             System.out.println("Hay un error, revisa.");
         }
     }
-   
+
 }

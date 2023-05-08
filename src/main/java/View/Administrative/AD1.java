@@ -19,9 +19,6 @@ import javax.swing.UIManager;
  */
 public class AD1 extends javax.swing.JFrame {
 
-    /**
-     * Creates new form X1
-     */
     public AD1() {
         System.setProperty("sun.java2d.uiScale", "1.0");
         FlatDarkLaf.setup();
@@ -149,6 +146,7 @@ public class AD1 extends javax.swing.JFrame {
         lbTotalValue.setBounds(100, 330, 160, 40);
 
         btGeneratePDF1.setText("Generar PDF");
+        btGeneratePDF1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btGeneratePDF1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btGeneratePDF1ActionPerformed(evt);
@@ -215,8 +213,6 @@ public class AD1 extends javax.swing.JFrame {
         } catch (Exception e) {
 
         }
-
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new AD1().setVisible(true);

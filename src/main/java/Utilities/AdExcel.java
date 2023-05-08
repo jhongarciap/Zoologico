@@ -21,7 +21,7 @@ public class AdExcel {
         ArrayList<Row> rows = new ArrayList<>();
         try {
             if (file.exists()) {
-                try (FileInputStream fis = new FileInputStream(file)) {
+                try ( FileInputStream fis = new FileInputStream(file)) {
                     XSSFWorkbook workbook = new XSSFWorkbook(fis);
                     XSSFSheet sheet = workbook.getSheetAt(0);
                     int lastRow = sheet.getLastRowNum();
@@ -43,7 +43,7 @@ public class AdExcel {
         float totalValue = 0f;
         try {
             if (file.exists()) {
-                try (FileInputStream fis = new FileInputStream(file)) {
+                try ( FileInputStream fis = new FileInputStream(file)) {
                     XSSFWorkbook workbook = new XSSFWorkbook(fis);
                     XSSFSheet sheet = workbook.getSheetAt(0);
                     int lastRow = sheet.getLastRowNum();
@@ -95,7 +95,7 @@ public class AdExcel {
 
             if (rowDeleted) {
                 try (
-                        FileOutputStream exit = new FileOutputStream(file)) {
+                         FileOutputStream exit = new FileOutputStream(file)) {
                     book.write(exit);
                     archive.close();
                 }
@@ -104,6 +104,7 @@ public class AdExcel {
         } catch (IOException e) {
         }
     }
+
     public static String[] rowToVector(Row row) {
         int numCells = row.getLastCellNum();
         String[] vector = new String[numCells];
@@ -123,7 +124,7 @@ public class AdExcel {
     public static Row getRow(String codigo, File file, String sheetName, int cellNum) {
         try {
             try (
-                    FileInputStream archive = new FileInputStream(file)) {
+                     FileInputStream archive = new FileInputStream(file)) {
                 XSSFWorkbook book = new XSSFWorkbook(archive);
                 XSSFSheet sheet = book.getSheet(sheetName);
                 for (int i = sheet.getLastRowNum(); i >= sheet.getFirstRowNum(); i--) {
@@ -140,60 +141,60 @@ public class AdExcel {
 
         return null;
     }
-    
+
     public ArrayList<String> getColumn(File file, int columnIndex) {
-    ArrayList<String> columnValues = new ArrayList<>();
+        ArrayList<String> columnValues = new ArrayList<>();
 
-    try {
-        if (file.exists()) {
-            XSSFWorkbook workbook;
-            try (FileInputStream fis = new FileInputStream(file)) {
-                workbook = new XSSFWorkbook(fis);
-                XSSFSheet sheet = workbook.getSheetAt(0);
+        try {
+            if (file.exists()) {
+                XSSFWorkbook workbook;
+                try ( FileInputStream fis = new FileInputStream(file)) {
+                    workbook = new XSSFWorkbook(fis);
+                    XSSFSheet sheet = workbook.getSheetAt(0);
 
-                for (int i = 1; i <= sheet.getLastRowNum(); i++) {
-                    XSSFRow row = sheet.getRow(i);
-                    if (row != null) {
-                        XSSFCell cell = row.getCell(columnIndex);
-                        if (cell != null) {
-                            columnValues.add(cell.getStringCellValue());
+                    for (int i = 1; i <= sheet.getLastRowNum(); i++) {
+                        XSSFRow row = sheet.getRow(i);
+                        if (row != null) {
+                            XSSFCell cell = row.getCell(columnIndex);
+                            if (cell != null) {
+                                columnValues.add(cell.getStringCellValue());
+                            }
                         }
                     }
                 }
             }
+        } catch (IOException e) {
         }
-    } catch (IOException e) {
-    }
 
-    return columnValues;
-}
+        return columnValues;
+    }
 
     public ArrayList<Float> getColumnFloat(File file, int columnIndex) {
-    ArrayList<Float> columnValues = new ArrayList<>();
+        ArrayList<Float> columnValues = new ArrayList<>();
 
-    try {
-        if (file.exists()) {
-            XSSFWorkbook workbook;
-            try (FileInputStream fis = new FileInputStream(file)) {
-                workbook = new XSSFWorkbook(fis);
-                XSSFSheet sheet = workbook.getSheetAt(0);
+        try {
+            if (file.exists()) {
+                XSSFWorkbook workbook;
+                try ( FileInputStream fis = new FileInputStream(file)) {
+                    workbook = new XSSFWorkbook(fis);
+                    XSSFSheet sheet = workbook.getSheetAt(0);
 
-                for (int i = 1; i <= sheet.getLastRowNum(); i++) {
-                    XSSFRow row = sheet.getRow(i);
-                    if (row != null) {
-                        XSSFCell cell = row.getCell(columnIndex);
-                        if (cell != null) {
-                            float cellFloat = Float.parseFloat(Double.toString(cell.getNumericCellValue()));
-                            columnValues.add(cellFloat);
+                    for (int i = 1; i <= sheet.getLastRowNum(); i++) {
+                        XSSFRow row = sheet.getRow(i);
+                        if (row != null) {
+                            XSSFCell cell = row.getCell(columnIndex);
+                            if (cell != null) {
+                                float cellFloat = Float.parseFloat(Double.toString(cell.getNumericCellValue()));
+                                columnValues.add(cellFloat);
+                            }
                         }
                     }
                 }
             }
+        } catch (IOException e) {
         }
-    } catch (IOException e) {
-    }
 
-    return columnValues;
-}
+        return columnValues;
+    }
 
 }

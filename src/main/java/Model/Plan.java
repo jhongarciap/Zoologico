@@ -2,25 +2,25 @@ package Model;
 
 import Utilities.GenerateCodePlan;
 
-
-
 /**
  *
  * @author garci
  */
 public class Plan {
-    private Float  value;
+
+    private Float value;
     private String sfications;
     private String product;
     private String productId;
 
-   public Plan(String productId, String product, Float value, String sfications) {
+    public Plan(String productId, String product, Float value, String sfications) {
         this.value = value;
         this.sfications = sfications;
         this.product = product;
         GenerateCodePlan generator = new GenerateCodePlan();
         this.productId = generator.generateCode("PL");
     }
+
     /**
      * @return the value
      */
@@ -76,6 +76,5 @@ public class Plan {
     public void setProductId(String productId) {
         this.productId = productId;
     }
-
 
 }

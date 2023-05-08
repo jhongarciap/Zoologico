@@ -2,6 +2,7 @@ package Model;
 
 import static Utilities.CurrentDate.currentDate;
 import Utilities.GenerateCodeTransation;
+
 /**
  *
  * @author garci

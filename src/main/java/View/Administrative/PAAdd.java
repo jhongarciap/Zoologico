@@ -4,7 +4,6 @@ import Control.AdministrativeDepartment.ArrayListPlan;
 import Model.Plan;
 import Utilities.Checker;
 import static Utilities.loadExcelDataToTable.updateTableFromExcel;
-import View.Administrative.AD3;
 import com.formdev.flatlaf.FlatDarculaLaf;
 import com.formdev.flatlaf.FlatDarkLaf;
 import java.awt.Image;
@@ -33,7 +32,6 @@ public class PAAdd extends javax.swing.JFrame {
         lbZooLogo.setIcon(new ImageIcon(logoZRV.getScaledInstance(lbZooLogo.getWidth(), lbZooLogo.getHeight(), Image.SCALE_AREA_AVERAGING)));
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -125,7 +123,7 @@ public class PAAdd extends javax.swing.JFrame {
         btLogisticPlan.setForeground(new java.awt.Color(242, 242, 242));
         btLogisticPlan.setText("+");
         btLogisticPlan.setActionCommand("Añadir");
-        btLogisticPlan.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btLogisticPlan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btLogisticPlan.setFocusPainted(false);
         btLogisticPlan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -180,11 +178,11 @@ public class PAAdd extends javax.swing.JFrame {
     }//GEN-LAST:event_btLogisticPlanActionPerformed
 
     private void txValueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txValueActionPerformed
-        
+
     }//GEN-LAST:event_txValueActionPerformed
 
     private void txPlanNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txPlanNameActionPerformed
-        
+
     }//GEN-LAST:event_txPlanNameActionPerformed
 
     private void lbZooLogoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbZooLogoMouseClicked

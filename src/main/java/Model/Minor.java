@@ -4,12 +4,12 @@ package Model;
  *
  * @author garci
  */
-public class Minor extends Animal{
-    
+public class Minor extends Animal {
+
     public Minor(String name, String race, String sex, String habitat, String diet) {
         super(name, race, sex, habitat, diet);
     }
-     
+
     private String diseases;
     private String nativeClimate;
 
@@ -46,5 +46,5 @@ public class Minor extends Animal{
     public void setNativeClimate(String nativeClimate) {
         this.nativeClimate = nativeClimate;
     }
-    
+
 }

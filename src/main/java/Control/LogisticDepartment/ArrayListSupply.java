@@ -15,21 +15,26 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  *
  * @author garci
  */
-public class ArrayListSupply implements IList{
+public class ArrayListSupply implements IList {
+
     private ArrayList<Supply> supllys;
 
     public ArrayListSupply() {
         this.supllys = new ArrayList<>();
     }
+
+    @Override
     public void add(Object o) {
         supllys.add((Supply) o);
     }
+
+    @Override
     public void saveExcel() {
         try {
             File file = new File("rom/Supply.xlsx");
             if (file.exists()) {
                 XSSFWorkbook workbook;
-                try (FileInputStream fis = new FileInputStream(file)) {
+                try ( FileInputStream fis = new FileInputStream(file)) {
                     workbook = new XSSFWorkbook(fis);
                     XSSFSheet sheet = workbook.getSheetAt(0);
                     int lastRow = sheet.getLastRowNum();
@@ -44,7 +49,7 @@ public class ArrayListSupply implements IList{
                     }
                 }
 
-                try (FileOutputStream fos = new FileOutputStream(file)) {
+                try ( FileOutputStream fos = new FileOutputStream(file)) {
                     workbook.write(fos);
                 }
             } else {
@@ -67,7 +72,7 @@ public class ArrayListSupply implements IList{
                     row.createCell(4).setCellValue(supllys.get(i).getSpecifications());
                 }
 
-                try (FileOutputStream fos = new FileOutputStream(file)) {
+                try ( FileOutputStream fos = new FileOutputStream(file)) {
                     workbook.write(fos);
                 }
             }
@@ -76,5 +81,4 @@ public class ArrayListSupply implements IList{
         }
     }
 
-    
 }

@@ -5,6 +5,7 @@ package Model;
  * @author garci
  */
 public class Supply {
+
     private String name;
     private String type;
     private String animal;
@@ -60,6 +61,7 @@ public class Supply {
     public void setAnimal(String animal) {
         this.animal = animal;
     }
+
     /**
      * @return the specifications
      */
@@ -87,5 +89,5 @@ public class Supply {
     public void setQuantity(String quantity) {
         this.quantity = quantity;
     }
-    
+
 }

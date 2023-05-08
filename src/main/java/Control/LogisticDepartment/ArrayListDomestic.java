@@ -15,22 +15,26 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  *
  * @author garci
  */
-public class ArrayListDomestic implements IList{
+public class ArrayListDomestic implements IList {
 
     private ArrayList<Domestic> domestics = new ArrayList<>();
+
     public ArrayListDomestic() {
 
     }
+
+    @Override
     public void add(Object o) {
         domestics.add((Domestic) o);
     }
-        
+
+    @Override
     public void saveExcel() {
         try {
             File file = new File("rom/Animals/Domestics.xlsx");
             if (file.exists()) {
                 XSSFWorkbook workbook;
-                try (FileInputStream fis = new FileInputStream(file)) {
+                try ( FileInputStream fis = new FileInputStream(file)) {
                     workbook = new XSSFWorkbook(fis);
                     XSSFSheet sheet = workbook.getSheetAt(0);
                     int lastRow = sheet.getLastRowNum();
@@ -47,7 +51,7 @@ public class ArrayListDomestic implements IList{
                     }
                 }
 
-                try (FileOutputStream fos = new FileOutputStream(file)) {
+                try ( FileOutputStream fos = new FileOutputStream(file)) {
                     workbook.write(fos);
                 }
             } else {
@@ -74,7 +78,7 @@ public class ArrayListDomestic implements IList{
                     row.createCell(6).setCellValue(domestics.get(i).getDiet());
                 }
 
-                try (FileOutputStream fos = new FileOutputStream(file)) {
+                try ( FileOutputStream fos = new FileOutputStream(file)) {
                     workbook.write(fos);
                 }
             }
@@ -83,5 +87,4 @@ public class ArrayListDomestic implements IList{
         }
     }
 
-    
 }

@@ -15,20 +15,26 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  *
  * @author garci
  */
-public class ArrayListMinor implements IList{
+public class ArrayListMinor implements IList {
+
     private ArrayList<Minor> minors = new ArrayList<>();
+
     public ArrayListMinor() {
 
     }
+
+    @Override
     public void add(Object o) {
         minors.add((Minor) o);
     }
+
+    @Override
     public void saveExcel() {
         try {
             File file = new File("rom/Animals/Minors.xlsx");
             if (file.exists()) {
                 XSSFWorkbook workbook;
-                try (FileInputStream fis = new FileInputStream(file)) {
+                try ( FileInputStream fis = new FileInputStream(file)) {
                     workbook = new XSSFWorkbook(fis);
                     XSSFSheet sheet = workbook.getSheetAt(0);
                     int lastRow = sheet.getLastRowNum();
@@ -45,7 +51,7 @@ public class ArrayListMinor implements IList{
                     }
                 }
 
-                try (FileOutputStream fos = new FileOutputStream(file)) {
+                try ( FileOutputStream fos = new FileOutputStream(file)) {
                     workbook.write(fos);
                 }
             } else {
@@ -72,7 +78,7 @@ public class ArrayListMinor implements IList{
                     row.createCell(6).setCellValue(minors.get(i).getDiet());
                 }
 
-                try (FileOutputStream fos = new FileOutputStream(file)) {
+                try ( FileOutputStream fos = new FileOutputStream(file)) {
                     workbook.write(fos);
                 }
             }
@@ -80,7 +86,5 @@ public class ArrayListMinor implements IList{
             System.out.println("Hay un error, revisa.");
         }
     }
-
-    
 
 }

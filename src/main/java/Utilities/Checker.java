@@ -5,6 +5,7 @@ package Utilities;
  * @author USUARIO
  */
 public class Checker {
+
     public static boolean IntChecker(String str) {
         try {
             Integer.valueOf(str);
@@ -13,7 +14,7 @@ public class Checker {
             return false;
         }
     }
-    
+
     public static boolean FloatChecker(String str) {
         try {
             Float.valueOf(str);

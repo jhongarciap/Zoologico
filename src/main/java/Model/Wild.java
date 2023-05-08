@@ -4,8 +4,8 @@ package Model;
  *
  * @author garci
  */
-public class Wild extends Animal{
-    
+public class Wild extends Animal {
+
     public Wild(String name, String race, String sex, String habitat, String diet) {
         super(name, race, sex, habitat, diet);
     }
@@ -45,6 +45,5 @@ public class Wild extends Animal{
     public void setDangerousness(String dangerousness) {
         this.dangerousness = dangerousness;
     }
-    
-    
+
 }
